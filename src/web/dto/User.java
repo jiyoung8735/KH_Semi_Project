@@ -10,14 +10,14 @@ public class User {
 	private String userName;
 	private String userNick;
 	private Date userBirth;
-	private char userGender;
+	private String userGender;
 	private String userEmail;
 	private int	userTel;
 	private Date userDate;
 	private int	userCnt;
 	private int	userAuth;
 	private int	userGrade;
-	private char userReport;
+	private String userReport;
 	private int	franNo;
 	
 	@Override
@@ -63,10 +63,10 @@ public class User {
 	public void setUserBirth(Date userBirth) {
 		this.userBirth = userBirth;
 	}
-	public char getUserGender() {
+	public String getUserGender() {
 		return userGender;
 	}
-	public void setUserGender(char userGender) {
+	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
 	public String getUserEmail() {
@@ -105,10 +105,10 @@ public class User {
 	public void setUserGrade(int userGrade) {
 		this.userGrade = userGrade;
 	}
-	public char getUserReport() {
+	public String getUserReport() {
 		return userReport;
 	}
-	public void setUserReport(char userReport) {
+	public void setUserReport(String userReport) {
 		this.userReport = userReport;
 	}
 	public int getFranNo() {

@@ -10,8 +10,8 @@ public class Board {
 	private String bdAnswer;
 	private Date bdDate;
 	private int	bdCnt;
-	private char bdGrp;
-	private char bdYn;
+	private String bdGrp;
+	private String bdYn;
 	private int	userNo;
 	@Override
 	public String toString() {
@@ -55,16 +55,16 @@ public class Board {
 	public void setBdCnt(int bdCnt) {
 		this.bdCnt = bdCnt;
 	}
-	public char getBdGrp() {
+	public String getBdGrp() {
 		return bdGrp;
 	}
-	public void setBdGrp(char bdGrp) {
+	public void setBdGrp(String bdGrp) {
 		this.bdGrp = bdGrp;
 	}
-	public char getBdYn() {
+	public String getBdYn() {
 		return bdYn;
 	}
-	public void setBdYn(char bdYn) {
+	public void setBdYn(String bdYn) {
 		this.bdYn = bdYn;
 	}
 	public int getUserNo() {

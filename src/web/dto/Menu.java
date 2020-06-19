@@ -9,8 +9,8 @@ public class Menu {
 	private String menuInfo;
 	private int	menuCost;
 	private Date menuDate;
-	private char menuStat;
-	private char menuBlind;
+	private String menuStat;
+	private String menuBlind;
 	private int	franNo;
 	
 	@Override
@@ -49,16 +49,16 @@ public class Menu {
 	public void setMenuDate(Date menuDate) {
 		this.menuDate = menuDate;
 	}
-	public char getMenuStat() {
+	public String getMenuStat() {
 		return menuStat;
 	}
-	public void setMenuStat(char menuStat) {
+	public void setMenuStat(String menuStat) {
 		this.menuStat = menuStat;
 	}
-	public char getMenuBlind() {
+	public String getMenuBlind() {
 		return menuBlind;
 	}
-	public void setMenuBlind(char menuBlind) {
+	public void setMenuBlind(String menuBlind) {
 		this.menuBlind = menuBlind;
 	}
 	public int getFranNo() {
