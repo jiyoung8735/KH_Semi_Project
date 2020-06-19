@@ -103,6 +103,8 @@ conn = JDBCTemplate.getConnection(); //DB연결
 				sql += " ) BOARD";
 				sql += " WHERE rnum BETWEEN ? AND ?";
 				
+				System.out.println(sql);
+				
 				//결과 저장할 List
 				List<Board> boardList = new ArrayList<>();
 				
