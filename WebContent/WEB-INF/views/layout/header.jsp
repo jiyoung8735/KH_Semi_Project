@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +65,7 @@ $(document).ready(function() {
 </head>
 <body>
 
+<c:if test="${empty login }">
 <div class="header-container">
 	<div class="header-wrapper">
 	<a href="#"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
@@ -74,13 +77,37 @@ $(document).ready(function() {
 		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
 		   	<li class="cate-list-item"><a href="#">평점보기</a></li>
 		   	<li class="cate-list-item"><a href="#">공지사항</a></li>
-		   	<li class="cate-list-item"><a href="#">자유게시판</a></li>
-		   	<li class="cate-list-item"><a href="#">로그인</a></li>
-		   	<li class="cate-list-item"><a href="#">회원가입</a></li>
+		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
+		   	<li class="cate-list-item"><a href="/login">로그인</a></li>
+		   	<li class="cate-list-item"><a href="/join">회원가입</a></li>
 	   	</ul>
 	  	</div>
 		</div>
 
 </div>
+</c:if>
+
+<c:if test="${not empty login }">
+<div class="header-container">
+	<div class="header-wrapper">
+	<a href="#"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
+	</div>								
+
+		<div class="category-background">
+	  	<div class="category-list">
+	  	 <ul>
+		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
+		   	<li class="cate-list-item"><a href="#">평점보기</a></li>
+		   	<li class="cate-list-item"><a href="#">공지사항</a></li>
+		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
+		   	<li class="cate-list-item"><a href="/editProfile">마이페이지</a></li>
+		   	<li class="cate-list-item"><a href="/logout">로그아웃</a></li>
+	   	</ul>
+	  	</div>
+		</div>
+
+</div>
+</c:if>
+
 
 
