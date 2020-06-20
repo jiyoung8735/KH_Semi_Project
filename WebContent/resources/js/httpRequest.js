@@ -41,7 +41,7 @@ function sendRequest(method, url, params, callback) {
 	httpRequest.open(httpMethod, httpUrl, true);
 	
 	// 웹 서버에 전송할 컨텐트 타입 지정
-	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 	
 	// 콜백 함수 지정
 	httpRequest.onreadystatechange = callback;
