@@ -17,8 +17,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- header css -->
+<style type="text/css">
+#login_header{
+	width: 500px;
+	margin: 0 auto;
+	height: 300px;
+	text-align: center;
+}
+</style>
 </head>
-
-<!-- 상단 로고  -->
-<div style="text-align: center;"><a href="/main"><img src="/resources/image/brand.gif" alt="logo" ></a></div>
-<hr>
+<!-- 로고 이미지 -->
+<div id="login_header"><a href="/main"><img src="/resources/image/brand.gif" alt="logo" ></a></div>
