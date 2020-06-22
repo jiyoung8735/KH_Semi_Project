@@ -47,7 +47,7 @@ function loginResult() {
 		//일반사용자
 		if(loginResult.userAuth == 1 ){ location.href="/main" }
 		//프랜차이즈관리자
-		if(loginResult.userAuth == 2 ){ location.href="/m/fran"}
+		if(loginResult.userAuth == 2 ){ location.href="/fran"}
 	}
 	
 	//로그인실패
