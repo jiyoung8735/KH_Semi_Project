@@ -29,6 +29,6 @@
 	</div>
 	
 	<div class="header-franid">
-	<h2><mark> ${userid }</mark>님 , 환영합니다.</h2>
+	<h2><mark>${franname }</mark>님 , 환영합니다.</h2>
 	</div>
 </div>

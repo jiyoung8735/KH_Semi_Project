@@ -14,14 +14,14 @@ public interface MenuDao {
 	 *  게시글 수 조회
 	 * @return - 전체 게시글 수
 	 */
-	public int selectCntAll();
+	public int selectCntAll(int franno);
 
 	/**
 	 * 
 	 * @param paging
 	 * @return
 	 */
-	public List<Menu> selectCntAll(Paging paging);
+	public List<Menu> selectCntAll(Paging paging , int franno);
 
 
 }

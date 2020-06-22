@@ -10,13 +10,14 @@ import web.util.Paging;
 
 public interface MenuService {
 
+
 	
 	/**
 	 * 페이징 객체 생성
 	 * @param req - 요청 정보 객체
 	 * @return Paging - 페이징 계산이 완료된 객체
 	 */
-	public Paging getPaging(HttpServletRequest req);
+	public Paging getPaging(HttpServletRequest req , int franno);
 
 	
 	/**
@@ -24,7 +25,10 @@ public interface MenuService {
 	 * @param paging - 페이징 정보 객체
 	 * @return List<Menu> - 게시글 전체 조회 결과 리스트
 	 */
-	public List<Menu> getList(Paging paging);
+	public List<Menu> getList(Paging paging , int franno);
+
+
+	
 
 	
 	

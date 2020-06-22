@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import web.dto.Fran;
 import web.dto.User;
+import web.service.face.FranService;
 import web.service.face.UserService;
+import web.service.impl.FranServiceImpl;
 import web.service.impl.UserServiceImpl;
 
 
@@ -25,6 +28,7 @@ public class UserLoginController extends HttpServlet {
 	
 	private UserService userService = new UserServiceImpl();
 	
+	private FranService franService = new FranServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,6 +46,7 @@ public class UserLoginController extends HttpServlet {
 		//전달파라미터 얻기 - 로그인정보
 		User user = userService.getLoginUser(req);
 		
+		
 		//로그인 인증
 		boolean login = userService.login(user);
 		
@@ -57,6 +62,17 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("username", user.getUserName());
 			session.setAttribute("usernick", user.getUserNick());
 			session.setAttribute("userAuth", user.getUserAuth());
+			
+			// userAuth==2  , 프랜차이즈 관리자일경우!
+			if( 2 == user.getUserAuth()) {
+				
+				Fran fran = new Fran();
+				fran = franService.getFran(user.getFranNo());
+				System.out.println("여기봐봐" + fran);
+				session.setAttribute("franname", fran.getFranName());
+				session.setAttribute("franno",fran.getFranNo() );
+			}
+			
 			
 			//클라이언트에 보낼 정보
 			Map map = new HashMap();

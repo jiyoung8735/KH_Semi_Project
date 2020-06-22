@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import web.dao.face.UserDao;
 import web.dao.impl.UserDaoImpl;
+import web.dto.Fran;
 import web.dto.User;
 import web.service.face.UserService;
 
@@ -174,6 +175,5 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
-
 
 }

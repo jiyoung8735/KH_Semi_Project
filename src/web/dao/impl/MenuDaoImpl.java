@@ -23,20 +23,24 @@ public class MenuDaoImpl implements MenuDao{
 	private ResultSet rs = null; //SQL조회 결과 객체
 
 	@Override
-	public int selectCntAll() {
+	public int selectCntAll(int franno) {
+		
+		System.out.println("여기도?" + franno);
 		
 		conn = JDBCTemplate.getConnection();
 
 		String sql = "";
 		sql += "SELECT count(*) FROM menu";
-		sql += " WHERE FRAN_NO = 1";
+		sql += " WHERE FRAN_NO = ?";
 		
 		//결과저장할 변수
 		int totalCount = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-
+			
+			ps.setInt(1, franno);
+			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {//조회 결과 처리
@@ -55,18 +59,23 @@ public class MenuDaoImpl implements MenuDao{
 	}
 
 	@Override
-	public List<Menu> selectCntAll(Paging paging) {
+	public List<Menu> selectCntAll(Paging paging , int franno) {
 		
 		conn = JDBCTemplate.getConnection();
 		
 		String sql = "";
-		sql += "SELECT * FROM menu";
+		sql += "SELECT M.menu_no , M.menu_name , M.menu_info , M.menu_cost ,M.menu_date , M.menu_stat , M.menu_blind ,  F.food_no , F.fran_name , F.fran_no";
+		sql += " FROM menu M , fran F";
+		sql += " WHERE F.FRAN_NO = ?";
 
+		
 		
 		List<Menu> MenuList = new ArrayList<>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, franno);
 			
 			rs = ps.executeQuery();
 			
