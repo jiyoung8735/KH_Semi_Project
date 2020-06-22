@@ -11,6 +11,14 @@
 <script type="text/javascript">
 function login(){
 	
+	if( id.value == "" ){
+		a.innerHTML = "아이디를 입력하세요";
+		return false;
+	} else if( pw.value == ""){
+		b.innerHTML = "비밀번호를 입력하세요";
+		return false;
+	}
+	
 	var params = "id=" + id.value + "&pw=" + pw.value;
 	console.log(params);
 	
@@ -68,7 +76,9 @@ function loginResult() {
 
 <div id="login">
    	<input type="text" id="id" class="form-control" placeholder="아이디를 입력하세요" ><br>
+   	<div id="a"></div>
    	<input type="text" id="pw" class="form-control" placeholder="비밀번호를 입력하세요"><br>
+	<div id="b"></div>
 	<div id="result"></div>
 	<button onclick="login();" class="btn btn-default btn-block">로그인</button>
 <br><hr><br>

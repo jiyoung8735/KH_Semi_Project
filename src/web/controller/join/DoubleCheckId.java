@@ -1,6 +1,7 @@
 package web.controller.join;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,34 +9,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import web.dto.User;
 import web.service.face.UserService;
 import web.service.impl.UserServiceImpl;
 
 
-@WebServlet("/join")
-public class UserJoinController extends HttpServlet {
+@WebServlet("/doublecheckid")
+public class DoubleCheckId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private UserService userService = new UserServiceImpl();
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.getRequestDispatcher("/WEB-INF/views/join/join.jsp").forward(req, resp);
-	
-	}
-	
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		User joinUser = new User();
+		joinUser = userService.doublecheckId(req);
+		System.out.println("controller : " + joinUser);
 		
-		System.out.println("회원가입 POST 요청");
-		
-		//회원가입
-		int result = userService.join(req);
-		
-		
-		resp.sendRedirect("/main");
+		PrintWriter out = resp.getWriter();
+		if( joinUser == null ) {
+			System.out.println("아이디 중복 없음");
+			out.println( new Gson().toJson("성공"));
+		}
+		if( joinUser != null) {
+			System.out.println("아이디 중복");
+			out.println( new Gson().toJson("실패"));
+		}
 	
 	}
-	
+
 }

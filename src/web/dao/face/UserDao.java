@@ -23,5 +23,13 @@ public interface UserDao {
 	 */
 	User selectUserByUserid(User user);
 	
+	/**
+	 * 회원 가입
+	 * 
+	 * @param user
+	 * @return int
+	 */
+	int insert(User user);
+	
 
 }

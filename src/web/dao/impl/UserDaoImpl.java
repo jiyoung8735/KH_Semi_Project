@@ -92,4 +92,60 @@ public class UserDaoImpl implements UserDao {
 		return cnt;
 	}
 
+	@Override
+	public int insert(User user) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, default, ?, ?, ?, ?, ?)";
+		
+		int result = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getUserId());
+			ps.setString(2, user.getUserPw());
+			ps.setString(3, user.getUserName());
+			ps.setString(4, user.getUserNick());
+			ps.setDate(5, user.getUserBirth());
+			ps.setString(6, user.getUserGender());
+			ps.setString(7, user.getUserEmail());
+			ps.setInt(8, user.getUserTel());
+			ps.setDate(9, user.getUserDate());
+			ps.setInt(10, user.getUserCnt());
+			ps.setInt(11, user.getUserAuth());
+			ps.setInt(12, user.getUserGrade());
+			ps.setString(13, user.getUserReport());
+			ps.setInt(14, user.getFranNo());
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

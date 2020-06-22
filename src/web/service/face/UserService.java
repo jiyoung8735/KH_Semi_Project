@@ -30,5 +30,21 @@ public interface UserService {
 	 */
 	User info(User user);
 	
+	/**
+	 * 아이디 중복확인
+	 * 
+	 * @param req
+	 * @return User객체
+	 */
+	User doublecheckId(HttpServletRequest req);
+	
+	/**
+	 * 회원가입 
+	 * 
+	 * @param req
+	 * @return int
+	 */
+	int join(HttpServletRequest req);
+	
 
 }
