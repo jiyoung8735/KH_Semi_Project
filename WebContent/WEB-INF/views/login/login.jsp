@@ -90,16 +90,6 @@ function loginResult() {
 </div>
 </div>
 
-<!-- footer css  -->
-<style type="text/css">
-.footer {padding: 25px 0; text-align: center; color:black;}
-.footer ul {margin-bottom: 20px;}
-.footer li {position: relative; display: inline; padding: 0 7px 0 10px;}
-.footer li:before {content: ''; width: 1px; height: 12px; background: #ccc; position: absolute; left: 0; top: 2px;}
-.footer li:first-child:before {width: 0; height: 0;}
-.footer .w3c {margin-top: 15px;}
-.footer a {color: black;}
-</style>
-<hr>
-<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
+
+<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>
 </html>

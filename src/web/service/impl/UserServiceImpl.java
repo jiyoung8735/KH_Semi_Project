@@ -2,6 +2,7 @@ package web.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -55,35 +56,29 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int join(HttpServletRequest req) {
+	public int joinUser(HttpServletRequest req) {
 
 		User user = new User();
 
 		//생년월일
-		String year = req.getParameter("year");
-		String month = req.getParameter("month");
-		String date = req.getParameter("date");
-		String birth = year+month+date;
-		
+		String paramsBirth = req.getParameter("year") + req.getParameter("month") + req.getParameter("date");
+		//생년월일형변환(String -> utilDate -> sqlDate)
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		java.util.Date utilDate = new java.util.Date();
+		Date utilDate = new Date();
 		try {
-			utilDate = sdf.parse(birth);
+			utilDate = sdf.parse( paramsBirth );
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	    java.sql.Date birth = new java.sql.Date(utilDate.getTime());
 		
 		
 		//전화번호
-		String tel = req.getParameter("tel_01") + req.getParameter("tel_02") + req.getParameter("tel_03");
-		int telphone = Integer.parseInt(tel);
+		String paramsTel = req.getParameter("tel_01") + req.getParameter("tel_02") + req.getParameter("tel_03");
+		int tel = Integer.parseInt(paramsTel);
 		
 		//계정권한
 		int userAuth = 1;
-		if( req.getParameter("id").contains("fran") ) {
-			userAuth = 2;
-		}
 		
 		//방문횟수
 		int cnt = 0;
@@ -98,19 +93,86 @@ public class UserServiceImpl implements UserService {
 		user.setUserPw( req.getParameter("pw") );
 		user.setUserName( req.getParameter("name") );
 		user.setUserNick( req.getParameter("nick") );
-		user.setUserBirth( sqlDate );
+		user.setUserBirth( birth );
 		user.setUserGender( req.getParameter("gender") );
 		user.setUserEmail( req.getParameter("email") );
-		user.setUserTel( telphone );
+		user.setUserTel( tel );
 		user.setUserCnt( cnt );
 		user.setUserAuth( userAuth );
 		user.setUserGrade( grade );
 		user.setUserReport( "N" );
 		user.setFranNo( franno );
 		
+		
 		int result = userDao.insert(user);
 		
 		return result;
+	}
+	
+	@Override
+	public int joinFran(HttpServletRequest req) {
+		
+		User user = new User();
+		
+		//생년월일
+		String paramsBirth = req.getParameter("year") + req.getParameter("month") + req.getParameter("date");
+		//생년월일형변환(String -> utilDate -> sqlDate)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date utilDate = new Date();
+		try {
+			utilDate = sdf.parse( paramsBirth );
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		java.sql.Date birth = new java.sql.Date(utilDate.getTime());
+		
+		
+		//전화번호
+		String paramsTel = req.getParameter("tel_01") + req.getParameter("tel_02") + req.getParameter("tel_03");
+		int tel = Integer.parseInt(paramsTel);
+		
+		//계정권한
+		int userAuth = 2;
+		
+		//방문횟수
+		int cnt = 0;
+		
+		//회원등급
+		int grade = 1;
+		
+		//관심프랜차이즈
+		int franno = userDao.selectFranNoByFranName( req.getParameter("franName") );
+		
+		user.setUserId( req.getParameter("id") );
+		user.setUserPw( req.getParameter("pw") );
+		user.setUserName( req.getParameter("name") );
+		user.setUserNick( req.getParameter("nick") );
+		user.setUserBirth( birth );
+		user.setUserGender( req.getParameter("gender") );
+		user.setUserEmail( req.getParameter("email") );
+		user.setUserTel( tel );
+		user.setUserCnt( cnt );
+		user.setUserAuth( userAuth );
+		user.setUserGrade( grade );
+		user.setUserReport( "N" );
+		user.setFranNo( franno );
+		
+		
+		int result = userDao.insert(user);
+		
+		return result;
+	}
+
+	@Override
+	public boolean keyVerify(HttpServletRequest req) {
+		
+		//key인증
+		String param = req.getParameter("key");
+		if( param.equals("franchisee") ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 

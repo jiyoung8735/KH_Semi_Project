@@ -40,4 +40,6 @@ public interface UserDao {
 	int selectFranNoByFranName(String parameter);
 	
 
+	
+
 }

@@ -39,12 +39,28 @@ public interface UserService {
 	User doublecheckId(HttpServletRequest req);
 	
 	/**
-	 * 회원가입 
+	 * 일반인 회원가입 
 	 * 
 	 * @param req
 	 * @return int
 	 */
-	int join(HttpServletRequest req);
+	int joinUser(HttpServletRequest req);
+	
+	/**
+	 * 프랜차이즈 회원가입
+	 * 
+	 * @param req
+	 * @return int
+	 */
+	int joinFran(HttpServletRequest req);
+	
+	/**
+	 * 프랜차이즈관리자 회원가입 key 인증
+	 * 
+	 * @param req
+	 * @return boolean
+	 */
+	boolean keyVerify(HttpServletRequest req);
 	
 
 }

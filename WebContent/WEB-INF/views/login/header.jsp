@@ -19,13 +19,19 @@
 
 <!-- header css -->
 <style type="text/css">
-#login_header{
+.logo_wrapper{
 	width: 500px;
 	margin: 0 auto;
 	height: 300px;
 	text-align: center;
 }
+#login_header{
+	padding-top: 100px;
+}
 </style>
 </head>
+
 <!-- 로고 이미지 -->
+<div class="logo_wrapper">
 <div id="login_header"><a href="/main"><img src="/resources/image/brand.gif" alt="logo" ></a></div>
+</div>

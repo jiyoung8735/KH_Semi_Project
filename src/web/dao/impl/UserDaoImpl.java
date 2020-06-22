@@ -99,7 +99,13 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, ?)";
+		String sql = null;
+		
+		if(user.getFranNo()!=0) {
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, ?)";
+		} else {
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, null)";
+		}
 		
 		int result = -1;
 
@@ -117,7 +123,9 @@ public class UserDaoImpl implements UserDao {
 			ps.setInt(10, user.getUserAuth());
 			ps.setInt(11, user.getUserGrade());
 			ps.setString(12, user.getUserReport());
-			ps.setInt(13, user.getFranNo());
+			if(user.getFranNo()!=0) {
+				ps.setInt(13, user.getFranNo());
+			}
 			
 			result = ps.executeUpdate();
 			
@@ -164,6 +172,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		return franno;
 	}
+
 
 }
 

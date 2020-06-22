@@ -12,8 +12,8 @@ import web.service.face.UserService;
 import web.service.impl.UserServiceImpl;
 
 
-@WebServlet("/userjoin")
-public class UserJoinController extends HttpServlet {
+@WebServlet("/franjoin")
+public class FranJoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService = new UserServiceImpl();
@@ -21,17 +21,17 @@ public class UserJoinController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/join/join_user.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/join/join_fran.jsp").forward(req, resp);
 	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("일반인 회원가입 POST 요청");
+		System.out.println("프랜차이즈 회원가입 POST 요청");
 		
 		//회원가입
-		int result = userService.joinUser(req);
+		int result = userService.joinFran(req);
 		
 		//회원가입성공
 		if( result > 0) {
