@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import web.dto.Fran;
 import web.dto.Menu;
 import web.service.face.MenuService;
 import web.service.impl.MenuServiceImpl;
@@ -20,12 +22,17 @@ public class ViewMenuListController extends HttpServlet {
 
 	private MenuService menuService = new MenuServiceImpl();
 	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Paging paging = menuService.getPaging(req);
+		HttpSession session = req.getSession();
+		int franno =  (int) session.getAttribute("franno");
 		
-		List<Menu> MenuList = menuService.getList(paging);
+		
+		Paging paging = menuService.getPaging(req , franno);
+		
+		List<Menu> MenuList = menuService.getList(paging ,franno);
 		
 		req.setAttribute("paging", paging);
 		

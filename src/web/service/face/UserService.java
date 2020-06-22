@@ -2,6 +2,7 @@ package web.service.face;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dto.Fran;
 import web.dto.User;
 
 public interface UserService {
@@ -45,6 +46,10 @@ public interface UserService {
 	 * @return int
 	 */
 	int join(HttpServletRequest req);
+
+
+	
+	
 	
 
 }

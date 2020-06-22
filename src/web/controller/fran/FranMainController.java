@@ -25,19 +25,17 @@ public class FranMainController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Paging paging = menuService.getPaging(req);
+		HttpSession session = req.getSession();
+		int franno = (int) session.getAttribute("franno");
+		
+		Paging paging = menuService.getPaging(req , franno);
+		
 
-		List<Menu> MenuList = menuService.getList(paging);
-		
-		
-		
-		
+		List<Menu> MenuList = menuService.getList(paging ,  franno);
 		
 		req.setAttribute("paging", paging);
 		
 		req.setAttribute("MenuList", MenuList);
-		
-		
 		
 		
 		// 첫화면(로그인됬을경우)에는 등록된 프랜차이즈 게시물들을 보여준다

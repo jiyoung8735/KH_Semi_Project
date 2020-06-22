@@ -2,6 +2,7 @@ package web.dao.face;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dto.Fran;
 import web.dto.User;
 
 public interface UserDao {
@@ -38,6 +39,9 @@ public interface UserDao {
 	 * @return int
 	 */
 	int selectFranNoByFranName(String parameter);
+
+	
+	
 	
 
 }
