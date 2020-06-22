@@ -30,6 +30,14 @@ public interface UserDao {
 	 * @return int
 	 */
 	int insert(User user);
+
+	/**
+	 * 프랜차이즈번호 조회
+	 * 
+	 * @param parameter
+	 * @return int
+	 */
+	int selectFranNoByFranName(String parameter);
 	
 
 }

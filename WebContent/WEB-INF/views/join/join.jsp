@@ -76,7 +76,7 @@ $(document).ready(function(){
 //			return false;
 //		}
 		//아이디중복
-		if( $("#id").val() == "실패" ){
+		if( $("#id").val() == '실패' ){
 			$("#idv").html( "<div>이미사용중인아이디입니다.</div>" );
 			return false;
 		}
@@ -308,11 +308,13 @@ $(document).ready(function(){
 <label>관심프랜차이즈</label>
 <select name="franName" id="franName" class="form-control">
     <option value="">선택</option>
-    <option value="BBQ">BBQ</option>
-    <option value="도미노">도미노</option>
-    <option value="KFC">KFC</option>
-    <option value="한솥">한솥</option>
-    <option value="피자헛">피자헛</option>
+    <option value="회사1-1">회사1-1</option>
+    <option value="회사1-2">회사1-2</option>
+    <option value="회사1-3">회사1-3</option>
+    <option value="회사2-1">회사2-1</option>
+    <option value="회사2-2">회사2-2</option>
+    <option value="회사2-3">회사2-3</option>
+    <option value="회사3-1">회사3-1</option>
 </select>
 </div>
 

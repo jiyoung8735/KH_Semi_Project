@@ -99,10 +99,10 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, default, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, ?)";
 		
 		int result = -1;
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUserId());
@@ -113,12 +113,11 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(6, user.getUserGender());
 			ps.setString(7, user.getUserEmail());
 			ps.setInt(8, user.getUserTel());
-			ps.setDate(9, user.getUserDate());
-			ps.setInt(10, user.getUserCnt());
-			ps.setInt(11, user.getUserAuth());
-			ps.setInt(12, user.getUserGrade());
-			ps.setString(13, user.getUserReport());
-			ps.setInt(14, user.getFranNo());
+			ps.setInt(9, user.getUserCnt());
+			ps.setInt(10, user.getUserAuth());
+			ps.setInt(11, user.getUserGrade());
+			ps.setString(12, user.getUserReport());
+			ps.setInt(13, user.getFranNo());
 			
 			result = ps.executeUpdate();
 			
@@ -134,6 +133,36 @@ public class UserDaoImpl implements UserDao {
 			JDBCTemplate.close(ps);
 		}
 		return result;
+	}
+
+	@Override
+	public int selectFranNoByFranName(String franName) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int franno = 0;
+		
+		String sql = "SELECT FRAN_NO FROM FRAN WHERE FRAN_NAME = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, franName);
+		
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				franno = rs.getInt(1);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		return franno;
 	}
 
 }

@@ -33,6 +33,12 @@ public class UserJoinController extends HttpServlet {
 		//회원가입
 		int result = userService.join(req);
 		
+		//회원가입성공
+		if( result > 0) {
+			System.out.println("회원가입성공");
+		}else {
+			System.out.println("회원가입실패");
+		}
 		
 		resp.sendRedirect("/main");
 	

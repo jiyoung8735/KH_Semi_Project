@@ -1,6 +1,6 @@
 package web.service.impl;
 
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,33 +63,49 @@ public class UserServiceImpl implements UserService {
 		String year = req.getParameter("year");
 		String month = req.getParameter("month");
 		String date = req.getParameter("date");
-		Date birth = Date.valueOf(year+month+date);
+		String birth = year+month+date;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		java.util.Date utilDate = new java.util.Date();
+		try {
+			utilDate = sdf.parse(birth);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		
 		
 		//전화번호
 		String tel = req.getParameter("tel_01") + req.getParameter("tel_02") + req.getParameter("tel_03");
 		int telphone = Integer.parseInt(tel);
 		
-		//사용자권한
-		//프랜차이즈 인증
+		//계정권한
 		int userAuth = 1;
+		if( req.getParameter("id").contains("fran") ) {
+			userAuth = 2;
+		}
+		
+		//방문횟수
+		int cnt = 0;
+		
+		//회원등급
+		int grade = 1;
 		
 		//관심프랜차이즈
-		int franno = 0;
-		if( req.getParameter("franName")!=null || req.getParameter("franName")!="" ) {
-			//프랜차이즈번호가져오기
-		}else {
-			franno = 0;
-		}
+		int franno = userDao.selectFranNoByFranName( req.getParameter("franName") );
 		
 		user.setUserId( req.getParameter("id") );
 		user.setUserPw( req.getParameter("pw") );
 		user.setUserName( req.getParameter("name") );
 		user.setUserNick( req.getParameter("nick") );
-		user.setUserBirth( birth );
+		user.setUserBirth( sqlDate );
 		user.setUserGender( req.getParameter("gender") );
 		user.setUserEmail( req.getParameter("email") );
 		user.setUserTel( telphone );
+		user.setUserCnt( cnt );
 		user.setUserAuth( userAuth );
+		user.setUserGrade( grade );
+		user.setUserReport( "N" );
 		user.setFranNo( franno );
 		
 		int result = userDao.insert(user);
