@@ -12,10 +12,12 @@
 function login(){
 	
 	if( id.value == "" ){
-		a.innerHTML = "아이디를 입력하세요";
+		a.innerText = "아이디를 입력하세요";
+		a.setAttribute("style", 'color: red;')
 		return false;
 	} else if( pw.value == ""){
-		b.innerHTML = "비밀번호를 입력하세요";
+		b.innerText = "비밀번호를 입력하세요";
+		b.setAttribute('style', "color: red;")
 		return false;
 	}
 	
@@ -25,7 +27,6 @@ function login(){
 	sendRequest("POST", "/login", params, callback);
 	
 };	
-
 function callback() {
 	
 	if( httpRequest.readyState == 4 ){
@@ -34,16 +35,12 @@ function callback() {
 		} else console.log("AJAX 요청/응답 에러")
 	}
 };	
-	
 function loginResult() {
 	
 	var loginResult = JSON.parse(httpRequest.responseText);
-	console.log(loginResult);
-	console.log(loginResult.login)
-	console.log(loginResult.userAuth)
 
 	//로그인성공
-	if( loginResult.login == 'success'){
+	if( loginResult.login ){
 		//일반사용자
 		if(loginResult.userAuth == 1 ){ location.href="/main" }
 		//프랜차이즈관리자
@@ -51,39 +48,62 @@ function loginResult() {
 	}
 	
 	//로그인실패
-	if( loginResult.login == 'fail'){
-		result.innerHTML = "로그인실패! 입력하신 아이디와 비밀번호가 일치하지 않습니다."
+	if( !loginResult.login ){
+		result.innerText = "로그인실패! 입력하신 아이디와 비밀번호가 일치하지 않습니다."
+		result.setAttribute("style", "color:red")
 	}
 	
 };
 
+window.onload = function(){
+
+id.addEventListener("blur", function( event ) {
+	if( id.value != "" ){
+		a.innerText = ""
+	}else{
+		a.innerText = "아이디를 입력하세요";
+		a.setAttribute("style", 'color: red;')
+	}
+});
+pw.addEventListener("blur", function( event ) {
+	if( pw.value != "" ){
+		b.innerText = ""
+	}else{
+		b.innerText = "비밀번호를 입력하세요";
+		b.setAttribute('style', "color: red;")
+	}
+}, true);
+	
+}
 </script>
-<!-- content css  -->
+
+
+<!-- css  -->
 <style type="text/css">
-#login{
+.login_wrapper{
 	width: 500px;
 	margin: 0 auto;
 	height: 500px;
 	text-align: center;
 }
 
-#forget > a{
+.login_forget > a{
 	margin-right: 30px;
 	color: black;
 }
 
 </style>
 
-<div id="login">
-   	<input type="text" id="id" class="form-control" placeholder="아이디를 입력하세요" ><br>
+<div class="login_wrapper">
+   	<div><input type="text" id="id" class="form-control" placeholder="아이디를 입력하세요" ></div>
    	<div id="a"></div>
-   	<input type="text" id="pw" class="form-control" placeholder="비밀번호를 입력하세요"><br>
+   	<div><input type="text" id="pw" class="form-control" placeholder="비밀번호를 입력하세요"></div>
 	<div id="b"></div>
 	<div id="result"></div>
 	<button onclick="login();" class="btn btn-default btn-block">로그인</button>
 <br><hr><br>
 
-<div id="forget">
+<div class="login_forget">
 <a href="/forgetid">아이디찾기</a>
 <a href="/forgetpw">비밀번호찾기</a>
 <a href="/join">회원가입</a> 

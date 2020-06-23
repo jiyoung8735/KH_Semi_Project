@@ -76,7 +76,7 @@ public class UserLoginController extends HttpServlet {
 			
 			//클라이언트에 보낼 정보
 			Map map = new HashMap();
-			map.put("login", "success" );
+			map.put("login", true );
 			map.put("userAuth", user.getUserAuth());
 			
 			
@@ -92,7 +92,7 @@ public class UserLoginController extends HttpServlet {
 			
 			//클라이언트에 보낼 정보
 			Map map = new HashMap();
-			map.put("login", "fail");
+			map.put("login", false );
 			
 			//로그인 실패했다는 것을 클라이언트에 알려줘야함
 			//자바스크립트가 알아들을 수 있도록
