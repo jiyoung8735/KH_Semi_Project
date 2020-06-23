@@ -76,7 +76,7 @@ $(document).ready(function() {
 	  	 <ul>
 		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
 		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
-		   	<li class="cate-list-item"><a href="#">공지사항</a></li>
+		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
 		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
 		   	<li class="cate-list-item"><a href="/login">로그인</a></li>
 		   	<li class="cate-list-item"><a href="/join">회원가입</a></li>
@@ -98,7 +98,7 @@ $(document).ready(function() {
 	  	 <ul>
 		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
 		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
-		   	<li class="cate-list-item"><a href="#">공지사항</a></li>
+		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
 		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
 		   	<li class="cate-list-item"><a href="/editProfile">마이페이지</a></li>
 		   	<li class="cate-list-item"><a href="/logout">로그아웃</a></li>

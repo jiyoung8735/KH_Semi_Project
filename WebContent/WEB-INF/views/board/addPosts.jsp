@@ -6,19 +6,22 @@
 <section class="wrapper">
 <div class="board">
 
-<h1>게시판 작성</h1>
+<div class="board_top">
+	<h1 style="padding-bottom: 20px;">게시판 작성</h1>
+</div>
 
 <form action="/add/posts" method="post">
+<c:set var="item" value="${user }" />
 
 <table>
-
-<tr><th>아이디</th><td></td></tr>
-<tr><th>닉네임</th><td></td></tr>
+<tr><th>아이디</th><td><c:out value="${item.userId }" /></td></tr>
+<tr><th>닉네임</th><td><c:out value="${item.userNick }" /></td></tr>
 <tr><th>제목</th><td><input type="text" name="title" style="width:100%"/></td></tr>
-<tr><th colspan="2">본문</th></tr>
-<tr><td colspan="2"><textarea id="content" name="content" cols="100" rows="10"></textarea></td></tr>
+<tr><th colspan="2">질문</th></tr>
+<tr><td colspan="2"><textarea id="content" name="content" cols="150" rows="10"></textarea></td></tr>
 </table>
-<button class="button" onclick="location.href='/add/posts'">작성</button>
+
+<button style="margin-left: 820px;" class="button" onclick="location.href='/add/posts'">작성</button>
 <button class="button" onclick="javascript:history.go(-1)">취소</button>
 
 </form>

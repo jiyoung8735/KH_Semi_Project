@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dto.Board;
 import web.service.face.BoardService;
 import web.service.impl.BoardServiceImpl;
 
-@WebServlet("/answer/posts")
-public class BoardViewAnswerController extends HttpServlet {
+@WebServlet("/detail/posts")
+public class BoardViewPostsDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//서비스 객체 생성
@@ -20,7 +21,7 @@ public class BoardViewAnswerController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String param = req.getParameter("bdNo");
 		int boardNo = 0;
 		if( param!=null && !"".equals(param) ) {
@@ -28,10 +29,20 @@ public class BoardViewAnswerController extends HttpServlet {
 		}
 		System.out.println(boardNo);
 		
-		req.setAttribute("board", boardService.viewPostsDetail(boardNo));
+		boardService.viewCnt(boardNo);
 		
-		req.getRequestDispatcher("/WEB-INF/views/board/detailAnswer.jsp")
+		Board board = new Board();
+		board = boardService.viewPostsDetail(boardNo);
+		
+		System.out.println("board" + board);
+		req.setAttribute("board", board);
+		
+		System.out.println("board,userno : " + board.getUserNo());
+		int userno = board.getUserNo();
+		
+		req.setAttribute("user", boardService.postsDetailUser(userno));
+		
+		req.getRequestDispatcher("/WEB-INF/views/board/detailPosts.jsp")
 		.forward(req, resp);
 	}
-
 }
