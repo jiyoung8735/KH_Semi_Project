@@ -62,6 +62,12 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("username", user.getUserName());
 			session.setAttribute("usernick", user.getUserNick());
 			session.setAttribute("userAuth", user.getUserAuth());
+			session.setAttribute("userbirth", user.getUserBirth());
+			session.setAttribute("useremail", user.getUserEmail());
+			session.setAttribute("usergender", user.getUserGender());
+			session.setAttribute("usergrade", user.getUserGrade());
+			session.setAttribute("usertel", user.getUserTel());
+			session.setAttribute("userno", user.getUserNo());
 			
 			// userAuth==2  , 프랜차이즈 관리자일경우!
 			if( 2 == user.getUserAuth()) {
