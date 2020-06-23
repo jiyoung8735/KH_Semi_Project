@@ -6,8 +6,51 @@
 
 <c:import url="/WEB-INF/views/fran_layout/header_menu.jsp" />
 
-<div id="body-content-view">
-<form class="form-horizontal" action="#" method="post">
+<!-- 스마트 에디터2 라이브러리 -->
+<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+<!-- <form>태그의 submit 을 수행하면 SmartEditor에 작성한 내욜을 <textarea>에 반영 -->
+<script type="text/javascript">
+function submitContents(elClickedObj){
+	
+	oEditors.getById["applyMenuInfo"].exec("UPDATE_CONTENTS_FIELD",[]);
+	
+	try {
+		elClickedObj.form.submit();
+	} catch (e) {
+
+	}
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	//작성버튼 동작
+	$("#menu-sub").click(function() {
+		
+		//스마트에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
+		submitContents($("#sub"));
+		
+		//실제 <form>의 submit 수행
+		$("form").submit();
+	});
+	
+});
+</script>
+
+<style type="text/css">
+#applyMenuInfo {
+	width: 99%;
+}
+</style>
+
+
+
+
+<div id="body-content-applyMenu">
+<form class="form-horizontal" action="/fran/apply/menu" method="post"
+ enctype="multipart/form-data">
 
  <fieldset>
 	<legend><span class="badge"> 신메뉴 등록 신청 </span></legend>
@@ -15,22 +58,28 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">브랜드 명 : </label>
     <div class="col-sm-10">
-      <p class="form-control-static">${franname }</p>
+      <p class="form-control-static" >${franname }</p>
     </div>
   </div>
   
   <div class="form-group">
     <label for="inputMenuName" class="col-sm-2 control-label">신메뉴 명 : </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputMenuName" placeholder="신메뉴를 입력하세요.">
+      <input type="text" class="form-control" id="inputMenuName" placeholder="신메뉴를 입력하세요." name="applyMenuName">
     </div>
   </div>
   
+  <div class="form-group">
+    <label for="inputMenuCost" class="col-sm-2 control-label">출시 가격 : </label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="inputMenuCost" placeholder="출시할 가격을 입력하세요." name="applyMenuCost">
+    </div>
+  </div>
   
   <div class="form-group">
     <label for="inputDate" class="col-sm-2 control-label">처리 일자 : </label>
     <div class="col-sm-10">
-      <input type="date" class="form-control" id="inputDate">
+      <input type="date" class="form-control" id="inputDate" name="applyMenuDate"> 
     </div>
   </div>
   
@@ -38,14 +87,14 @@
   <div class="form-group">
     <label for="inputImage" class="col-sm-2 control-label">메뉴 이미지 : </label>
     <div class="col-sm-10">
-      <input type="file" id="inputImage">
+      <input type="file" id="inputImage" name="applyMenuImage">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="input" class="col-sm-2 control-label">메뉴 소개글 : </label>
+    <label for="applyMenuInfo" class="col-sm-2 control-label">메뉴 소개글 : </label>
 	<div class="col-sm-10">
-	  <textarea class="form-control" rows="8" id="input"></textarea>
+	  <textarea class="form-control" rows="8" id="applyMenuInfo" name="applyMenuInfo"></textarea>
 	</div>
   </div>
   
@@ -57,14 +106,27 @@
   </div>
   
   
-  <div class="form-gruop">
- 	 <button type="submit" class="btn btn-warning" id="sub">등록신청</button>
+  <div class="form-gruop" id="button-apply-menu">
+ 	 <a href="/fran"><button type="button" class="btn btn-warning" id="menu-cancle">취소</button></a>
+ 	 <button type="submit" class="btn btn-info" id="menu-sub">등록신청</button>
   </div>
 
 </fieldset>
 </form>
 
 </div>
+
+<script type="text/javascript">
+
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors
+	, elPlaceHolder:"applyMenuInfo" //에디터가 적용될 <textarea>의 id
+	, sSkinURI: "/resources/se2/SmartEditor2Skin.html" //에디터 스킨
+	, fCreator: "createSEditor2"
+})
+
+</script>
 
 
 

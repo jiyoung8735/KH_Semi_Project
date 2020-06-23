@@ -14,13 +14,11 @@ $(document).ready(function(){
 // 	}
 
 	var url = location.href.substr(location.href.lastIndexOf("/")+1);
-	console.log(url)
+// 	console.log(url)
 	
 	if("fran"== url){
 		$("#nav_bar_sub1").addClass("active");
 	}else if("list" == url){
-		$("#nav_bar_sub1").addClass("active");
-	}else if ("view" == url) {
 		$("#nav_bar_sub1").addClass("active");
 	}else if ("menu" == url) {
 		$("#nav_bar_sub2").addClass("active");
@@ -28,7 +26,13 @@ $(document).ready(function(){
 		$("#nav_bar_sub3").addClass("active");
 	}
 	
-	
+	var url2 = location.href.substr((location.href.lastIndexOf("/")+1 ),+4);
+// 	console.log(location.href.substr((location.href.lastIndexOf("/")+1 ),+4)  )
+	if("view" == url2){
+		$("#nav_bar_sub1").addClass("active");
+	}else if("list" == url2){
+		$("#nav_bar_sub1").addClass("active");
+	}
 	
 
 });

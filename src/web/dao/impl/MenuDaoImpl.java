@@ -63,11 +63,21 @@ public class MenuDaoImpl implements MenuDao{
 		
 		conn = JDBCTemplate.getConnection();
 		
-		String sql = "";
-		sql += "SELECT M.menu_no , M.menu_name , M.menu_info , M.menu_cost ,M.menu_date , M.menu_stat , M.menu_blind ,  F.food_no , F.fran_name , F.fran_no";
-		sql += " FROM menu M , fran F";
-		sql += " WHERE F.FRAN_NO = ?";
 
+		
+		
+		String sql = "";
+		sql +="SELECT * FROM (";
+		sql +="		select rownum rnum , B.* FROM(";
+		sql +="			SELECT"; 
+		sql +="	            menu_no , menu_name , menu_info";
+		sql +="			            , menu_cost , menu_date , menu_stat , menu_blind";
+		sql +="	        FROM menu";
+		sql +="        WHERE FRAN_NO = ?";
+		sql +="        ORDER BY menu_no DESC";
+		sql +="	        ) B";
+		sql +="	    ) Menu";
+		sql +="	 WHERE rnum BETWEEN ? AND ?";
 		
 		
 		List<Menu> MenuList = new ArrayList<>();
@@ -76,6 +86,8 @@ public class MenuDaoImpl implements MenuDao{
 			ps = conn.prepareStatement(sql);
 			
 			ps.setInt(1, franno);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
@@ -89,7 +101,7 @@ public class MenuDaoImpl implements MenuDao{
 				menu.setMenuDate(rs.getDate("MENU_DATE"));
 				menu.setMenuStat(rs.getString("MENU_STAT"));
 				menu.setMenuBlind(rs.getString("MENU_BLIND"));
-				menu.setFranNo(rs.getInt("FRAN_NO"));
+//				menu.setFranNo(rs.getInt("FRAN_NO"));
 				
 				MenuList.add(menu);
 			}
@@ -101,6 +113,91 @@ public class MenuDaoImpl implements MenuDao{
 			JDBCTemplate.close(ps);
 		}
 		return MenuList;
+	}
+
+	@Override
+	public Menu selectMenuByMenuno(Menu menuno) {
+
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT * FROM menu";
+		sql += " WHERE menu_no = ?";
+		
+		Menu viewMenu = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, menuno.getMenuNo());
+			
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				viewMenu = new Menu();
+				
+				viewMenu.setMenuNo(rs.getInt("MENU_NO"));
+				viewMenu.setMenuName(rs.getString("MENU_NAME"));
+				viewMenu.setMenuInfo(rs.getString("MENU_INFO"));
+				viewMenu.setMenuCost(rs.getInt("MENU_COST"));
+				viewMenu.setMenuDate(rs.getDate("MENU_DATE"));
+				viewMenu.setMenuStat(rs.getString("MENU_STAT"));
+				viewMenu.setMenuBlind(rs.getString("MENU_BLIND"));
+				viewMenu.setFranNo(rs.getInt("FRAN_NO"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return viewMenu;
+	}
+
+	@Override
+	public int insertMenu(Menu menu , int franno) {
+		
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		sql += "INSERT INTO menu(MENU_NAME, MENU_INFO, MENU_COST, MENU_DATE, FRAN_NO ,menu_stat, MENU_BLIND)";
+		sql += " VALUES(?,?,?,?,?,'N','N')";
+		
+		String sql2 ="select MENU_SEQ.currval from dual";
+
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			//여기
+			ps.setString(1, menu.getMenuName());
+			ps.setString(2, menu.getMenuInfo());
+			ps.setInt(3, menu.getMenuCost());
+			ps.setDate(4, new java.sql.Date(menu.getMenuDate().getTime()));
+			ps.setInt(5, franno);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(sql2);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = rs.getInt("currval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+		
 	}
 
 	
