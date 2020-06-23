@@ -313,6 +313,36 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 	display: block;
 	background: white;
 }
+.submenu_back {
+    width: 1000px;
+    background-color: #faf8f8;
+    height: 35px;
+    margin: 0 auto;
+}
+.submenu_list {
+    height: 35px;
+/*     width: 1400px; */
+    width: 1000px;
+    margin: 0 auto;
+}
+.submenu {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+.filter_btn {
+	all: unset;
+	padding: 3px 3px;
+	border-radius: 3px;
+	width: 80px;
+	color: white;
+	background-color: steelblue;
+	cursor: pointer;
+}
 	/* modal start */
 	.mo_button {
 		all:unset;
@@ -331,8 +361,8 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		min-width: 1200px;
-	   	min-height: 700px;
+		min-width: 900px;
+	   	min-height: 600px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -347,8 +377,8 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 		padding: 25px 30px;
 		border-radius: 10px;
 		position: relative;
-	  	width: 1200px;
-	   	height: 700px;  
+	  	width: 1100px;
+	   	height: 600px;  
 	/* 	text-align: center; */
 		background-color: #DDD;
 		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);

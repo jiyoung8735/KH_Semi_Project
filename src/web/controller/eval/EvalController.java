@@ -17,4 +17,9 @@ public class EvalController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/eval/default.jsp").forward(req, resp);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	
 }

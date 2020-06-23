@@ -5,11 +5,16 @@
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
 <section class="wrapper">
 
-<div style="border: 1px solid black;">
-서브메뉴
-</div>
-<div style="border: 1px solid black;">
-필터링
+<div class="submenu_back">
+  	<div class="submenu_list">
+  	 <ul>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식1" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식2" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식3" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식4" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식5" /></li>
+   	</ul>
+  	</div>
 </div>
 
 <!-- modal -->
