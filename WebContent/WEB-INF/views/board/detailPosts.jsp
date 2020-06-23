@@ -6,17 +6,22 @@
 <section class="wrapper">
 <div class="board">
 
-<h1>게시글 상세보기</h1>
-
+<div class="board_top">
+<h1 style="padding-bottom: 20px;">상세보기</h1>
+</div>
 <table>
 
-<tr><th>아이디</th><td></td></tr>
-<tr><th>닉네임</th><td></td></tr>
-<tr><th>제목</th><td><input type="text" name="title" style="width:100%"/></td></tr>
-<tr><th colspan="2">본문</th></tr>
-<tr><td colspan="2"><textarea id="content" name="content" cols="100" rows="10"></textarea></td></tr>
+<tr><th width="20%">아이디</th><td width="80%"><c:out value="${user.userId}" /></td></tr>
+<tr><th width="20%">닉네임</th><td width="80%"><c:out value="${user.userNick}" /></td></tr>
+<tr><th width="20%">제목</th><td width="80%"><c:out value="${board.bdTitle}" /></td></tr>
+<tr><td></td></tr>
+<tr><th colspan="2">질문 내용</th></tr>
+<tr><td colspan="2"><textarea cols="150" rows="10" disabled="disabled"><c:out value="${board.bdQuestion}" /></textarea></td></tr>
+<c:if test="${board.bdYn == 'Y' }">
+	<c:import url="/WEB-INF/views/board/detailAnswer.jsp"></c:import>
+</c:if>
 </table>
-<button class="button" onclick="location.href='/view/posts'">목록</button>
+<button style="margin-left: 930px;" class="button" onclick="location.href='/view/posts'">목록</button>
 
 
 </div>

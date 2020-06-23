@@ -40,24 +40,44 @@ a{
 
 .body-content-list{
 
-/* 	height: 750px; */
+ 	height: 650px;
 	
 	margin: 10px 0px;
 }
 
-#body-content-view{
+#body-content-applyMenu{
+	
+	height: 800px;
+	
+}
+
+#body-content-applyBlind{
 	
 	height: 650px;
 	
 }
-
-#sub{
-	float: right;
+	
+#body-content-view{
+	height: 650px;
+	
 }
 
-legend{
 
+#button-apply-menu{
 	
+    text-align: right;
+}
+
+#button-apply-blind{
+	
+    text-align: right;
+}
+
+
+
+#list-button{
+	
+	padding: 10px 0px;
 }
 
 

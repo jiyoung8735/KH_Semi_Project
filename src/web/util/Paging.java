@@ -14,6 +14,16 @@ public class Paging {
 	private int startNo;	//화면에 보이는 페이지의 시작 게시글 번호(rownum)
 	private int endNo;		//화면에 보이는 페이지의 끝 게시글 번호(rownum)
 	
+	private String search;
+	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	//총 게시글 수만 입력하는 생성자
 	public Paging(int totalCount) {
 		setTotalCount(totalCount);
@@ -85,7 +95,7 @@ public class Paging {
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + "]";
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + "]";
 	}
 	
 	public int getCurPage() {

@@ -1,16 +1,17 @@
 package web.dao.impl;
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import web.dao.face.BoardDao;
 import web.dbutil.JDBCTemplate;
 import web.dto.Board;
+import web.dto.User;
 import web.util.Paging;
 
 public class BoardDaoImpl implements BoardDao{
@@ -20,7 +21,7 @@ public class BoardDaoImpl implements BoardDao{
 	ResultSet rs = null;
 
 	@Override
-	public List<Board> serlectBoard() {
+	public List<Board> selectBoard() {
 		
 		List<Board> list = new ArrayList<>();
 		
@@ -52,13 +53,14 @@ public class BoardDaoImpl implements BoardDao{
 		return list;
 	}
 
-	@Override
-	public int selectCntAll() {
-conn = JDBCTemplate.getConnection(); //DB연결
+	@Override //
+	public int selectCntPosts() {
+		
+		conn = JDBCTemplate.getConnection(); //DB연결
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT count(*) FROM board";
+		sql += "SELECT count(*) FROM board WHERE bd_grp=1";
 		
 		//최종 결과값
 		int cnt = 0;
@@ -72,7 +74,6 @@ conn = JDBCTemplate.getConnection(); //DB연결
 			while( rs.next() ) {
 				cnt = rs.getInt(1);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -80,30 +81,135 @@ conn = JDBCTemplate.getConnection(); //DB연결
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-//		System.out.println(cnt);
 		return cnt;
+	}
+	
+	@Override //
+	public int selectCntNotice() {
 		
+		conn = JDBCTemplate.getConnection(); //DB연결
+		
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT count(*) FROM board WHERE bd_grp=2";
+		
+		//최종 결과값
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과집합 반환
+			
+			//조회결과 처리
+			while( rs.next() ) {
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return cnt;
 	}
 
+	@Override //
+	public Map<String, Board> selectPosts(Paging paging) {
+		//DB연결 객체
+		conn = JDBCTemplate.getConnection();
+		
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "    SELECT rownum rnum, B.* FROM ("; 
+		sql += "        SELECT";
+		sql += "			b.bd_no, b.bd_title, b.bd_question,";
+		sql += "            b.bd_answer, b.bd_date, b.bd_cnt, b.bd_grp, b.bd_yn, u.users_id";
+		sql += "        FROM board b join users u on b.users_no = u.users_no";
+		sql += "		WHERE bd_grp=1 and bd_title LIKE '%'||?||'%'"; 
+		sql += "        ORDER BY bd_no DESC";
+		sql += "    ) B";
+		sql += "    ORDER BY rnum";
+		sql += " ) BOARD";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+
+		
+		System.out.println(paging.getStartNo());
+		System.out.println(paging.getEndNo());
+		System.out.println(paging.getSearch());
+		
+		//결과 저장할 List
+		Map<String, Board> boardList = new LinkedHashMap<>();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setString(1, paging.getSearch());
+			ps.setInt(2, paging.getStartNo());	//페이징 게시글 시작 번호
+			ps.setInt(3, paging.getEndNo());	//페이징 게시글 끝 번호
+			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+			
+//			System.out.println(rs.next());
+			//조회 결과 처리
+			while(rs.next()) {
+//				System.out.println(rs.getInt("bd_no"));
+				Board b = new Board(); //결과값 저장 객체
+				
+				//결과값 한 행 처리
+				b.setBdNo( rs.getInt("bd_no") );
+				b.setBdTitle( rs.getString("bd_title") );
+				b.setBdQuestion( rs.getString("bd_question") );
+				b.setBdAnswer( rs.getString("bd_answer") );
+				b.setBdDate( rs.getDate("bd_date") );
+				b.setBdCnt( rs.getInt("bd_cnt") );
+				b.setBdGrp(rs.getString("BD_GRP"));
+				b.setBdYn(rs.getString("bd_yn"));
+				
+				//리스트에 결과값 저장
+				boardList.put(rs.getString("users_id"), b);
+				System.out.println(b);
+			}
+			System.out.println("뭐야");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//최종 결과 반환
+		return boardList;
+	}
+	
 	@Override
-	public List<Board> selectAll(Paging paging) {
+	public List<Board> selectNotice(Paging paging) {
 		//DB연결 객체
 				conn = JDBCTemplate.getConnection();
 				
 				//SQL 작성
 				String sql = "";
 				sql += "SELECT * FROM (";
-				sql += "    SELECT rownum rnum, B.* FROM (";
+				sql += "    SELECT rownum rnum, B.* FROM ("; 
 				sql += "        SELECT";
-				sql += "            bd_no, bd_title, bd_question,";
-				sql += "            bd_answer, bd_date, bd_cnt";
+				sql += "			bd_no, bd_title, bd_question,";
+				sql += "            bd_answer, bd_date, bd_cnt, bd_grp, bd_yn";
 				sql += "        FROM board";
+				sql += "		WHERE bd_grp=2 and bd_title LIKE '%'||?||'%'"; 
 				sql += "        ORDER BY bd_no DESC";
 				sql += "    ) B";
+				sql += "    ORDER BY rnum";
 				sql += " ) BOARD";
 				sql += " WHERE rnum BETWEEN ? AND ?";
 				
-				System.out.println(sql);
+				System.out.println(paging.getStartNo());
+				System.out.println(paging.getEndNo());
+				System.out.println(paging.getSearch());
 				
 				//결과 저장할 List
 				List<Board> boardList = new ArrayList<>();
@@ -111,13 +217,16 @@ conn = JDBCTemplate.getConnection(); //DB연결
 				try {
 					ps = conn.prepareStatement(sql); //SQL수행 객체
 					
-					ps.setInt(1, paging.getStartNo());	//페이징 게시글 시작 번호
-					ps.setInt(2, paging.getEndNo());	//페이징 게시글 끝 번호
+					ps.setString(1, paging.getSearch());
+					ps.setInt(2, paging.getStartNo());	//페이징 게시글 시작 번호
+					ps.setInt(3, paging.getEndNo());	//페이징 게시글 끝 번호
 					
 					rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
 					
+//					System.out.println(rs.next());
 					//조회 결과 처리
 					while(rs.next()) {
+						System.out.println(rs.getInt("bd_no"));
 						Board b = new Board(); //결과값 저장 객체
 						
 						//결과값 한 행 처리
@@ -127,12 +236,14 @@ conn = JDBCTemplate.getConnection(); //DB연결
 						b.setBdAnswer( rs.getString("bd_answer") );
 						b.setBdDate( rs.getDate("bd_date") );
 						b.setBdCnt( rs.getInt("bd_cnt") );
-//						b.setBdGrp(rs.getString("bd_grp"));
-//						b.setBdYn(rs.getCharacterStream("bd_yn"));
+						b.setBdGrp(rs.getString("BD_GRP"));
+						b.setBdYn(rs.getString("bd_yn"));
 						
 						//리스트에 결과값 저장
 						boardList.add(b);
+						System.out.println(b);
 					}
+					System.out.println("뭐냐");
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -144,17 +255,167 @@ conn = JDBCTemplate.getConnection(); //DB연결
 				
 				//최종 결과 반환
 				return boardList;
-	}
-
-	@Override
-	public void insertBoard(Board board) {
 		
 	}
 
-	@Override
-	public int selectUserno() {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override //
+	public void insertBoard(Board board) {
+		conn = JDBCTemplate.getConnection(); //DB연결
+		
+		System.out.println(board.getUserNo());
+		
+		//SQL 작성
+		String sql = "";
+		sql += "insert into board values (null, ?, ?, null, '2020-05-01', 0, 1, 'N',? )";
+
+		
+		System.out.println(board);
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setString(1, board.getBdTitle());
+			ps.setString(2, board.getBdQuestion());
+			ps.setInt(3, board.getUserNo());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
 	}
+
+	@Override
+	public User selectUserno(User user) {
+		// DB 연결
+		conn = JDBCTemplate.getConnection();
+		
+		// DB sql 작성
+		String sql = "";
+		sql += "SELECT users_no FROM users WHERE users_id=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, user.getUserId());
+			
+			rs = ps.executeQuery();
+			System.out.println(rs);
+			
+			while( rs.next() ) {
+				user.setUserNo( rs.getInt("users_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return user;
+	}
+
+	@Override //
+	public Board selectBoardByBoardNo(int boardno) {
+		
+		// DB 연결
+		conn = JDBCTemplate.getConnection();
+		
+		Board board = new Board();
+		
+		// DB sql 작성
+		String sql = "";
+		sql += "SELECT * FROM board WHERE bd_no=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, boardno);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				board.setBdNo( rs.getInt("bd_no") );
+				board.setBdTitle( rs.getString("bd_title") );
+				board.setBdQuestion( rs.getString("bd_question") );
+				board.setBdAnswer( rs.getString("bd_answer") );
+				board.setBdDate( rs.getDate("bd_date") );
+				board.setBdCnt( rs.getInt("bd_cnt") );
+				board.setBdYn(rs.getString("bd_yn"));
+				board.setUserNo(rs.getInt("users_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return board;
+	}
+
+	@Override
+	public void updateViewCntByBoardNo(int boardNo) {
+
+		// DB 연결
+		conn = JDBCTemplate.getConnection();
+		
+		// DB sql 작성
+		String sql = "";
+		sql += "UPDATE board SET bd_cnt = bd_cnt+1 WHERE bd_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, boardNo);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+	}
+
+	@Override
+	public User selectUserByUserNo(int userno) {
+		
+		// DB 연결
+		conn = JDBCTemplate.getConnection();
+		System.out.println("userno : " + userno);
+		User user = new User();
+		
+		// DB sql 작성
+		String sql = "";
+		sql += "SELECT * FROM users WHERE users_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				user.setUserId(rs.getString("users_id"));
+				user.setUserName(rs.getString("users_name"));
+				user.setUserNick(rs.getString("users_nick"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println(user);
+		return user;
+	}
+
+
 
 }

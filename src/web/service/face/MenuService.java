@@ -27,6 +27,31 @@ public interface MenuService {
 	 */
 	public List<Menu> getList(Paging paging , int franno);
 
+	
+	/**
+	 * 요청파라미터 얻기
+	 * @param req - 요청정보 객체
+	 * @return Menu - 전달파라미터 Menuno를 포함한 객체
+	 */
+	public Menu getMenuNo(HttpServletRequest req);
+
+
+	/**
+	 * 주어진 menuno를 이용하여 게시글을 조회한다
+	 * 
+	 * @param menuno - menuno를 가지고 있는객체
+	 * @return Menu - 조회된 게시글
+	 */
+	public Menu view(Menu menuno);
+
+
+	/**
+	 * 게시글 작성
+	 * 입력한 게시글 내용을 DB에 저장
+	 * @param req - 요청정보 객체(게시글내용 + 첨부파일)
+	 */
+	public void applyMenu(HttpServletRequest req , int franno);
+
 
 	
 

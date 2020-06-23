@@ -1,13 +1,22 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+	Date nowDate = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
+
+
     
 <c:import url="/WEB-INF/views/fran_layout/header.jsp" />
 
 <c:import url="/WEB-INF/views/fran_layout/header_menu.jsp" />
 
-<div id="body-content-view">
-<form class="form-horizontal" action="#" method="post">
+<div id="body-content-applyBlind">
+<form class="form-horizontal" action="/fran/apply/blind" method="post">
 
  <fieldset>
 	<legend><span class="badge"> blind 메뉴 신청 </span></legend>
@@ -20,31 +29,47 @@
   </div>
   
   <div class="form-group">
-    <label for="inputMenuName" class="col-sm-2 control-label">메뉴 명 : </label>
+    <label for="inputblindName" class="col-sm-2 control-label">메뉴 명 : </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputMenuName">
+    
+      <select class="form-control" name="applyblindNameByMenuNo">
+		<option value="" selected="selected">메뉴선택</option>
+			<c:forEach items="${MenuList }" var="menu">
+				<option value="${menu.menuNo}" id="inputblindName">${menu.menuName }</option>
+			</c:forEach>
+      </select>
+      
     </div>
   </div>
+  
   
   <div class="form-group">
-    <label for="inputDate" class="col-sm-2 control-label">처리 일자 : </label>
+    <label for="inputblindStart" class="col-sm-2 control-label">요청(오늘) 일자 : </label>
     <div class="col-sm-10">
-      <input type="date" class="form-control" id="inputDate">
+      <input type="text" class="form-control" id="inputblindStart" name="inputblindStart" readonly="readonly" placeholder="현재(오늘) 날짜로 처리됩니다." >
     </div>
   </div>
+
+  <div class="form-group">
+    <label for="inputblindDate" class="col-sm-2 control-label">처리(희망) 일자 : </label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="inputblindDate" name="applyblindDate">
+    </div>
+  </div>
+
   
    <div class="form-group">
-    <label for="input" class="col-sm-2 control-label">등록 사유 : </label>
+    <label for="applyBlindRsn" class="col-sm-2 control-label">등록 사유 : </label>
 	<div class="col-sm-10">
-	  <textarea class="form-control" rows="6" id="input"></textarea>
+	  <textarea class="form-control" rows="6" id="applyBlindRsn" name="applyBlindRsn"></textarea>
 	</div>
   </div>
   
   
   <div class="form-group">
-    <label for="message" class="col-sm-2 control-label">비고 : </label>
+    <label for="blind-message" class="col-sm-2 control-label">비고 : </label>
 	<div class="col-sm-10">
-	  <textarea class="form-control" rows="4" id="message"></textarea>
+	  <textarea class="form-control" rows="4" id="blind-message" name="blind-message"></textarea>
 	</div>
   </div>
   
@@ -56,8 +81,9 @@
   </div>
   
   
-  <div class="form-gruop">
- 	 <button type="submit" class="btn btn-warning" id="sub">등록신청</button>
+  <div class="form-gruop" id="button-apply-blind">
+  	  <a href="/fran"><button type="button" class="btn btn-warning" id="blind-cancle">취소</button></a>
+ 	 <button type="submit" class="btn btn-info" id="blind-sub">등록신청</button>
   </div>
 
 </fieldset>
