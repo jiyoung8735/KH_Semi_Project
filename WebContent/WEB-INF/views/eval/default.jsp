@@ -5,8 +5,6 @@
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
 <section class="wrapper">
 
-
-
 <div class="submenu_back">
   	<div class="submenu_list">
   	 <ul>
@@ -47,7 +45,7 @@
 		</div>
 </div>
 
-<div class="eval">
+<div class="eval" id="evalDiv">
 <div class="ver">
 <div class="hor" id="eval11"></div>
 <div class="h_blank"></div>
@@ -110,18 +108,39 @@ $("input[id^=food_]").click(function() {
          type: "POST"
          , url: "/eval/filter"
          , data: {
-            food: $("input[id^=food_]").val()
+            food: $(this).val()
          }
          , dataType: "html"
          , success: function(result) {
             console.log("AJAX 성공")
-            $(".eval").html(result);
+            console.log(result)
+            $("#evalDiv").html(result);
          }
          , error: function() {
             console.log("AJAX 실패")
          }
       });
 });
+
+$(".hor").click(function() {
+      $.ajax({
+         type: "POST"
+         , url: "/eval/detail"
+         , data: {
+            food: $(this).val()
+         }
+         , dataType: "html"
+         , success: function(result) {
+            console.log("AJAX 성공")
+            console.log(result)
+            $("#mo_wrapper").html(result);
+         }
+         , error: function() {
+            console.log("AJAX 실패")
+         }
+      });
+});
+
 </script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

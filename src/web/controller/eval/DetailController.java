@@ -14,7 +14,7 @@ public class DetailController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/eval/detail.jsp");
+		req.getRequestDispatcher("/WEB-INF/views/eval/detail.jsp").forward(req, resp);;
 	}
 
 }

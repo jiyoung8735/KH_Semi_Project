@@ -15,7 +15,8 @@ public class FilterController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("filter test : " + req.getParameter("food"));
-		req.getRequestDispatcher("/WEB-INF/views/eval/filter.jsp");
+		req.setAttribute("food", req.getParameter("food"));
+		req.getRequestDispatcher("/WEB-INF/views/eval/filter.jsp").forward(req, resp);;
 	}
 	
 }
