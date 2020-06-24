@@ -133,7 +133,7 @@ if (imgAspect <= divAspect) {
                       + marginLeft + 'px;'
 } else {
     // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+    img.style.cssText = 'width: 100%; height: auto; margin-top: 0;';
 }
 	
 })

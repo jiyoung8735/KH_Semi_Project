@@ -1,8 +1,11 @@
 package web.service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import web.dto.Review;
+import web.util.Paging;
 
 public interface ReviewService {
 	
@@ -14,5 +17,13 @@ public interface ReviewService {
 	 * @return int
 	 */
 	int countReviewByUserNo(HttpServletRequest req);
+	
+	/**
+	 * 리뷰작성 목록 조회 (paging 적용)
+	 * 
+	 * @param Paging객체
+	 * @return List<Review>
+	 */
+	List<Review> getList(Paging paging);
 
 }

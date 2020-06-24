@@ -6,28 +6,26 @@
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 
-<div style="width: 800px; margin:0 auto;" >
+<div style="width: 800px; margin:0 auto; height: 1200px;" >
 
-<section>
-<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/editProfile" style="text-decoration:none;">프로필</a></h3></div>
-<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/view/mywork" style="text-decoration:none;">활동내역</a></h3></div>
-<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/leavesite" style="text-decoration:none;">사이트탈퇴</a></h3></div>
-</section>
-
-<h1>My 활동내역</h1>
-<hr>
-<h3>1. 평점 & 한줄평 2222</h3>
-
-<div style="border: 1px solid red; width:700px; height:400px;">dd${review }<br>${star }</div>
-<br>
-<a href="/update/myreviewstar"><button style="width:100px; height: 50px; background-color: yellow;">수정하기</button></a>
-
+<h1>내가 작성한 리뷰 & 별점</h1>
 <hr>
 
-<h3>2. 신고내역</h3>
-<div style="border: 1px solid tomato; width:700px; height:400px;">신고내역 출력되서 나타나는 곳!</div>
+<table class="table table-striped table-hover table-condensed">
+	<tr class="success">
+	<th style="width: 15%;">작성번호</th>
+	<th style="width: 40%;">메뉴명</th>
+	<th style="width: 15%;">작성일자</th>
+	</tr>
+
+ 	<!-- var는 반복될 객체 , items는 반복될 대상 객체  -->	
+	<c:forEach var="boardList" items="${boardList }"  >
+	<tr>
+		<td>${boardList.boardno }</td>
+		<td><a href="/board/view?boardno=${boardList.boardno }">${boardList.title }</a></td>
+		<td>${boardList.id }</td>
+	</tr>
+	</c:forEach> 
+</table>
 </div>
-
-<div style="height: 200px;"></div>
-
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
