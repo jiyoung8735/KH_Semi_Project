@@ -19,11 +19,11 @@
 	</tr>
 
  	<!-- var는 반복될 객체 , items는 반복될 대상 객체  -->	
-	<c:forEach var="boardList" items="${boardList }"  >
+	<c:forEach var="myworkList" items="${myworkList }"  >
 	<tr>
-		<td>${boardList.boardno }</td>
-		<td><a href="/board/view?boardno=${boardList.boardno }">${boardList.title }</a></td>
-		<td>${boardList.id }</td>
+		<td>${myworkList.menuNo }</td>
+		<td><a href="/update/mywork?menuNo=${myworkList.menuNo }">${myworkList.menuName }</a></td>
+		<td>${myworkList.writtendate }</td>
 	</tr>
 	</c:forEach> 
 </table>

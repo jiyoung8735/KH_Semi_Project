@@ -16,19 +16,5 @@ public interface StarDao {
 	 */
 	public int selectCntStarByUserNo(int userno);
 	
-	/**
-	 * 별점작성 갯수 조회
-	 * 
-	 * @return int
-	 */
-	public int selectCntAll();
-
-	/**
-	 * 페이징 적용한 별점작성 목록 조회
-	 * 
-	 * @param Paging객체
-	 * @return List<Star>
-	 */
-	public List<Star> selectAll(Paging paging);
 
 }

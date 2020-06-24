@@ -18,12 +18,5 @@ public interface ReviewService {
 	 */
 	int countReviewByUserNo(HttpServletRequest req);
 	
-	/**
-	 * 리뷰작성 목록 조회 (paging 적용)
-	 * 
-	 * @param Paging객체
-	 * @return List<Review>
-	 */
-//	List<Review> getList(Paging paging);
 
 }

@@ -23,7 +23,7 @@ public class PictureDaoImpl implements PictureDao {
 		int result = -1;
 		
 		
-		String sql = "INSERT INTO PICTURE VALUES( PICTURE_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?)";
+		String sql = "INSERT INTO PICTURE VALUES( null, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?)";
 		
 		try {
 			ps = conn.prepareStatement(sql);
