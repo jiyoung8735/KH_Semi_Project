@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- header -->
-<c:import url="/WEB-INF/views/login/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 
 <div style="width: 800px; margin:0 auto;" >
 
@@ -30,4 +30,4 @@
 
 <div style="height: 200px;"></div>
 
-</html>
+<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

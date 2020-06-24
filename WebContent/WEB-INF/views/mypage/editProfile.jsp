@@ -5,58 +5,72 @@
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 
-
-
 <style type="text/css">
-
 .wrapper01{
-   	height: 400px;
+	width: 1280px;
+	margin: 0 auto;
+   	height: 1000px;
 }
 
-.wrapper02 {
- 	display: inline-block; 
-	float: left;
-	width: 49%;
-	height: 100%;
-	border: 1px solid red;
-	
-	text-align: center;
+.wrapper02{
+   	height: 420px;
 }
 
 .wrapper03 {
-	display: inline-block; 
-	float: right;
-	width: 50%;
-	height: 100%;
-	border: 1px solid blue;
+ 	display: inline-block; 
+	float: left;
+	width: 35%;
+	height: 80%;
+	margin-top: 40px;
+	margin-left: 40px;
 	
 	text-align: center;
 }
 
 .wrapper04 {
-	border: 1px solid blue;
-}
-.wrapper04_02 {
-	width: 80%;
-	padding-left: 200px;
-	border: 1px solid green;
+	display: inline-block; 
+	float: right;
+	width: 59%;
+	height: 80%;
+	margin-top: 40px;
+	
+	text-align: left;
 }
 
-.wrapper05{
-	width: 1280px;
-	margin: 0 auto;
-   	height: 800px;
+.gradeview{
+	margin-top: 40px;
 }
+
+.wrapper05 {
+}
+.wrapper06 {
+	width: 70%;
+	margin-left: 180px;
+}
+
 
 div#preview{
 	margin: 0 auto;
 	width: 200px; 
 	height: 200px; 
-	border: 1px solid red;
 	overflow: hidden;
 	border-radius: 50%;
+	background-color: #faf8f8;
 }
 
+table {
+	width: 400px;
+	height: 200px;
+	border-collapse: collapse;
+}
+
+th{
+	background-color: #ccc;
+}
+
+td{
+	padding-left: 20px;
+}
 </style>
 
 <script type="text/javascript" >
@@ -142,75 +156,69 @@ if (imgAspect <= divAspect) {
 	
 })
 </script>
-<div class="wrapper05">
-
 <div class="wrapper01">
-
-<div class="wrapper02">
-
-	<h1>나의 프로필</h1>
-<form action="/editProfile" method="post" enctype="multipart/form-data">
-
-	<div id="preview" >
-	<img src="/upload/${picture.picServer }" alt="프로필사진" id="profileimage" >
+	<div class="wrapper02">
+		<div class="wrapper03">
+		<form action="/editProfile" method="post" enctype="multipart/form-data">
+		
+			<div id="preview" >
+			<img src="/upload/${picture.picServer }" alt="프로필사진" id="profileimage" >
+			</div>
+			<br>
+			<input type="text" name="userno" id="userno" value="${userno }" style="display: none;"/>
+			<input type="file" name="upload" id="upload" style="display: none;"/>
+			<button type="button" id="btnUpFile" style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">프로필 등록</button>
+			<button id="btnSave" style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">프로필 저장</button><br><br>
+			
+		
+		</form>
+		</div>
+		
+		<div class="wrapper04">
+			<div class="gradeview">
+				<c:if test="${usergrade eq 1}">
+					<h1>${usernick } 님 반가워요!</h1><br> 
+					<h1>회원등급 : ${grade }</h1>
+					<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 100px; height: 100px;"/>
+				</c:if>
+				
+				<c:if test="${usergrade eq 2}">
+					<h1>${usernick } 님 반가워요!</h1><br> 
+					<h1>회원등급 : ${grade }</h1>
+					<img src="/resources/image/grade02.JPG" alt="grade02" style="width: 100px; height: 100px;"/>
+				</c:if>
+				
+				<c:if test="${usergrade eq 3}">
+					<h1>${usernick } 님 반가워요!</h1><br> 
+					<h1>회원등급 : ${grade }</h1>
+					<img src="/resources/image/grade03.JPG" alt="grade03" style="width: 100px; height: 100px;"/>
+				</c:if>
+				
+				<c:if test="${usergrade eq 4}">
+					<h1>${usernick } 님 반가워요!</h1><br> 
+					<h1>회원등급 : ${grade }</h1>
+					<img src="/resources/image/grade04.JPG" alt="grade04" style="width: 100px; height: 100px;"/>
+				</c:if>
+			</div>
+		</div>
 	</div>
 	
-	<input type="text" name="userno" id="userno" value="${userno }" style="display: none;"/>
-	<input type="file" name="upload" id="upload" style="display: none;"/>
-	<button type="button" id="btnUpFile">프로필 등록</button><button id="btnSave">프로필 저장</button>
-
-</form>
-
-
-</div>
-
-
-<div class="wrapper03">
-	<div class="gradeview"><h1>회원등급</h1><br>
-	<c:if test="${usergrade eq 1}">
-		<strong>${usernick }</strong>님!
-		<strong>${grade }</strong>입니다. 조금 더 분발하세요!
-	</c:if>
-	<c:if test="${usergrade eq 2}">
-		<strong>${usernick }</strong>님!
-		<strong>${grade }</strong>입니다. 페이스를 유지하세요.
-	</c:if>
-	<c:if test="${usergrade eq 3}">
-		<strong>${usernick }</strong>님!
-		<strong>${grade }</strong>입니다. 아주 잘하고 있습니다.
-	</c:if>
-		<strong>${usernick }</strong>님!
-		<c:if test="${usergrade eq 4}">
-	<strong>${grade }</strong>입니다. 항상 사랑합니다.
-	</c:if>
+	<hr>
+	
+	<div class="wrapper05">
+		<div class="wrapper06">
+			<h1>개인 정보</h1><br>
+			<table border="1">
+			<tr><th>성명</th><td>${username }</td></tr> 
+			<tr><th>닉네임</th><td>${usernick }</td></tr>
+			<tr><th>성별</th><td>${usergender }</td></tr>
+			<tr><th>생년월일</th><td>${userbirth }</td></tr>
+			<tr><th>이메일</th><td>${useremail }</td></tr>
+			<tr><th>전화번호</th><td>${usertel }</td></tr>
+			</table><br>
+			<a href="/update/perinfo"><button style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">개인정보 수정</button></a>
+		</div>
 	</div>
-
-</div>
-
-</div>
-
-<div class="wrapper04">
-
-<div class="wrapper04_02">
-<h1>개인 정보</h1>
-<form action="/editProfile" method="POST">
-<table>
-<tr><td>성명</td><td><input type="text" value="${username }"/></td></tr> 
-<tr><td>닉네임</td><td><input type="text" value="${usernick }"/></td></tr>
-<tr><td>성별</td><td><select name="gender" id="gender" class="form-control" >
-    	<option value="">선택</option>
-    	<option value="m">남</option>
-    	<option value="f">여</option>
-	</select></td></tr>
-<tr><td>생년월일</td><td><input type="text" value="${userbirth }"/></td></tr>
-<tr><td>이메일</td><td><input type="email" value="${useremail }"/></td></tr>
-<tr><td>전화번호</td><td><input type="text" value="${usertel }"/></td></tr>
-</table>
-<button>수정적용</button>
-</form>
-</div>
-</div>
-
 </div>
 
 
