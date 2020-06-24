@@ -51,7 +51,7 @@ public class ViewMyWorkController extends HttpServlet {
 		
 		// 게시글 목록 받기
 		starList = starService.getList(paging);
-		reviewList = reviewService.getList(paging);
+//		reviewList = reviewService.getList(paging);
 
 		// Map
 		Map map = new HashMap();

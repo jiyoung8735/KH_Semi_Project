@@ -24,6 +24,6 @@ public interface ReviewService {
 	 * @param Paging객체
 	 * @return List<Review>
 	 */
-	List<Review> getList(Paging paging);
+//	List<Review> getList(Paging paging);
 
 }

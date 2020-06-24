@@ -97,12 +97,12 @@ public class StarDaoImpl implements StarDao {
 			
 			while( rs.next() ) {
 				
-				Star star = new Star();
-				star.setStarNo( rs.getString(columnIndex) );
-				star.setStarScore(starScore);
-				star.setStarDate(starDate);
-				star.setUserNo(userNo);
-				star.setMenuNo(menuNo);
+//				Star star = new Star();
+//				star.setStarNo( rs.getString(columnIndex) );
+//				star.setStarScore(starScore);
+//				star.setStarDate(starDate);
+//				star.setUserNo(userNo);
+//				star.setMenuNo(menuNo);
 				
 			}
 			

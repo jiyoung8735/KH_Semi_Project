@@ -30,10 +30,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
-	@Override
-	public List<Review> getList(Paging paging) {
-
-		return reviewDao.selectAll(paging);
-	}
+//	@Override
+//	public List<Review> getList(Paging paging) {
+//
+//		return reviewDao.selectAll(paging);
+//	}
 
 }
