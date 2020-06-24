@@ -67,6 +67,7 @@ $(document).ready(function() {
 
 <c:if test="${empty login }">
 <div class="header-container">
+
 	<div class="header-wrapper">
 	<a href="#"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
 	</div>								
@@ -89,9 +90,11 @@ $(document).ready(function() {
 
 <c:if test="${not empty login }">
 <div class="header-container">
+	
 	<div class="header-wrapper">
-	<a href="#"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
-	</div>								
+	<a href="/"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
+	</div>	
+		
 
 		<div class="category-background">
 	  	<div class="category-list">
@@ -102,6 +105,16 @@ $(document).ready(function() {
 		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
 		   	<li class="cate-list-item"><a href="/editProfile">마이페이지</a></li>
 		   	<li class="cate-list-item"><a href="/logout">로그아웃</a></li>
+
+		<c:if test="${userAuth == 2 }">
+		<li class="cate-list-item"><a href="/fran">관리자페이지</a></li>
+		<style type="text/css">
+		.category-background .category-list {
+			width: 1500px;
+		}
+		</style>
+		</c:if>
+		
 	   	</ul>
 	  	</div>
 		</div>
