@@ -21,7 +21,7 @@
 
 	<div class="header-topmenu">
 		<button type="button" class="btn btn-success" onclick="location.href='/'">일반페이지로</button>
-		<button type="button" class="btn btn-info"onclick="location.href='/'" >로그아웃</button>
+		<button type="button" class="btn btn-info"onclick="location.href='/logout'" >로그아웃</button>
 	</div>
 	
 	<div class="header-wrapper">

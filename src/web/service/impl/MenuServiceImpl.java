@@ -100,7 +100,7 @@ public class MenuServiceImpl implements MenuService {
 		factory.setSizeThreshold(maxMem);
 		
 		ServletContext context = req.getServletContext();
-		String path = context.getRealPath("tmp");
+		String path = context.getRealPath("upload");
 		
 		File repository = new File(path); //임시 저장 폴더
 		factory.setRepository(repository);
@@ -196,7 +196,6 @@ public class MenuServiceImpl implements MenuService {
 				imageFile.setImgServer(stored);	//서버이름
 				imageFile.setImgExt(ext);//확장자
 				imageFile.setImgSize(imgSize);//파일크기
-//				imageFile.setImgDate(imgDate);//등록일자
 				
 				long filesize = 0;
 				filesize = item.getSize();

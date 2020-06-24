@@ -55,6 +55,18 @@ $(document).ready(function() {
 
 <tr><td colspan="4">${viewMenu.menuInfo }</td></tr>
 
+
+<tr><td class="info"  colspan="4">메뉴 이미지</td></tr>
+<tr>
+<td colspan="4"> 
+<div id="preview" >
+<img src="/upload/${image.imgServer }" alt="프로필사진" id="ImageBoxByview">
+</div>
+</td>
+</tr>
+
+
+
 </table>
 
 <div class="text-center" id="list-button">	

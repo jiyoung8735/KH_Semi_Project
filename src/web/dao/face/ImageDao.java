@@ -6,4 +6,6 @@ public interface ImageDao {
 
 	public void insertImage(Image imageFile);
 
+	public Image selectImage(int menunoByImage);
+
 }
