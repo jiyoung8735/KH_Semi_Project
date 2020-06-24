@@ -51,7 +51,7 @@ public class MyworkDaoImpl implements MyworkDao {
 	
 	
 	@Override
-	public List<Mywork> selectAll(Paging paging) {
+	public List<Mywork> selectAll(Paging paging, int userno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
@@ -59,7 +59,7 @@ public class MyworkDaoImpl implements MyworkDao {
 		
 		List<Mywork> listMywork = new ArrayList<>();
 		
-		String sql = "select * from (";
+		String sql = "SELECT * FROM (select * from (";
 		sql += "		select rownum rnum, B.* from (";
 		sql += "			select A.*, U.users_nick from";
 		sql += "	          (select R.*, M.menu_name from";
@@ -69,12 +69,13 @@ public class MyworkDaoImpl implements MyworkDao {
 		sql += "					where R.menu_no=M.menu_no) A, users U";
 		sql += "				where A.users_no=U.users_no"; 
 		sql += "	          )B";  
-		sql += "	       )C where rnum between ? and ?";
+		sql += "	       )C where rnum between ? and ? ) WHERE USERS_NO = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, paging.getCurPage());
 			ps.setInt(2, paging.getEndNo());
+			ps.setInt(3,userno);
 			
 			rs = ps.executeQuery();
 			

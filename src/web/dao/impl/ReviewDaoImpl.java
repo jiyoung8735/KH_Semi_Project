@@ -42,6 +42,40 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return cnt;
 	}
+
+	@Override
+	public void updateReviewByMenuNoUserNo(String updateContent, int userno, int menuNo) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "UPDATE REVIEW SET REVIEW_CONTENT = ?";
+		sql += "	WHERE USERS_NO = ? AND MENU_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, updateContent);
+			ps.setInt(2, userno);
+			ps.setInt(3, menuNo);
+			
+			result = ps.executeUpdate();
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("리뷰 수정 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("리뷰 수정 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+	}
 	
 
 }

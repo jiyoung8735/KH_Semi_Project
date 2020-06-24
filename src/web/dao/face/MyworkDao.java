@@ -20,7 +20,7 @@ public interface MyworkDao {
 	 * @param Paging객체
 	 * @return List<Mywork>
 	 */
-	public List<Mywork> selectAll(Paging paging);
+	public List<Mywork> selectAll(Paging paging, int userno);
 	
 	/**
 	 * MenoNo로 Mywork 조회

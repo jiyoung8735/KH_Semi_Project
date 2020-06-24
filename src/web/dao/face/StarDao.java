@@ -15,6 +15,15 @@ public interface StarDao {
 	 * @return int
 	 */
 	public int selectCntStarByUserNo(int userno);
+
+	/**
+	 * 회원번호와 메뉴번호로 별점 수정
+	 * 
+	 * @param updatescore
+	 * @param userno
+	 * @param menuNo
+	 */
+	public void updateStarByUserNoMenuNo(int updatescore, int userno, int menuNo);
 	
 
 }

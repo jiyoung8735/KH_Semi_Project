@@ -47,6 +47,39 @@ public class StarDaoImpl implements StarDao {
 		return cnt;
 	}
 
+	@Override
+	public void updateStarByUserNoMenuNo(int updatescore, int userno, int menuNo) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "UPDATE STAR SET STAR_SCORE = ?";
+		sql += "	WHERE USERS_NO = ? AND MENU_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, updatescore);
+			ps.setInt(2, userno);
+			ps.setInt(3, menuNo);
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("별점 수정 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("별점 수정 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+	}
+
 
 
 }

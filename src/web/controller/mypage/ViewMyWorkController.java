@@ -38,7 +38,7 @@ public class ViewMyWorkController extends HttpServlet {
 		List<Mywork> myworkList = new ArrayList<>();
 		
 		// Mywork 목록 받기
-		myworkList = myworkService.getList(paging);
+		myworkList = myworkService.getList(paging, req);
 
 		// 전달받은 Mywork 목록을 request 컨텍스트에 저장하기
 		req.setAttribute("myworkList", myworkList);

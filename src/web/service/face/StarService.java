@@ -15,5 +15,12 @@ public interface StarService {
 	 */
 	int countStarByUserNo(HttpServletRequest req);
 	
+	/**
+	 * 별점 수정
+	 * 
+	 * @param req
+	 */
+	void updateStar(HttpServletRequest req);
+	
 
 }

@@ -3,6 +3,7 @@ package web.service.impl;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import web.dao.face.MyworkDao;
 import web.dao.impl.MyworkDaoImpl;
@@ -35,9 +36,13 @@ public class MyworkServiceImpl implements MyworkService {
 	}
 
 	@Override
-	public List<Mywork> getList(Paging paging) {
+	public List<Mywork> getList(Paging paging, HttpServletRequest req) {
 
-		return myworkDao.selectAll(paging);
+		HttpSession session = req.getSession();
+		String param = String.valueOf(session.getAttribute("userno"));
+		int userno = Integer.parseInt(param);
+		
+		return myworkDao.selectAll(paging, userno);
 	}
 
 	@Override

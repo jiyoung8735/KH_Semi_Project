@@ -25,5 +25,26 @@ public class StarServiceImpl implements StarService{
 	}
 
 
+	@Override
+	public void updateStar(HttpServletRequest req) {
+		
+		//메뉴번호 전달받기
+		String param = req.getParameter("menuNo");
+		int menuNo = Integer.parseInt(param);
+		
+		//회원번호 꺼내기(세션)
+		HttpSession session = req.getSession();
+		String p = String.valueOf(session.getAttribute("userno"));
+		int userno = Integer.parseInt(p);
+		
+		//수정된 별점 전달받기
+		String par = req.getParameter("updatescore");
+		int updatescore = Integer.parseInt(par);
+		
+		starDao.updateStarByUserNoMenuNo(updatescore, userno, menuNo);
+		
+	}
+
+
 
 }

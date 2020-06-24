@@ -30,5 +30,28 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
+	@Override
+	public void updateReview(HttpServletRequest req) {
+		
+		//메뉴번호 전달받기
+		String param = req.getParameter("menuNo");
+		int menuNo = Integer.parseInt(param);
+		System.out.println(menuNo);
+		
+		//회원번호 꺼내기(세션)
+		HttpSession session = req.getSession();
+		String p = String.valueOf(session.getAttribute("userno"));
+		int userno = Integer.parseInt(p);
+		System.out.println(userno);
+		
+		//수정된 리뷰컨텐츠 전달받기
+		String updateContent = req.getParameter("updatereview");
+		System.out.println(updateContent);
+		
+		reviewDao.updateReviewByMenuNoUserNo(updateContent, userno, menuNo);
+		
+	}
+
+
 
 }

@@ -23,7 +23,7 @@ public interface MyworkService {
 	 * @param Paging객체
 	 * @return List<Mywork>
 	 */
-	public List<Mywork> getList(Paging paging);
+	public List<Mywork> getList(Paging paging, HttpServletRequest req);
 
 	/**
 	 * MenuNo로 Mywork 조회

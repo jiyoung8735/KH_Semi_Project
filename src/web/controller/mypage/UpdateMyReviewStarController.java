@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.dto.Mywork;
 import web.service.face.MyworkService;
+import web.service.face.ReviewService;
+import web.service.face.StarService;
 import web.service.impl.MyworkServiceImpl;
+import web.service.impl.ReviewServiceImpl;
+import web.service.impl.StarServiceImpl;
 
 
 @WebServlet("/update/mywork")
@@ -18,6 +22,9 @@ public class UpdateMyReviewStarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MyworkService myworkService = new MyworkServiceImpl();
+	private ReviewService reviewService = new ReviewServiceImpl();
+	private StarService starService = new StarServiceImpl();
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,10 +43,13 @@ public class UpdateMyReviewStarController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//1.한줄평&평점 수정
+		//별점 , 리뷰 수정
+		reviewService.updateReview(req);
+		starService.updateStar(req);
+		
 		
 		//현재 페이지로 리다이렉트
-		resp.sendRedirect("/update/mywork");
+		resp.sendRedirect("/view/mywork");
 		
 		
 	}

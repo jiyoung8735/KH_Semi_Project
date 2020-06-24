@@ -18,5 +18,12 @@ public interface ReviewService {
 	 */
 	int countReviewByUserNo(HttpServletRequest req);
 	
+	/**
+	 * 메뉴번호로 리뷰작성 수정
+	 * 
+	 * @param req
+	 */
+	void updateReview(HttpServletRequest req);
+	
 
 }
