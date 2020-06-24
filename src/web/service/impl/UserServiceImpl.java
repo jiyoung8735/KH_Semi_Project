@@ -6,15 +6,20 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dao.face.PictureDao;
 import web.dao.face.UserDao;
+import web.dao.impl.PictureDaoImpl;
 import web.dao.impl.UserDaoImpl;
 import web.dto.Fran;
+import web.dto.Picture;
 import web.dto.User;
 import web.service.face.UserService;
 
 public class UserServiceImpl implements UserService {
 
 	private UserDao userDao = new UserDaoImpl();
+	
+	private PictureDao pictureDao = new PictureDaoImpl();
 	
 	@Override
 	public User getLoginUser(HttpServletRequest req) {
@@ -104,8 +109,24 @@ public class UserServiceImpl implements UserService {
 		user.setUserReport( "N" );
 		user.setFranNo( franno );
 		
-		
+		//회원가입 -> UserNo 생성
 		int result = userDao.insert(user);
+		User joinuser = info(user);
+		
+		//기본 프로필사진 업로드
+		Picture picture = new Picture();
+		picture.setPicName("D:\\지영\\Program Files\\workspace-web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Semi_Project\\upload_picture");
+		picture.setPicOrigin("기본프로필이미지.jpg");
+		picture.setPicServer("기본프로필이미지.jpg");
+		picture.setPicHor(667);
+		picture.setPicVer(667);
+		picture.setPicExt("jpg");
+		picture.setPicSize(69614);
+		//joinuser의 userNo를 넣어줌
+		picture.setUserNo(joinuser.getUserNo());
+		
+		//기본프로필이미지 업로드
+		pictureDao.insertFile(picture);
 		
 		return result;
 	}

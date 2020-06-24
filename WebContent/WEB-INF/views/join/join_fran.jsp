@@ -143,7 +143,7 @@ $(document).ready(function(){
 			return false;
 		}
 		if( !regex06.test($("#date").val()) ){
-			$("#datev").text( "2자의 숫자만 가능합니다." );
+			$("#datev").text( "2자의 숫자만 가능합니다. 날짜 '1'~'9'는 '01'~'09'로 표기" );
 			$("#datev").css( "color", 'red' );
 			return false;
 		}
@@ -341,7 +341,7 @@ $(document).ready(function(){
 		}else{
 			//정규식검증
 			if( !regex06.test($(this).val()) ){
-				$("#datev").text( "2자리의 숫자만 입력가능합니다." ); 
+				$("#datev").text( "2자리의 숫자만 입력가능합니다. 날짜 '1'~'9'는 '01'~'09'로 표기" ); 
 				$("#datev").css( "color", 'red' ); 
 			}else{
 				$("#datev").html( "<div></div>" ); 
