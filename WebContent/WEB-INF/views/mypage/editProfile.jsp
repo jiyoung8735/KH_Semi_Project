@@ -121,7 +121,7 @@ $("#upload").change(function(e) {
 
 var div = document.getElementById("preview"); // 이미지를 감싸는 div
 var img = document.getElementById("profileimage"); // 이미지
-var divAspect = 400 / 200; // div의 가로세로비는 알고 있는 값이다
+var divAspect = 200 / 200; // div의 가로세로비는 알고 있는 값이다
 var imgAspect = img.height / img.width;
 
 if (imgAspect <= divAspect) {
@@ -146,7 +146,7 @@ if (imgAspect <= divAspect) {
 		<form action="/editProfile" method="post" enctype="multipart/form-data">
 		
 			<div id="preview" >
-			<img src="/upload/${picture.picServer }" alt="프로필사진" id="profileimage" >
+			<img src="/upload_picture/${picture.picServer }" alt="프로필사진" id="profileimage" >
 			</div>
 			<br>
 			<input type="text" name="userno" id="userno" value="${userno }" style="display: none;"/>
@@ -187,15 +187,15 @@ if (imgAspect <= divAspect) {
 		</div>
 		<div class="wrapper05">
 			<div>
-				<h1>23${cntstar }</h1>
+				<h1>${cntstar }</h1>
 				<h3>별점 작성수</h3>
 			</div>
 			<div>
-				<h1>12${cntreview }</h1>
+				<h1>${cntreview }</h1>
 				<h3>리뷰 작성수</h3>
 			</div>
 			<div>
-				<h1>30${users_cnt }</h1>
+				<h1>${users_cnt }</h1>
 				<h3>방문 횟수</h3>
 			</div><br>
 			<div>

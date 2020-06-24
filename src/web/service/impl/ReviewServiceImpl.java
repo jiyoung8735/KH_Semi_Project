@@ -13,16 +13,17 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	private ReviewDao reviewDao = new ReviewDaoImpl();
 	
+
 	@Override
-	public Review info(HttpServletRequest req) {
-		
+	public int countReviewByUserNo(HttpServletRequest req) {
+
 		HttpSession session = req.getSession();
 		String param = String.valueOf(session.getAttribute("userno"));
 		int userno = Integer.parseInt(param);
 		
-		return reviewDao.selectReview(userno);
+		int cnt = reviewDao.selectCntReviewByUserNo(userno);
 		
-		
+		return 0;
 	}
 
 }

@@ -184,7 +184,7 @@ public class PictureServiceImpl implements PictureService {
 				// ------------------------------------------------ Picture에 원본이름, 서버이름, 확장자, 파일크기 저장완료
 				
 				// 실제 업로드 파일 
-				String repositloc = context.getRealPath("upload");
+				String repositloc = context.getRealPath("upload_picture");
 				File up = new File( repositloc, stored );
 				
 				

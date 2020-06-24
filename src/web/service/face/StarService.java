@@ -6,12 +6,13 @@ import web.dto.Star;
 
 public interface StarService {
 	
+	
 	/**
-	 * 작성한 별점 조회
+	 * 회원번호로 별점 작성수 조회
 	 * 
 	 * @param req
-	 * @return Star객체
+	 * @return int
 	 */
-	Star info(HttpServletRequest req);
+	int countStarByUserNo(HttpServletRequest req);
 
 }

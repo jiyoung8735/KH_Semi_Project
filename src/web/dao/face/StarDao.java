@@ -4,12 +4,13 @@ import web.dto.Star;
 
 public interface StarDao {
 	
+
 	/**
-	 * 회원번호로 작성한 별점 조회
+	 * 회원번호로 별점 작성수 조회
 	 * 
 	 * @param userno
-	 * @return Star 객체
+	 * @return int
 	 */
-	Star selectStar(int userno);
+	int selectCntStarByUserNo(int userno);
 
 }

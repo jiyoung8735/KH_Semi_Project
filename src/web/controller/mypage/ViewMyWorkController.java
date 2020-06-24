@@ -32,14 +32,8 @@ public class ViewMyWorkController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//1.Star, Review, Report 정보 조회
-		Star star = starService.info(req);
-		Review review = reviewService.info(req);
-		Report report = reportService.info(req);
 		
 		//2.Request영역에 Star, Review, Star 저장
-		req.setAttribute("star", star);
-		req.setAttribute("review", review);
-		req.setAttribute("report", report);
 		
 		//3.포워딩
 		req.getRequestDispatcher("/WEB-INF/views/mypage/mywork.jsp").forward(req, resp);

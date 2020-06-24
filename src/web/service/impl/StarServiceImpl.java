@@ -12,14 +12,17 @@ public class StarServiceImpl implements StarService{
 	
 	private StarDao starDao = new StarDaoImpl();
 	
+
 	@Override
-	public Star info(HttpServletRequest req) {
-		
+	public int countStarByUserNo(HttpServletRequest req) {
+	
 		HttpSession session = req.getSession();
 		String param = String.valueOf(session.getAttribute("userno"));
 		int userno = Integer.parseInt(param);
 		
-		return starDao.selectStar(userno);
+		int cnt = starDao.selectCntStarByUserNo(userno);
+		
+		return cnt;
 	}
 
 }

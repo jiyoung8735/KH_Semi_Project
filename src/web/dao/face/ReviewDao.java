@@ -6,12 +6,12 @@ import web.dto.Review;
 public interface ReviewDao {
 	
 	/**
-	 * 회원번호로 작성한 리뷰 조회
+	 * 회원번호로 리뷰 작성수 조회
 	 * 
 	 * @param userno
-	 * @return Review객체
+	 * @return int
 	 */
-	Review selectReview(int userno);
+	int selectCntReviewByUserNo(int userno);
 
 
 }

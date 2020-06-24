@@ -13,13 +13,5 @@ public class ReportServiceImpl implements ReportService {
 
 	private ReportDao reportDao = new ReportDaoImpl();
 	
-	public Report info(HttpServletRequest req) {
-		
-		HttpSession session = req.getSession();
-		String param = String.valueOf(session.getAttribute("userno"));
-		int userno = Integer.parseInt(param);
-		
-		return reportDao.selectReport(userno);
-	}
 
 }

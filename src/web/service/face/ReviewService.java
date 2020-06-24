@@ -6,12 +6,13 @@ import web.dto.Review;
 
 public interface ReviewService {
 	
+	
 	/**
-	 * 작성한 리뷰 조회
+	 * 회원번호로 리뷰 작성수 조회
 	 * 
 	 * @param req
-	 * @return Review객체
+	 * @return int
 	 */
-	Review info(HttpServletRequest req);
+	int countReviewByUserNo(HttpServletRequest req);
 
 }

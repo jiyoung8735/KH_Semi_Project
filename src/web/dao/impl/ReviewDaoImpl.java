@@ -12,16 +12,17 @@ import web.dto.Review;
 
 public class ReviewDaoImpl implements ReviewDao {
 
+	
 	@Override
-	public Review selectReview(int userno) {
+	public int selectCntReviewByUserNo(int userno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		Review review = null;
+		int cnt = 0;
 		
-		String sql = "SELECT * FROM REVIEW WHERE USERS_NO = ?";
+		String sql = "SELECT COUNT(*) FROM REVIEW WHERE USERS_NO = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -30,26 +31,16 @@ public class ReviewDaoImpl implements ReviewDao {
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
-
-				review = new Review();
-				review.setReviewNo( rs.getInt(1));
-				review.setReviewContent( rs.getString(2) );
-				review.setReviewDate( rs.getDate(3) );
-				review.setReviewGood( rs.getInt(4) );
-				review.setReviewBad( rs.getInt(5) );
-				review.setReviewReport( rs.getString(6) );
-				review.setUserNo( rs.getInt(7) );
-				review.setMenuNo( rs.getInt(8) );
+				cnt = rs.getInt(1);
 			}
-		
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(ps);
 			JDBCTemplate.close(rs);
 		}
-		
-		return review;
+		return cnt;
 	}
 	
 
