@@ -19,20 +19,19 @@
 .wrapper03 {
  	display: inline-block; 
 	float: left;
-	width: 35%;
+	width: 30%;
 	height: 80%;
-	margin-top: 40px;
-	margin-left: 40px;
+	margin-top: 60px;
+	margin-left: 66px;
 	
 	text-align: center;
 }
 
 .wrapper04 {
 	display: inline-block; 
-	float: right;
-	width: 59%;
+	width: 30%;
 	height: 80%;
-	margin-top: 40px;
+	margin-top: 67px;
 	
 	text-align: left;
 }
@@ -42,10 +41,15 @@
 }
 
 .wrapper05 {
+	display: inline-block;
+	float: right;
+	width: 30%;
+	height: 80%;
+	margin-top: 67px;
 }
-.wrapper06 {
+.wrapper07 {
 	width: 70%;
-	margin-left: 180px;
+	margin-left: 150px;
 }
 
 
@@ -81,29 +85,14 @@ $("#btnUpFile").click( function(){
 });
 
 $("#upload").change(function(e) {
-//  console.log("파일 선택됨, change")
-//  console.log(e)
-//  console.log(e.target)
 
- // -------------------------------
-
- // 선택한 파일들 변수
  var file = e.target.files // FileList 객체      
  
-//  console.log(file)
-//  console.log(file[0])
- 
-//  if( file[0].type.split("/")[0] != "image" ) {
  if( !file[0].type.includes("image")) {
     alert("이미지가 아닙니다.")
     e.target.value = null;
     return false;
  }
- 
- // ** File 객체에는 파일의 정보가 들어있긴 하지만 해당 파일의 내용물(컨텐츠) 정보는 없다.
- //   -> FileReader 객체를 이용해 파일 내용을 읽어들여야한다.
- 
- console.log("---------------------------")
  
  // FileReader 객체 생성
  var reader = new FileReader();
@@ -117,9 +106,6 @@ $("#upload").change(function(e) {
     
     console.log(ev.target.result)
     
-    // 이미지가 추가됨 - 좋지 않음
-//     $("<img>").attr("src", ev.target.result).appendTo( $("#preview") )
-
     // 이미지가 한장만 유지됨
     $("#preview").html( $("<img>").attr({
           "src": ev.target.result,
@@ -129,11 +115,9 @@ $("#upload").change(function(e) {
  }
  
  // FileReader 객체를 이용한 File 객체 정보 읽기
-//  reader.readAsText(file[0]); // 텍스트 형식으로 읽기
  reader.readAsDataURL(file[0]); // Blob 또는 File 형식으로 읽기
  
 })
-
 
 var div = document.getElementById("preview"); // 이미지를 감싸는 div
 var img = document.getElementById("profileimage"); // 이미지
@@ -151,11 +135,11 @@ if (imgAspect <= divAspect) {
     // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
     img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 }
-
-
 	
 })
 </script>
+
+
 <div class="wrapper01">
 	<div class="wrapper02">
 		<div class="wrapper03">
@@ -177,36 +161,54 @@ if (imgAspect <= divAspect) {
 		<div class="wrapper04">
 			<div class="gradeview">
 				<c:if test="${usergrade eq 1}">
-					<h1>${usernick } 님 반가워요!</h1><br> 
-					<h1>회원등급 : ${grade }</h1>
-					<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 100px; height: 100px;"/>
+					<h1>별명 : ${usernick } </h1><br> 
+					<h1>회원등급 : ${grade }
+					<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
 				</c:if>
 				
 				<c:if test="${usergrade eq 2}">
-					<h1>${usernick } 님 반가워요!</h1><br> 
-					<h1>회원등급 : ${grade }</h1>
-					<img src="/resources/image/grade02.JPG" alt="grade02" style="width: 100px; height: 100px;"/>
+					<h1>별명 : ${usernick } </h1><br> 
+					<h1>회원등급 : ${grade }
+					<img src="/resources/image/grade02.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
 				</c:if>
 				
 				<c:if test="${usergrade eq 3}">
-					<h1>${usernick } 님 반가워요!</h1><br> 
-					<h1>회원등급 : ${grade }</h1>
-					<img src="/resources/image/grade03.JPG" alt="grade03" style="width: 100px; height: 100px;"/>
+					<h1>별명 : ${usernick } </h1><br> 
+					<h1>회원등급 : ${grade }
+					<img src="/resources/image/grade03.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
 				</c:if>
 				
 				<c:if test="${usergrade eq 4}">
-					<h1>${usernick } 님 반가워요!</h1><br> 
-					<h1>회원등급 : ${grade }</h1>
-					<img src="/resources/image/grade04.JPG" alt="grade04" style="width: 100px; height: 100px;"/>
+					<h1>별명 : ${usernick } </h1><br> 
+					<h1>회원등급 : ${grade }
+					<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
 				</c:if>
+			</div>
+		</div>
+		<div class="wrapper05">
+			<div>
+				<h1>23${cntstar }</h1>
+				<h3>별점 작성수</h3>
+			</div>
+			<div>
+				<h1>12${cntreview }</h1>
+				<h3>리뷰 작성수</h3>
+			</div>
+			<div>
+				<h1>30${users_cnt }</h1>
+				<h3>방문 횟수</h3>
+			</div><br>
+			<div>
+				<h4><a href="/view/mywork" style="text-decoration: underline;">활동 내역 확인 >></a></h4>
 			</div>
 		</div>
 	</div>
 	
-	<hr>
 	
-	<div class="wrapper05">
-		<div class="wrapper06">
+	
+	
+	<div class="wrapper06">
+		<div class="wrapper07">
 			<h1>개인 정보</h1><br>
 			<table border="1">
 			<tr><th>성명</th><td>${username }</td></tr> 
@@ -214,6 +216,7 @@ if (imgAspect <= divAspect) {
 			<tr><th>성별</th><td>${usergender }</td></tr>
 			<tr><th>생년월일</th><td>${userbirth }</td></tr>
 			<tr><th>이메일</th><td>${useremail }</td></tr>
+			<tr><th>전화번호</th><td>${usertel }</td></tr>
 			<tr><th>전화번호</th><td>${usertel }</td></tr>
 			</table><br>
 			<a href="/update/perinfo"><button style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">개인정보 수정</button></a>

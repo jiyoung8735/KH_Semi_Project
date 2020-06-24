@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web.dto.Picture;
+import web.dto.User;
 import web.service.face.PictureService;
 import web.service.impl.PictureServiceImpl;
 
@@ -22,8 +23,6 @@ public class EditMyProfileController extends HttpServlet {
 	private PictureService pictureService = new PictureServiceImpl();
 	
 	
-	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -33,24 +32,33 @@ public class EditMyProfileController extends HttpServlet {
 		// 1.프로필 사진정보
 		picture = pictureService.info( req );
 		
-		// 2.회원등급
+		// 2.회원 등급 (int -> String명)
 		String param = String.valueOf(session.getAttribute("usergrade"));
 		int usergrade = Integer.parseInt(param);
 		
 		String grade = null;
 		
-		if( usergrade == 1) { grade = "새싹"; }
-		else if( usergrade == 2) { grade = "콩나물"; }
+		if( usergrade == 1) { grade = "준회원"; }
+		else if( usergrade == 2) { grade = "정회원"; }
 		else if( usergrade == 3) { grade = "VIP"; }
 		else if( usergrade == 4) { grade = "VVIP"; }
 		else { grade = null; }
 		
-		// 2.request에 저장
+		// 3.별점작성수, 리뷰작성수, 방문횟수
+//		int cntStar = starService.countStarByUserNo(req);
+//		int cntReview = reviewService.countReviewByUserNo(req);
+//		User user = new User();
+//		user = userService.info(req);
+//		int users_cnt = user.getUserCnt();
+		
+		// 4.request에 저장
 		req.setAttribute("picture", picture );
 		req.setAttribute("grade", grade);
+//		req.setAttribute("cntstar", cntStar);
+//		req.setAttribute("cntreview", cntReview);
+//		req.setAttribute("users_cnt", users_cnt);
 		
-		
-		// 3.포워딩
+		// 5.포워딩
 		req.getRequestDispatcher("/WEB-INF/views/mypage/editProfile.jsp").forward(req, resp);
 		
 	}
@@ -63,7 +71,7 @@ public class EditMyProfileController extends HttpServlet {
 		// 인코딩 설정
 		req.setCharacterEncoding("utf-8");
 		
-		// 게시글 업로드 하기
+		// 프로필 사진 업로드 
 		// 처리할 전달인자 : 프로필사진, 회원번호
 		pictureService.uploadPicture(req);
 		

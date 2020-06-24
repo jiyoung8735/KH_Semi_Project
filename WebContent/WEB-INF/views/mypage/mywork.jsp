@@ -16,9 +16,9 @@
 
 <h1>My 활동내역</h1>
 <hr>
-<h3>1. 평점 & 한줄평</h3>
+<h3>1. 평점 & 한줄평 2222</h3>
 
-<div style="border: 1px solid red; width:700px; height:400px;">평점 & 한줄평 출력되서 나타나는 곳!</div>
+<div style="border: 1px solid red; width:700px; height:400px;">dd${review }<br>${star }</div>
 <br>
 <a href="/update/myreviewstar"><button style="width:100px; height: 50px; background-color: yellow;">수정하기</button></a>
 

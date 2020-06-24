@@ -8,7 +8,7 @@ public class Report {
 	private int	rptRsn;
 	private String rptDetail;
 	private Date rptDate;
-	private char rptYn;
+	private String rptYn;
 	private int	rptManage;
 	private String rptNote;
 	private int	rptUser;
@@ -44,10 +44,10 @@ public class Report {
 	public void setRptDate(Date rptDate) {
 		this.rptDate = rptDate;
 	}
-	public char getRptYn() {
+	public String getRptYn() {
 		return rptYn;
 	}
-	public void setRptYn(char rptYn) {
+	public void setRptYn(String rptYn) {
 		this.rptYn = rptYn;
 	}
 	public int getRptManage() {

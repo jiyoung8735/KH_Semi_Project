@@ -37,6 +37,9 @@ public class ViewMyWorkController extends HttpServlet {
 		Report report = reportService.info(req);
 		
 		//2.Request영역에 Star, Review, Star 저장
+		req.setAttribute("star", star);
+		req.setAttribute("review", review);
+		req.setAttribute("report", report);
 		
 		//3.포워딩
 		req.getRequestDispatcher("/WEB-INF/views/mypage/mywork.jsp").forward(req, resp);
