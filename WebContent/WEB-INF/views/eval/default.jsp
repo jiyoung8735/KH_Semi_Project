@@ -5,14 +5,16 @@
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
 <section class="wrapper">
 
+
+
 <div class="submenu_back">
   	<div class="submenu_list">
   	 <ul>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식1" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식2" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식3" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식4" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식5" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식1" id="food_1" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식2" id="food_2" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식3" id="food_3" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식4" id="food_4" /></li>
+	   	<li class="submenu"><input type="button" class="filter_btn" value="음식5" id="food_5" /></li>
    	</ul>
   	</div>
 </div>
@@ -103,6 +105,23 @@ $('#mo_overlay').on("click", function() {
 	$('#mo_wrapper').addClass("mo_hidden");
 });
 
+$("input[id^=food_]").click(function() {
+      $.ajax({
+         type: "POST"
+         , url: "/eval/filter"
+         , data: {
+            food: $("input[id^=food_]").val()
+         }
+         , dataType: "html"
+         , success: function(result) {
+            console.log("AJAX 성공")
+            $(".eval").html(result);
+         }
+         , error: function() {
+            console.log("AJAX 실패")
+         }
+      });
+});
 </script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
