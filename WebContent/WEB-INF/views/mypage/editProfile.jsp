@@ -122,7 +122,7 @@ $("#upload").change(function(e) {
 var div = document.getElementById("preview"); // 이미지를 감싸는 div
 var img = document.getElementById("profileimage"); // 이미지
 var divAspect = 200 / 200; // div의 가로세로비는 알고 있는 값이다
-var imgAspect = img.height / img.width;
+var imgAspect = ${picture.picVer } / ${picture.picHor }
 
 if (imgAspect <= divAspect) {
     // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
@@ -133,7 +133,7 @@ if (imgAspect <= divAspect) {
                       + marginLeft + 'px;'
 } else {
     // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-    img.style.cssText = 'width: 100%; height: auto; margin-top: 0;';
+    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 }
 	
 })
