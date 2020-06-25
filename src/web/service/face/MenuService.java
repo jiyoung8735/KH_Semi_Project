@@ -53,6 +53,17 @@ public interface MenuService {
 	public void applyMenu(HttpServletRequest req , int franno);
 
 
+	/**
+	 * 전체 메뉴 가져오기(평점보기 첫페이지)
+	 * @return
+	 */
+	public List<Menu> getAllMenu();
+
+
+	
+	
+
+
 	
 
 	

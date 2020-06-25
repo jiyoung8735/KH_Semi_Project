@@ -1,5 +1,7 @@
 package web.dao.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,11 @@ public class ImageServiceImpl implements ImageService{
 	public Image info(HttpServletRequest req , int menunoByImage) {
 		
 		return imageDao.selectImage(menunoByImage);
+	}
+
+	@Override
+	public List<Image> getAllImage() {
+		return imageDao.selectImage();
 	}
 
 }

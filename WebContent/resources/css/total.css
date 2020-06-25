@@ -412,3 +412,70 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 	}
 	/* modal end */
 /* eval css end */
+
+
+
+
+/* 추천메뉴 */
+.rec_container{
+	height: 1280px;
+	
+}
+.rec_intro{
+	text-align: center;
+	padding: 10px 0px;
+}
+
+.rec_content{
+	border: 1px solid #ccc;
+	height: 1100px;
+}
+
+.rec_content ul li{
+	list-style: none;
+}
+
+.rec_img{
+	background-color: gray;
+	width: 200px;
+	height: 200px;
+	border: 1px solid red;
+	margin: 30px 20px 20px 60px;
+}
+
+.rec_con{
+	width: 900px;
+	height: 200px;
+	border: 1px solid black;
+	margin: 30px 30px 1px 30px;
+}
+
+
+#rec_img1{
+	float: left;
+}
+#rec_con1{
+	float: left;
+}
+#rec_img2{
+	clear: both;
+	float: left;
+}
+#rec_con2{
+	float: left;
+}
+#rec_img3{
+	clear: both;
+	float: left;
+}
+#rec_con3{
+	float: left;
+}
+#rec_img4{
+	clear: both;
+	float: left;
+}
+#rec_con4{
+	float: left;
+}
+/* 추천메뉴 end */

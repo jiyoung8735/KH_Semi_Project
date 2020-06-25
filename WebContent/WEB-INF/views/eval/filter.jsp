@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 
 <div class="ver">
 <div class="hor" id="eval11">${food }</div>
@@ -10,6 +12,7 @@
 <div class="h_blank"></div>
 <div class="hor" id="eval14"></div>
 </div>
+
 <div class="v_blank"></div>
 <div class="ver">
 <div class="hor" id="eval21"></div>
@@ -20,6 +23,7 @@
 <div class="h_blank"></div>
 <div class="hor" id="eval24"></div>
 </div>
+
 <div class="v_blank"></div>
 <div class="ver">
 <div class="hor" id="eval31"></div>
@@ -30,6 +34,7 @@
 <div class="h_blank"></div>
 <div class="hor" id="eval34"></div>
 </div>
+
 <div class="v_blank"></div>
 <div class="ver">
 <div class="hor" id="eval41"></div>

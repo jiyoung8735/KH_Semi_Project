@@ -1,8 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var div = document.getElementById("eval11"); // 이미지를 감싸는 div
+	var img = document.getElementById("image1"); // 이미지
+	
+	var divAspect = 220 / 220; 
+	var imgAspect = ${image[1].imgVer } / ${image[1].imgHor }
+	
+	if (imgAspect <= divAspect) {
+	    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+	    var imgWidthActual = div.offsetHeight / imgAspect;
+	    var imgWidthToBe = div.offsetHeight / divAspect;
+	    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+	    img.style.cssText = 'width: auto; height: 100%; margin-left: '
+	                      + marginLeft + 'px;'
+	} else {
+	    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+	    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+	}
+})	
+</script> 
+
+
 <section class="wrapper">
 
 <div class="submenu_back">
@@ -19,42 +44,26 @@
 
 <!-- modal -->
 <div class="modal mo_hidden" id="mo_wrapper">
-	<div class="mo_overlay" id="mo_overlay"></div>
-		<div class="mo_content">
-			<div id="mo_left">
-				<div class="mo_detail" id="mo_image" style="background-color: tomato; height: 74%;">이미지</div>
-				<div class="mo_detail mo_detail_blank"></div>
-				<div class="mo_detail" id="mo_expl" style="background-color: tomato; height: 24%;">설명</div>
-				<div></div>
-			</div>
-			<div id="mo_middle"></div>
-			<div id="mo_right">
-				<button class="mo_button" id="mo_close">X</button>
-				<div class="mo_detail" id="mo_star" style="background-color: tomato; height: 21%;">평점</div>
-				<div class="mo_detail mo_detail_blank"></div>
-				<div class="mo_detail" id="mo_review" style="background-color: tomato; height: 70%;">
-				<table>
-				<tr>
-					<td></td>
-				</tr>
-				</table>
-				</div>
-				<div class="mo_detail mo_detail_blank"></div>
-				<div class="mo_detail" id="mo_pn" style="background-color: tomato; height: 5%;">페이지네이션</div>
-			</div>
-		</div>
+
+
 </div>
 
 <div class="eval" id="evalDiv">
+
 <div class="ver">
-<div class="hor" id="eval11"></div>
+<div class="hor" id="eval11"><img src="/upload/${image[1].imgServer }" alt="이미지사진" id="image1" ></div>
+
 <div class="h_blank"></div>
 <div class="hor" id="eval12"></div>
+
 <div class="h_blank" ></div>
 <div class="hor" id="eval13"></div>
+
 <div class="h_blank"></div>
 <div class="hor" id="eval14"></div>
+
 </div>
+
 <div class="v_blank"></div>
 <div class="ver">
 <div class="hor" id="eval21"></div>
@@ -88,6 +97,8 @@
 </div>
 
 </section>
+
+
 
 <script type="text/javascript">
 
@@ -127,7 +138,7 @@ $(".hor").click(function() {
          type: "POST"
          , url: "/eval/detail"
          , data: {
-            food: $(this).val()
+            food: $(this).attr("value")
          }
          , dataType: "html"
          , success: function(result) {

@@ -31,9 +31,15 @@ public interface MenuDao {
 	public Menu selectMenuByMenuno(Menu menuno);
 
 	
-	
 
 	public int insertMenu(Menu menu, int franno);
+
+	
+	/**
+	 * 전체 메뉴 가져오기 (평점보기 첫페이지)
+	 * @return - 전체 메뉴 객체 
+	 */
+	public List<Menu> selectAllMenu();
 
 
 }

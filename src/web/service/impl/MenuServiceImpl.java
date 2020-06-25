@@ -241,22 +241,18 @@ public class MenuServiceImpl implements MenuService {
 			imageFile.setMenuNo(menuno);//메뉴번호
 			imageDao.insertImage(imageFile);
 		}
-
-			
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
+
+	
+	@Override
+	public List<Menu> getAllMenu() {
+
+		return menuDao.selectAllMenu();
+	}
+
+
+	
 
 
 	

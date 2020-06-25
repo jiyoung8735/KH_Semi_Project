@@ -75,7 +75,7 @@ $(document).ready(function() {
 		<div class="category-background">
 	  	<div class="category-list">
 	  	 <ul>
-		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
+		   	<li class="cate-list-item"><a href="/rec">추천보기</a></li>
 		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
 		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
 		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
@@ -99,7 +99,7 @@ $(document).ready(function() {
 		<div class="category-background">
 	  	<div class="category-list">
 	  	 <ul>
-		   	<li class="cate-list-item"><a href="#">추천보기</a></li>
+		   	<li class="cate-list-item"><a href="/rec">추천보기</a></li>
 		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
 		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
 		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
