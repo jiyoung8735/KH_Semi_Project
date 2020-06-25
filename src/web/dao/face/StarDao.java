@@ -23,7 +23,7 @@ public interface StarDao {
 	 * @param userno
 	 * @param menuNo
 	 */
-	public void updateStarByUserNoMenuNo(int updatescore, int userno, int menuNo);
+	public void updateStarByUserNoMenuNo(double updatescore, int userno, int menuNo);
 	
 
 }

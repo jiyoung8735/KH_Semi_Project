@@ -18,7 +18,7 @@ import web.service.impl.StarServiceImpl;
 
 
 @WebServlet("/update/mywork")
-public class UpdateMyReviewStarController extends HttpServlet {
+public class UpdateMyWorkController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MyworkService myworkService = new MyworkServiceImpl();
@@ -30,7 +30,7 @@ public class UpdateMyReviewStarController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// Mywork 조회 (MenoNo이용)
-		Mywork mywork = myworkService.getMyworkByMenuNo(req);
+		Mywork mywork = myworkService.getMywork(req);
 		
 		// 저장
 		req.setAttribute("myWork", mywork);

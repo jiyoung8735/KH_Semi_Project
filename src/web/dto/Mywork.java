@@ -6,7 +6,7 @@ public class Mywork {
 	
 	private int menuNo;
 	private String menuName;
-	private int starScore;
+	private double starScore;
 	private String reviewContent;
 	private int usersNo;
 	private String usersNick;
@@ -25,10 +25,10 @@ public class Mywork {
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-	public int getStarScore() {
+	public double getStarScore() {
 		return starScore;
 	}
-	public void setStarScore(int starScore) {
+	public void setStarScore(double starScore) {
 		this.starScore = starScore;
 	}
 	public String getReviewContent() {

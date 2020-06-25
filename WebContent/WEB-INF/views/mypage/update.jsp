@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 function ss() {
 		$(".star").removeClass("on")
-	for(var i=0; i<=${myWork.starScore }*2-1; i++){
+	for(var i=0; i<= ${myWork.starScore }*2-1; i++){
 		$(".star").eq(i).addClass("on");
 	}
 }

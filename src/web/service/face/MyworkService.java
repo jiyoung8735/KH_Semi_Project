@@ -9,21 +9,14 @@ import web.util.Paging;
 
 public interface MyworkService {
 
-	/**
-	 * 페이징 객체 생성
-	 * 
-	 * @param req
-	 * @return Paging(페이징 계산이 완료된 객체)
-	 */
-	public Paging getPaging(HttpServletRequest req);
 	
 	/**
-	 * Mywork 목록조회 (페이징 적용이 된 결과)
+	 * Mywork 목록조회
 	 * 
-	 * @param Paging객체
+	 * @param req
 	 * @return List<Mywork>
 	 */
-	public List<Mywork> getList(Paging paging, HttpServletRequest req);
+	public List<Mywork> getList(HttpServletRequest req);
 
 	/**
 	 * MenuNo로 Mywork 조회
@@ -31,6 +24,6 @@ public interface MyworkService {
 	 * @param req
 	 * @return Mywork객체
 	 */
-	public Mywork getMyworkByMenuNo(HttpServletRequest req);
+	public Mywork getMywork(HttpServletRequest req);
 
 }

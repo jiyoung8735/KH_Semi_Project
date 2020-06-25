@@ -39,7 +39,7 @@ public class StarServiceImpl implements StarService{
 		
 		//수정된 별점 전달받기
 		String par = req.getParameter("updatescore");
-		int updatescore = Integer.parseInt(par);
+		double updatescore = Double.parseDouble(par);
 		
 		starDao.updateStarByUserNoMenuNo(updatescore, userno, menuNo);
 		

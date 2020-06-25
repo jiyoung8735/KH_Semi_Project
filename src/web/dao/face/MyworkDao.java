@@ -15,12 +15,12 @@ public interface MyworkDao {
 	public int selectCntAll();
 	
 	/**
-	 * 페이징 대상 Mywork 목록 조회
+	 * Mywork 목록 조회
 	 * 
-	 * @param Paging객체
+	 * @param int userno
 	 * @return List<Mywork>
 	 */
-	public List<Mywork> selectAll(Paging paging, int userno);
+	public List<Mywork> selectAll(int userno);
 	
 	/**
 	 * MenoNo로 Mywork 조회
@@ -28,6 +28,6 @@ public interface MyworkDao {
 	 * @param menuNo
 	 * @return Mywork객체
 	 */
-	public Mywork selectMyworkByMenoNo(int menuNo);
+	public Mywork selectMywork(int userno, int menuNo);
 
 }

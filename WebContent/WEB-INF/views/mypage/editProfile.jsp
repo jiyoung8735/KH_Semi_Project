@@ -84,44 +84,44 @@ $(document).ready(function(){
 		$("#upload").trigger("click");
 	});
 
-	$("#upload").change(function(e) {
+	$("#upload").change( function(e) {
 
-	 var file = e.target.files // FileList 객체      
-	 
-	 if( !file[0].type.includes("image") ) {
-	    alert("이미지가 아닙니다.")
-	    e.target.value = null;
-	    return false;
-	 }
-	 
-	 // FileReader 객체 생성
-	 var reader = new FileReader();
-	 
-	 // File 객체의 정보(내용물)을 모두 읽어서 메모리에 적재(load)한 이후 동작되도록 이벤트 리스너 작성
-	 reader.onload = function(ev) {
-	    console.log(ev)
-	    console.log(ev.target)
-	    
-	    console.log("--------------------------------")
-	    
-	    console.log(ev.target.result)
-	    
-	    // 이미지가 한장만 유지됨
-	    $("#preview").html( $("<img>").attr({
-	          "src": ev.target.result,
-	          "width": 300,
-	          "height": 200
-	    }));
-	 }
-	 
-	 // FileReader 객체를 이용한 File 객체 정보 읽기
-	 reader.readAsDataURL(file[0]); // Blob 또는 File 형식으로 읽기
+		 var file = e.target.files // FileList 객체      
+		 
+		 if( !file[0].type.includes("image") ) {
+		    alert("이미지가 아닙니다.")
+		    e.target.value = null;
+		    return false;
+		 }
+		 
+		 // FileReader 객체 생성
+		 var reader = new FileReader();
+		 
+		 // File 객체의 정보(내용물)을 모두 읽어서 메모리에 적재(load)한 이후 동작되도록 이벤트 리스너 작성
+		 reader.onload = function(ev) {
+		    console.log(ev)
+		    console.log(ev.target)
+		    
+		    console.log("--------------------------------")
+		    
+		    console.log(ev.target.result)
+		    
+		    // 이미지가 한장만 유지됨
+		    $("#preview").html( $("<img>").attr({
+		          "src": ev.target.result,
+		          "width": 300,
+		          "height": 200
+		    }));
+		 }
+		 
+		 // FileReader 객체를 이용한 File 객체 정보 읽기
+		 reader.readAsDataURL(file[0]); // Blob 또는 File 형식으로 읽기
 	 
 	})
 
-	var div = document.getElementById("preview"); // 이미지를 감싸는 div
-	var img = document.getElementById("profileimage"); // 이미지
-	var divAspect = 200 / 200; // div의 가로세로비는 알고 있는 값이다
+	var div = document.getElementById("preview"); 
+	var img = document.getElementById("profileimage"); 
+	var divAspect = 200 / 200;
 	var imgAspect = ${picture.picVer } / ${picture.picHor };
 
 	if (imgAspect <= divAspect) {
@@ -135,12 +135,19 @@ $(document).ready(function(){
 	    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 	    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 	}
-		
-	})
+})
 </script>
 
 
 <div class="wrapper01">
+
+	<section style="text-align: center;">
+	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/editProfile" style="text-decoration:none;">프로필</a></h3></div>
+	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/view/mywork" style="text-decoration:none;">활동내역</a></h3></div>
+	<div style="border: 1px solid black; width:180px; display:inline-block; text-align: center;"><h3><a href="/view/myreport" style="text-decoration:none;">신고내역</a></h3></div>
+	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/leavesite" style="text-decoration:none;">사이트탈퇴</a></h3></div>
+	</section>
+
 	<div class="wrapper02">
 		<div class="wrapper03">
 		<form action="/editProfile" method="post" enctype="multipart/form-data">

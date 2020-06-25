@@ -51,31 +51,27 @@ public class MyworkDaoImpl implements MyworkDao {
 	
 	
 	@Override
-	public List<Mywork> selectAll(Paging paging, int userno) {
+	public List<Mywork> selectAll(int userno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		List<Mywork> listMywork = new ArrayList<>();
+
+		System.out.println(userno);
 		
-		String sql = "SELECT * FROM (select * from (";
-		sql += "		select rownum rnum, B.* from (";
-		sql += "			select A.*, U.users_nick from";
-		sql += "	          (select R.*, M.menu_name from";
-		sql += "				(select S.menu_no, S.star_score, S.users_no, S.star_date, R.review_content";
-		sql += "					from star S, review R where S.menu_no=R.menu_no) R,";
-		sql += "	                  menu M";
-		sql += "					where R.menu_no=M.menu_no) A, users U";
-		sql += "				where A.users_no=U.users_no"; 
-		sql += "	          )B";  
-		sql += "	       )C where rnum between ? and ? ) WHERE USERS_NO = ?";
+		String sql = "SELECT * FROM";
+		sql += "	(SELECT A.*, U.USERS_NICK FROM"; 
+		sql += "	(SELECT R.*, M.MENU_NAME FROM"; 
+		sql += "	(SELECT S.USERS_NO, S.MENU_NO, S.STAR_SCORE, S.STAR_DATE, R.REVIEW_CONTENT FROM STAR S LEFT OUTER JOIN REVIEW R ON S.MENU_NO = R.MENU_NO AND S.USERS_NO = R.USERS_NO ) R, MENU M";     
+	    sql += "	WHERE R.MENU_NO = M.MENU_NO )A, USERS U";
+	    sql += "	WHERE A.USERS_NO = U.USERS_NO)";
+	    sql += "	WHERE USERS_NO = ?";	
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, paging.getCurPage());
-			ps.setInt(2, paging.getEndNo());
-			ps.setInt(3,userno);
+			ps.setInt(1,userno);
 			
 			rs = ps.executeQuery();
 			
@@ -84,12 +80,13 @@ public class MyworkDaoImpl implements MyworkDao {
 				mywork.setMenuName( rs.getString("MENU_NAME") );
 				mywork.setMenuNo( rs.getInt("MENU_NO") );
 				mywork.setReviewContent( rs.getString("REVIEW_CONTENT") );
-				mywork.setStarScore( rs.getInt("STAR_SCORE") );
+				mywork.setStarScore( rs.getDouble("STAR_SCORE") );
 				mywork.setUsersNick( rs.getString("USERS_NICK") );
 				mywork.setUsersNo( rs.getInt("USERS_NO") );
 				mywork.setWrittendate( rs.getDate("STAR_DATE") );
 				
 				listMywork.add(mywork);
+				System.out.println("MyworkDaoImpl : " + listMywork);
 			}
 			
 		} catch (SQLException e) {
@@ -104,7 +101,7 @@ public class MyworkDaoImpl implements MyworkDao {
 
 
 	@Override
-	public Mywork selectMyworkByMenoNo(int menuNo) {
+	public Mywork selectMywork(int userno, int menuNo) {
 
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
@@ -112,18 +109,18 @@ public class MyworkDaoImpl implements MyworkDao {
 		
 		Mywork mywork = null;
 		
-		String sql = "select * from"; 
-		sql +=		"	 	( select A.*, U.users_nick from";
-		sql += 		"			(select R.*, M.menu_name from";
-		sql += 		"				(select S.menu_no, S.star_score, S.users_no, S.star_date, R.review_content";
-		sql += 		"			from star S, review R where S.menu_no=R.menu_no) R,";
-		sql +=		"		menu M";
-		sql += 		"  		where R.menu_no=M.menu_no) A, users U";
-		sql +=		"	where A.users_no=U.users_no ) where menu_no = ?";
+		String sql = "SELECT * FROM";
+		sql += "	(SELECT A.*, U.USERS_NICK FROM"; 
+		sql += "	(SELECT R.*, M.MENU_NAME FROM"; 
+		sql += "	(SELECT S.USERS_NO, S.MENU_NO, S.STAR_SCORE, S.STAR_DATE, R.REVIEW_CONTENT FROM STAR S LEFT OUTER JOIN REVIEW R ON S.MENU_NO = R.MENU_NO AND S.USERS_NO = R.USERS_NO ) R, MENU M";     
+	    sql += "	WHERE R.MENU_NO = M.MENU_NO )A, USERS U";
+	    sql += "	WHERE A.USERS_NO = U.USERS_NO)";
+	    sql += "	WHERE USERS_NO = ? AND MENU_NO = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, menuNo);
+			ps.setInt(1, userno);
+			ps.setInt(2, menuNo);
 			
 			rs = ps.executeQuery();
 			

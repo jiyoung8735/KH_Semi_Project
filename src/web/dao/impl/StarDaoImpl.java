@@ -48,7 +48,7 @@ public class StarDaoImpl implements StarDao {
 	}
 
 	@Override
-	public void updateStarByUserNoMenuNo(int updatescore, int userno, int menuNo) {
+	public void updateStarByUserNoMenuNo(double updatescore, int userno, int menuNo) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
@@ -60,7 +60,7 @@ public class StarDaoImpl implements StarDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, updatescore);
+			ps.setDouble(1, updatescore);
 			ps.setInt(2, userno);
 			ps.setInt(3, menuNo);
 			
