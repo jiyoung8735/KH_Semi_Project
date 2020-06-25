@@ -7,115 +7,106 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
-
-<%	List<Image> imageList = (List) request.getAttribute("image"); %>
-<%	List<Menu> menuList = (List) request.getAttribute("menu"); %>
-
-<script type="text/javascript">
- $(document).ready(function(){
-
-	 var $div = $("div[id^=eval]");
-	 $div.attr("style" , "background-size: cover;  background-position-x: center;" )
-	 
-		// background-image: url('/upload/${image.imgServer }');
-	
-<%-- 	<%for(int i=0; i<imageList.size(); i++) { %> --%>
-<%-- 	<%= Integer.parseInt(imageList.get(i).getImgServer()) %> --%>
-<%-- 	<%}%> --%>
-
- }) 	
-</script>
-	
+   
+   
 <section class="wrapper">
 
+
 <div class="submenu_back">
-  	<div class="submenu_list">
-  	 <ul>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식1" id="food_1" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식2" id="food_2" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식3" id="food_3" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식4" id="food_4" /></li>
-	   	<li class="submenu"><input type="button" class="filter_btn" value="음식5" id="food_5" /></li>
-   	</ul>
-  	</div>
+     <div class="submenu_list">
+      <ul>
+         <li class="submenu"><input type="button" class="filter_btn" value="음식1" id="food_1" /></li>
+         <li class="submenu"><input type="button" class="filter_btn" value="음식2" id="food_2" /></li>
+         <li class="submenu"><input type="button" class="filter_btn" value="음식3" id="food_3" /></li>
+         <li class="submenu"><input type="button" class="filter_btn" value="음식4" id="food_4" /></li>
+         <li class="submenu"><input type="button" class="filter_btn" value="음식5" id="food_5" /></li>
+      </ul>
+     </div>
 </div>
+
 
 <!-- modal -->
 <div class="modal mo_hidden" id="mo_wrapper">
-
 
 </div>
 
 
 <div class="eval" id="Diveval">
-<%-- <c:forEach var="image" items="${image}" varStatus="status" > --%>
-<%--    <c:if test="${!status.last }"> --%>
-<%--       <c:if test="${status.index % 4 eq 0 }"> --%>
-<!--          <div class="ver"> -->
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          <div class="h_blank"></div> -->
-<%--       </c:if> --%>
+<c:forEach var="image" items="${image}" varStatus="status" >
+   <c:if test="${!status.last }">
+      <c:if test="${status.index % 4 eq 0 }">
+         <div class="ver">
+         <div class="hor" id="eval${status.index }"></div>
+         <div class="h_blank"></div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 1 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          <div class="h_blank" ></div> -->
-<%--       </c:if> --%>
+      <c:if test="${status.index % 4 eq 1 }">
+         <div class="hor" id="eval${status.index }"></div>
+         <div class="h_blank" ></div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 2 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          <div class="h_blank"></div> -->
-<%--       </c:if> --%>
+      <c:if test="${status.index % 4 eq 2 }">
+         <div class="hor" id="eval${status.index }"></div>
+         <div class="h_blank"></div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 3 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          </div> -->
-<!--          <div class="v_blank"></div> -->
-<%--       </c:if> --%>
-<%--    </c:if> --%>
+      <c:if test="${status.index % 4 eq 3 }">
+         <div class="hor" id="eval${status.index }"></div>
+         </div>
+         <div class="v_blank"></div>
+      </c:if>
+   </c:if>
    
-<%--    <c:if test="${status.last }"> --%>
-<%--       <c:if test="${status.index % 4 eq 0 }"> --%>
-<!--          <div class="ver"> -->
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          </div> -->
-<%--       </c:if> --%>
+   <c:if test="${status.last }">
+      <c:if test="${status.index % 4 eq 0 }">
+         <div class="ver">
+         <div class="hor" id="eval${status.index }"></div>
+         </div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 1 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          </div> -->
-<%--       </c:if> --%>
+      <c:if test="${status.index % 4 eq 1 }">
+         <div class="hor" id="eval${status.index }"></div>
+         </div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 2 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          </div> -->
-<%--       </c:if> --%>
+      <c:if test="${status.index % 4 eq 2 }">
+         <div class="hor" id="eval${status.index }"></div>
+         </div>
+      </c:if>
       
-<%--       <c:if test="${status.index % 4 eq 3 }"> --%>
-<%--          <div class="hor" id="eval${status.index }"></div> --%>
-<!--          </div> -->
-<%--       </c:if> --%>
-<%--    </c:if> --%>
+      <c:if test="${status.index % 4 eq 3 }">
+         <div class="hor" id="eval${status.index }"></div>
+         </div>
+      </c:if>
+   </c:if>
 
-<%-- </c:forEach> --%>
+   <script type="text/javascript">
+   $("#eval${status.index }").css({
+       "backgroundImage": "url(/upload/${image.imgServer })",
+       "background-size" : "cover",
+       "background-position-x": "center"
+     });
+   </script>
+
+</c:forEach>
 
 </div>
 
+
 </section>
-
-
 
 <script type="text/javascript">
 
 $('.hor').on("click", function() {
-	$('#mo_wrapper').removeClass("mo_hidden");
+   $('#mo_wrapper').removeClass("mo_hidden");
 });
 
 $('#mo_close').on("click", function() {
-	$('#mo_wrapper').addClass("mo_hidden");
+   $('#mo_wrapper').addClass("mo_hidden");
 });
 
 $('#mo_overlay').on("click", function() {
-	$('#mo_wrapper').addClass("mo_hidden");
+   $('#mo_wrapper').addClass("mo_hidden");
 });
 
 $("input[id^=food_]").click(function() {
