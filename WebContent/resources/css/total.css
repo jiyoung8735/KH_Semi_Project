@@ -288,7 +288,7 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 /* 	height: 1000px; */
 	margin: 0 auto;
 	margin-top: 50px;
-	background: gray;
+/* 	background: gray; */
 }
 .hor {
 	width: 22%;
@@ -296,13 +296,14 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 	display: inline-block;
 	float: left;
 	cursor: pointer;
+	overflow: hidden;
 }
 .h_blank {
 	width: 4%;
 	height: 100%;
 	display: inline-block;
 	float: left;
-	background: white;
+/* 	background: white; */
 }
 .ver {
 	height: 220px;
@@ -311,7 +312,7 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 .v_blank {
 	height: 40px;
 	display: block;
-	background: white;
+/* 	background: white; */
 }
 .submenu_back {
     width: 1000px;
@@ -441,6 +442,7 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 	height: 200px;
 	border: 1px solid red;
 	margin: 30px 20px 20px 60px;
+	overflow: hidden;
 }
 
 .rec_con{

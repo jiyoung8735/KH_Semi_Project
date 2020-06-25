@@ -33,10 +33,10 @@ public class EvalController extends HttpServlet {
 //			System.out.println(menu.get(i));
 //		} 
 		List<Image> image = imageService.getAllImage();
-//		System.out.println("전체 이미지리스트 : " + image);
-//		for (int i = 0; i < image.size(); i++) {
-//			System.out.println(image.get(i));
-//		} 
+		System.out.println("전체 이미지리스트 : " + image);
+		for (int i = 0; i < image.size(); i++) {
+			System.out.println(image.get(i));
+		} 
 		
 		req.setAttribute("menu", menu);
 		req.setAttribute("image", image);

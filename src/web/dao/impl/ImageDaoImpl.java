@@ -108,7 +108,7 @@ public class ImageDaoImpl implements ImageDao{
 				Image image = new Image();
 				
 				image.setImgNo(rs.getInt("IMG_NO"));
-				image.setImgName(rs.getString("IMG_NAME"));
+//				image.setImgName(rs.getString("IMG_NAME"));
 				image.setImgOrigin(rs.getString("IMG_ORIGIN"));
 				image.setImgServer(rs.getString("IMG_SERVER"));
 				image.setImgHor(rs.getInt("IMG_HOR"));

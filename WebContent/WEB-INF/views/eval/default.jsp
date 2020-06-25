@@ -1,33 +1,31 @@
+<%@page import="web.dto.Menu"%>
+<%@page import="web.dto.Image"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
 
+<%	List<Image> imageList = (List) request.getAttribute("image"); %>
+<%	List<Menu> menuList = (List) request.getAttribute("menu"); %>
+
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	var div = document.getElementById("eval11"); // 이미지를 감싸는 div
-	var img = document.getElementById("image1"); // 이미지
-	
-	var divAspect = 220 / 220; 
-	var imgAspect = ${image[1].imgVer } / ${image[1].imgHor }
-	
-	if (imgAspect <= divAspect) {
-	    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
-	    var imgWidthActual = div.offsetHeight / imgAspect;
-	    var imgWidthToBe = div.offsetHeight / divAspect;
-	    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
-	    img.style.cssText = 'width: auto; height: 100%; margin-left: '
-	                      + marginLeft + 'px;'
-	} else {
-	    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-	    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
-	}
-})	
-</script> 
+ $(document).ready(function(){
 
+	 var $div = $("div[id^=eval]");
+	 $div.attr("style" , "background-size: cover;  background-position-x: center;" )
+	 
+		// background-image: url('/upload/${image.imgServer }');
+	
+<%-- 	<%for(int i=0; i<imageList.size(); i++) { %> --%>
+<%-- 	<%= Integer.parseInt(imageList.get(i).getImgServer()) %> --%>
+<%-- 	<%}%> --%>
 
+ }) 	
+</script>
+	
 <section class="wrapper">
 
 <div class="submenu_back">
@@ -48,52 +46,58 @@ $(document).ready(function(){
 
 </div>
 
-<div class="eval" id="evalDiv">
 
-<div class="ver">
-<div class="hor" id="eval11"><img src="/upload/${image[1].imgServer }" alt="이미지사진" id="image1" ></div>
+<div class="eval" id="Diveval">
+<%-- <c:forEach var="image" items="${image}" varStatus="status" > --%>
+<%--    <c:if test="${!status.last }"> --%>
+<%--       <c:if test="${status.index % 4 eq 0 }"> --%>
+<!--          <div class="ver"> -->
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          <div class="h_blank"></div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 1 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          <div class="h_blank" ></div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 2 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          <div class="h_blank"></div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 3 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          </div> -->
+<!--          <div class="v_blank"></div> -->
+<%--       </c:if> --%>
+<%--    </c:if> --%>
+   
+<%--    <c:if test="${status.last }"> --%>
+<%--       <c:if test="${status.index % 4 eq 0 }"> --%>
+<!--          <div class="ver"> -->
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          </div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 1 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          </div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 2 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          </div> -->
+<%--       </c:if> --%>
+      
+<%--       <c:if test="${status.index % 4 eq 3 }"> --%>
+<%--          <div class="hor" id="eval${status.index }"></div> --%>
+<!--          </div> -->
+<%--       </c:if> --%>
+<%--    </c:if> --%>
 
-<div class="h_blank"></div>
-<div class="hor" id="eval12"></div>
+<%-- </c:forEach> --%>
 
-<div class="h_blank" ></div>
-<div class="hor" id="eval13"></div>
-
-<div class="h_blank"></div>
-<div class="hor" id="eval14"></div>
-
-</div>
-
-<div class="v_blank"></div>
-<div class="ver">
-<div class="hor" id="eval21"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval22"></div>
-<div class="h_blank" ></div>
-<div class="hor" id="eval23"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval24"></div>
-</div>
-<div class="v_blank"></div>
-<div class="ver">
-<div class="hor" id="eval31"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval32"></div>
-<div class="h_blank" ></div>
-<div class="hor" id="eval33"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval34"></div>
-</div>
-<div class="v_blank"></div>
-<div class="ver">
-<div class="hor" id="eval41"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval42"></div>
-<div class="h_blank" ></div>
-<div class="hor" id="eval43"></div>
-<div class="h_blank"></div>
-<div class="hor" id="eval44"></div>
-</div>
 </div>
 
 </section>
@@ -125,7 +129,7 @@ $("input[id^=food_]").click(function() {
          , success: function(result) {
             console.log("AJAX 성공")
             console.log(result)
-            $("#evalDiv").html(result);
+            $("#Diveval").html(result);
          }
          , error: function() {
             console.log("AJAX 실패")
