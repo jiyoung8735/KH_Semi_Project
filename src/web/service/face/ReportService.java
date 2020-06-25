@@ -1,10 +1,22 @@
 package web.service.face;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import web.dto.Report;
+import web.dto.Review;
 
 public interface ReportService {
+
+	/**
+	 * 신고내역 출력
+	 * 
+	 * @param req
+	 * @return List<Map<String, Object>>
+	 */
+	List<Map<String, Object>> getListOfReport(HttpServletRequest req);
 	
 
 }

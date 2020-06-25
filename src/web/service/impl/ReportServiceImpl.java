@@ -1,5 +1,9 @@
 package web.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +16,22 @@ import web.service.face.ReportService;
 public class ReportServiceImpl implements ReportService {
 
 	private ReportDao reportDao = new ReportDaoImpl();
+	
+	
+	@Override
+	public List<Map<String, Object>> getListOfReport(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String param = String.valueOf(session.getAttribute("userno"));
+		int rptUsers = Integer.parseInt(param);
+		
+		List<Map<String, Object>> mapMyreport = new ArrayList<>();
+		
+		mapMyreport = reportDao.selectListOfReport(rptUsers);
+		
+		
+		return mapMyreport;
+	}
 	
 
 }
