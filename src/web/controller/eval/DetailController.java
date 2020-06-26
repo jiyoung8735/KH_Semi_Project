@@ -12,8 +12,10 @@ import web.dto.Image;
 import web.dto.Menu;
 import web.service.face.ImageService;
 import web.service.face.MenuService;
+import web.service.face.StarService;
 import web.service.impl.ImageServiceImpl;
 import web.service.impl.MenuServiceImpl;
+import web.service.impl.StarServiceImpl;
 
 @WebServlet("/eval/detail")
 public class DetailController extends HttpServlet {
@@ -23,7 +25,7 @@ public class DetailController extends HttpServlet {
 	
 	private ImageService imageService = new ImageServiceImpl();
 	
-	
+	private StarService starService = new StarServiceImpl();
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -41,6 +43,11 @@ public class DetailController extends HttpServlet {
 		req.setAttribute("menu", menu);
 		req.setAttribute("image", image);
 		
+//        // 별점 서비스에서 들고온 더블값을 avg에 넣어줌
+//        Double avg = starService.AvgStar(req);
+//        System.out.println(avg);
+//        // 해당하는 컨트롤러에 staravg 라는 이름의 속성으로 값을 던짐
+//        req.setAttribute("staravg", avg);
 		
 		req.getRequestDispatcher("/WEB-INF/views/eval/detail.jsp").forward(req, resp);
 	}

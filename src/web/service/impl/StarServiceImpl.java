@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import web.dao.face.StarDao;
 import web.dao.impl.StarDaoImpl;
+import web.dto.Star;
 import web.service.face.StarService;
 
 public class StarServiceImpl implements StarService{
@@ -43,6 +44,15 @@ public class StarServiceImpl implements StarService{
 		
 		starDao.updateStarByUserNoMenuNo(updatescore, userno, menuNo);
 		
+	}
+
+
+	@Override
+	public Double AvgStar(HttpServletRequest req) {
+		Star star = new Star();
+		star.setMenuNo(Integer.parseInt(req.getParameter("food")));
+		
+		return starDao.AvgStarSelect(star);
 	}
 
 

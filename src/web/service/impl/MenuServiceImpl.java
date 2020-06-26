@@ -219,18 +219,18 @@ public class MenuServiceImpl implements MenuService {
 				}
 				
 	             
-	             int hor=0;
-	             int ver=0;
-	             try {
-	                BufferedImage bi = ImageIO.read(up);
-	                hor=bi.getWidth();
-	                ver=bi.getHeight();
-	                imageFile.setImgVer(ver);
-	                imageFile.setImgHor(hor);
-	                
-	             } catch (IOException e1) {
-	                e1.printStackTrace();
-	             }
+//	             int hor=0;
+//	             int ver=0;
+//	             try {
+//	                BufferedImage bi = ImageIO.read(up);
+//	                hor=bi.getWidth();
+//	                ver=bi.getHeight();
+//	                imageFile.setImgVer(ver);
+//	                imageFile.setImgHor(hor);
+//	                
+//	             } catch (IOException e1) {
+//	                e1.printStackTrace();
+//	             }
 				
 			}
 		}

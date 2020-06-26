@@ -96,8 +96,8 @@ public class ImageDaoImpl implements ImageDao{
 		conn = JDBCTemplate.getConnection();
 		
 		String sql = "";
-	    sql += " SELECT * FROM image";
-	    sql += "  ORDER BY MENU_NO DESC";
+	    sql += " select I.* from image I, menu M where I.menu_no=M.menu_no and M.menu_stat='Y' and M.menu_blind='N'";
+	    sql += "  ORDER BY I.MENU_NO DESC";
 		
 	    List<Image> imageList = new ArrayList<>();
 		
@@ -137,9 +137,8 @@ public class ImageDaoImpl implements ImageDao{
 		
 		conn = JDBCTemplate.getConnection();
 		
-		String sql = "";
-	    sql += " SELECT * FROM image";
-		sql += " WHERE MENU_NO = ?";
+		String sql = "select I.* from image I, menu M where I.menu_no=M.menu_no and M.menu_stat='Y' and M.menu_blind='N' and I.menu_no = ?";
+		
 		
 		Image image  = null;
 		

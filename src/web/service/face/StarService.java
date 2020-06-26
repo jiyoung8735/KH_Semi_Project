@@ -22,5 +22,9 @@ public interface StarService {
 	 */
 	void updateStar(HttpServletRequest req);
 	
+	/**
+	 * 평점에 대한 평균값 가져오기
+	 */
+	public Double AvgStar(HttpServletRequest req);
 
 }

@@ -80,6 +80,47 @@ public class StarDaoImpl implements StarDao {
 		}
 	}
 
+	@Override
+	public Double AvgStarSelect(Star star) {
+
+
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		String sql = "select m.menu_no,avg(s.star_score) as staravg from menu m , star s where m.menu_no = s.menu_no and m.menu_no = ?"; 
+			sql += " 	group by m.menu_no";
+		
+		double avg = 0.1;
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, star.getMenuNo());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+			avg = Math.round(rs.getDouble("staravg")*100)/100d;
+			
+			
+			
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return avg;
+		
+	}
+
 
 
 }

@@ -25,5 +25,9 @@ public interface StarDao {
 	 */
 	public void updateStarByUserNoMenuNo(double updatescore, int userno, int menuNo);
 	
+	/**
+	 * 모달에 뿌려지는 평점에 대한 평균값을 나오게하는 메소드 
+	 */
+	public Double AvgStarSelect(Star star);
 
 }
