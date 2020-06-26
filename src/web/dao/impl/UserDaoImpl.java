@@ -173,6 +173,37 @@ public class UserDaoImpl implements UserDao {
 		return franno;
 	}
 
+	@Override
+	public void deleteUser(String userid) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "DELETE USERS WHERE USERS_ID = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("회원 탈퇴 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("회원 탈퇴 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+	}
+
 
 }
 

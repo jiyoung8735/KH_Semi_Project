@@ -6,55 +6,44 @@
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 
 <style type="text/css">
-.wrapper01{
-	width: 1280px;
-	margin: 0 auto;
-   	height: 1000px;
+
+.profile_container{
+   	height: 450px;
+   	margin-top: 100px;
 }
 
-.wrapper02{
-   	height: 420px;
-}
-
-.wrapper03 {
+.profile_img_container {
  	display: inline-block; 
 	float: left;
-	width: 30%;
-	height: 80%;
-	margin-top: 60px;
-	margin-left: 66px;
-	
-	text-align: center;
+	width: 26%;
 }
 
-.wrapper04 {
+.mywork_container {
 	display: inline-block; 
-	width: 30%;
-	height: 80%;
-	margin-top: 67px;
-	
-	text-align: left;
+	width: 600px;
+	margin-top: 140px;
+	margin-left: 65px;
 }
 
-.gradeview{
-	margin-top: 40px;
+.mywork_container > h1 {
+	margin-bottom:15px;
 }
 
-.wrapper05 {
+.mywork_container div#grade {
+	margin-top:15px;
+}
+
+.mywork_preview_container {
+	margin-top: 15px;
+}
+
+.mywork_preview_container > div{
 	display: inline-block;
-	float: right;
-	width: 30%;
-	height: 80%;
-	margin-top: 67px;
-}
-.wrapper07 {
-	width: 70%;
-	margin-left: 150px;
+	width: 145px;
 }
 
 
 div#preview{
-	margin: 0 auto;
 	width: 200px; 
 	height: 200px; 
 	overflow: hidden;
@@ -62,19 +51,12 @@ div#preview{
 	background-color: #faf8f8;
 }
 
-table {
-	width: 400px;
-	height: 200px;
-	border-collapse: collapse;
+
+.gradeview {
+	width: 60%;
+	text-align: left;
 }
 
-th{
-	background-color: #ccc;
-}
-
-td{
-	padding-left: 20px;
-}
 </style>
 
 <script type="text/javascript" >
@@ -82,6 +64,7 @@ $(document).ready(function(){
 	
 	$("#btnUpFile").click( function(){
 		$("#upload").trigger("click");
+	
 	});
 
 	$("#upload").change( function(e) {
@@ -112,6 +95,7 @@ $(document).ready(function(){
 		          "width": 300,
 		          "height": 200
 		    }));
+		    
 		 }
 		 
 		 // FileReader 객체를 이용한 File 객체 정보 읽기
@@ -139,18 +123,17 @@ $(document).ready(function(){
 </script>
 
 
-<div class="wrapper01">
-
-	<section style="text-align: center;">
+<section class="wrapper">
+	<nav>
 	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/editProfile" style="text-decoration:none;">프로필</a></h3></div>
 	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/view/mywork" style="text-decoration:none;">활동내역</a></h3></div>
-	<div style="border: 1px solid black; width:180px; display:inline-block; text-align: center;"><h3><a href="/view/myreport" style="text-decoration:none;">신고내역</a></h3></div>
 	<div style="border: 1px solid black; width:200px; display:inline-block; text-align: center;"><h3><a href="/leavesite" style="text-decoration:none;">사이트탈퇴</a></h3></div>
-	</section>
+	</nav>
 
-	<div class="wrapper02">
-		<div class="wrapper03">
+	<div class="profile_container">
+		<div class="profile_img_container">
 		<form action="/editProfile" method="post" enctype="multipart/form-data">
+			
 			<div id="preview" >
 			<img src="/upload_picture/${picture.picServer }" alt="프로필사진" id="profileimage" >
 			</div>
@@ -163,73 +146,57 @@ $(document).ready(function(){
 			
 		
 		</form>
+		<div class="grade_container">
+			<div class="gradeview">
+					<h3>${useremail }</h3>
+					<h3>${usernick }</h3>
+					<div >
+					<c:if test="${usergrade eq 1}">
+						<h3>${grade }
+						<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 30px; height: 40px; vertical-align:middle;"/></h3>
+					</c:if>
+					<c:if test="${usergrade eq 2}">
+						<h3>${grade }
+						<img src="/resources/image/grade02.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
+					</c:if>
+					<c:if test="${usergrade eq 3}">
+						<h3>${grade }
+						<img src="/resources/image/grade03.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
+					</c:if>
+					<c:if test="${usergrade eq 4}">
+						<h3>${grade }
+						<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
+					</c:if>
+					</div>
+			</div>
+		</div>
 		</div>
 		
-		<div class="wrapper04">
-			<div class="gradeview">
-				<c:if test="${usergrade eq 1}">
-					<h1>별명 : ${usernick } </h1><br> 
-					<h1>회원등급 : ${grade }
-					<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
-				</c:if>
-				
-				<c:if test="${usergrade eq 2}">
-					<h1>별명 : ${usernick } </h1><br> 
-					<h1>회원등급 : ${grade }
-					<img src="/resources/image/grade02.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
-				</c:if>
-				
-				<c:if test="${usergrade eq 3}">
-					<h1>별명 : ${usernick } </h1><br> 
-					<h1>회원등급 : ${grade }
-					<img src="/resources/image/grade03.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
-				</c:if>
-				
-				<c:if test="${usergrade eq 4}">
-					<h1>별명 : ${usernick } </h1><br> 
-					<h1>회원등급 : ${grade }
-					<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 65px; height: 65px; vertical-align:middle;"/></h1>
-				</c:if>
+		<div class="mywork_container">
+			<h1>${username } 님 </h1>
+			<hr>
+			<div class="mywork_preview_container">
+				<div>
+					<h3>방문 횟수</h3>
+					<h1>${users_cnt }</h1>
+				</div>
+				<div>
+					<h3>별점 작성</h3>
+					<h1>${cntstar }</h1>
+				</div>
+				<div>
+					<h3>리뷰 작성</h3>
+					<h1>${cntreview }</h1>
+				</div>
+				<div>
+					<h3>신고 내역</h3>
+					<h1>0</h1>
+				</div>
 			</div>
 		</div>
-		<div class="wrapper05">
-			<div>
-				<h1>${cntstar }</h1>
-				<h3>별점 작성수</h3>
-			</div>
-			<div>
-				<h1>${cntreview }</h1>
-				<h3>리뷰 작성수</h3>
-			</div>
-			<div>
-				<h1>${users_cnt }</h1>
-				<h3>방문 횟수</h3>
-			</div><br>
-			<div>
-				<h4><a href="/view/mywork" style="text-decoration: underline;">활동 내역 확인 >></a></h4>
-			</div>
-		</div>
+		
 	</div>
-	
-	
-	
-	
-	<div class="wrapper06">
-		<div class="wrapper07">
-			<h1>개인 정보</h1><br>
-			<table border="1">
-			<tr><th>성명</th><td>${username }</td></tr> 
-			<tr><th>닉네임</th><td>${usernick }</td></tr>
-			<tr><th>성별</th><td>${usergender }</td></tr>
-			<tr><th>생년월일</th><td>${userbirth }</td></tr>
-			<tr><th>이메일</th><td>${useremail }</td></tr>
-			<tr><th>전화번호</th><td>${usertel }</td></tr>
-			<tr><th>전화번호</th><td>${usertel }</td></tr>
-			</table><br>
-			<a href="/update/perinfo"><button style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">개인정보 수정</button></a>
-		</div>
-	</div>
-</div>
+</section>
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

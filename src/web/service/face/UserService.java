@@ -63,5 +63,12 @@ public interface UserService {
 	 */
 	boolean keyVerify(HttpServletRequest req);
 	
+	/**
+	 * 사이트 탈퇴 = User테이블에서 회원 삭제
+	 * 
+	 * @param req
+	 */
+	void leaveSite(HttpServletRequest req);
+	
 
 }

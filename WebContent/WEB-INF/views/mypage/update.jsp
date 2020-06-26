@@ -42,6 +42,29 @@
 	/* 채워진 별로 이미지 변경 */
 	background-image: url(/resources/image/star.png);
 }
+
+.updatereview {
+	margin-top: 30px;
+	height: 700px;
+}
+
+.updatereview hr {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.updatereview table{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.updatereview th, td {
+	text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+
 </style>
 
 
@@ -91,19 +114,13 @@ function ss() {
 </script>
 </head>
 
-<div style="width: 800px; margin:0 auto;">
-<h1>내가 작성한 리뷰 & 별점 수정하기</h1>
+<section class="wrapper">
+<div class="updatereview">
+<h1>나의 리뷰 수정</h1>
 <hr>
-
-	<div style="border: 1px solid red; width:700px; height:400px;">
 	<form action="/update/mywork" method="POST">
-		<table>
-			<tr><th>메뉴명</th><td>${myWork.menuName }</td></tr>	
-			<tr><th>별명</th><td>${myWork.usersNick }</td></tr>	
-			<tr><th>별점</th>
-			
-			<td>
-			<div class="star-box">
+			<h1>${myWork.menuName }</h1>
+			<div class="star-box"><h1>
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
@@ -113,20 +130,16 @@ function ss() {
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
-			<span class="star star_right"></span>
+			<span class="star star_right"></span></h1>
 			<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.starScore }"/>
 			</div>
-			</td>
-			</tr>	
-			<tr><th>리뷰</th><td><textarea name="updatereview">${myWork.reviewContent }</textarea></td></tr>	
-		</table>
+			<textarea name="updatereview">${myWork.reviewContent }</textarea><br>
 		<input type="text" name="menuNo" value="${myWork.menuNo }" style="display: none;"/>
 		<button style="width:100px; height: 50px; background-color: yellow;">수정완료</button>
+		<button type="button" id="goback" style="width:100px; height: 50px; background-color: blue;">뒤로가기</button>
 	</form>
 	<br>
-	<button id="goback" style="width:100px; height: 50px; background-color: blue;">뒤로가기</button>
-	</div>
-</div>
-
+ </div>	
+</section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

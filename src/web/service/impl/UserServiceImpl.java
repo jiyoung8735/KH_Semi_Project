@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import web.dao.face.PictureDao;
 import web.dao.face.UserDao;
@@ -195,6 +196,16 @@ public class UserServiceImpl implements UserService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void leaveSite(HttpServletRequest req) {
+
+		HttpSession session = req.getSession();
+		String userid = String.valueOf(session.getAttribute("userid"));
+		
+		userDao.deleteUser(userid);
+		
 	}
 
 }

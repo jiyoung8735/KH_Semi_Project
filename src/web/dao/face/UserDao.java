@@ -39,6 +39,13 @@ public interface UserDao {
 	 * @return int
 	 */
 	int selectFranNoByFranName(String parameter);
+	
+	/**
+	 * ID로 회원 삭제
+	 * 
+	 * @param userid
+	 */
+	void deleteUser(String userid);
 
 	
 	

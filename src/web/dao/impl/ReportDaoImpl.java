@@ -13,6 +13,7 @@ import web.dao.face.ReportDao;
 import web.dbutil.JDBCTemplate;
 import web.dto.Report;
 import web.dto.Review;
+import web.dto.User;
 
 public class ReportDaoImpl implements ReportDao {
 
@@ -25,9 +26,10 @@ public class ReportDaoImpl implements ReportDao {
 
 		List<Map<String, Object>> list = new ArrayList<>();
 		
-		String sql = "SELECT P.*, R.REVIEW_CONTENT from REPORT P LEFT OUTER JOIN REVIEW R";
-		sql += "	ON P.REVIEW_NO = R.REVIEW_NO WHERE RPT_USERS = ?";
+		String sql = "SELECT * FROM (SELECT A.*, U.USERS_NICK FROM (SELECT P.*, R.REVIEW_CONTENT from REPORT P LEFT OUTER JOIN REVIEW R";
+		sql += "	ON P.REVIEW_NO = R.REVIEW_NO) A LEFT OUTER JOIN USERS U ON A.RPT_TARGET = U.USERS_NO) WHERE RPT_USERS = ?";
 
+		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, rptUsers);
@@ -52,9 +54,13 @@ public class ReportDaoImpl implements ReportDao {
 				review.setReviewNo( rs.getInt("REVIEW_NO") );
 				review.setReviewContent( rs.getString("REVIEW_CONTENT") );
 				
+				User user = new User();
+				user.setUserNick( rs.getString("USERS_NICK") );
+				
 				Map<String, Object> mapReport = new HashMap<>();
 				mapReport.put("report", report);
 				mapReport.put("review", review);
+				mapReport.put("user", user);
 				
 				list.add(mapReport);
 				
