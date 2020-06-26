@@ -207,6 +207,8 @@ public class MenuDaoImpl implements MenuDao{
 		
 		String sql = "";
 	    sql += " SELECT * FROM menu";
+	    sql += "  where menu_stat='Y' and menu_blind='N'";
+	    sql += " ORDER BY MENU_NO DESC";
 		
 	    List<Menu> MenuList = new ArrayList<>();
 	    

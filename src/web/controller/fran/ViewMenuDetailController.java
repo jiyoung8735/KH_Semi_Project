@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web.dao.face.ImageService;
-import web.dao.impl.ImageServiceImpl;
 import web.dto.Image;
 import web.dto.Menu;
+import web.service.face.ImageService;
 import web.service.face.MenuService;
+import web.service.impl.ImageServiceImpl;
 import web.service.impl.MenuServiceImpl;
 
 @WebServlet("/fran/view")

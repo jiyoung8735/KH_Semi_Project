@@ -235,12 +235,12 @@ public class MenuServiceImpl implements MenuService {
 			}
 		}
 	
-		int menuno = menuDao.insertMenu(menu , franno);
 
-		if(imageFile !=null) {
+//		if(imageFile !=null) {
+			int menuno = menuDao.insertMenu(menu , franno);
 			imageFile.setMenuNo(menuno);//메뉴번호
 			imageDao.insertImage(imageFile);
-		}
+//		}
 		
 	}
 

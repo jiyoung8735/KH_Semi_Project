@@ -1,4 +1,4 @@
-package web.dao.face;
+package web.service.face;
 
 import java.util.List;
 

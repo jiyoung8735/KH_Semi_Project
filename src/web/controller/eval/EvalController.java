@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.dao.face.ImageService;
-import web.dao.impl.ImageServiceImpl;
 import web.dto.Image;
 import web.dto.Menu;
+import web.service.face.ImageService;
 import web.service.face.MenuService;
+import web.service.impl.ImageServiceImpl;
 import web.service.impl.MenuServiceImpl;
 
 @WebServlet("/eval")
@@ -28,15 +28,7 @@ public class EvalController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		List<Menu> menu = menuService.getAllMenu();
-//		System.out.println("전체 메뉴리스트 : "+ menu);
-//		for (int i = 0; i < menu.size(); i++) {
-//			System.out.println(menu.get(i));
-//		} 
 		List<Image> image = imageService.getAllImage();
-//		System.out.println("전체 이미지리스트 : " + image);
-//		for (int i = 0; i < image.size(); i++) {
-//			System.out.println(image.get(i));
-//		} 
 		
 		
 		req.setAttribute("menu", menu);

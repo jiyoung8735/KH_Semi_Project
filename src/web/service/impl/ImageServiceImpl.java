@@ -1,4 +1,4 @@
-package web.dao.impl;
+package web.service.impl;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import web.dao.face.ImageDao;
-import web.dao.face.ImageService;
+import web.dao.impl.ImageDaoImpl;
 import web.dto.Image;
+import web.service.face.ImageService;
 
 public class ImageServiceImpl implements ImageService{
 

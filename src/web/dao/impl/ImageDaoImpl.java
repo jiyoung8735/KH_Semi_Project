@@ -97,6 +97,7 @@ public class ImageDaoImpl implements ImageDao{
 		
 		String sql = "";
 	    sql += " SELECT * FROM image";
+	    sql += "  ORDER BY MENU_NO DESC";
 		
 	    List<Image> imageList = new ArrayList<>();
 		
