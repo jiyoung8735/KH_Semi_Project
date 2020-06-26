@@ -7,6 +7,7 @@
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
 
+
 <style type="text/css">
 .star-box {
 	/* 별과 별 사이 공백 제거 */

@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		int cnt = reviewDao.selectCntReviewByUserNo(userno);
 		
-		return 0;
+		return cnt;
 	}
 
 

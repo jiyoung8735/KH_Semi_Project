@@ -133,6 +133,7 @@ public class MyworkDaoImpl implements MyworkDao {
 				mywork.setUsersNick( rs.getString("USERS_NICK") );
 				mywork.setUsersNo( rs.getInt("USERS_NO") );
 				mywork.setWrittendate( rs.getDate("STAR_DATE") );
+				System.out.println(mywork);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

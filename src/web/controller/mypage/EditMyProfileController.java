@@ -56,7 +56,7 @@ public class EditMyProfileController extends HttpServlet {
 		// 3.별점작성수, 리뷰작성수
 		int cntStar = starService.countStarByUserNo(req);
 		int cntReview = reviewService.countReviewByUserNo(req);
-		
+
 		// 4.방문횟수
 		User user = new User();
 		String userid = String.valueOf(session.getAttribute("userid"));
