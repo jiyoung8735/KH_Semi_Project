@@ -60,6 +60,14 @@ public interface MenuService {
 	public List<Menu> getAllMenu();
 
 
+	/**
+	 * 평점보기에서 누른 메뉴번호로 메뉴정보 얻어오기 
+	 * @param foodByMenuNo
+	 * @return
+	 */
+	public Menu getMenuByMenu(int foodByMenuNo);
+
+
 	
 	
 

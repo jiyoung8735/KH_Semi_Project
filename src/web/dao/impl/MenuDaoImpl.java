@@ -236,6 +236,43 @@ public class MenuDaoImpl implements MenuDao{
 		return MenuList;
 	}
 
+	@Override
+	public Menu selectMenuByMenuNo(int foodByMenuNo) {
+		
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+	    sql += " SELECT * FROM menu";
+	    sql += " WHERE MENU_NO = ?";
+	    
+	    Menu menu = null;
+	    
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, foodByMenuNo);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				menu = new Menu();
+				
+				menu.setMenuNo(rs.getInt("MENU_NO"));
+				menu.setMenuName(rs.getString("MENU_NAME"));
+				menu.setMenuInfo(rs.getString("MENU_INFO"));
+				menu.setMenuCost(rs.getInt("MENU_COST"));
+				menu.setMenuDate(rs.getDate("MENU_DATE"));
+				menu.setMenuStat(rs.getString("MENU_STAT"));
+				menu.setMenuBlind(rs.getString("MENU_BLIND"));
+				menu.setFranNo(rs.getInt("FRAN_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return menu;
+	}
+
 	
 
 

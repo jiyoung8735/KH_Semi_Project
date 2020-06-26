@@ -131,6 +131,48 @@ public class ImageDaoImpl implements ImageDao{
 		return imageList;
 	}
 
+	@Override
+	public Image selectImageByMenuno(int foodByMenuNo) {
+		
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+	    sql += " SELECT * FROM image";
+		sql += " WHERE MENU_NO = ?";
+		
+		Image image  = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, foodByMenuNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				image = new Image();
+				image.setImgNo(rs.getInt("IMG_NO"));
+//				image.setImgName(rs.getString("IMG_NAME"));
+				image.setImgOrigin(rs.getString("IMG_ORIGIN"));
+				image.setImgServer(rs.getString("IMG_SERVER"));
+				image.setImgHor(rs.getInt("IMG_HOR"));
+				image.setImgVer(rs.getInt("IMG_VER"));
+				image.setImgExt(rs.getString("IMG_EXT"));
+				image.setImgExt(rs.getString("IMG_EXT"));
+				image.setImgSize(rs.getInt("IMG_SIZE"));
+				image.setImgDate(rs.getDate("IMG_DATE"));
+				image.setMenuNo(rs.getInt("MENU_NO"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return image;
+	}
+
 	
 	
 	

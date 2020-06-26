@@ -34,3 +34,10 @@ $('#mo_overlay').on("click", function() {
 	$('#mo_wrapper').addClass("mo_hidden");
 });
 </script>
+ <script type="text/javascript">
+   $("#mo_image").css({
+       "backgroundImage": "url(/upload/${image.imgServer })",
+       "background-size" : "cover",
+       "background-position-x": "center"
+     });
+   </script>

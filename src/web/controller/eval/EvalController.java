@@ -37,15 +37,10 @@ public class EvalController extends HttpServlet {
 //		for (int i = 0; i < image.size(); i++) {
 //			System.out.println(image.get(i));
 //		} 
-//		
-		
 		
 		
 		req.setAttribute("menu", menu);
 		req.setAttribute("image", image);
-		
-		
-		
 
 		
 		req.getRequestDispatcher("/WEB-INF/views/eval/default.jsp").forward(req, resp);

@@ -41,5 +41,13 @@ public interface MenuDao {
 	 */
 	public List<Menu> selectAllMenu();
 
+	
+	/**
+	 * 메뉴넘버로 메뉴정보 가져오기
+	 * @param foodByMenuNo
+	 * @return
+	 */
+	public Menu selectMenuByMenuNo(int foodByMenuNo);
+
 
 }

@@ -36,7 +36,7 @@
    <c:if test="${!status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }" ></div>
          <div class="h_blank"></div>
       </c:if>
       
@@ -86,6 +86,7 @@
        "background-size" : "cover",
        "background-position-x": "center"
      });
+   $("#eval${status.index }").attr("value" , "${menu[status.index].menuNo}");
    </script>
 
 </c:forEach>

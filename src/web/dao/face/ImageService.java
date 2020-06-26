@@ -12,4 +12,11 @@ public interface ImageService {
 
 	List<Image> getAllImage();
 
+	/**
+	 * 메뉴넘버로 메뉴정보 전체 가져오기
+	 * @param foodByMenuNo
+	 * @return
+	 */
+	Image getImageByMenuno(int foodByMenuNo);
+
 }

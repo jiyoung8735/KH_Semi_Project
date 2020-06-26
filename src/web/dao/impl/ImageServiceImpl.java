@@ -24,4 +24,9 @@ public class ImageServiceImpl implements ImageService{
 		return imageDao.selectImage();
 	}
 
+	@Override
+	public Image getImageByMenuno(int foodByMenuNo) {
+		return imageDao.selectImageByMenuno(foodByMenuNo);
+	}
+
 }

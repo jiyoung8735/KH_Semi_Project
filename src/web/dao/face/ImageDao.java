@@ -16,4 +16,12 @@ public interface ImageDao {
 	 */
 	public List<Image> selectImage();
 
+	
+	/**
+	 * 메뉴번호로 이미지정보 가져오기
+	 * @param foodByMenuNo
+	 * @return
+	 */
+	public Image selectImageByMenuno(int foodByMenuNo);
+
 }
