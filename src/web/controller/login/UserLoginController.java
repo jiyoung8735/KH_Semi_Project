@@ -54,6 +54,7 @@ public class UserLoginController extends HttpServlet {
 		if(login) {
 			//로그인 사용자 정보 얻어오기
 			user = userService.info(user);
+			System.out.println(user);
 			
 			//세션 저장
 			HttpSession session = req.getSession();
@@ -68,6 +69,9 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("usergrade", user.getUserGrade());
 			session.setAttribute("usertel", user.getUserTel());
 			session.setAttribute("userno", user.getUserNo());
+			
+			//방문 횟수 업데이트
+			userService.updateUserCnt(user);
 			
 			// userAuth==2  , 프랜차이즈 관리자일경우!
 			if( 2 == user.getUserAuth()) {

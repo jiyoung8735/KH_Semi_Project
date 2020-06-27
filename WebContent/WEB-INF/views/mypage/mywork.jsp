@@ -104,6 +104,11 @@ $(document).ready(function() {
 	$('.delete_btn').click(function() {
 	    var dBtnRes = confirm( ' 정말 삭제하시겠습니까?');
 	    console.log(dBtnRes);
+	    
+	    if(dBtnRes) {
+	    	$(this).next().click();
+	    }
+	    
 	});
 	
 });	
@@ -165,8 +170,8 @@ function ss() {
 			<td><h1>${mywork.usersNick }</h1></td>
 			<td><h1>${mywork.writtendate }</h1></td>
 			<td><button><a href="/update/mywork?menuNo=${mywork.menuNo }"><h3>수정<h3></a></button> 
-				<button class="delete_btn">삭제</button>
-				<button style="display: none;" id="realDelete${status.index }"><a href="/delete/mywork?menuNo=${mywork.menuNo }"><h3>삭제<h3></a></button>
+				<button class="delete_btn"><h3>삭제</h3></button>
+				<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${mywork.menuNo }'"></button>
 			</td>
 		</tr>
 	 	</c:forEach> 

@@ -100,6 +100,13 @@ public interface UserService {
 	 * @param req
 	 */
 	boolean checkEmail(HttpServletRequest req);
+
+	/**
+	 * 방문횟수 업데이트
+	 * @param user
+	 * 
+	 */
+	void updateUserCnt(User user);
 	
 
 }

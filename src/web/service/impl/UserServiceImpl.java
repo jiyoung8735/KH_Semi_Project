@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 		int userAuth = 1;
 		
 		//방문횟수
-		int cnt = 0;
+		int cnt = 1;
 		
 		//회원등급
 		int grade = 1;
@@ -267,5 +267,29 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
+
+	@Override
+	public void updateUserCnt(User user) {
+		
+		//현재 날짜
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date time = new Date();
+		String today = sdf.format(time);
+		
+		//기존 로그인 날짜
+		Date time2 = user.getUserLoginDate(); 
+		String uldate = sdf.format(time2);   
+		
+		//기존 로그인 날짜와 현재 날짜가 동일하지 않을때
+		if( today.equals(uldate)) {
+			//방문횟수 업데이트
+			userDao.updateUserCnt(user);
+			//로그인날짜 업데이트
+			userDao.updateLoginDate(user);
+		}
+		//현재 로그인 날짜와 현재 날짜가 동일할 떄
+		//-> 아무것도 하지 않는다
+	}
+	
 
 }

@@ -64,6 +64,20 @@ public interface UserDao {
 	 * @param id
 	 */
 	void updatePw(String newpw, String id);
+
+	/**
+	 * 방문횟수 업데이트
+	 * 
+	 * @param user
+	 */
+	void updateUserCnt(User user);
+	
+	/**
+	 * 로그인 날짜 업데이트
+	 * 
+	 * @param user
+	 */
+	void updateLoginDate(User user);
 	
 
 	

@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
 
 import web.dao.face.UserDao;
 import web.dbutil.JDBCTemplate;
@@ -48,6 +45,7 @@ public class UserDaoImpl implements UserDao {
 				result.setUserGrade( rs.getInt("USERS_GRADE"));
 				result.setUserReport( rs.getString("USERS_REPORT"));
 				result.setFranNo( rs.getInt("FRAN_NO"));
+				result.setUserLoginDate(rs.getDate("USERS_LOGIN_DATE"));
 			}
 			
 		} catch (SQLException e) {
@@ -101,9 +99,9 @@ public class UserDaoImpl implements UserDao {
 		String sql = null;
 		
 		if(user.getFranNo()!=0) {
-			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, ?, sysdate)";
 		} else {
-			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(sysdate,'yyyy-MM-dd'), ?, ?, ?, ?, null)";
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, null, sysdate)";
 		}
 		
 		int result = -1;
@@ -279,6 +277,68 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(ps);
+		}
+	}
+
+	@Override
+	public void updateUserCnt(User user) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "UPDATE USERS SET USERS_CNT = USERS_CNT + 1 WHERE USERS_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, user.getUserNo());
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("방문횟수 업데이트 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("방문횟수 업데이트 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+	}
+
+	@Override
+	public void updateLoginDate(User user) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "UPDATE USERS SET USERS_LOGIN_DATE = SYSDATE WHERE USERS_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, user.getUserNo());
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("로그인날짜 업데이트 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("로그인날짜 업데이트 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.commit(conn);
 		}
 	}
 
