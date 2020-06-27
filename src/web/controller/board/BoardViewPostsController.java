@@ -33,14 +33,15 @@ public class BoardViewPostsController extends HttpServlet {
 		Paging paging = boardService.getPagingPosts(req);
 		
 		//게시글 페이징 처리 조회
-		Map<String, Board> boardList = boardService.getListPosts(paging);
+		Map<Board, String> boardList = boardService.getListPosts(paging);
 		 
-			List<String> userKey = new ArrayList<>();
-			List<Board> boardVal = new ArrayList<>();
-			for(String key:boardList.keySet()) {
+			List<Board> userKey = new ArrayList<>();
+			List<String> boardVal = new ArrayList<>();
+			for(Board key:boardList.keySet()) {
 				userKey.add(key);
 				boardVal.add(boardList.get(key));
 			}
+			System.out.println("넘겨지는값"+paging);
 		
 		//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);

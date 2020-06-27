@@ -49,5 +49,15 @@ public interface MenuDao {
 	 */
 	public Menu selectMenuByMenuNo(int foodByMenuNo);
 
+	
+	/**
+	 * 푸드넘버 로 선택한프랜차이즈 메뉴가져오기
+	 * @param foodname
+	 * @return
+	 */
+	public List<Menu> selectMenuByFoodNo(String foodname);
+
+	public List<Menu> selectMenuByFoodNo(String detailfilter, String foodName);
+
 
 }

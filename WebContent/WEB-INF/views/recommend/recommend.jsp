@@ -41,11 +41,11 @@ $(document).ready(function(){
 
 	<li><div class="rec_img" id="rec_img1"><img alt="" src="/upload/${image[0].imgServer }" id="img1"></div><div class="rec_con" id="rec_con1">메뉴 소개 영역 : ${menu[0] }</div></li>
 
-	<li><div class="rec_img" id="rec_img2">이미지2</div><div class="rec_con" id="rec_con2">메뉴 소개영역</div></li>
+	<li><div class="rec_img" id="rec_img2"><img alt="" src="/upload/${image[12].imgServer }" id="img2"></div><div class="rec_con" id="rec_con2">메뉴 소개영역 : ${menu[12] }</div></li>
 
-	<li><div class="rec_img" id="rec_img3">이미지3</div><div class="rec_con" id="rec_con3">메뉴 소개영역</div></li>
+	<li><div class="rec_img" id="rec_img3"><img alt="" src="/upload/${image[2].imgServer }" id="img3"></div><div class="rec_con" id="rec_con3">메뉴 소개영역 : ${menu[2] }</div></li>
 
-	<li><div class="rec_img" id="rec_img4">이미지4</div><div class="rec_con" id="rec_con4">메뉴 소개영역</div></li>
+	<li><div class="rec_img" id="rec_img4"><img alt="" src="/upload/${image[3].imgServer }" id="img4"></div><div class="rec_con" id="rec_con4">메뉴 소개영역 : ${menu[3] }</div></li>
 
 </ul>
 </div>

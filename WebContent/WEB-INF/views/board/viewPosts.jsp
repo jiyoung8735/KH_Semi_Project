@@ -30,7 +30,7 @@ $(document).ready(function() {
 	
 	<!-- 자유게시판 Title -->
 	<div class="board_top">
-		<h3 style="display: inline;">공지사항 참고하시고 사용자 질문 올려주세요</h3>
+		<h3 style="display: inline; margin-right: 250px;" >공지사항 참고하시고 사용자 질문 올려주세요</h3>
 		<input type="text" id="search" />
 		<button class="button" id="btnSearch">검색</button><button class="button" onclick="${path}">글쓰기</button>
 	</div>
@@ -48,12 +48,12 @@ $(document).ready(function() {
 		
 		<c:forEach var="item" items="${boardList}">
 			<tr>
-				<td width="10%"><c:out value="${item.value.bdNo}" /></td>
-				<td width="50%"><a href="/detail/posts?bdNo=${item.value.bdNo }"><c:out value="${item.value.bdTitle}" /></a></td>
-				<td width="10%"><c:out value="${item.key}" /></td>
-				<td width="8%"><c:out value="${item.value.bdCnt}" /></td>
-				<td width="14%"><c:out value="${item.value.bdDate}" /></td>
-				<td width="8%"><c:out value="${item.value.bdYn}" /></td>
+				<td width="10%"><c:out value="${item.key.bdNo}" /></td>
+				<td width="50%"><a href="/detail/posts?bdNo=${item.key.bdNo }"><c:out value="${item.key.bdTitle}" /></a></td>
+				<td width="10%"><c:out value="${item.value}" /></td>
+				<td width="8%"><c:out value="${item.key.bdCnt}" /></td>
+				<td width="14%"><c:out value="${item.key.bdDate}" /></td>
+				<td width="8%"><c:out value="${item.key.bdYn}" /></td>
 			</tr>
 		</c:forEach>
 	</table>

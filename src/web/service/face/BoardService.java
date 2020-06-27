@@ -37,7 +37,7 @@ public interface BoardService {
 	 * @param paging - 전달 페이징 객체
 	 * @return Board - 페이징 처리 게시판 목록 반환
 	 */
-	public Map<String, Board> getListPosts(Paging paging);
+	public Map<Board, String> getListPosts(Paging paging);
 	public List<Board> getListNotice(Paging paging);
 	
 	/**

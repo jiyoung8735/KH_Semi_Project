@@ -257,6 +257,16 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.selectMenuByMenuNo(foodByMenuNo) ;
 	}
 
+	@Override
+	public List<Menu> getMenuByfoodNo(String foodname) {
+		return menuDao.selectMenuByFoodNo(foodname);
+	}
+
+	@Override
+	public List<Menu> getMenuByfilter(String detailfilter, String foodName) {
+		return menuDao.selectMenuByFoodNo(detailfilter,foodName);
+	}
+
 
 	
 

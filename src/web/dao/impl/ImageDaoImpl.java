@@ -92,12 +92,17 @@ public class ImageDaoImpl implements ImageDao{
 
 	
 	@Override
-	public List<Image> selectImage() {
+	public List<Image> selectAllImage() {
 		conn = JDBCTemplate.getConnection();
 		
 		String sql = "";
-	    sql += " select I.* from image I, menu M where I.menu_no=M.menu_no and M.menu_stat='Y' and M.menu_blind='N'";
-	    sql += "  ORDER BY I.MENU_NO DESC";
+		sql += "SELECT I.img_no,  I.img_origin, I.img_server, I.img_hor, I.img_ver, I.img_ext, I.img_size, I.img_date, I.menu_no, avg(S.star_score) as star_score";
+		sql += " FROM image I, star S";
+		sql += " WHERE I.menu_no = S.menu_no(+)";
+		sql += " GROUP BY I.img_no,  I.img_origin, I.img_server, I.img_hor, I.img_ver, I.img_ext, I.img_size, I.img_date, I.menu_no";
+		sql += " order by star_score desc nulls last, I.menu_no desc";
+		
+		
 		
 	    List<Image> imageList = new ArrayList<>();
 		
@@ -171,6 +176,139 @@ public class ImageDaoImpl implements ImageDao{
 			JDBCTemplate.close(ps);
 		}
 		return image;
+	}
+
+	
+	
+	@Override
+	public List<Image> selectImageByFran(List<Menu> menu, String foodname) {
+		
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		sql += "SELECT";
+		sql += " B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server, avg(S.star_score) as star_score";
+		sql += " FROM (select A.*, D.food_name from";
+		sql += " (SELECT M.* , F.fran_name , F.food_no,i.img_no ,i.img_server  FROM menu M ,fran F, image I WHERE m.fran_no=f.fran_no and i.menu_no=m.menu_no ) A, food D";
+		sql += " where A.food_no=D.food_no and D.food_name = ?) B, star S";
+		sql += " WHERE B.menu_no = S.menu_no(+)";
+		sql += " GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server";
+		sql += " order by star_score desc nulls last, B.menu_no desc";
+		
+		List<Image> imageList = new ArrayList<>();
+		
+	    try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, foodname);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Image image = new Image();
+				
+				image.setImgNo(rs.getInt("IMG_NO"));
+//				image.setImgName(rs.getString("IMG_NAME"));
+//				image.setImgOrigin(rs.getString("IMG_ORIGIN"));
+				image.setImgServer(rs.getString("IMG_SERVER"));
+//				image.setImgHor(rs.getInt("IMG_HOR"));
+//				image.setImgVer(rs.getInt("IMG_VER"));
+//				image.setImgExt(rs.getString("IMG_EXT"));
+//				image.setImgExt(rs.getString("IMG_EXT"));
+//				image.setImgSize(rs.getInt("IMG_SIZE"));
+//				image.setImgDate(rs.getDate("IMG_DATE"));
+				image.setMenuNo(rs.getInt("MENU_NO"));
+				
+				imageList.add(image);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		return imageList;
+	}
+
+	@Override
+	public List<Image> selectImageByFran(String detailfilter, String foodName) {
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		
+		if("평점순".equals(detailfilter)) {
+			sql += "SELECT";
+			sql += " B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server, avg(S.star_score) as star_score";
+			sql += " FROM (select A.*, D.food_name from";
+			sql += " (SELECT M.* , F.fran_name , F.food_no,i.img_no ,i.img_server  FROM menu M ,fran F, image I WHERE m.fran_no=f.fran_no and i.menu_no=m.menu_no ) A, food D";
+			sql += " where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql += " WHERE B.menu_no = S.menu_no(+)";
+			sql += " GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server";
+			sql += " order by star_score desc nulls last, B.menu_no desc";
+		}else if("리뷰순".equals(detailfilter)) {
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server, count(*) as review_cnt";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no,i.img_no ,i.img_server from menu M, fran F, image I where M.fran_no = F.fran_no and i.menu_no=m.menu_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, review R";
+			sql+=" WHERE B.menu_no = R.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server";
+			sql+=" order by review_cnt desc nulls last, B.menu_no desc";
+			
+		}else if("가격순".equals(detailfilter)) {
+			sql += "SELECT";
+			sql += " B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server, avg(S.star_score) as star_score";
+			sql += " FROM (select A.*, D.food_name from";
+			sql += " (SELECT M.* , F.fran_name , F.food_no,i.img_no ,i.img_server  FROM menu M ,fran F, image I WHERE m.fran_no=f.fran_no and i.menu_no=m.menu_no ) A, food D";
+			sql += " where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql += " WHERE B.menu_no = S.menu_no(+)";
+			sql += " GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server";
+			sql += " order by B.menu_Cost DESC, B.menu_no desc";
+					
+		}else if("출시일순".equals(detailfilter)) {
+			sql += "SELECT";
+			sql += " B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server, avg(S.star_score) as star_score";
+			sql += " FROM (select A.*, D.food_name from";
+			sql += " (SELECT M.* , F.fran_name , F.food_no,i.img_no ,i.img_server  FROM menu M ,fran F, image I WHERE m.fran_no=f.fran_no and i.menu_no=m.menu_no ) A, food D";
+			sql += " where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql += " WHERE B.menu_no = S.menu_no(+)";
+			sql += " GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, B.img_no ,B.img_server";
+			sql += " order by B.menu_date DESC, B.menu_no desc";
+		}
+		
+		List<Image> imageList = new ArrayList<>();
+		
+	    try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, foodName);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Image image = new Image();
+				
+				image.setImgNo(rs.getInt("IMG_NO"));
+//				image.setImgName(rs.getString("IMG_NAME"));
+//				image.setImgOrigin(rs.getString("IMG_ORIGIN"));
+				image.setImgServer(rs.getString("IMG_SERVER"));
+//				image.setImgHor(rs.getInt("IMG_HOR"));
+//				image.setImgVer(rs.getInt("IMG_VER"));
+//				image.setImgExt(rs.getString("IMG_EXT"));
+//				image.setImgExt(rs.getString("IMG_EXT"));
+//				image.setImgSize(rs.getInt("IMG_SIZE"));
+//				image.setImgDate(rs.getDate("IMG_DATE"));
+				image.setMenuNo(rs.getInt("MENU_NO"));
+				
+				imageList.add(image);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		return imageList;
+		
+
+	
 	}
 
 	

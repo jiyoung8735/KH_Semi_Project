@@ -67,6 +67,24 @@ public interface MenuService {
 	 */
 	public Menu getMenuByMenu(int foodByMenuNo);
 
+	
+	
+	/**
+	 * 푸드넘버 로 선택한프랜차이즈 메뉴가져오기
+	 * @param foodname
+	 * @return
+	 */
+	public List<Menu> getMenuByfoodNo(String foodname);
+
+
+	/**
+	 * 필터건거(테스투중)
+	 * @param detailfilter
+	 * @param foodName
+	 * @return
+	 */
+	public List<Menu> getMenuByfilter(String detailfilter, String foodName);
+
 
 	
 	

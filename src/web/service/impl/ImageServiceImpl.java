@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import web.dao.face.ImageDao;
 import web.dao.impl.ImageDaoImpl;
 import web.dto.Image;
+import web.dto.Menu;
 import web.service.face.ImageService;
 
 public class ImageServiceImpl implements ImageService{
@@ -22,12 +23,22 @@ public class ImageServiceImpl implements ImageService{
 
 	@Override
 	public List<Image> getAllImage() {
-		return imageDao.selectImage();
+		return imageDao.selectAllImage();
 	}
 
 	@Override
 	public Image getImageByMenuno(int foodByMenuNo) {
 		return imageDao.selectImageByMenuno(foodByMenuNo);
+	}
+
+	@Override
+	public List<Image> getImageByFran(List<Menu> menu, String foodname) {
+		return imageDao.selectImageByFran(menu ,foodname);
+	}
+
+	@Override
+	public List<Image> getMenuByfilter(String detailfilter, String foodName) {
+		return imageDao.selectImageByFran(detailfilter ,foodName);
 	}
 
 }

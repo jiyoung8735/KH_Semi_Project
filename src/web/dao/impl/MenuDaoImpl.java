@@ -206,9 +206,12 @@ public class MenuDaoImpl implements MenuDao{
 		conn = JDBCTemplate.getConnection();
 		
 		String sql = "";
-	    sql += " SELECT * FROM menu";
-	    sql += "  where menu_stat='Y' and menu_blind='N'";
-	    sql += " ORDER BY MENU_NO DESC";
+		sql += " SELECT M.menu_no, M.menu_name, M.menu_info, M.menu_cost, M.menu_date, M.menu_stat, M.menu_blind, M.fran_no, avg(S.star_score) as star_score";
+		sql += " FROM menu M, star S";
+		sql += " WHERE M.menu_no = S.menu_no(+)";
+		sql += " GROUP BY M.menu_no, M.menu_name, M.menu_info, M.menu_cost, M.menu_date, M.menu_stat, M.menu_blind, M.fran_no";
+		sql += " order by star_score desc nulls last, M.menu_no desc";
+
 		
 	    List<Menu> MenuList = new ArrayList<>();
 	    
@@ -273,6 +276,125 @@ public class MenuDaoImpl implements MenuDao{
 			JDBCTemplate.close(ps);
 		}
 		return menu;
+	}
+
+	@Override
+	public List<Menu> selectMenuByFoodNo(String foodname) {
+		
+		conn = JDBCTemplate.getConnection();
+			String sql ="";
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, avg(S.star_score) as star_score";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql+=" WHERE B.menu_no = S.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
+			sql+=" order by star_score desc nulls last, B.menu_no desc";
+			
+		
+		List<Menu> MenuList = new ArrayList<>();
+	    try {
+	    	ps = conn.prepareStatement(sql);
+			ps.setString(1, foodname);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Menu menu = new Menu();
+				
+				menu.setMenuNo(rs.getInt("MENU_NO"));
+				menu.setMenuName(rs.getString("MENU_NAME"));
+				menu.setMenuInfo(rs.getString("MENU_INFO"));
+				menu.setMenuCost(rs.getInt("MENU_COST"));
+				menu.setMenuDate(rs.getDate("MENU_DATE"));
+				menu.setMenuStat(rs.getString("MENU_STAT"));
+				menu.setMenuBlind(rs.getString("MENU_BLIND"));
+				menu.setFranNo(rs.getInt("FRAN_NO"));
+				
+				MenuList.add(menu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		return MenuList;
+	}
+
+	@Override
+	public List<Menu> selectMenuByFoodNo(String detailfilter, String foodName) {
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		
+		if("평점순".equals(detailfilter)) {
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, avg(S.star_score) as star_score";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql+=" WHERE B.menu_no = S.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
+			sql+=" order by star_score desc nulls last, B.menu_no desc";
+		}else if("리뷰순".equals(detailfilter)) {
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, count(*) as review_cnt";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, review R";
+			sql+=" WHERE B.menu_no = R.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
+			sql+=" order by review_cnt desc nulls last, B.menu_no desc";
+			
+		}else if("가격순".equals(detailfilter)) {
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, avg(S.star_score) as star_score";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql+=" WHERE B.menu_no = S.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
+			sql+=" order by B.menu_Cost desc , B.menu_no desc";
+		}else if("출시일순".equals(detailfilter)) {
+			sql+="SELECT";
+			sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, avg(S.star_score) as star_score";
+			sql+=" FROM (select A.*, D.food_name from";
+			sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
+			sql+=" where A.food_no=D.food_no and D.food_name = ?) B, star S";
+			sql+=" WHERE B.menu_no = S.menu_no(+)";
+			sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
+			sql+=" order by B.Menu_date DESC , B.menu_no desc";
+		}
+		
+		
+		
+		List<Menu> MenuList = new ArrayList<>();
+	    try {
+	    	ps = conn.prepareStatement(sql);
+			ps.setString(1, foodName);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Menu menu = new Menu();
+				
+				menu.setMenuNo(rs.getInt("MENU_NO"));
+				menu.setMenuName(rs.getString("MENU_NAME"));
+				menu.setMenuInfo(rs.getString("MENU_INFO"));
+				menu.setMenuCost(rs.getInt("MENU_COST"));
+				menu.setMenuDate(rs.getDate("MENU_DATE"));
+				menu.setMenuStat(rs.getString("MENU_STAT"));
+				menu.setMenuBlind(rs.getString("MENU_BLIND"));
+				menu.setFranNo(rs.getInt("FRAN_NO"));
+				
+				MenuList.add(menu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(ps);
+		}
+		return MenuList;
+		
 	}
 
 	

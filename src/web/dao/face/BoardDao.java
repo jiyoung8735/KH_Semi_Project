@@ -16,16 +16,16 @@ public interface BoardDao {
 	 * 총 게시글 수 조회
 	 * @return 총 게시글 수 반환
 	 */
-	public int selectCntPosts();
+	public int selectCntPosts(String search);
 	
-	public int selectCntNotice();
+	public int selectCntNotice(String search);
 	
 	/**
 	 * 페이징 객체 전달하여 게시판 목록 조회
 	 * @param paging - 페이징 객체
 	 * @return Board - 페이징 처리 게시판 목록 반환
 	 */
-	public Map<String, Board> selectPosts(Paging paging);
+	public Map<Board, String> selectPosts(Paging paging);
 
 	
 	public List<Board> selectNotice(Paging paging);

@@ -3,7 +3,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,19 +56,21 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override //
-	public int selectCntPosts() {
+	public int selectCntPosts(String search) {
 		
 		conn = JDBCTemplate.getConnection(); //DB연결
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT count(*) FROM board WHERE bd_grp=1";
+		sql += "SELECT count(*) FROM board WHERE bd_grp=1 and bd_title LIKE '%'||?||'%'";
 		
 		//최종 결과값
 		int cnt = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
+			ps.setString(1, search);
+			
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과집합 반환
 			
@@ -85,19 +89,21 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	
 	@Override //
-	public int selectCntNotice() {
+	public int selectCntNotice(String search) {
 		
 		conn = JDBCTemplate.getConnection(); //DB연결
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT count(*) FROM board WHERE bd_grp=2";
+		sql += "SELECT count(*) FROM board WHERE bd_grp=2 and bd_title LIKE '%'||?||'%'";
 		
 		//최종 결과값
 		int cnt = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setString(1, search);
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과집합 반환
 			
@@ -116,7 +122,7 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override //
-	public Map<String, Board> selectPosts(Paging paging) {
+	public Map<Board, String> selectPosts(Paging paging) {
 		//DB연결 객체
 		conn = JDBCTemplate.getConnection();
 		
@@ -142,7 +148,7 @@ public class BoardDaoImpl implements BoardDao{
 		System.out.println(paging.getSearch());
 		
 		//결과 저장할 List
-		Map<String, Board> boardList = new LinkedHashMap<>();
+		Map<Board, String > boardList = new LinkedHashMap<>();
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -158,6 +164,7 @@ public class BoardDaoImpl implements BoardDao{
 			while(rs.next()) {
 //				System.out.println(rs.getInt("bd_no"));
 				Board b = new Board(); //결과값 저장 객체
+				String user= null;
 				
 				//결과값 한 행 처리
 				b.setBdNo( rs.getInt("bd_no") );
@@ -169,8 +176,11 @@ public class BoardDaoImpl implements BoardDao{
 				b.setBdGrp(rs.getString("BD_GRP"));
 				b.setBdYn(rs.getString("bd_yn"));
 				
+				
+				user = rs.getString("users_id");
+				System.out.println("유저"+user);
 				//리스트에 결과값 저장
-				boardList.put(rs.getString("users_id"), b);
+				boardList.put(b, user);
 				System.out.println(b);
 			}
 			System.out.println("뭐야");
@@ -183,6 +193,7 @@ public class BoardDaoImpl implements BoardDao{
 			JDBCTemplate.close(ps);
 		}
 		
+		System.out.println("객체"+boardList);
 		//최종 결과 반환
 		return boardList;
 	}
@@ -266,17 +277,20 @@ public class BoardDaoImpl implements BoardDao{
 		
 		//SQL 작성
 		String sql = "";
-		sql += "insert into board values (null, ?, ?, null, '2020-05-01', 0, 1, 'N',? )";
-
+		sql += "insert into board values (null, ?, ?, null, ?, 0, 1, 'N',? )";
 		
-		System.out.println(board);
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		System.out.println("utilDate:" + utilDate);
+		System.out.println("sqlDate:" + sqlDate);
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
 			ps.setString(1, board.getBdTitle());
 			ps.setString(2, board.getBdQuestion());
-			ps.setInt(3, board.getUserNo());
+			ps.setDate(3, sqlDate);
+			ps.setInt(4, board.getUserNo());
 			
 			ps.executeUpdate();
 			

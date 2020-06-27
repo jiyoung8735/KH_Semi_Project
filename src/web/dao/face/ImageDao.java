@@ -3,6 +3,7 @@ package web.dao.face;
 import java.util.List;
 
 import web.dto.Image;
+import web.dto.Menu;
 
 public interface ImageDao {
 
@@ -14,7 +15,7 @@ public interface ImageDao {
 	 * 전체 이미지 객체 가져오기
 	 * @return
 	 */
-	public List<Image> selectImage();
+	public List<Image> selectAllImage();
 
 	
 	/**
@@ -23,5 +24,15 @@ public interface ImageDao {
 	 * @return
 	 */
 	public Image selectImageByMenuno(int foodByMenuNo);
+
+	/**
+	 * 테스트 중
+	 * @param menu
+	 * @param foodname
+	 * @return
+	 */
+	public List<Image> selectImageByFran(List<Menu> menu, String foodname);
+
+	public List<Image> selectImageByFran(String detailfilter, String foodName);
 
 }
