@@ -29,5 +29,13 @@ public interface StarDao {
 	 * 모달에 뿌려지는 평점에 대한 평균값을 나오게하는 메소드 
 	 */
 	public Double AvgStarSelect(Star star);
+	
+	/**
+	 * 회원번호와 메뉴번호로 별점 삭제
+	 * 
+	 * @param menuNo
+	 * @param userno
+	 */
+	public void deleteStarByUserNoMenuNo(int menuNo, int userno);
 
 }

@@ -14,28 +14,29 @@ import web.service.face.UserService;
 import web.service.impl.UserServiceImpl;
 
 
-@WebServlet("/changepw")
-public class ChangePwController extends HttpServlet {
+@WebServlet("/checkemail")
+public class CheckEmailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService = new UserServiceImpl();
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/login/forgetPw3.jsp").forward(req, resp);
+		boolean result = userService.checkEmail(req);
+		System.out.println("test" + result);
+		
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json;charset=utf-8");
+		
+		if(result) {
+			System.out.println("이메일 일치");
+			out.println("{\"result\":true}");
+		}else {
+			System.out.println("이메일 불일치");
+			out.println("{\"result\":false}");
+		}
+	
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		userService.changePw(req);
-		
-		//세션정보 삭제
-		HttpSession session = req.getSession();
-		session.invalidate();
-		
-		resp.sendRedirect("/main");
-		
-	}
 }

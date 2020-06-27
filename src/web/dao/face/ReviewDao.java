@@ -20,6 +20,14 @@ public interface ReviewDao {
 	 * @param updateContent
 	 */
 	void updateReviewByMenuNoUserNo(String updateContent, int userno, int menuNo);
+	
+	/**
+	 * 회원번호와 메뉴번호로 별점 삭제
+	 * 
+	 * @param menuNo
+	 * @param userno
+	 */
+	void deleteReviewByMenuNoUserNo(int menuNo, int userno);
 
 
 }

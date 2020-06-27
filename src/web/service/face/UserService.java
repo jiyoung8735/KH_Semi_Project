@@ -70,5 +70,36 @@ public interface UserService {
 	 */
 	void leaveSite(HttpServletRequest req);
 	
+	/**
+	 * 아이디 조회 (아이디 잃어버렸을시)
+	 * 이름과 메일주소로 조회
+	 * 
+	 * @param req
+	 * @return User객체
+	 */
+	User searchId(HttpServletRequest req);
+
+	/**
+	 * 아이디 확인 (비밀번호 잃어버렸을시)
+	 * 	
+	 * @param req
+	 * @return User객체
+	 */
+	User checkId(HttpServletRequest req);
+	
+	/**
+	 * 비밀번호 변경
+	 * 
+	 * @param req
+	 */
+	void changePw(HttpServletRequest req);
+	
+	/**
+	 * 아이디에 해당되는 이메일 조회
+	 * 
+	 * @param req
+	 */
+	boolean checkEmail(HttpServletRequest req);
+	
 
 }

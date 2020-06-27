@@ -97,7 +97,6 @@ public class UserDaoImpl implements UserDao {
 
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		String sql = null;
 		
@@ -195,6 +194,85 @@ public class UserDaoImpl implements UserDao {
 			}else {
 				JDBCTemplate.rollback(conn);
 				System.out.println("회원 탈퇴 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+	}
+
+	@Override
+	public User selectUserByNameAndEmail(String name, String email) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		User user = new User();
+		
+		String sql = "SELECT * FROM USERS WHERE USERS_NAME = ? AND USERS_EMAIL = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				user.setUserNo( rs.getInt("USERS_NO"));	
+				user.setUserId( rs.getString("USERS_ID")); 
+				user.setUserPw( rs.getString("USERS_PW"));
+				user.setUserName( rs.getString("USERS_NAME"));
+				user.setUserNick( rs.getString("USERS_NICK"));
+				user.setUserBirth( rs.getDate("USERS_BIRTH"));
+				user.setUserGender( rs.getString("USERS_GENDER"));
+				user.setUserEmail( rs.getString("USERS_EMAIL"));
+				user.setUserTel( rs.getInt("USERS_TEL"));
+				user.setUserDate( rs.getDate("USERS_DATE"));
+				user.setUserCnt( rs.getInt("USERS_CNT"));
+				user.setUserAuth( rs.getInt("USERS_AUTH"));
+				user.setUserGrade( rs.getInt("USERS_GRADE"));
+				user.setUserReport( rs.getString("USERS_REPORT"));
+				user.setFranNo( rs.getInt("FRAN_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		System.out.println("setting user" + user);
+		return user;
+	}
+
+
+	@Override
+	public void updatePw(String newpw, String id) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+
+		int result = -1;
+		
+		String sql = "UPDATE USERS SET USERS_PW = ? where users_id = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, newpw);
+			ps.setString(2, id);
+			
+			result = ps.executeUpdate();
+			
+			if( result > 0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("비밀번호 변경 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("비밀번호 변경 실패");
 			}
 			
 		} catch (SQLException e) {

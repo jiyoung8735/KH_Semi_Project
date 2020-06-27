@@ -5,10 +5,48 @@
 <!-- header -->
 <c:import url="/WEB-INF/views/login/header.jsp"></c:import>
 
+<!--XMLHttpRequest 생성  -->
+<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
+	//전역변수
+	var searchId = null;
 	
-
+	$("#id").blur(function(){
+		var param = "id=" + $("#id").val();
+		sendRequest("POST", "/searchid", param, callback);		
+	})
+	function callback() {
+		console.log("아이디찾기 콜백함수 호출");
+		if( httpRequest.readyState == 4 ){
+			if( httpRequest.status == 200){
+				searchIdResult();
+			} else console.log("AJAX 요청/응답 에러")
+		}
+	}
+	function searchIdResult(){
+		searchId = JSON.parse(httpRequest.responseText);
+		console.log(searchId);
+		
+		if( searchId != null){
+			$("#idv").text("Okay!");
+			$("#idv").css("color", "blue");
+			$("#searchid").attr("value", searchId );
+		} else{
+			$("#idv").text("아이디가 조회되지 않습니다.");
+			$("#idv").css("color", "red");
+		}
+	}
+	$("#btnNext").click(function(){
+		console.log("ss")
+		if( searchId == null ){
+			console.log("test")
+			$("#idv").text("비밀번호를 찾을 아이디를 입력하세요.");
+			$("#idv").css("color", "red");
+			return false;
+		}
+	})
 });
 </script>
 
@@ -16,25 +54,16 @@ $(document).ready(function(){
 <h1>비밀번호 찾기</h1>
 <hr>
 <h5>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</h5>
-<form action="/checkid" method="POST">
 	<div class="form-group">
-    	<input type="text" name="name" class="form-control" placeholder="아이디를 입력하세요">
-	</div> 
-	<div style="width: 120px; margin:0 auto;"> 
-		<button class="form-control" style="width: 100px; background-color:#ccc;">다음 ></button>
+    	<input type="text" id="id" name="id" class="form-control" placeholder="아이디를 입력하세요">
+    	<div id="idv"></div>
 	</div>
-</form>
+	<form action="/forgetpw" method="POST" > 
+	<div style="width: 120px; margin:0 auto;"> 
+		<input type="text" id="searchid" name="searchid" style="display: none;" />
+		<button id="btnNext" class="form-control" style="width: 100px; background-color:#ccc;">다음 ></button>
+	</div>
+	</form>
 </div>
 
-<!-- footer css  -->
-<style type="text/css">
-.footer {padding: 25px 0; text-align: center;}
-.footer ul {margin-bottom: 20px;}
-.footer li {position: relative; display: inline; padding: 0 7px 0 10px;}
-.footer li:before {content: ''; width: 1px; height: 12px; background: #ccc; position: absolute; left: 0; top: 2px;}
-.footer li:first-child:before {width: 0; height: 0;}
-.footer .w3c {margin-top: 15px;}
-</style>
-
-<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
-</html>
+<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>

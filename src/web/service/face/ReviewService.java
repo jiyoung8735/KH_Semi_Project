@@ -24,6 +24,13 @@ public interface ReviewService {
 	 * @param req
 	 */
 	void updateReview(HttpServletRequest req);
+
+	/**
+	 * 메뉴번호로 리뷰삭제
+	 * 
+	 * @param req
+	 */
+	void deleteReview(HttpServletRequest req);
 	
 
 }

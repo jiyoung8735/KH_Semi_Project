@@ -27,4 +27,11 @@ public interface StarService {
 	 */
 	public Double AvgStar(HttpServletRequest req);
 
+	/**
+	 * 메뉴번호로 별점 삭제
+	 * 
+	 * @param req
+	 */
+	void deleteStar(HttpServletRequest req);
+
 }

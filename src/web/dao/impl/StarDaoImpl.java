@@ -121,6 +121,38 @@ public class StarDaoImpl implements StarDao {
 		
 	}
 
+	@Override
+	public void deleteStarByUserNoMenuNo(int menuNo, int userno) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "DELETE STAR WHERE MENU_NO = ? AND USERS_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, menuNo);
+			ps.setInt(2, userno);
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("별점 삭제 성공");
+			}else {
+				JDBCTemplate.rollback(conn);
+				System.out.println("별점 삭제 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.commit(conn);
+		}
+	}
+
 
 
 }

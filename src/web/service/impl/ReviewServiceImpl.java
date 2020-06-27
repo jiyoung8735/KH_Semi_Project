@@ -53,5 +53,22 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
+	@Override
+	public void deleteReview(HttpServletRequest req) {
+		
+		//메뉴번호 전달받기
+		String param = req.getParameter("menuNo");
+		int menuNo = Integer.parseInt(param);
+		
+		//회원번호 꺼내기(세션)
+		HttpSession session = req.getSession();
+		String p = String.valueOf(session.getAttribute("userno"));
+		int userno = Integer.parseInt(p);
+		
+		reviewDao.deleteReviewByMenuNoUserNo(menuNo, userno);
+		
+	}
+
+
 
 }

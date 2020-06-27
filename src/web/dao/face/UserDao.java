@@ -46,9 +46,24 @@ public interface UserDao {
 	 * @param userid
 	 */
 	void deleteUser(String userid);
-
+	
+	/**
+	 * 이름과 메일로 회원 조회
+	 * 
+	 * @param name
+	 * @param email
+	 * @return User객체
+	 */
+	User selectUserByNameAndEmail(String name, String email);
 	
 	
+	/**
+	 * 비밀번호 변경
+	 * 
+	 * @param newpw
+	 * @param id
+	 */
+	void updatePw(String newpw, String id);
 	
 
 	

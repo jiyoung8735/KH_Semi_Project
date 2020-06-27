@@ -13,6 +13,11 @@ $(document).ready(function(){
 	
 	//아이디중복 전역변수
 	var checkid = false;
+	//이메일발송 전역변수
+	var emailsend = false;
+	//인증코드 전역변수
+	var checkcode = false;
+	
 	
 	//정규식 전역변수
 	var regex01 = /^[a-zA-Zㄱ-힣0-9]{1,15}$/
@@ -102,6 +107,12 @@ $(document).ready(function(){
 			$("#pwcv").css( "color", 'red' ); 
 			return false;
 		}
+	//이메일인증
+		if( checkcode == false ){
+			$("#emailCodev").text( "이메일 인증이 필요합니다." ); 
+			$("#emailCodev").css( "color", 'red' ); 
+			return false;
+		}
 	//----------정규식검증-----------
 		if( !regex01.test($("#id").val()) ){
 			$("#idr").text( "아이디는 15글자 이하로 가능합니다." );
@@ -164,13 +175,13 @@ $(document).ready(function(){
 				$("#idr").html( "<div></div>" );
 				//아이디중복확인
 				var params =  "id=" + $("#id").val();
-				sendRequest("POST", "/doublecheckid", params, callback);
+				sendRequest("POST", "/doublecheckid", params, callbackID);
 			}
 		}
 	});
 	//---------아이디중복확인 콜백------------
-	function callback(){
-		console.log("콜백함수 호출");
+	function callbackID(){
+		console.log("아이디중복확인 콜백함수 호출");
 		if( httpRequest.readyState == 4 ){
 			if( httpRequest.status == 200){
 				idCheckResult();
@@ -319,6 +330,15 @@ $(document).ready(function(){
 			$("#emailv").css( "color", 'red' ); 
 		}
 	});
+	$("#emailCode").blur(function(){
+			
+		if( $("#emailCode").val() != "" ){
+			$("#emailCodev").html( "<div></div>" ); 
+		}else{
+			$("#emailCodev").text( "이메일 인증은 필수입니다." ); 
+			$("#emailCodev").css( "color", 'red' ); 
+		}
+	});
 	$("#tel_02").blur(function(){
 			
 		//필수정보
@@ -351,6 +371,67 @@ $(document).ready(function(){
 			}
 		}
 	});
+//--------- 이메일 보내기 ----------
+$("#btnSendEmail").click( function(){
+	var params = "username=" + $("#name").val() + "&" + "useremail=" + $("#email").val();
+	console.log(params);
+	sendRequest("GET", "/send", params, callbackEmail);
+}) 
+
+function callbackEmail(){
+	console.log("이메일 발송 콜백함수 호출");
+	if( httpRequest.readyState == 4 ){
+		if( httpRequest.status == 200){
+			emailSendResult();
+		} else console.log("AJAX 요청/응답 에러")
+	}
+}
+function emailSendResult(){
+	var emailSendResult = JSON.parse(httpRequest.responseText);
+	console.log(emailSendResult);
+	
+	emailsend = emailSendResult.result
+	
+	if( emailsend == true ){
+		$("#emailv").text( "이메일을 발송하였습니다" );
+		$("#emailv").css( "color", 'red' );
+	} 
+	
+	if( emailsend == false ){
+		$("#emailv").text( "이메일 발송에 실패했습니다" );
+		$("#emailv").css( "color", 'red' );
+	} 
+}
+// -------- 인증코드 인증하기 ------------
+$("#btnCodeVerify").click( function(){
+	var params = "useremail=" + $("#email").val() + "&" + "code=" + $("#code").val();
+	sendRequest("POST", "/send", params, callbackCode);
+})
+function callbackCode(){
+	console.log("코드인증 콜백함수 호출");
+	if( httpRequest.readyState == 4 ){
+		if( httpRequest.status == 200){
+			codeCheckResult();
+		} else console.log("AJAX 요청/응답 에러")
+	}
+}
+function codeCheckResult(){
+	var codeCheckResult = JSON.parse(httpRequest.responseText);
+	console.log(codeCheckResult);
+	
+	checkcode = codeCheckResult.result
+	
+	if(checkcode == true) {
+		$("#emailCodev").text( "코드가 일치합니다." );
+		$("#emailCodev").css( "color", 'red' );
+	} 
+	
+	if(checkcode == false) {
+		$("#emailCodev").text( "코드가 일치하지 않습니다." );
+		$("#emailCodev").css( "color", 'red' );
+	}
+}
+
 });
 </script>
 
@@ -423,13 +504,13 @@ $(document).ready(function(){
 <div class="form-group">
 	<label>이메일</label><br>
 	<input type="email" name="email" id="email" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-	<button type="button" id="btnEmailCode" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">이메일 인증받기</button>
+	<button type="button" id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">이메일 인증받기</button>
 	<div id="emailv"></div>
 </div>
 
 <div class="form-group">
 	<label>인증번호 입력</label><br>
-	<input type="text" name="emailCode" id="emailCode" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;" placeholder="인증번호를 입력하세요" />
+	<input type="text" name="code" id="code" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;" placeholder="인증번호를 입력하세요" />
 	<button type="button" id="btnCodeVerify" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">확인</button>
 	<div id="emailCodev"></div>
 </div>

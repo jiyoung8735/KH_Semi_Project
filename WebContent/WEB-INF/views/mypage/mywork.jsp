@@ -100,6 +100,12 @@ $(document).ready(function() {
 	
 	ss();
 	
+	
+	$('.delete_btn').click(function() {
+	    var dBtnRes = confirm( ' 정말 삭제하시겠습니까?');
+	    console.log(dBtnRes);
+	});
+	
 });	
 
 function ss() {
@@ -138,7 +144,7 @@ function ss() {
 			<th style="width: 15%;"><h1>작성일자</h1></th>
 			<th style="width: 10%;"><h1>관리</h1></th>
 		</tr>
-	 	<c:forEach var="mywork" items="${myworkList }"  > 
+	 	<c:forEach var="mywork" items="${myworkList }" varStatus="status" > 
 		<tr>
 			<td><h1>${mywork.menuName }</h1></td>
 			<td>
@@ -159,7 +165,8 @@ function ss() {
 			<td><h1>${mywork.usersNick }</h1></td>
 			<td><h1>${mywork.writtendate }</h1></td>
 			<td><button><a href="/update/mywork?menuNo=${mywork.menuNo }"><h3>수정<h3></a></button> 
-				<button><a href=""><h3>삭제<h3></a></button>
+				<button class="delete_btn">삭제</button>
+				<button style="display: none;" id="realDelete${status.index }"><a href="/delete/mywork?menuNo=${mywork.menuNo }"><h3>삭제<h3></a></button>
 			</td>
 		</tr>
 	 	</c:forEach> 
@@ -226,5 +233,6 @@ function ss() {
 	
 	
 </section>
+
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

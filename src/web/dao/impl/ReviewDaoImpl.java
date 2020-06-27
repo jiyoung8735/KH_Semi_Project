@@ -76,6 +76,38 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		
 	}
+
+	@Override
+	public void deleteReviewByMenuNoUserNo(int menuNo, int userno) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		
+		int result = -1;
+		
+		String sql = "DELETE REVIEW WHERE MENU_NO = ? AND USERS_NO = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, menuNo);
+			ps.setInt(2, userno);
+			
+			result = ps.executeUpdate();
+			
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+				System.out.println("리뷰 삭제 성공");
+			}else {
+				JDBCTemplate.commit(conn);
+				System.out.println("리뷰 삭제 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+	}
 	
 
 }

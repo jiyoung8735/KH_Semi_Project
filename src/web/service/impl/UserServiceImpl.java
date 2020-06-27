@@ -208,4 +208,64 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public User searchId(HttpServletRequest req) {
+		
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		System.out.println("UserServiceImpl param : " + name + " , " + email);
+		
+		User user = userDao.selectUserByNameAndEmail(name, email);
+	//	System.out.println("UserServiceImpl id : " + user.getUserId());
+		
+		
+		return user;
+	}
+
+	@Override
+	public User checkId(HttpServletRequest req) {
+		
+		String id = req.getParameter("id");
+		User user = new User();
+		user.setUserId(id);
+		
+		User u = userDao.selectUserByUserid(user);
+		
+		return u;
+	}
+
+	@Override
+	public void changePw(HttpServletRequest req) {
+
+		HttpSession session = req.getSession();
+		String id = String.valueOf(session.getAttribute("id"));
+		
+		String newpw = req.getParameter("pw");
+		
+		userDao.updatePw(newpw, id);
+		
+	}
+
+	@Override
+	public boolean checkEmail(HttpServletRequest req) {
+		
+		//세션 아이디
+		HttpSession session = req.getSession();
+		String id = String.valueOf(session.getAttribute("id"));
+		
+		//입력한 이메일
+		String email = req.getParameter("email");
+		
+		User user = new User();
+		user.setUserId(id);
+		
+		User u = userDao.selectUserByUserid(user);
+		
+		if( u.getUserEmail().equals(email) ) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

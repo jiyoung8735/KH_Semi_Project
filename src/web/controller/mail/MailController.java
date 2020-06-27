@@ -1,8 +1,9 @@
 package web.controller.mail;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -18,27 +19,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.service.face.MailauthService;
+import web.service.impl.MailauthServiceImpl;
 import web.util.MailAuth;
 
 @WebServlet("/send")
 public class MailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	private MailauthService mailauthService = new MailauthServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		// FROM
 		//	보내는 사람 정보
 		final String FROM = "jiyoung8735@gmail.com"; // <<------------------------------수정하세요
-		final String FROMNAME = "문지영"; // <<------------------------------수정하세요
-
+		final String FROMNAME = "JIYOUNGMOON"; // <<------------------------------수정하세요
+		
 		// TO
 		//	받는 사람 정보
-		final String TO = "kitty9302@naver.com"; // <<------------------------------수정하세요
+		final String TO = req.getParameter("email"); // <<------------------------------수정하세요
 		
-		// 인증코드 생성
-		String authcode = null;
+		// --- UUID 생성 ---
+		UUID uuid = UUID.randomUUID(); //랜덤 UID 생성
+		String code = uuid.toString().split("-")[0]; //8자리 uid
+		System.out.println("생성한 랜덤값 : " + code);
 		
+		
+		// 생성한 랜덤값과 사용자 이메일 저장
+		mailauthService.insert(code, TO);
 		
 		// 메일 제목
 		final String SUBJECT = "회원가입 인증 테스트"; // <<------------------------------수정하세요
@@ -47,9 +57,8 @@ public class MailController extends HttpServlet {
 		//	<p>태그 내부에 텍스트 내용에 입력
 		final String BODY = String.join(
 				"-",
-				"<h1>이메일 인증 코드</h1>",
-				"<p>코드 전달 : </p>",
-				authcode); // <<------------------------------수정하세요
+				"<h1>이메일 인증 코드</h1><br><p>전달받은 코드를 회원가입 입력란에 입력하세요</p>",
+				code); // <<------------------------------수정하세요
 
 		// 인증 객체
 		//	보내는 사람의 실제 구글 계정 입력
@@ -80,9 +89,19 @@ public class MailController extends HttpServlet {
 			Transport.send(msg);
 			
 			System.out.println("Email sent!");
-
+			
+			//이메일 발송 성공을 전달해주어야 한다
+			resp.setContentType("application/json;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.println( "{\"result\":true}" );
+			
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
+			
+			//이메일 발송 실패를 전달해주어야 한다
+			resp.setContentType("application/json;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.println( "{\"result\":false}" );
 			
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -90,6 +109,43 @@ public class MailController extends HttpServlet {
 			System.out.println("The email was not sent.");
 			System.out.println("Error message: " + e.getMessage());
 			
+			//이메일 발송 실패를 전달해주어야 한다
+			resp.setContentType("application/json;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.println( "{\"result\":false}" );
+			
 		} 			
 	}
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//테스트
+		System.out.println("사용자가 입력한 코드 : " + req.getParameter("code") + ", 사용자 이메일 : " + req.getParameter("email") );
+		
+		//전달값 꺼내기
+		String code = req.getParameter("code");
+		String email = req.getParameter("email");
+		
+		//인증코드 비교
+		boolean result = mailauthService.verifyCode(code, email);
+		System.out.println(result);
+	
+		resp.setContentType("application/json;charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		if( result ) {
+			//인증 성공을 전달해주어야 한다
+			out.println(  "{\"result\":true}" );
+		}else {
+			//인증 실패를 전달해주어야 한다
+			out.println( "{\"result\": false}" );
+		}
+	
+	}
+	
+	
+	
+	
+	
 }
