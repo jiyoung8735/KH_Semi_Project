@@ -1,7 +1,12 @@
 package web.dao.face;
 
+import java.util.Map;
+
+import web.dto.Picture;
 import web.dto.Report;
 import web.dto.Review;
+import web.dto.User;
+import web.util.Paging;
 
 public interface ReviewDao {
 	
@@ -20,7 +25,28 @@ public interface ReviewDao {
 	 * @param updateContent
 	 */
 	void updateReviewByMenuNoUserNo(String updateContent, int userno, int menuNo);
+
 	
+	//---------------------------------------------------------------------------
+	
+	public Map<Review, Picture> selectReview(Paging paging, int menuno);
+	
+	public int selectCntReport();
+	//---------------------------------------------------------------------------
+
+	/**
+	 *한줄평 등록기능 
+	 * @param review 해당하는 리뷰에 값 추가
+	 * @param user 해당하는 유저의 넘버 가져오기
+	 */
+	public void detailInsertReview(Review review, User user);
+	/**
+	 * 
+	 */
+	
+	public void goodbtn(Review review,User user);
+	
+	public void badbtn(Review review,User user);
 	/**
 	 * 회원번호와 메뉴번호로 별점 삭제
 	 * 
@@ -28,6 +54,5 @@ public interface ReviewDao {
 	 * @param userno
 	 */
 	void deleteReviewByMenuNoUserNo(int menuNo, int userno);
-
-
 }
+

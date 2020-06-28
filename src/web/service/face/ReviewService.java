@@ -1,9 +1,11 @@
 package web.service.face;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dto.Picture;
 import web.dto.Review;
 import web.util.Paging;
 
@@ -24,6 +26,26 @@ public interface ReviewService {
 	 * @param req
 	 */
 	void updateReview(HttpServletRequest req);
+	
+	//---------------------------------------------------------------------------
+	
+	public Map<Review, Picture> evalReviewDetail(Paging paging, int menuno);
+	
+	public Paging getPagingReview(HttpServletRequest req);
+	
+	//---------------------------------------------------------------------------
+
+	/**
+	 * 한줄평에 대한 인설트
+	 */
+	public void ReviewInsert(HttpServletRequest req);
+	
+	/**
+	 * 좋아요 싫어요 버튼 서비스
+	 * 
+	 */
+	public void goodandbadbtn(HttpServletRequest req);
+
 
 	/**
 	 * 메뉴번호로 리뷰삭제
@@ -31,6 +53,5 @@ public interface ReviewService {
 	 * @param req
 	 */
 	void deleteReview(HttpServletRequest req);
-	
 
 }

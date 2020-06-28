@@ -278,7 +278,7 @@ public class UserServiceImpl implements UserService {
 		
 		//기존 로그인 날짜
 		Date time2 = user.getUserLoginDate(); 
-		String uldate = sdf.format(time2);   
+		String uldate = sdf.format(time2);
 		
 		//기존 로그인 날짜와 현재 날짜가 동일하지 않을때
 		if( today.equals(uldate)) {

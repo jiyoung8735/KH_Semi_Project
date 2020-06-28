@@ -3,6 +3,8 @@ package web.service.face;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dto.Star;
+
 
 public interface StarService {
 	
@@ -26,6 +28,11 @@ public interface StarService {
 	 * 평점에 대한 평균값 가져오기
 	 */
 	public Double AvgStar(HttpServletRequest req);
+	
+	/**
+	 * 별점에 대한 인설트
+	 */
+	public void StarInsert(HttpServletRequest req);
 
 	/**
 	 * 메뉴번호로 별점 삭제

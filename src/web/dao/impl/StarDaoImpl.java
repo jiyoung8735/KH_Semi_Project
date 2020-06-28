@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import web.dao.face.StarDao;
 import web.dbutil.JDBCTemplate;
 import web.dto.Star;
-import web.util.Paging;
+import web.dto.User;
 
 public class StarDaoImpl implements StarDao {
 
@@ -83,7 +81,6 @@ public class StarDaoImpl implements StarDao {
 	@Override
 	public Double AvgStarSelect(Star star) {
 
-
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -103,8 +100,7 @@ public class StarDaoImpl implements StarDao {
 			
 			while( rs.next() ) {
 				
-			avg = Math.round(rs.getDouble("staravg")*100)/100d;
-			
+			avg = Math.round(rs.getDouble("staravg")*100d)/100d;
 			
 			
 				
@@ -118,12 +114,36 @@ public class StarDaoImpl implements StarDao {
 		}
 		
 		return avg;
+	}
+
+	@Override
+	public void detailInsertStar(Star star ,User user) {
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
 		
+		
+		String sql = "insert into star values (null, ?, sysdate , ?, ?)";
+	
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setDouble(1, star.getStarScore());
+			ps.setInt(2, user.getUserNo());
+			ps.setInt(3, star.getMenuNo());
+			
+			ps.executeUpdate();
+
+		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ps);
+			}
 	}
 
 	@Override
 	public void deleteStarByUserNoMenuNo(int menuNo, int userno) {
-		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		
@@ -151,8 +171,14 @@ public class StarDaoImpl implements StarDao {
 		} finally {
 			JDBCTemplate.commit(conn);
 		}
+		
+	}
+
+	
+		
+		
 	}
 
 
 
-}
+
