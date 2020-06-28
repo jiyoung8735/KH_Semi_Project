@@ -107,7 +107,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserCnt( cnt );
 		user.setUserAuth( userAuth );
 		user.setUserGrade( grade );
-		user.setUserReport( "N" );
 		user.setFranNo( franno );
 		
 		//회원가입 -> UserNo 생성
@@ -158,7 +157,7 @@ public class UserServiceImpl implements UserService {
 		int userAuth = 2;
 		
 		//방문횟수
-		int cnt = 0;
+		int cnt = 1;
 		
 		//회원등급
 		int grade = 1;
@@ -177,11 +176,26 @@ public class UserServiceImpl implements UserService {
 		user.setUserCnt( cnt );
 		user.setUserAuth( userAuth );
 		user.setUserGrade( grade );
-		user.setUserReport( "N" );
 		user.setFranNo( franno );
 		
-		
+		//회원가입 -> UserNo 생성
 		int result = userDao.insert(user);
+		User joinuser = info(user);
+		
+		//기본 프로필사진 업로드
+		Picture picture = new Picture();
+		picture.setPicName("D:\\지영\\Program Files\\workspace-web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Semi_Project\\upload_picture");
+		picture.setPicOrigin("기본프로필이미지.jpg");
+		picture.setPicServer("기본프로필이미지.jpg");
+		picture.setPicHor(667);
+		picture.setPicVer(667);
+		picture.setPicExt("jpg");
+		picture.setPicSize(69614);
+		//joinuser의 userNo를 넣어줌
+		picture.setUserNo(joinuser.getUserNo());
+		
+		//기본프로필이미지 업로드
+		pictureDao.insertFile(picture);
 		
 		return result;
 	}

@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 				result.setUserCnt( rs.getInt("USERS_CNT"));
 				result.setUserAuth( rs.getInt("USERS_AUTH"));
 				result.setUserGrade( rs.getInt("USERS_GRADE"));
-				result.setUserReport( rs.getString("USERS_REPORT"));
+				result.setUserReport( rs.getDate("USERS_REPORT"));
 				result.setFranNo( rs.getInt("FRAN_NO"));
 				result.setUserLoginDate(rs.getDate("USERS_LOGIN_DATE"));
 			}
@@ -99,9 +99,9 @@ public class UserDaoImpl implements UserDao {
 		String sql = null;
 		
 		if(user.getFranNo()!=0) {
-			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, ?, sysdate)";
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, sysdate, null)";
 		} else {
-			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, null, sysdate)";
+			sql = "INSERT INTO USERS VALUES( users_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, null, sysdate, null)";
 		}
 		
 		int result = -1;
@@ -119,9 +119,8 @@ public class UserDaoImpl implements UserDao {
 			ps.setInt(9, user.getUserCnt());
 			ps.setInt(10, user.getUserAuth());
 			ps.setInt(11, user.getUserGrade());
-			ps.setString(12, user.getUserReport());
 			if(user.getFranNo()!=0) {
-				ps.setInt(13, user.getFranNo());
+				ps.setInt(12, user.getFranNo());
 			}
 			
 			result = ps.executeUpdate();
@@ -233,7 +232,6 @@ public class UserDaoImpl implements UserDao {
 				user.setUserCnt( rs.getInt("USERS_CNT"));
 				user.setUserAuth( rs.getInt("USERS_AUTH"));
 				user.setUserGrade( rs.getInt("USERS_GRADE"));
-				user.setUserReport( rs.getString("USERS_REPORT"));
 				user.setFranNo( rs.getInt("FRAN_NO"));
 			}
 		} catch (SQLException e) {

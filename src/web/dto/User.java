@@ -17,9 +17,9 @@ public class User {
 	private int	userCnt;
 	private int	userAuth;
 	private int	userGrade;
-	private String userReport;
 	private int	franNo;
 	private Date userLoginDate;
+	private Date userReport;
 
 	@Override
 	public String toString() {
@@ -134,11 +134,11 @@ public class User {
 		this.userGrade = userGrade;
 	}
 
-	public String getUserReport() {
+	public Date getUserReport() {
 		return userReport;
 	}
 
-	public void setUserReport(String userReport) {
+	public void setUserReport(Date userReport) {
 		this.userReport = userReport;
 	}
 

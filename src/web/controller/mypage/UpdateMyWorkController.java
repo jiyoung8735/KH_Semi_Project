@@ -43,9 +43,11 @@ public class UpdateMyWorkController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//별점 , 리뷰 수정
-		reviewService.updateReview(req);
+		//별점 수정
 		starService.updateStar(req);
+		
+		//리뷰 수정
+		reviewService.updateReview(req);
 		
 		
 		//현재 페이지로 리다이렉트

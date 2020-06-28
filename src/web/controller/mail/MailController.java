@@ -39,7 +39,7 @@ public class MailController extends HttpServlet {
 		
 		// TO
 		//	받는 사람 정보
-		final String TO = req.getParameter("email"); // <<------------------------------수정하세요
+		final String TO = req.getParameter("useremail"); // <<------------------------------수정하세요
 		
 		// --- UUID 생성 ---
 		UUID uuid = UUID.randomUUID(); //랜덤 UID 생성
@@ -126,7 +126,7 @@ public class MailController extends HttpServlet {
 		
 		//전달값 꺼내기
 		String code = req.getParameter("code");
-		String email = req.getParameter("email");
+		String email = req.getParameter("useremail");
 		
 		//인증코드 비교
 		boolean result = mailauthService.verifyCode(code, email);
