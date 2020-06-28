@@ -3,6 +3,7 @@ package web.controller.login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,25 +57,34 @@ public class UserLoginController extends HttpServlet {
 			user = userService.info(user);
 			System.out.println(user);
 			
-			//징계회원 처리
-			//로그인할때 users_report가 sysdate보다 같거나 크다면 징계중인 회원으로 튕겨냄
-			//현재 날짜
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			Date time = new Date();
-			String today = sdf.format(time);
-			int td = Integer.parseInt(today);
-			
-			//징계날짜
-			String report = user.getUserReport();
-//			int rpt = Integer.parseInt(report);
-			
-//			if( td <= rpt ) {
-//				resp.setContentType("text/html; charset=utf-8");
-//				PrintWriter out = resp.getWriter();
-//				out.println( "<script>('리뷰 신고되어 3일 계정 중지입니다.'); location.href='/main';</script>" );
-//				login = false;
-//				return;
-//			}
+
+			//---------징계회원 처리---------
+			if( user.getUserReport() != null ) {
+				
+				//징계날짜
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+				String rd = sdf.format( new java.util.Date(user.getUserReport().getTime()));
+				int reportdate = Integer.parseInt(rd);
+
+				//현재 날짜
+				String td = sdf.format( new Date() );
+				int today = Integer.parseInt(td);
+				
+				
+				//징계날짜가 현재 날짜보다 같거나 크다면 로그인 막기
+				if( reportdate == today || reportdate > today ) {
+					
+					//클라이언트에 보낼 정보
+					Map map = new HashMap();
+					map.put("report", true );
+					
+					//계정중지를 클라이언트에 알려줘야함
+					PrintWriter out = resp.getWriter();
+					out.println( new Gson().toJson(map) );
+					
+					return;
+				}
+			}
 			
 			//세션 저장
 			HttpSession session = req.getSession();
@@ -128,9 +138,10 @@ public class UserLoginController extends HttpServlet {
 			//자바스크립트가 알아들을 수 있도록
 			PrintWriter out = resp.getWriter();
 			out.println( new Gson().toJson(map) );
+			System.out.println("rrr");
 			
 		}
-		
+
 	}
 	
 	

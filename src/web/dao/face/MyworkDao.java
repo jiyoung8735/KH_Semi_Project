@@ -1,6 +1,7 @@
 package web.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import web.dto.Mywork;
 import web.util.Paging;
@@ -12,22 +13,22 @@ public interface MyworkDao {
 	 * 
 	 * @return int
 	 */
-	public int selectCntAll();
+//	public int selectCntAll();
 	
 	/**
 	 * Mywork 목록 조회
 	 * 
 	 * @param int userno
-	 * @return List<Mywork>
+	 * @return List<Map<String,Object>>
 	 */
-	public List<Mywork> selectAll(int userno);
+	public List<Map<String,Object>> selectAll(int userno);
 	
 	/**
 	 * MenoNo로 Mywork 조회
 	 * 
 	 * @param menuNo
-	 * @return Mywork객체
+	 * @return List<Map<String,Object>>
 	 */
-	public Mywork selectMywork(int userno, int menuNo);
+	public Map<String, Object> selectMywork(int userno, int menuNo);
 
 }

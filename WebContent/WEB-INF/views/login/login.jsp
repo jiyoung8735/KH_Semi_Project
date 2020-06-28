@@ -53,6 +53,12 @@ function loginResult() {
 		result.setAttribute("style", "color:red")
 	}
 	
+	//정지중인 계정
+	if(loginResult.report ){
+		result.innerText = "계정 정지중입니다."
+		result.setAttribute("style", "color:red")
+	}
+	
 };
 
 window.onload = function(){

@@ -1,6 +1,7 @@
 package web.service.face;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,16 +15,16 @@ public interface MyworkService {
 	 * Mywork 목록조회
 	 * 
 	 * @param req
-	 * @return List<Mywork>
+	 * @return List<Map<String,Object>>
 	 */
-	public List<Mywork> getList(HttpServletRequest req);
+	public List<Map<String,Object>> getList(HttpServletRequest req);
 
 	/**
 	 * MenuNo로 Mywork 조회
 	 * 
 	 * @param req
-	 * @return Mywork객체
+	 * @return List<Map<String,Object>>
 	 */
-	public Mywork getMywork(HttpServletRequest req);
+	public Map<String, Object> getMywork(HttpServletRequest req);
 
 }

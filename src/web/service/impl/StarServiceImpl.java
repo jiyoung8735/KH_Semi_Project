@@ -31,7 +31,7 @@ public class StarServiceImpl implements StarService{
 	public void updateStar(HttpServletRequest req) {
 		
 		//메뉴번호 전달받기
-		String param = req.getParameter("menuNo");
+		String param = req.getParameter("menuno");
 		int menuNo = Integer.parseInt(param);
 		
 		//회원번호 꺼내기(세션)

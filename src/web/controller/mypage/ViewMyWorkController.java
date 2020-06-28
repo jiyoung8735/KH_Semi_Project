@@ -32,9 +32,7 @@ public class ViewMyWorkController extends HttpServlet {
 		
 		
 		// Mywork 목록 list 변수
-		List<Mywork> myworkList = new ArrayList<>();
-		
-		// Mywork 목록 받기
+		List<Map<String,Object>> myworkList = new ArrayList<>();
 		myworkList = myworkService.getList(req);
 		
 		// Report 목록 받기

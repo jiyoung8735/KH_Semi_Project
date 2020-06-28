@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public void updateReview(HttpServletRequest req) {
 		
 		//메뉴번호 전달받기
-		String param = req.getParameter("menuNo");
+		String param = req.getParameter("menuno");
 		int menuNo = Integer.parseInt(param);
 		System.out.println(menuNo);
 		
@@ -48,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println(userno);
 		
 		//수정된 리뷰컨텐츠 전달받기
-		String updateContent = req.getParameter("updatereview");
+		String updateContent = req.getParameter("review");
 		System.out.println(updateContent);
 		
 		reviewDao.updateReviewByMenuNoUserNo(updateContent, userno, menuNo);
@@ -105,7 +105,7 @@ public class ReviewServiceImpl implements ReviewService {
 		review.setReviewContent(req.getParameter("review"));
 		
 		//해당하는 메뉴의 메뉴넘버를 review.menuno에 넣어주고 dao로 전달
-		review.setMenuNo(Integer.parseInt(req.getParameter("userno")));
+		review.setMenuNo(Integer.parseInt(req.getParameter("menuno")));
 		
 		reviewDao.detailInsertReview(review,user);
 	}

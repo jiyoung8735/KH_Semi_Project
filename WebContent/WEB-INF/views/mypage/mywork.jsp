@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
@@ -46,7 +46,7 @@
 
 div.mywork {
 	margin-top: 30px;
-	height: 500px;
+	height: 900px;
 }
 
 .mywork hr {
@@ -143,17 +143,18 @@ function ss() {
 	<table>
 		<tr>
 			<th style="width: 20%;"><h1>메뉴명</h1></th>
-			<th style="width: 20%;"><h1>별점</h1></th>
-			<th style="width: 20%;"><h1>리뷰</h1></th>
 			<th style="width: 15%;"><h1>작성자</h1></th>
-			<th style="width: 15%;"><h1>작성일자</h1></th>
+			<th style="width: 20%;"><h1>별점</h1></th>
+			<th style="width: 15%;"><h1>별점 작성일자</h1></th>
+			<th style="width: 20%;"><h1>리뷰</h1></th>
+			<th style="width: 15%;"><h1>리뷰 작성일자</h1></th>
 			<th style="width: 10%;"><h1>관리</h1></th>
-		</tr>
-	 	<c:forEach var="mywork" items="${myworkList }" varStatus="status" > 
+	 	<c:forEach var="i" items="${myworkList }" begin="0" end="${fn:length(myworkList)}"> 
 		<tr>
-			<td><h1>${mywork.menuName }</h1></td>
+			<td><h1>${i.menu.menuName }</h1></td>
+			<td><h1>${i.user.userNick }</h1></td>
 			<td>
-			<div class="star-box" data-starScore="${mywork.starScore }">
+			<div class="star-box" data-starScore="${i.star.starScore }">
 			<h1><span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
@@ -166,12 +167,12 @@ function ss() {
 			<span class="star star_right"></span></h1>
 			</div>
 			</td>
-			<td><h1>${mywork.reviewContent }</h1></td>
-			<td><h1>${mywork.usersNick }</h1></td>
-			<td><h1>${mywork.writtendate }</h1></td>
-			<td><button><a href="/update/mywork?menuNo=${mywork.menuNo }"><h3>수정<h3></a></button> 
+			<td><h1>${i.star.starDate }</h1></td>
+			<td><h1>${i.review.reviewContent }</h1></td>
+			<td><h1>${i.review.reviewDate }</h1></td>
+			<td><button><a href="/update/mywork?menuNo=${i.menu.menuNo }"><h3>수정<h3></a></button> 
 				<button class="delete_btn"><h3>삭제</h3></button>
-				<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${mywork.menuNo }'"></button>
+				<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${i.menu.menuNo }'"></button>
 			</td>
 		</tr>
 	 	</c:forEach> 

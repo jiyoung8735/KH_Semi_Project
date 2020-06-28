@@ -105,10 +105,11 @@ $(document).ready(function() {
 });	
 
 function ss() {
-		$(".star").removeClass("on")
-	for(var i=0; i<= ${myWork.starScore }*2-1; i++){
+	
+	$(".star").removeClass("on");
+	for(var i=0; i<= ${myWork.star.starScore }*2-1; i++){
 		$(".star").eq(i).addClass("on");
-	}
+	};
 }
 
 </script>
@@ -119,7 +120,7 @@ function ss() {
 <h1>나의 리뷰 수정</h1>
 <hr>
 	<form action="/update/mywork" method="POST">
-			<h1>${myWork.menuName }</h1>
+			<h1>${myWork.menu.menuName }</h1>
 			<div class="star-box"><h1>
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
@@ -131,10 +132,10 @@ function ss() {
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
 			<span class="star star_right"></span></h1>
-			<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.starScore }"/>
+			<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.star.starScore }"/>
 			</div>
-			<textarea name="updatereview">${myWork.reviewContent }</textarea><br>
-		<input type="text" name="menuNo" value="${myWork.menuNo }" style="display: none;"/>
+			<textarea name="review">${myWork.review.reviewContent }</textarea><br>
+		<input type="text" name="menuno" value="${myWork.menu.menuNo }" style="display: none;"/>
 		<button style="width:100px; height: 50px; background-color: yellow;">수정완료</button>
 		<button type="button" id="goback" style="width:100px; height: 50px; background-color: blue;">뒤로가기</button>
 	</form>

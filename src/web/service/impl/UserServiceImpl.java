@@ -294,13 +294,14 @@ public class UserServiceImpl implements UserService {
 		Date time2 = user.getUserLoginDate(); 
 		String uldate = sdf.format(time2);
 		
-		//기존 로그인 날짜와 현재 날짜가 동일하지 않을때
-		if( today.equals(uldate)) {
+		//현재 날짜가 기존 로그인 날짜와 동일하지 않을때
+		if( !today.equals(uldate) ) {
 			//방문횟수 업데이트
 			userDao.updateUserCnt(user);
 			//로그인날짜 업데이트
 			userDao.updateLoginDate(user);
 		}
+		
 		//현재 로그인 날짜와 현재 날짜가 동일할 떄
 		//-> 아무것도 하지 않는다
 	}

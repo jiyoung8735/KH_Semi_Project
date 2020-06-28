@@ -46,6 +46,7 @@ public class UserDaoImpl implements UserDao {
 				result.setUserReport( rs.getDate("USERS_REPORT"));
 				result.setFranNo( rs.getInt("FRAN_NO"));
 				result.setUserLoginDate(rs.getDate("USERS_LOGIN_DATE"));
+				
 			}
 			
 		} catch (SQLException e) {
