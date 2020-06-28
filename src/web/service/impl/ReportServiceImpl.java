@@ -32,6 +32,19 @@ public class ReportServiceImpl implements ReportService {
 		
 		return mapMyreport;
 	}
+
+
+	@Override
+	public int countReportByUserNo(HttpServletRequest req) {
+
+		HttpSession session = req.getSession();
+		String param = String.valueOf(session.getAttribute("userno"));
+		int rptUsers = Integer.parseInt(param);
+		
+		int cnt = reportDao.selectCntReportByUserNo(rptUsers);
+		
+		return cnt;
+	}
 	
 
 }

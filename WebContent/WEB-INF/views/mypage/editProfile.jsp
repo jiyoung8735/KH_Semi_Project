@@ -119,6 +119,27 @@ $(document).ready(function(){
 	    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 	    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 	}
+	
+	//test
+	$("#btnTest").click(function(){
+	// 요청 URL
+	var url = "/view/mywork"
+	
+	// 요청 파라미터
+	var data = {
+		//	"num1" : $("#num1").val()
+		//	, "num2" : $("#num2").val()
+		//	, "oper" : $("#oper").val()
+	}
+	
+	// AJAX 요청 보내기 - $.get(), $.post()
+		$.get( url, data, function( res ){
+			$("#resultLayout").html( res )
+		}); 
+		
+	})
+	
+	
 })
 </script>
 
@@ -168,6 +189,7 @@ $(document).ready(function(){
 						<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
 					</c:if>
 					</div>
+					<button id="btnTest">테스트</button>
 			</div>
 		</div>
 		</div>
@@ -190,11 +212,12 @@ $(document).ready(function(){
 				</div>
 				<div>
 					<h3>신고 내역</h3>
-					<h1>0</h1>
+					<h1>${cntreport }</h1>
 				</div>
 			</div>
 		</div>
 		
+	<div id="resultLayout"></div>
 	</div>
 </section>
 

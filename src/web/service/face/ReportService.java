@@ -18,5 +18,13 @@ public interface ReportService {
 	 */
 	List<Map<String, Object>> getListOfReport(HttpServletRequest req);
 	
+	/**
+	 * 신고내역 카운트
+	 * 
+	 * @param req
+	 * @return int
+	 */
+	int countReportByUserNo(HttpServletRequest req);
+	
 
 }

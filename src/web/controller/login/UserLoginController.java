@@ -2,6 +2,8 @@ package web.controller.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +43,6 @@ public class UserLoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-
-		
 		//전달파라미터 얻기 - 로그인정보
 		User user = userService.getLoginUser(req);
 		
@@ -55,6 +55,26 @@ public class UserLoginController extends HttpServlet {
 			//로그인 사용자 정보 얻어오기
 			user = userService.info(user);
 			System.out.println(user);
+			
+			//징계회원 처리
+			//로그인할때 users_report가 sysdate보다 같거나 크다면 징계중인 회원으로 튕겨냄
+			//현재 날짜
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			Date time = new Date();
+			String today = sdf.format(time);
+			int td = Integer.parseInt(today);
+			
+			//징계날짜
+			String report = user.getUserReport();
+//			int rpt = Integer.parseInt(report);
+			
+//			if( td <= rpt ) {
+//				resp.setContentType("text/html; charset=utf-8");
+//				PrintWriter out = resp.getWriter();
+//				out.println( "<script>('리뷰 신고되어 3일 계정 중지입니다.'); location.href='/main';</script>" );
+//				login = false;
+//				return;
+//			}
 			
 			//세션 저장
 			HttpSession session = req.getSession();

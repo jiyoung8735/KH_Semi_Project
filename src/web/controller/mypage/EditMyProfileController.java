@@ -13,10 +13,12 @@ import javax.servlet.http.HttpSession;
 import web.dto.Picture;
 import web.dto.User;
 import web.service.face.PictureService;
+import web.service.face.ReportService;
 import web.service.face.ReviewService;
 import web.service.face.StarService;
 import web.service.face.UserService;
 import web.service.impl.PictureServiceImpl;
+import web.service.impl.ReportServiceImpl;
 import web.service.impl.ReviewServiceImpl;
 import web.service.impl.StarServiceImpl;
 import web.service.impl.UserServiceImpl;
@@ -30,6 +32,7 @@ public class EditMyProfileController extends HttpServlet {
 	private StarService starService = new StarServiceImpl();
 	private ReviewService reviewService = new ReviewServiceImpl();
 	private UserService userService = new UserServiceImpl();
+	private ReportService reportService = new ReportServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,10 +56,11 @@ public class EditMyProfileController extends HttpServlet {
 		else if( usergrade == 4) { grade = "VVIP"; }
 		else { grade = null; }
 		
-		// 3.별점작성수, 리뷰작성수
+		// 3.별점작성수, 리뷰작성수, 신고내역수
 		int cntStar = starService.countStarByUserNo(req);
 		int cntReview = reviewService.countReviewByUserNo(req);
-
+		int cntReport = reportService.countReportByUserNo(req);
+		
 		// 4.방문횟수
 		User user = new User();
 		String userid = String.valueOf(session.getAttribute("userid"));
@@ -69,6 +73,7 @@ public class EditMyProfileController extends HttpServlet {
 		req.setAttribute("grade", grade);
 		req.setAttribute("cntstar", cntStar);
 		req.setAttribute("cntreview", cntReview);
+		req.setAttribute("cntreport", cntReport);
 		req.setAttribute("users_cnt", users_cnt);
 		
 		// 6.포워딩

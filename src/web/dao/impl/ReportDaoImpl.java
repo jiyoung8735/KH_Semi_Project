@@ -75,5 +75,34 @@ public class ReportDaoImpl implements ReportDao {
 		return list;
 	}
 
+	@Override
+	public int selectCntReportByUserNo(int rptUsers) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int cnt = 0;
+		
+		String sql = "SELECT COUNT(*) FROM REPORT WHERE RPT_USERS = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, rptUsers);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		return cnt;
+	}
 
 }

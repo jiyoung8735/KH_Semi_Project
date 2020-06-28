@@ -16,5 +16,13 @@ public interface ReportDao {
 	 */
 	List<Map<String, Object>> selectListOfReport(int rptUsers);
 	
+	/**
+	 * 신고자번호로 신고내역 카운트
+	 * 
+	 * @param rptUsers
+	 * @return int
+	 */
+	int selectCntReportByUserNo(int rptUsers);
+	
 
 }
