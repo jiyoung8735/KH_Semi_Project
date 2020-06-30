@@ -35,7 +35,7 @@ public class MailController extends HttpServlet {
 		// FROM
 		//	보내는 사람 정보
 		final String FROM = "jiyoung8735@gmail.com"; // <<------------------------------수정하세요
-		final String FROMNAME = "JIYOUNGMOON"; // <<------------------------------수정하세요
+		final String FROMNAME = "브랜드평점"; // <<------------------------------수정하세요
 		
 		// TO
 		//	받는 사람 정보

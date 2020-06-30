@@ -45,7 +45,7 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="form-group">
-		<input type="text" id="pwc" name="pwConfirm" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
+		<input type="text" id="pwc" name="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
 	</div>
 	<div id="pwcv"></div>
 	

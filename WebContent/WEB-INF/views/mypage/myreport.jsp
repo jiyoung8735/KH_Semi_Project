@@ -42,10 +42,10 @@
 	<hr>
 
 	<table>
-		<tr>
+		<tr style="background-color: #faf8f8;">
 			<th style="width: 10%;"><h3>신고대상</h3></th>
-			<th style="width: 20%;"><h3>신고리뷰</h3></th>
-			<th style="width: 5%;"><h3>신고이유</h3></th>
+			<th style="width: 15%;"><h3>신고리뷰</h3></th>
+			<th style="width: 10%;"><h3>신고이유</h3></th>
 			<th style="width: 10%;"><h3>상세내용</h3></th>
 			<th style="width: 10%;"><h3>신고일자</h3></th>
 			<th style="width: 10%;"><h3>조치내용</h3></th>
@@ -53,46 +53,46 @@
 		</tr>
 	 	<c:forEach var="i" begin="0" end="${fn:length(Myreport)}" items="${Myreport }" >
 			<tr>
-			<td><h1>${i.user.userNick }</h1></td>
-			<td><h1>${i.review.reviewContent }</h1></td>
+			<td><h4>${i.user.userNick }</h4></td>
+			<td><h4>${i.review.reviewContent }</h4></td>
 			<td>
 			<c:choose>
 				<c:when test="${i.report.rptRsn eq 1 }">
-				<h1><%="비속어 사용" %></h1>
+				<h4><%="비속어 사용" %></h4>
 				</c:when>
 				<c:when test="${i.report.rptRsn eq 2 }">
-				<h1><%="허위사실 유포" %></h1>
+				<h4><%="허위사실 유포" %></h4>
 				</c:when>
 				<c:when test="${i.report.rptRsn eq 3 }">
-				<h1><%="불충분한 정보" %></h1>
+				<h4><%="불충분한 정보" %></h4>
 				</c:when>
 				<c:otherwise>
-				<h1><%="기타" %></h1>
+				<h4><%="기타" %></h4>
 				</c:otherwise>
 			</c:choose> 
 			</td>
-			<td><h1>${i.report.rptDetail }</h1></td>
-			<td><h1>${i.report.rptDate }</h1></td>
+			<td><h4>${i.report.rptDetail }</h4></td>
+			<td><h4>${i.report.rptDate }</h4></td>
 			<td>
 			<c:choose>
 		        <c:when test="${i.report.rptManage eq 1 }">
-		        <h1><%="계정 1일 정지" %></h1>
+		        <h4><%="계정 1일 정지" %></h4>
 		        </c:when>
 		        <c:when test="${i.report.rptManage eq 2 }">
-		        <h1><%="계정 3일 정지" %></h1>
+		        <h4><%="계정 3일 정지" %></h4>
 		        </c:when>
 		        <c:when test="${i.report.rptManage eq 3 }">
-		        <h1><%="계정 7일 정지" %></h1>
+		        <h4><%="계정 7일 정지" %></h4>
 		        </c:when>
 		        <c:when test="${i.report.rptManage eq 4 }">
-		        <h1><%="계정 30일 정지" %></h1>
+		        <h4><%="계정 30일 정지" %></h4>
 		        </c:when>
 
  		 	</c:choose>
 			</td>
-			<td><h1>${i.report.rptYn }</h1></td>
+			<td><h4>${i.report.rptYn }</h4></td>
 			</tr>
-			</c:forEach>
+		</c:forEach>
 	</table>
 	</div>
 

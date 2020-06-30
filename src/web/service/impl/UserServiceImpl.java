@@ -227,7 +227,7 @@ public class UserServiceImpl implements UserService {
 	public User searchId(HttpServletRequest req) {
 		
 		String name = req.getParameter("name");
-		String email = req.getParameter("email");
+		String email = req.getParameter("useremail");
 		System.out.println("UserServiceImpl param : " + name + " , " + email);
 		
 		User user = userDao.selectUserByNameAndEmail(name, email);
@@ -260,16 +260,30 @@ public class UserServiceImpl implements UserService {
 		userDao.updatePw(npw, id);
 		
 	}
+	
+	@Override
+	public void changePwInMypage(HttpServletRequest req) {
 
+		HttpSession session = req.getSession();
+		String id = String.valueOf(session.getAttribute("userid"));
+		System.out.println("가져온 아이디 : " + id);
+		
+		String npw = req.getParameter("pw");
+		System.out.println("새 비밀번호 : " + npw);
+		
+		userDao.updatePw(npw, id);
+	}
+	
 	@Override
 	public boolean checkEmail(HttpServletRequest req) {
 		
 		//세션 아이디
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("id"));
+		System.out.println("ttt" + id);
 		
 		//입력한 이메일
-		String email = req.getParameter("email");
+		String email = req.getParameter("useremail");
 		
 		User user = new User();
 		user.setUserId(id);
@@ -306,6 +320,8 @@ public class UserServiceImpl implements UserService {
 		//현재 로그인 날짜와 현재 날짜가 동일할 떄
 		//-> 아무것도 하지 않는다
 	}
+
+
 	
 
 }

@@ -59,8 +59,8 @@ $(document).ready(function(){
 <h1>비밀번호 변경</h1>
 <hr>
 <form action="/security" method="POST">
-	<input type="text" name="npw" id="pw" class="form-control" required="required" placeholder="새 비밀번호"/><br>
-	<input type="text" name="npwc" id="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/><br>
+	<input type="text" name="pw" id="pw" class="form-control" required="required" placeholder="새 비밀번호"/><br>
+	<input type="text" name="pwc" id="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/><br>
 	<input type="submit" id="btnConfirm" value="확인" style="background-color:#ccc;"/>
 	<div id="pwv"></div>
 </form>

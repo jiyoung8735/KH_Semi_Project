@@ -17,8 +17,8 @@
 	display: inline-block;
 
 	/* 별이 표현되는 영역 크기 */
-	width: 15px;
-    height: 30px;
+	width: 25px;
+    height: 55px;
 
 	/* 투명한 별 표현 */
 	background-image: url(/resources/image/empty.png);
@@ -51,7 +51,7 @@
 
 .updatereview hr {
 	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
 
 .updatereview table{
@@ -65,6 +65,24 @@
 	border: 1px solid black;
 }
 
+div.star-box {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+textarea {
+	width: 340px;
+    height: 60px;
+}
+
+div.udp {
+    margin-top: 20px;
+}
+
+div.udp > button {
+	width: 100px;
+	height: 40px;
+}
 
 </style>
 
@@ -116,11 +134,11 @@ $(document).ready(function() {
 </script>
 
 <div class="updatereview">
-<h1>나의 리뷰 수정</h1>
+<h1>리뷰 수정</h1>
 <hr>
 	<form action="/update/mywork" method="POST">
-			<h1>${myWork.menu.menuName }</h1>
-			<div class="star-box"><h1>
+			<h1>메뉴 : <span style="background-color: pink;">${myWork.menu.menuName }</span></h1>
+			<div class="star-box">
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
@@ -130,16 +148,14 @@ $(document).ready(function() {
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
-			<span class="star star_right"></span></h1>
+			<span class="star star_right"></span>
 			<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.star.starScore }"/>
 			</div>
 			<textarea name="review">${myWork.review.reviewContent }</textarea><br>
 		<input type="text" name="menuno" value="${myWork.menu.menuNo }" style="display: none;"/>
-		<button style="width:100px; height: 50px; background-color: yellow;">수정완료</button>
-		<button type="button" id="goback" style="width:100px; height: 50px; background-color: blue;">뒤로가기</button>
+		<div class="udp"><button>수정</button> <button type="button" id="goback" >취소</button></div>
 	</form>
-	<br>
- </div>	
+</div>	
 </section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

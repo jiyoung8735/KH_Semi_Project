@@ -52,7 +52,7 @@ $(document).ready(function(){
 	//코드인증
 	$("#btnCodeVerify").click(function(){
 		console.log("btnCodeVerify");
-		var j = "email=" + $("#email").val() + "&code=" + $("#code").val();
+		var j = "useremail=" + $("#email").val() + "&code=" + $("#code").val();
 		console.log(j);
 		sendRequest("POST", "/send", j, callback2);
 	});
@@ -82,10 +82,10 @@ $(document).ready(function(){
 		}
 	}
 	
-	//이름메일 일치
+	//이름&메일 일치
 	function searchId(){
 		console.log("search Id...");
-		var s = "name=" + $("#name").val() + "&email=" + $("#email").val();
+		var s = "name=" + $("#name").val() + "&useremail=" + $("#email").val();
 		sendRequest("GET", "/searchid", s, callback3);
 	}
 	

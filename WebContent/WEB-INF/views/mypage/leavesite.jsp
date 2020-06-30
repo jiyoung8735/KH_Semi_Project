@@ -40,7 +40,7 @@ window.onload = function(){
 <hr><br>
 <h1>정말 탈퇴하시겠습니까?</h1>
 <form action="/leavesite" method="POST">
-<button>네, 탈퇴하겠습니다.</button>
+<button>네, 탈퇴하겠습니다.</button><br>
 <button type="button" id="goback">아니요, 계속하겠습니다.</button>
 </form>
 

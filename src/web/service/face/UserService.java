@@ -108,5 +108,12 @@ public interface UserService {
 	 */
 	void updateUserCnt(User user);
 	
+	/**
+	 * 마이페이지 비밀번호 변경
+	 * 
+	 * @param req
+	 */
+	void changePwInMypage(HttpServletRequest req);
+	
 
 }

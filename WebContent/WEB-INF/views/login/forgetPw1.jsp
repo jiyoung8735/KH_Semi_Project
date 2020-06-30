@@ -60,7 +60,7 @@ $(document).ready(function(){
 	</div>
 	<form action="/forgetpw" method="POST" > 
 	<div style="width: 120px; margin:0 auto;"> 
-		<input type="text" id="searchid" name="searchid" style="display: none;" />
+		<input type="text" id="searchid" name="id" style="display: none;" />
 		<button id="btnNext" class="form-control" style="width: 100px; background-color:#ccc;">다음 ></button>
 	</div>
 	</form>

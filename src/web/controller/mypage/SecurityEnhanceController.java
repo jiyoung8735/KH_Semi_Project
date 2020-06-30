@@ -56,7 +56,7 @@ public class SecurityEnhanceController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 1. 비밀번호 변경
-		userService.changePw(req);
+		userService.changePwInMypage(req);
 		
 		// 2. 본페이지로 리다이렉트
 		resp.sendRedirect("/security");

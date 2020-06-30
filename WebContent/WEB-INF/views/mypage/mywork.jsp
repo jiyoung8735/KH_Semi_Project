@@ -108,21 +108,21 @@ $(document).ready(function() {
 	<h1>리뷰 관리</h1>
 	<hr>
 	<table>
-		<tr>
+		<tr style="background-color: #faf8f8;">
 			<th style="width: 15%;"><h3>메뉴명</h3></th>
-			<th style="width: 10%;"><h3>작성자</h3></th>
+			<th style="width: 10%;"><h3>별명</h3></th>
 			<th style="width: 20%;"><h3>별점</h3></th>
-			<th style="width: 10%;"><h3>별점작성일자</h3></th>
-			<th style="width: 30%;"><h3>리뷰</h3></th>
-			<th style="width: 10%;"><h3>리뷰 작성일자</h3></th>
-			<th style="width: 10%;"><h3>관리</h3></th>
+			<th style="width: 13%;"><h3>별점작성일</h3></th>
+			<th style="width: 20%;"><h3>리뷰</h3></th>
+			<th style="width: 13%;"><h3>리뷰작성일</h3></th>
+			<th style="width: 14%;"><h3>관리</h3></th>
 	 	<c:forEach var="i" items="${myworkList }" begin="0" end="${fn:length(myworkList)}"> 
 		<tr>
-			<td><h3>${i.menu.menuName }</h3></td>
-			<td><h3>${i.user.userNick }</h3></td>
+			<td><h4><span style="background-color: pink;">${i.menu.menuName }</span></h4></td>
+			<td><h4>${i.user.userNick }</h4></td>
 			<td>
 			<div class="star-box" data-starScore="${i.star.starScore }">
-			<h3><span class="star star_left"></span>
+			<h4><span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
@@ -131,12 +131,12 @@ $(document).ready(function() {
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
-			<span class="star star_right"></span></h3>
+			<span class="star star_right"></span></h4>
 			</div>
 			</td>
-			<td><h3>${i.star.starDate }</h3></td>
-			<td><h3>${i.review.reviewContent }</h3></td>
-			<td><h3>${i.review.reviewDate }</h3></td>
+			<td><h4>${i.star.starDate }</h4></td>
+			<td><h4>${i.review.reviewContent }</h4></td>
+			<td><h4>${i.review.reviewDate }</h4></td>
 			<td><button><h3><a href="/update/mywork?menuNo=${i.menu.menuNo }">수정</a><h3></button> 
 				<button class="delete_btn"><h3>삭제</h3></button>
 				<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${i.menu.menuNo }'"></button>

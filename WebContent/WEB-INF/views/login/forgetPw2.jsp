@@ -19,7 +19,7 @@ $(document).ready(function(){
 	var checkcode = false;
 	
 	$("#email").blur(function(){
-		var e = "email=" + $("#email").val();
+		var e = "useremail=" + $("#email").val();
 		sendRequest("GET", "/checkemail", e, callback1 )
 		
 		function callback1(){
@@ -81,7 +81,7 @@ $(document).ready(function(){
 	}
 	
 	$("#btnCodeVerify").click(function(){
-		var params = "email=" + $("#email").val() + "&code=" + $("#code").val();
+		var params = "useremail=" + $("#email").val() + "&code=" + $("#code").val();
 		sendRequest("POST", "/send", params, callback3)
 	});
 	
