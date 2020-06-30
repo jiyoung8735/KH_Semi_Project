@@ -263,4 +263,6 @@ $("input[id^=sub_filter_]").click(function(){
 }
 </style>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=60a9ad83350a6fade9e1842c1765a6e7&libraries=services"></script>
+
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
