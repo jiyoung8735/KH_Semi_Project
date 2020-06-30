@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import web.dto.Image;
 import web.dto.Menu;
@@ -39,6 +40,8 @@ public class DetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
+		
 //		Ajax 로 받은 메뉴넘버
 		int foodByMenuNo = Integer.parseInt(req.getParameter("menuno"));
 		System.out.println(foodByMenuNo);
@@ -65,8 +68,7 @@ public class DetailController extends HttpServlet {
         //        // 해당하는 컨트롤러에 staravg 라는 이름의 속성으로 값을 던짐
         req.setAttribute("staravg", avg);
 		
-        //좋아요 싫어요 버튼
-//        reviewService.goodandbadbtn(req);
+
 		
 		//---------------------------------------------------------------------------
 		//------------------------------------------------------------------
@@ -86,27 +88,38 @@ public class DetailController extends HttpServlet {
 		System.out.println("메뉴번호"+menuno);
 		
 		//게시글 페이징 처리 조회
-		Map<Review, Picture> reviewList = reviewService.evalReviewDetail(paging, menuno);
-		 
+//		Map<Review, Picture> reviewList = reviewService.evalReviewDetail(paging, menuno);
+		List<Map<String, Object>> reviewList = reviewService.evalReviewDetail(paging, menuno);
 		
-		System.out.println("뭐뭐나오나"+reviewList);
-			List<Review> userKey = new ArrayList<>();
-			List<Picture> reportVal = new ArrayList<>();
-			for(Review key:reviewList.keySet()) {
-				userKey.add(key);
-				reportVal.add(reviewList.get(key));
-			}
+//		System.out.println("뭐뭐나오나"+reviewList);
+//			List<Review> userKey = new ArrayList<>();
+//			List<Picture> reportVal = new ArrayList<>();
+//			for(Review key:reviewList.keySet()) {
+//				userKey.add(key);
+//				reportVal.add(reviewList.get(key));
+//			}
 		
+		req.setAttribute("reviewList", reviewList);
 		
 		//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);
 //		req.setAttribute("picture", picture);
 	
 		//게시글 조회 MODEL값 전달
-		req.setAttribute("reportkey", userKey);
-		req.setAttribute("reportvalue", reportVal);
+//		req.setAttribute("reportkey", userKey);
+//		req.setAttribute("reportvalue", reportVal);
 		
 		//---------------------------------------------------------------------------
+	
+		
+		//로그인 안하면 동작안함 , 로그인하면 동작하면서 한줄평 작성했던거 검증
+		HttpSession session = req.getSession();
+		if(session.getAttribute("userno") != null) {
+		int reviewcnt = reviewService.ReviewCount(req);
+		req.setAttribute("revcnt", reviewcnt);
+		}
+	
+		
 		
 		req.getRequestDispatcher("/WEB-INF/views/eval/detail.jsp").forward(req, resp);
 	}

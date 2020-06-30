@@ -251,10 +251,10 @@ public class UserServiceImpl implements UserService {
 	public void changePw(HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
-		String id = String.valueOf(session.getAttribute("userid"));
+		String id = String.valueOf(session.getAttribute("id"));
 		System.out.println("가져온 아이디 : " + id);
 		
-		String npw = req.getParameter("npw");
+		String npw = req.getParameter("pw");
 		System.out.println("새 비밀번호 : " + npw);
 		
 		userDao.updatePw(npw, id);

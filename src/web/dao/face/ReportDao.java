@@ -25,4 +25,6 @@ public interface ReportDao {
 	int selectCntReportByUserNo(int rptUsers);
 	
 
+	void insertReport(Report report);
+	
 }

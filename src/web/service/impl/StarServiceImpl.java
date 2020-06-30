@@ -27,25 +27,25 @@ public class StarServiceImpl implements StarService{
 	}
 
 
-	@Override
-	public void updateStar(HttpServletRequest req) {
-		
-		//메뉴번호 전달받기
-		String param = req.getParameter("menuno");
-		int menuNo = Integer.parseInt(param);
-		
-		//회원번호 꺼내기(세션)
-		HttpSession session = req.getSession();
-		String p = String.valueOf(session.getAttribute("userno"));
-		int userno = Integer.parseInt(p);
-		
-		//수정된 별점 전달받기
-		String par = req.getParameter("updatescore");
-		double updatescore = Double.parseDouble(par);
-		
-		starDao.updateStarByUserNoMenuNo(updatescore, userno, menuNo);
-		
-	}
+	   @Override
+	   public void updateStar(HttpServletRequest req) {
+	      
+	      //메뉴번호 전달받기
+	      String param = req.getParameter("menuno");
+	      int menuNo = Integer.parseInt(param);
+	      
+	      //회원번호 꺼내기(세션)
+	      HttpSession session = req.getSession();
+	      String p = String.valueOf(session.getAttribute("userno"));
+	      int userno = Integer.parseInt(p);
+	      
+	      //수정된 별점 전달받기
+	      String par = req.getParameter("updatescore");
+	      double updatescore = Double.parseDouble(par);
+	      
+	      starDao.updateStarByUserNoMenuNo(updatescore, userno, menuNo);
+	      
+	   }
 
 
 	@Override
@@ -70,27 +70,27 @@ public class StarServiceImpl implements StarService{
 		//해당하는 메뉴의 별점을 star에 넣어주고 dao로 전달
 		star.setStarScore(Double.parseDouble(req.getParameter("starscore")));
 		//해당하는 메뉴의 메뉴넘버를 star.menuno에 넣어주고 dao로 전달
-		star.setMenuNo(Integer.parseInt(req.getParameter("userno")));
+		star.setMenuNo(Integer.parseInt(req.getParameter("menuno")));
 		
 		starDao.detailInsertStar(star,user);
 
 	}
 
 
-	@Override
-	public void deleteStar(HttpServletRequest req) {
-		//메뉴번호 전달받기
-		String param = req.getParameter("menuNo");
-		int menuNo = Integer.parseInt(param);
-		
-		//회원번호 꺼내기(세션)
-		HttpSession session = req.getSession();
-		String p = String.valueOf(session.getAttribute("userno"));
-		int userno = Integer.parseInt(p);
-		
-		starDao.deleteStarByUserNoMenuNo(menuNo, userno);
-		
-	}
+	   @Override
+	   public void deleteStar(HttpServletRequest req) {
+	      //메뉴번호 전달받기
+	      String param = req.getParameter("menuNo");
+	      int menuNo = Integer.parseInt(param);
+	      
+	      //회원번호 꺼내기(세션)
+	      HttpSession session = req.getSession();
+	      String p = String.valueOf(session.getAttribute("userno"));
+	      int userno = Integer.parseInt(p);
+	      
+	      starDao.deleteStarByUserNoMenuNo(menuNo, userno);
+	      
+	   }
 
 
 

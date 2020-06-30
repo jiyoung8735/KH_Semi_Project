@@ -29,7 +29,8 @@ public interface ReviewService {
 	
 	//---------------------------------------------------------------------------
 	
-	public Map<Review, Picture> evalReviewDetail(Paging paging, int menuno);
+//	public Map<Review, Picture> evalReviewDetail(Paging paging, int menuno);
+	public List<Map<String, Object>> evalReviewDetail(Paging paging, int menuno);
 	
 	public Paging getPagingReview(HttpServletRequest req);
 	
@@ -53,5 +54,10 @@ public interface ReviewService {
 	 * @param req
 	 */
 	void deleteReview(HttpServletRequest req);
+	
+	public int ReviewCount(HttpServletRequest req);
+	
+	public int good_badcnt(HttpServletRequest req);
+	
 
 }

@@ -26,5 +26,11 @@ public interface ReportService {
 	 */
 	int countReportByUserNo(HttpServletRequest req);
 	
+	   /**
+	    * 리뷰에대한 신고
+	    * @param report
+	    */
+	   void reviewReport(Report report);
+	
 
 }

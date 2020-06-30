@@ -112,7 +112,7 @@ public class StarDaoImpl implements StarDao {
 			JDBCTemplate.close(ps);
 			JDBCTemplate.close(rs);
 		}
-		
+		System.out.println("여기는 avgstar 디!에이!오! : " + avg);
 		return avg;
 	}
 

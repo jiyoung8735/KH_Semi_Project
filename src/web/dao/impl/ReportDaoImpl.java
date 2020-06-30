@@ -104,5 +104,32 @@ public class ReportDaoImpl implements ReportDao {
 		}
 		return cnt;
 	}
+	
+    @Override
+    public void insertReport(Report report) {
+        Connection conn = JDBCTemplate.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String sql = "INSERT INTO REPORT(RPT_RSN, RPT_DETAIL , RPT_DATE , RPT_YN, RPT_USERS,  RPT_TARGET ,REVIEW_NO)";
+        sql+= " VALUES(? , ? , sysdate , 'N' , ? ,?,?)";
+        
+        try {
+            ps = conn.prepareStatement(sql);
+            
+            ps.setInt(1, report.getRptRsn());
+            ps.setString(2, report.getRptDetail());
+            ps.setInt(3,report.getRptUser());
+            ps.setInt(4, report.getRptTarget());
+            ps.setInt(5, report.getReviewNo());
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+        }
+        
+    }
 
 }

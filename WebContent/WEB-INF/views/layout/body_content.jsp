@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<section class="wrapper">
+<section class="wrapper" style="overflow: hidden; margin-bottom: 15px; ">
 	<div class = "slider_context">
 	<h1>BEST 신메뉴</h1>
 	

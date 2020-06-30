@@ -1,10 +1,12 @@
 package web.dao.face;
 
+import java.util.List;
 import java.util.Map;
 
+import web.dto.Menu;
 import web.dto.Picture;
-import web.dto.Report;
 import web.dto.Review;
+import web.dto.Reviewverif;
 import web.dto.User;
 import web.util.Paging;
 
@@ -29,7 +31,8 @@ public interface ReviewDao {
 	
 	//---------------------------------------------------------------------------
 	
-	public Map<Review, Picture> selectReview(Paging paging, int menuno);
+//	public Map<Review, Picture> selectReview(Paging paging, int menuno);
+	public List<Map<String, Object>> selectReview(Paging paging, int menuno);
 	
 	public int selectCntReport();
 	//---------------------------------------------------------------------------
@@ -54,5 +57,13 @@ public interface ReviewDao {
 	 * @param userno
 	 */
 	void deleteReviewByMenuNoUserNo(int menuNo, int userno);
+	
+	public int reviewVerif(Review review);
+	
+	public int good_bad_btn(Reviewverif reviewverif);
+	
+	public void goodbtn_insert(Reviewverif reviewverif);
+	public void badbtn_insert(Reviewverif reviewverif);
+	
 }
 

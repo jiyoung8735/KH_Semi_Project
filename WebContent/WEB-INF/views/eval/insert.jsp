@@ -36,8 +36,8 @@
    background-image: url(https://image.flaticon.com/icons/svg/149/149763.svg);
 }
 .h2only{
-width:130px;
-margin : auto;
+/* width:130px; */
+/* margin : auto; */
 }
 .star-value{
 width:50px;
@@ -45,7 +45,8 @@ margin : auto;
 font-size: 20px;
 }
 .btndiv{
-text-align: center;
+/* text-align: center; */
+	margin-top: 10px;
 }
 
 </style>
@@ -132,7 +133,10 @@ $(document).ready(function() {
                console.log("AJAX 실패");
             }
          });
-        
+
+	      evalDetail(${menuno })
+
+       
        $.ajax({
             type: "post"
             , url: "/eval/detail"
@@ -172,7 +176,7 @@ function showStarValue(val) {
 </head>
 <body>
 <div id="mo_right">
-<div class="star-box">
+<div class="star-box" style="width: 1000px;">
 <span class="star star_left"></span>
 <span class="star star_right"></span>
 <span class="star star_left"></span>
@@ -185,11 +189,11 @@ function showStarValue(val) {
 <span class="star star_right"></span>
 </div>
 
-<div class="star-value" id="star_div">0</div>
-<div class = "h2only">
+<div class="star-value" id="star_div" style="display: none;">0</div>
+<div class = "h2only" style="margin: 10px 0px;">
 <H2>한줄평 작성</H2>
 </div>
-<input type = "text" id="review" name = "review" size = "45"/><br>
+<input type = "text" id="review" name = "review" size = "45" style="height: 50px; width:400px;"/><br>
 <input type="hidden" id="starscore" name = "starscore"/>
 <input type="hidden" id="star_food" name = "food" value="${menuno }"/>
 

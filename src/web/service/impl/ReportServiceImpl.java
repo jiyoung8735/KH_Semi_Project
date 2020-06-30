@@ -33,6 +33,10 @@ public class ReportServiceImpl implements ReportService {
 		return mapMyreport;
 	}
 
+	@Override
+	   public void reviewReport(Report report) {
+	      reportDao.insertReport(report);
+	   }
 
 	@Override
 	public int countReportByUserNo(HttpServletRequest req) {

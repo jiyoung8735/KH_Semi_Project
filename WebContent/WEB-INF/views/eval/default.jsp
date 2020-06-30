@@ -28,10 +28,10 @@
 
 <div>
 		<ul class="sub_submenu">
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="평점순" id="sub_filter" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="리뷰순" id="sub_filter" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="가격순" id="sub_filter" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="출시일순" id="sub_filter" /></li>
+            <li class="submenu"><input type="button" class="filter_btn_detail" value="평점순" id="sub_filter_1" /></li>
+            <li class="submenu"><input type="button" class="filter_btn_detail" value="리뷰순" id="sub_filter_2" /></li>
+            <li class="submenu"><input type="button" class="filter_btn_detail" value="가격순" id="sub_filter_3" /></li>
+            <li class="submenu"><input type="button" class="filter_btn_detail" value="출시일순" id="sub_filter_4" /></li>
 		</ul>
 </div>
 
@@ -114,9 +114,9 @@
 
 
 
-<style>
-    .sub_submenu{display:none;}
-</style>
+<!-- <!-- <style> -->
+<!-- /*     .sub_submenu{display:none;} */ -->
+<!-- <!-- </style> -->
 
 
 
@@ -171,7 +171,27 @@ $(".hor").click(function() {
             console.log("AJAX 실패")
          }
       });
+// 	evalDetail($(this).attr("value"))
 });
+
+function evalDetail(menuno) {
+    $.ajax({
+        type: "POST"
+        , url: "/eval/detail"
+        , data: {
+           menuno : menuno
+        }
+        , dataType: "html"
+        , success: function(result) {
+           console.log("AJAX 성공")
+           console.log(result)
+           $("#mo_wrapper").html(result);
+        }
+        , error: function() {
+           console.log("AJAX 실패")
+        }
+     });
+}
 // $("#sub_filter").hide();
 
 // $("input[id^=food_]").click(function() {
@@ -202,6 +222,45 @@ $(".filter_btn_detail").click(function() {
 });
 </script>
 
+<script type="text/javascript">
+// 버튼에 마우스올릴때(메뉴)
+$("input[id^=food_]").hover(function(){
+   $(this).css("color", "red");
+} , function(){
+   $(this).css("color", "white");
+})
+// 버튼에 클릭했을때(메뉴)
+$("input[id^=food_]").click(function(){
+   $(this).css("background-color", "black");
+   $("input[id^=food_]").not($(this)).css("background-color" , "steelblue");
+});
 
+//버튼에 마우스올릴때(필터)
+$("input[id^=sub_filter_]").hover(function(){
+   $(this).css("color", "red");
+} , function(){
+   $(this).css("color", "white");
+})
+// 버튼에 클릭했을때(필터)
+$("input[id^=sub_filter_]").click(function(){
+   $(this).css("background-color", "black");
+   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "steelblue");
+});
+
+</script>
+
+
+
+<style type="text/css">
+.filter_btn_detail{
+   padding: 3px 3px;
+    border-radius: 3px;
+    width: 80px;
+    color: white;
+    background-color: steelblue;
+    cursor: pointer;
+    
+}
+</style>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

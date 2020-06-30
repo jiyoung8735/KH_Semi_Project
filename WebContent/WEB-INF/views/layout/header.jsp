@@ -62,6 +62,20 @@ $(document).ready(function() {
 
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+    
+
+    $("a[class^=main_menu_]").hover(function(){
+        $(this).css("color", "red");
+    } , function(){
+        $(this).css("color", "black");
+    })
+
+    
+})
+</script>
+
 </head>
 <body>
 
@@ -69,18 +83,17 @@ $(document).ready(function() {
 <div class="header-container">
 
 	<div class="header-wrapper">
-	<a href="#"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
+	<a href="/"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
 	</div>								
 
 		<div class="category-background">
 	  	<div class="category-list">
 	  	 <ul>
-		   	<li class="cate-list-item"><a href="/rec">추천보기</a></li>
-		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
-		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
-		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
-		   	<li class="cate-list-item"><a href="/login">로그인</a></li>
-		   	<li class="cate-list-item"><a href="/join">회원가입</a></li>
+               <li class="cate-list-item"><a href="/eval" class="main_menu_2">평점보기</a></li>
+               <li class="cate-list-item"><a href="/view/notice" class="main_menu_3">공지사항</a></li>
+               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4">자유게시판</a></li>
+               <li class="cate-list-item"><a href="/login" class="main_menu_5">로그인</a></li>
+               <li class="cate-list-item"><a href="/join" class="main_menu_6">회원가입</a></li>
 	   	</ul>
 	  	</div>
 		</div>
@@ -99,12 +112,11 @@ $(document).ready(function() {
 		<div class="category-background">
 	  	<div class="category-list">
 	  	 <ul>
-		   	<li class="cate-list-item"><a href="/rec">추천보기</a></li>
-		   	<li class="cate-list-item"><a href="/eval">평점보기</a></li>
-		   	<li class="cate-list-item"><a href="/view/notice">공지사항</a></li>
-		   	<li class="cate-list-item"><a href="/view/posts">자유게시판</a></li>
-		   	<li class="cate-list-item"><a href="/editProfile">마이페이지</a></li>
-		   	<li class="cate-list-item"><a href="/logout">로그아웃</a></li>
+               <li class="cate-list-item"><a href="/eval" class="main_menu_2">평점보기</a></li>
+               <li class="cate-list-item"><a href="/view/notice" class="main_menu_3">공지사항</a></li>
+               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4">자유게시판</a></li>
+               <li class="cate-list-item"><a href="/editProfile" class="main_menu_5">마이페이지</a></li>
+               <li class="cate-list-item"><a href="/logout" class="main_menu_6">로그아웃</a></li>
 
 		<c:if test="${userAuth == 2 }">
 		<li class="cate-list-item"><a href="/fran">관리자페이지</a></li>
