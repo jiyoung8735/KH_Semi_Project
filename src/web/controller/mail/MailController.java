@@ -122,11 +122,11 @@ public class MailController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//테스트
-		System.out.println("사용자가 입력한 코드 : " + req.getParameter("code") + ", 사용자 이메일 : " + req.getParameter("email") );
+		System.out.println("사용자가 입력한 코드 : " + req.getParameter("code") + ", 사용자 이메일 : " + req.getParameter("useremail") );
 		
 		//전달값 꺼내기
 		String code = req.getParameter("code");
-		String email = req.getParameter("email");
+		String email = req.getParameter("useremail");
 		
 		//인증코드 비교
 		boolean result = mailauthService.verifyCode(code, email);
