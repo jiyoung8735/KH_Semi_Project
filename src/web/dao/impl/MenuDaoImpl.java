@@ -272,7 +272,10 @@ public class MenuDaoImpl implements MenuDao{
             menu.setFranNo(rs.getInt("FRAN_NO"));
             
             menu.setMenuInfo( menu.getMenuInfo().replace("\"", "\\\""));
-            menu.setMenuInfo( menu.getMenuInfo().replace("background-color: rgb(255, 255, 255);", " "));
+            menu.setMenuInfo( menu.getMenuInfo().replace("color: ", " "));
+            menu.setMenuInfo( menu.getMenuInfo().replace("font-family: ", " "));
+            menu.setMenuInfo( menu.getMenuInfo().replace("font-size: ", " "));
+            menu.setMenuInfo( menu.getMenuInfo().replace("background-color: ", " "));
          }
       } catch (SQLException e) {
          e.printStackTrace();
