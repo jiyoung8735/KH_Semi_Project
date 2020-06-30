@@ -97,18 +97,31 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT * FROM (";
-		sql += "    SELECT rownum rnum, B.* FROM ("; 
-		sql += "        SELECT *";
-		sql += "        FROM review R join picture P on r.users_no = p.users_no";
-		sql += "		LEFT OUTER JOIN reviewverif RV ON r.review_no = rv.review_no";
-		sql += "		WHERE r.menu_no=?";
-		sql += "		and review_report = 'N' "; 
-		sql += "        ORDER BY r.review_no DESC";
-		sql += "    ) B";
-		sql += "    ORDER BY rnum";
-		sql += " ) BOARD";
-		sql += " WHERE rnum BETWEEN ? AND ?";
+		sql+= "SELECT RV.* FROM (";
+		sql+= "		SELECT *";
+		sql+= "		FROM review R join picture P on r.users_no = p.users_no";
+		sql+= "		WHERE r.menu_no=?";
+		sql+= "		and review_report = 'N' ";
+		sql+= "		ORDER BY r.review_no DESC";
+		sql+= "		)  RV";
+		
+		
+		
+		
+		
+		
+//		sql += "SELECT RV.* FROM (";
+//		sql += "    SELECT rownum rnum, B.* FROM ("; 
+//		sql += "        SELECT *";
+//		sql += "        FROM review R join picture P on r.users_no = p.users_no";
+//		sql += "		LEFT OUTER JOIN reviewverif RV ON r.review_no = rv.review_no";
+//		sql += "		WHERE r.menu_no=?";
+//		sql += "		and review_report = 'N' "; 
+//		sql += "        ORDER BY r.review_no DESC";
+//		sql += "    ) B";
+//		sql += "    ORDER BY rnum";
+//		sql += " ) RV";
+//		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 //		sql += "SELECT * FROM (";
 //		sql += "    SELECT rownum rnum, B.* FROM ("; 
@@ -122,10 +135,10 @@ public class ReviewDaoImpl implements ReviewDao {
 //		sql += " ) BOARD";
 //		sql += " WHERE rnum BETWEEN ? AND ?";
 
-		System.out.println(sql);
-		System.out.println(paging.getStartNo());
-		System.out.println(paging.getEndNo());
-		System.out.println(paging.getSearch());
+//		System.out.println(sql);
+//		System.out.println(paging.getStartNo());
+//		System.out.println(paging.getEndNo());
+//		System.out.println(paging.getSearch());
 		
 		//결과 저장할 List
 		List<Map<String, Object>> reviewList = new ArrayList<>();
@@ -134,8 +147,8 @@ public class ReviewDaoImpl implements ReviewDao {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
 			ps.setInt(1, menuno);
-			ps.setInt(2, paging.getStartNo());	//페이징 게시글 시작 번호
-			ps.setInt(3, paging.getEndNo());	//페이징 게시글 끝 번호
+//			ps.setInt(2, paging.getStartNo());	//페이징 게시글 시작 번호
+//			ps.setInt(3, paging.getEndNo());	//페이징 게시글 끝 번호
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
 			
