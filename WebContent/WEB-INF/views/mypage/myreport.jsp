@@ -58,13 +58,13 @@
 			<td>
 			<c:choose>
 				<c:when test="${i.report.rptRsn eq 1 }">
-				<h1><%="욕설" %></h1>
+				<h1><%="비속어 사용" %></h1>
 				</c:when>
 				<c:when test="${i.report.rptRsn eq 2 }">
-				<h1><%="비방" %></h1>
+				<h1><%="허위사실 유포" %></h1>
 				</c:when>
 				<c:when test="${i.report.rptRsn eq 3 }">
-				<h1><%="거짓" %></h1>
+				<h1><%="불충분한 정보" %></h1>
 				</c:when>
 				<c:otherwise>
 				<h1><%="기타" %></h1>
@@ -84,9 +84,10 @@
 		        <c:when test="${i.report.rptManage eq 3 }">
 		        <h1><%="계정 7일 정지" %></h1>
 		        </c:when>
-		        <c:otherwise>
+		        <c:when test="${i.report.rptManage eq 4 }">
 		        <h1><%="계정 30일 정지" %></h1>
-		        </c:otherwise>
+		        </c:when>
+
  		 	</c:choose>
 			</td>
 			<td><h1>${i.report.rptYn }</h1></td>
