@@ -40,8 +40,6 @@ public class DetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		
 //		Ajax 로 받은 메뉴넘버
 		int foodByMenuNo = Integer.parseInt(req.getParameter("menuno"));
 		System.out.println(foodByMenuNo);
