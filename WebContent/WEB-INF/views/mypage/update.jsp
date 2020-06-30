@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- header -->
-<c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
-
+<c:import url="/WEB-INF/views/mypage/profile.jsp"></c:import>
 
 <style type="text/css">
 .star-box {
@@ -44,8 +43,10 @@
 }
 
 .updatereview {
-	margin-top: 30px;
+	margin-top: 290px;
 	height: 700px;
+	display: inline-block;
+	width: 72%;
 }
 
 .updatereview hr {
@@ -72,7 +73,7 @@
 $(document).ready(function() {
 	
 	$("#goback").click( function(){
-		$(location).attr('href','/view/mywork');
+ 		$(location).attr('href','/view/mywork');
 	});
 	
 	var idx = 0;
@@ -102,20 +103,18 @@ $(document).ready(function() {
 	
 	ss();	
 
+	function ss() {
+		
+		$(".star").removeClass("on");
+		for(var i=0; i<= ${myWork.star.starScore }*2-1; i++){
+			$(".star").eq(i).addClass("on");
+		};
+	}
 });	
 
-function ss() {
-	
-	$(".star").removeClass("on");
-	for(var i=0; i<= ${myWork.star.starScore }*2-1; i++){
-		$(".star").eq(i).addClass("on");
-	};
-}
 
 </script>
-</head>
 
-<section class="wrapper">
 <div class="updatereview">
 <h1>나의 리뷰 수정</h1>
 <hr>

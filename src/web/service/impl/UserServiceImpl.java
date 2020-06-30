@@ -19,7 +19,6 @@ import web.service.face.UserService;
 public class UserServiceImpl implements UserService {
 
 	private UserDao userDao = new UserDaoImpl();
-	
 	private PictureDao pictureDao = new PictureDaoImpl();
 	
 	@Override
@@ -178,6 +177,8 @@ public class UserServiceImpl implements UserService {
 		user.setUserGrade( grade );
 		user.setFranNo( franno );
 		
+		System.out.println(user);
+		
 		//회원가입 -> UserNo 생성
 		int result = userDao.insert(user);
 		User joinuser = info(user);
@@ -230,8 +231,6 @@ public class UserServiceImpl implements UserService {
 		System.out.println("UserServiceImpl param : " + name + " , " + email);
 		
 		User user = userDao.selectUserByNameAndEmail(name, email);
-	//	System.out.println("UserServiceImpl id : " + user.getUserId());
-		
 		
 		return user;
 	}
@@ -252,11 +251,13 @@ public class UserServiceImpl implements UserService {
 	public void changePw(HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
-		String id = String.valueOf(session.getAttribute("id"));
+		String id = String.valueOf(session.getAttribute("userid"));
+		System.out.println("가져온 아이디 : " + id);
 		
-		String newpw = req.getParameter("pw");
+		String npw = req.getParameter("npw");
+		System.out.println("새 비밀번호 : " + npw);
 		
-		userDao.updatePw(newpw, id);
+		userDao.updatePw(npw, id);
 		
 	}
 

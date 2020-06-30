@@ -30,7 +30,6 @@ public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService = new UserServiceImpl();
-	
 	private FranService franService = new FranServiceImpl();
 	
 	@Override
@@ -99,6 +98,7 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("usergrade", user.getUserGrade());
 			session.setAttribute("usertel", user.getUserTel());
 			session.setAttribute("userno", user.getUserNo());
+			session.setAttribute("fran", user.getFranNo());
 			
 			//방문 횟수 업데이트
 			userService.updateUserCnt(user);
@@ -138,11 +138,9 @@ public class UserLoginController extends HttpServlet {
 			//자바스크립트가 알아들을 수 있도록
 			PrintWriter out = resp.getWriter();
 			out.println( new Gson().toJson(map) );
-			System.out.println("rrr");
 			
 		}
 
 	}
-	
 	
 }

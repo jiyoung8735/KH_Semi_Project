@@ -595,21 +595,21 @@ $(document).ready(function(){
 <label>담당 프랜차이즈</label>
 <select name="franName" id="franName" class="form-control">
     <option value="">선택</option>
-    <option value="회사1-1">회사1-1</option>
-    <option value="회사1-2">회사1-2</option>
-    <option value="회사1-3">회사1-3</option>
-    <option value="회사2-1">회사2-1</option>
-    <option value="회사2-2">회사2-2</option>
-    <option value="회사2-3">회사2-3</option>
-    <option value="회사3-1">회사3-1</option>
-    <option value="회사3-2">회사3-2</option>
-    <option value="회사3-3">회사3-3</option>
-    <option value="회사4-1">회사4-1</option>
-    <option value="회사4-2">회사4-2</option>
-    <option value="회사4-3">회사4-3</option>
-    <option value="회사5-1">회사5-1</option>
-    <option value="회사5-2">회사5-2</option>
-    <option value="회사5-3">회사5-3</option>
+    <option value="교촌치킨">교촌치킨</option>
+    <option value="호식이두마리">호식이두마리</option>
+    <option value="삼풍치킨">삼풍치킨</option>
+    <option value="파파존스">파파존스</option>
+    <option value="미스터피자">미스터피자</option>
+    <option value="피자스쿨">피자스쿨</option>
+    <option value="가장맛있는족발">가장맛있는족발</option>
+    <option value="논현족발">논현족발</option>
+    <option value="돈나라족발">돈나라족발</option>
+    <option value="파파이스">파파이스</option>
+    <option value="버거킹">버거킹</option>
+    <option value="맘스터치">맘스터치</option>
+    <option value="투썸플레이스">투썸플레이스</option>
+    <option value="와플몬스터">와플몬스터</option>
+    <option value="빌리엔젤">빌리엔젤</option>
 </select>
 <div id="franNamev"></div>
 </div>

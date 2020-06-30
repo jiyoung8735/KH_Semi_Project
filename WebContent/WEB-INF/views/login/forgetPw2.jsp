@@ -11,62 +11,67 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	//전역변수
-	var emailsend = false;
-	var checkcode = false;
+	//메일일치 전역변수
 	var checkemail = false;
+	//메일발송 전역변수
+	var emailsend = false;
+	//인증코드 전역변수
+	var checkcode = false;
 	
-	$("#btnSendEmail").click(function(){
-		
+	$("#email").blur(function(){
 		var e = "email=" + $("#email").val();
-		sendRequest("GET", "/checkemail", e, callbackCheckE )
+		sendRequest("GET", "/checkemail", e, callback1 )
 		
-		function callbackCheckE(){
-			console.log("이메일확인 콜백함수 호출");
+		function callback1(){
+			console.log("메일일치 콜백함수 호출");
 			if( httpRequest.readyState == 4 ){
 				if( httpRequest.status == 200){
-					checkEmailResult();
+					result1();
 				} else console.log("AJAX 요청/응답 에러")
 			}
 		}
-		function checkEmailResult(){
-			var checkEResult = JSON.parse(httpRequest.responseText);
-			console.log(checkEResult);
+		function result1(){
+			var resultvar1 = JSON.parse(httpRequest.responseText);
+			checkemail = resultvar1.result;
 			
-			checkemail = checkEResult.result;
-			console.log(checkemail)
-		}
-		
-		if( checkemail == false){
-			$("#emailv").text( "회원번호와 일치하는 이메일이 아닙니다." );
-			$("#emailv").css( "color", 'red' );
-		}
-		if( checkemail == true ){
-			$("#emailv").text( "회원번호와 일치하는 이메일입니다." );
-			$("#emailv").css( "color", 'blue' );
-		
-			var param = "email=" + $("#email").val();
-			sendRequest("GET", "/send", param, callbackEmail);
+			if( checkemail == false) {
+				$("#emailv").text( "회원번호와 일치하는 이메일이 아닙니다." );
+				$("#emailv").css( "color", 'red' );
+			}
+			if( checkemail == true ){
+				$("#emailv").text( "회원번호와 일치하는 이메일입니다." );
+				$("#emailv").css( "color", 'blue' );
+			}
 		}
 	})
 	
-	function callbackEmail(){
+	$("#btnSendEmail").click(function(){
+		
+			if( checkemail == false ){
+				$("#emailv").text( "회원번호와 일치하는 이메일이 아닙니다." );
+				$("#emailv").css( "color", 'red' );
+				return false;
+			}
+
+			var p = "useremail=" + $("#email").val();
+			sendRequest("GET", "/send", p, callback2);
+
+	})
+	function callback2(){
 		console.log("인증이메일 전송 콜백함수 호출");
 		if( httpRequest.readyState == 4 ){
 			if( httpRequest.status == 200){
-				emailSendResult();
+				result2();
 			} else console.log("AJAX 요청/응답 에러")
 		}
 	}
-	function emailSendResult(){
-		var sendresult = JSON.parse(httpRequest.responseText);
-		console.log(sendresult);
-		
-		emailsend = sendresult.result;
+	function result2(){
+		var resultvar2 = JSON.parse(httpRequest.responseText);
+		emailsend = resultvar2.result;
 		
 		if( emailsend == true ){
 			$("#emailv").text( "이메일을 발송하였습니다" );
-			$("#emailv").css( "color", 'red' );
+			$("#emailv").css( "color", 'blue' );
 		} 
 		
 		if( emailsend == false ){
@@ -74,23 +79,23 @@ $(document).ready(function(){
 			$("#emailv").css( "color", 'red' );
 		} 
 	}
+	
 	$("#btnCodeVerify").click(function(){
 		var params = "email=" + $("#email").val() + "&code=" + $("#code").val();
-		sendRequest("POST", "/send", params, callbackCode)
+		sendRequest("POST", "/send", params, callback3)
 	});
-	function callbackCode(){
+	
+	function callback3(){
 		console.log("코드인증 콜백함수 호출");
 		if( httpRequest.readyState == 4 ){
 			if( httpRequest.status == 200){
-				codeVerifyResult();
+				result3();
 			} else console.log("AJAX 요청/응답 에러")
 		}
 	}
-	function codeVerifyResult(){
-		var codeVerifyResult = JSON.parse(httpRequest.responseText);
-		console.log(codeVerifyResult);
-		
-		checkcode = codeVerifyResult.result;
+	function result3(){
+		var resultvar3 = JSON.parse(httpRequest.responseText);
+		checkcode = resultvar3.result;
 		
 		if( checkcode == true ){
 			$("#codev").text("인증에 성공하였습니다.")
@@ -122,7 +127,7 @@ $(document).ready(function(){
 <div style="width: 500px; margin:0 auto; height: 700px;">
 <h1>비밀번호 찾기</h1>
 <hr>
-<h5>이메일로 본인인증이 필요합니다.</h5>
+<h5 style="color: red">이메일로 본인인증이 필요합니다. 회원가입시 등록한 이메일을 입력하세요.</h5>
 	<div class="form-group">
 		<label>이메일</label><br>
 		<input type="email" id="email" name="email" class="form-control" required="required" style="width: 325px; display:inline-block; margin-right: 20px;"/>

@@ -1,48 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- jQuery 라이브러리  -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:import url="/WEB-INF/views/mypage/profile.jsp"></c:import>     
+    
+<style type="text/css">
+.changepw_container{
+	margin-top: 290px;
+	height: 700px;
+	display: inline-block;
+	width: 72%;
+}
+
+.changepw_container > h1 {	
+	margin-bottom: 15px;
+}
+.changepw_container > hr {	
+	margin-bottom: 15px;
+}
+.changepw_container input {	
+	width: 200px;
+	height: 30px;
+	margin-top: 20px;
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("#goback").click( function(){
-		history.go(-1);
-	});
+	$("#pwc").blur(function(){
+		if( $("#pw").val() != $("#pwc").val() ){
+			$("#pwv").text("비밀번호 재확인 실패")
+			$("#pwv").css("color", "red")
+		}
+		if( $("#pw").val() == $("#pwc").val() ){
+			$("#pwv").text("비밀번호 재확인 성공!")
+			$("#pwv").css("color", "blue")
+		}
+	})
 	
-});
-
+	$("#btnConfirm").click(function(){
+		if( $("#pw").val() != $("#pwc").val() ){
+			$("#pwv").text("비밀번호 재확인 실패")
+			$("#pwv").css("color", "red")
+			return false;
+		}
+		if( $("#pw").val() == $("#pwc").val() ){
+			$("#pwv").text("비밀번호 재확인 성공!")
+			$("#pwv").css("color", "blue")
+		}
+		
+	})
+})
 </script>
-</head>
-<div style="width: 800px; margin:0 auto;" >
+<div class="changepw_container" >
 <h1>비밀번호 변경</h1>
 <hr>
 <form action="/security" method="POST">
-	<div class="form-group">
-		<input type="text" name="pwC" class="form-control" required="required" placeholder="현재 비밀번호"/>
-	</div>
-	<div class="form-group">
-		<input type="text" name="pwN" class="form-control" required="required" placeholder="새 비밀번호"/>
-	</div>
-	
-	<div class="form-group">
-		<input type="text" name="pwConfirm" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
-	</div>
-	
-	<div class="form-group">
-		<input type="submit" class="form-control" value="확인" style="width: 100px; background-color:#ccc;"/>
-	</div>
+	<input type="text" name="npw" id="pw" class="form-control" required="required" placeholder="새 비밀번호"/><br>
+	<input type="text" name="npwc" id="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/><br>
+	<input type="submit" id="btnConfirm" value="확인" style="background-color:#ccc;"/>
+	<div id="pwv"></div>
 </form>
-<br><br>
-<button id="goback" style="width:100px; height: 50px; background-color: blue;">뒤로가기</button>
-<br>
-
-
 </div>
-</html>
+</section>
+
+<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>	

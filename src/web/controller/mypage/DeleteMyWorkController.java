@@ -25,6 +25,8 @@ public class DeleteMyWorkController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		System.out.println("호출?");
+		
 		//별점 , 리뷰 삭제 (별점 먼저 삭제해야함!)
 		starService.deleteStar(req);
 		reviewService.deleteReview(req);

@@ -126,7 +126,7 @@ public class MailController extends HttpServlet {
 		
 		//전달값 꺼내기
 		String code = req.getParameter("code");
-		String email = req.getParameter("useremail");
+		String email = req.getParameter("email");
 		
 		//인증코드 비교
 		boolean result = mailauthService.verifyCode(code, email);

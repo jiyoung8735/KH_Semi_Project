@@ -1,7 +1,10 @@
 package web.controller.mypage;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,24 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import web.dto.Picture;
 import web.service.face.PictureService;
-import web.service.face.UserService;
+import web.service.face.ReportService;
 import web.service.impl.PictureServiceImpl;
-import web.service.impl.UserServiceImpl;
+import web.service.impl.ReportServiceImpl;
 
 
-@WebServlet("/leavesite")
-public class LeaveSiteController extends HttpServlet {
+@WebServlet("/view/myreport")
+public class ViewMyReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UserService userService = new UserServiceImpl();
+	private ReportService reportService = new ReportServiceImpl();
 	private PictureService pictureService = new PictureServiceImpl();
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		//----------프로필 섹션 정보 불러오기------------------------
 		// 프로필 사진
 		Picture picture = pictureService.info( req );
@@ -45,30 +49,19 @@ public class LeaveSiteController extends HttpServlet {
 		else if( usergrade == 4) { grade = "VVIP"; }
 		else { grade = null; }
 		//-----------------------------------------------------------
+	
+		
+		// Report 목록 받기
+		List<Map<String, Object>> mapMyreport = new ArrayList<>();
+		mapMyreport = reportService.getListOfReport(req);
 		
 		// 전달받은 데이터 request 컨텍스트에 저장하기
+		req.setAttribute("Myreport", mapMyreport);
 		req.setAttribute("picture", picture );
 		req.setAttribute("grade", grade);
 		
-		req.getRequestDispatcher("/WEB-INF/views/mypage/leavesite.jsp").forward(req, resp);
-	
+		//포워딩
+		req.getRequestDispatcher("/WEB-INF/views/mypage/myreport.jsp").forward(req, resp);
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		//1.사이트탈퇴
-		userService.leaveSite(req);
-
-		//2.세션 정보 삭제
-		HttpSession session = req.getSession();
-		session.invalidate();
-		
-		//2.메인페이지로 리다이렉트
-		resp.sendRedirect("/main");
-	
-	}
-	
 	
 }

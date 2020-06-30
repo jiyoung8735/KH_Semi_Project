@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:import url="/WEB-INF/views/mypage/profile.jsp"></c:import>     
     
 <style type="text/css">
 .personalInfo_container{
-	margin-top: 30px;
-	margin-left: 390px;
-	width: 610px;
-	height: 500px;
+	margin-top: 290px;
+	height: 700px;
+	display: inline-block;
+	width: 72%;
 }
 
 .personalInfo_container > h1{
@@ -40,10 +44,36 @@
 		<table>
 		<tr><th><h3>성명</h3></th><td><h3 style="font-weight: normal;">${username }</h3></td></tr> 
 		<tr><th><h3>닉네임</h3></th><td><h3 style="font-weight: normal;">${usernick }</h3></td></tr> 
-		<tr><th><h3>성별</h3></th><td><h3 style="font-weight: normal;">${usergender }</h3></td></tr> 
+		<tr><th><h3>성별</h3></th>
+		<td>
+		<c:choose>
+			<c:when test="${usergender eq 'm' }">
+			<h3 style="font-weight: normal;"><%="남자" %></h3>
+			</c:when>
+			<c:when test="${usergender eq 'f' }">
+			<h3 style="font-weight: normal;"><%="여자" %></h3>
+			</c:when>
+		</c:choose> 
+		</td>
+		</tr>
 		<tr><th><h3>생년월일</h3></th><td><h3 style="font-weight: normal;">${userbirth }</h3></td></tr> 
 		<tr><th><h3>이메일</h3></th><td><h3 style="font-weight: normal;">${useremail }</h3></td></tr> 
 		<tr><th><h3>전화번호</h3></th><td><h3 style="font-weight: normal;">${usertel }</h3></td></tr> 
-		<tr><th><h3>관심프랜차이즈</h3></th><td><h3 style="font-weight: normal;">${usertel }</h3></td></tr> 
+		<tr><th><h3>관심프랜차이즈</h3></th>
+		<td>
+			<c:choose>
+			<c:when test="${not empty fran}">
+			<h3 style="font-weight: normal;">${fran }</h3>
+			</c:when>
+			<c:when test="${empty fran }">
+			<h3 style="font-weight: normal;"><%="-" %></h3>
+			</c:when>
+		</c:choose>
+		</td>
+		</tr> 
 		</table>
 	</div>
+	
+</section>
+
+<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>	

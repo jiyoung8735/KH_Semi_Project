@@ -9,32 +9,35 @@
 <script type="text/javascript" src="/resources/js/httpRequest.js"></script>
 
 <script type="text/javascript">
-	//전역변수
+	
+	//이름메일 일치변수
+	var emailname = false;
+	//메일발송 전역변수
 	var emailSend = false;
+	//코드인증 전역변수
 	var codeCheck = false;
+
 $(document).ready(function(){
 	
-	
-	//이메일 인증
+	//메일발송
 	$("#btnSendEmail").click(function(){
-		console.log("btnSendEmail")
-		var param = "email=" + $("#email").val();
-		console.log(param);
-		sendRequest("GET", "/send", param, callbackEmail);
+		
+		var p = "useremail=" + $("#email").val();
+		sendRequest("GET", "/send", p, callback1);
+
 	});
-	function callbackEmail(){
+	function callback1(){
 		console.log("이메일 발송 콜백함수 호출");
 		if( httpRequest.readyState == 4 ){
 			if( httpRequest.status == 200){
-				emailSendResult();
+				result1();
 			} else console.log("AJAX 요청/응답 에러")
 		}
 	}
-	function emailSendResult(){
-		var emailSendResult = JSON.parse(httpRequest.responseText);
-		console.log(emailSendResult);
+	function result1(){
+		var resultvar1 = JSON.parse(httpRequest.responseText);
 		
-		emailsend = emailSendResult.result
+		emailsend = resultvar1.result
 		
 		if( emailsend == true ){
 			$("#emailv").text( "이메일을 발송하였습니다" );
@@ -46,26 +49,25 @@ $(document).ready(function(){
 			$("#emailv").css( "color", 'red' );
 		} 
 	}
-	//인증번호 확인
+	//코드인증
 	$("#btnCodeVerify").click(function(){
 		console.log("btnCodeVerify");
-		var params = "email=" + $("#email").val() + "&code=" + $("#code").val();
-		console.log(params);
-		sendRequest("POST", "/send", params, callbackCode);
+		var j = "email=" + $("#email").val() + "&code=" + $("#code").val();
+		console.log(j);
+		sendRequest("POST", "/send", j, callback2);
 	});
-	function callbackCode(){
+	function callback2(){
 		console.log("인증코드 확인 콜백함수 호출");
 		if( httpRequest.readyState == 4){
 			if( httpRequest.status == 200){
-				codeCheckResult();
+				result2();
 			}else console.log("AJAX 요청/응답 에러")
 		}
 	}
-	function codeCheckResult(){
-		var codeCheckResult = JSON.parse(httpRequest.responseText);
-		console.log(codeCheckResult);
+	function result2(){
+		var resultvar2 = JSON.parse(httpRequest.responseText);
 		
-		codeCheck = codeCheckResult.result;
+		codeCheck = resultvar2.result;
 		
 		if( codeCheck == true ){
 			$("#codev").text("코드 인증에 성공하였습니다.");
@@ -79,40 +81,35 @@ $(document).ready(function(){
 			$("#codev").css("color", 'red');
 		}
 	}
+	
+	//이름메일 일치
 	function searchId(){
 		console.log("search Id...");
-		var params = "name=" + $("#name").val() + "&email=" + $("#email").val();
-		console.log(params);
-		sendRequest("GET", "/searchid", params, callbackId);
+		var s = "name=" + $("#name").val() + "&email=" + $("#email").val();
+		sendRequest("GET", "/searchid", s, callback3);
 	}
-	function callbackId(){
+	
+	function callback3(){
 		console.log("아이디조회 확인 콜백함수 호출");
 		if( httpRequest.readyState == 4){
 			if( httpRequest.status == 200){
-				idSearchResult();
+				result3();
 			}else console.log("AJAX 요청/응답 에러")
 		}
 	}
-	function idSearchResult (){
-		var idSearchResult = JSON.parse(httpRequest.responseText);
-		console.log(idSearchResult);
+	function result3(){
+		var resultvar3 = JSON.parse(httpRequest.responseText);
 		
-		if( idSearchResult != null ){
-			console.log("dd")
-			$("#showid").text("아이디 : " + idSearchResult)
+		if( resultvar3 != null ){
+			$("#showid").text("아이디 : " + resultvar3 )
 			$("#showid").css("color", "blue")
 		}else{
-			console.log("ss")
 			$("#showid").text("조회하신 아이디가 없습니다.")
 			$("#showid").css("color", "blue")
 		}
 	}
-	
 });
-	// 아이디 조회
-//	if( codeCheck == true ){
-//		searchId();
-//	}
+
 </script>
 
 <div style="width: 500px; margin:0 auto; height: 700px;">
@@ -139,7 +136,7 @@ $(document).ready(function(){
 <!-- 아이디 조회 (AJAX)  -->
 <div id="showid"></div>
 <hr>
-<button class="btn btn-primary btn-block"><a href="/login">로그인하러 가기</a></button>
+<button class="btn btn-default btn-block"><a href="/login">로그인하러 가기 >></a></button>
 <hr>
 
 <div style="text-align: center;">

@@ -54,7 +54,7 @@ function loginResult() {
 	}
 	
 	//정지중인 계정
-	if(loginResult.report ){
+	if( loginResult.report ){
 		result.innerText = "계정 정지중입니다."
 		result.setAttribute("style", "color:red")
 	}

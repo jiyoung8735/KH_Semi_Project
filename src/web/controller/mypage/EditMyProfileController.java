@@ -42,7 +42,6 @@ public class EditMyProfileController extends HttpServlet {
 		
 		// 1.프로필 사진정보
 		picture = pictureService.info( req );
-		System.out.println(picture);
 		
 		// 2.회원 등급 (int -> String명)
 		String param = String.valueOf(session.getAttribute("usergrade"));
@@ -83,8 +82,6 @@ public class EditMyProfileController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
 		
 		// 인코딩 설정
 		req.setCharacterEncoding("utf-8");
