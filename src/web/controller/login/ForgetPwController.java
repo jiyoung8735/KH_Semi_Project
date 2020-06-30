@@ -24,7 +24,6 @@ public class ForgetPwController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println(req.getParameter("id"));
 		String id = req.getParameter("id");
 		
 		HttpSession session = req.getSession();

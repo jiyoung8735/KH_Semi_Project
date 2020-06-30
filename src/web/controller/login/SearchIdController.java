@@ -46,7 +46,7 @@ public class SearchIdController extends HttpServlet {
 		resp.setContentType("application/json;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		
-		if( user.getUserId() != null ) {
+		if( user.getUserId() != null && user.getUserId() != "" ) {
 			out.println( new Gson().toJson(user.getUserId()) );
 		}else {
 			out.println( new Gson().toJson(user.getUserId()) );

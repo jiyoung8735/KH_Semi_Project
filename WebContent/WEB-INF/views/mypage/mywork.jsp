@@ -21,7 +21,7 @@
     height: 30px;
 
 	/* 투명한 별 표현 */
-	background-image: url(/resources/image/empty.png);
+	background-image: url(https://image.flaticon.com/icons/svg/159/159772.svg);
 	background-repeat: no-repeat;
 }
 
@@ -39,7 +39,7 @@
 
 .on {
 	/* 채워진 별로 이미지 변경 */
-	background-image: url(/resources/image/star.png);
+	background-image: url(https://image.flaticon.com/icons/svg/149/149763.svg);
 }
 
 .mywork {
@@ -108,14 +108,14 @@ $(document).ready(function() {
 	<h1>리뷰 관리</h1>
 	<hr>
 	<table>
-		<tr style="background-color: #faf8f8;">
-			<th style="width: 15%;"><h3>메뉴명</h3></th>
-			<th style="width: 10%;"><h3>별명</h3></th>
-			<th style="width: 20%;"><h3>별점</h3></th>
-			<th style="width: 13%;"><h3>별점작성일</h3></th>
-			<th style="width: 20%;"><h3>리뷰</h3></th>
-			<th style="width: 13%;"><h3>리뷰작성일</h3></th>
-			<th style="width: 14%;"><h3>관리</h3></th>
+		<tr>
+			<th style="width: 10%;"><h4>메뉴</h4></th>
+			<th style="width: 10%;"><h4>별명</h4></th>
+			<th style="width: 20%;"><h4>별점</h4></th>
+			<th style="width: 20%;"><h4>리뷰</h4></th>
+			<th style="width: 20%;"><h4>작성일</h4></th>
+			<th style="width: 15%;"><h4>리뷰작성일</h4></th>
+			<th style="width: 20%;"><h4>수정/삭제</h4></th>
 	 	<c:forEach var="i" items="${myworkList }" begin="0" end="${fn:length(myworkList)}"> 
 		<tr>
 			<td><h4><span style="background-color: pink;">${i.menu.menuName }</span></h4></td>
@@ -134,8 +134,8 @@ $(document).ready(function() {
 			<span class="star star_right"></span></h4>
 			</div>
 			</td>
-			<td><h4>${i.star.starDate }</h4></td>
 			<td><h4>${i.review.reviewContent }</h4></td>
+			<td><h4>${i.star.starDate }</h4></td>
 			<td><h4>${i.review.reviewDate }</h4></td>
 			<td><button><h3><a href="/update/mywork?menuNo=${i.menu.menuNo }">수정</a><h3></button> 
 				<button class="delete_btn"><h3>삭제</h3></button>

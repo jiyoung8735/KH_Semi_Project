@@ -39,7 +39,7 @@ $(document).ready(function(){
 		}
 	}
 	$("#btnNext").click(function(){
-		console.log("ss")
+		
 		if( searchId == null ){
 			console.log("test")
 			$("#idv").text("비밀번호를 찾을 아이디를 입력하세요.");

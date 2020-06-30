@@ -21,7 +21,7 @@
     height: 55px;
 
 	/* 투명한 별 표현 */
-	background-image: url(/resources/image/empty.png);
+	background-image: url(https://image.flaticon.com/icons/svg/159/159772.svg);
 	background-repeat: no-repeat;
 }
 
@@ -39,7 +39,7 @@
 
 .on {
 	/* 채워진 별로 이미지 변경 */
-	background-image: url(/resources/image/star.png);
+	background-image: url(https://image.flaticon.com/icons/svg/149/149763.svg);
 }
 
 .updatereview {

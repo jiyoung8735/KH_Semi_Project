@@ -228,7 +228,7 @@ public class UserServiceImpl implements UserService {
 		
 		String name = req.getParameter("name");
 		String email = req.getParameter("useremail");
-		System.out.println("UserServiceImpl param : " + name + " , " + email);
+		System.out.println("Search Id... : " + name + " , " + email);
 		
 		User user = userDao.selectUserByNameAndEmail(name, email);
 		

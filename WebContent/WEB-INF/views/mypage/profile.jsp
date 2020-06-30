@@ -76,13 +76,14 @@ $(document).ready(function(){
 <style type="text/css">
 
 .profile_container {
-	width: 26%;
+	width: 20%;
    	height: 450px;
 
  	display: inline-block; 
 	float: left;
 
    	margin-top: 100px;
+   	margin-right: 30px;
 }
 
 .img_upload {
@@ -95,12 +96,14 @@ $(document).ready(function(){
 }
 
 .grade_container {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .grade_container > div {
-	width: 100%;
+	width: 80%;
 	height: 30px;
+	border: 1px solid #2AC1BC;
+	text-align: center;
 }
 
 .grade_menu {
@@ -180,7 +183,7 @@ $(document).ready(function(){
 					<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
 				</c:if>
 				</div>
-				<div class="grade_menu">
+				<div class="menu">
 				<div>
 				<h3>나의 활동</h3>
 					<ul style="list-style: none;">

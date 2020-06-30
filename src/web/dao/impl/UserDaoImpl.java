@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		User result = null;
+		User result = new User();
 		
 		String sql = "SELECT * FROM USERS WHERE USERS_ID = ?";
 		
@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao {
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
-				result = new User();
 				result.setUserNo( rs.getInt("USERS_NO"));	
 				result.setUserId( rs.getString("USERS_ID")); 
 				result.setUserPw( rs.getString("USERS_PW"));
