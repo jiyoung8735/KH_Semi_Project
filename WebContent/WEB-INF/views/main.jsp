@@ -40,4 +40,24 @@ $('#mo_close').on("click", function() {
 $('#mo_overlay').on("click", function() {
    $('#mo_wrapper').addClass("mo_hidden");
 });
+
+
+function evalDetail(menuno) {
+    $.ajax({
+        type: "POST"
+        , url: "/eval/detail"
+        , data: {
+           menuno : menuno
+        }
+        , dataType: "html"
+        , success: function(result) {
+           console.log("AJAX 성공")
+           console.log(result)
+           $("#mo_wrapper").html(result);
+        }
+        , error: function() {
+           console.log("AJAX 실패")
+        }
+     });
+}
 </script>

@@ -1,57 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   
+	pageEncoding="UTF-8"%>
+
 <style type="text/css">
 .star-box {
-   /* 별과 별 사이 공백 제거 */
-    font-size: 0;
+	/* 별과 별 사이 공백 제거 */
+	font-size: 0;
 }
 
 .star {
-   /* width,height 적용가능하도록 변경 */
-   display: inline-block;
-
-   /* 별이 표현되는 영역 크기 */
-   width: 30px;
-    height: 60px;
-
-   /* 투명한 별 표현 */
-   background-image: url(https://image.flaticon.com/icons/svg/159/159772.svg);
-   background-repeat: no-repeat;
-   background-size: 200%;
+	/* width,height 적용가능하도록 변경 */
+	display: inline-block;
+	/* 별이 표현되는 영역 크기 */
+	width: 30px;
+	height: 60px;
+	/* 투명한 별 표현 */
+	background-image:
+		url(https://image.flaticon.com/icons/svg/159/159772.svg);
+	background-repeat: no-repeat;
+	background-size: 200%;
 }
 
 .star_left {
-   /* 왼쪽 별 */
-   background-position: 0 0;
+	/* 왼쪽 별 */
+	background-position: 0 0;
 }
 
 .star_right {
-   /* 오른쪽 별 */
-   background-position: 100% 0;
+	/* 오른쪽 별 */
+	background-position: 100% 0;
 }
 
 .on {
-   /* 채워진 별로 이미지 변경 */
-   background-image: url(https://image.flaticon.com/icons/svg/149/149763.svg);
+	/* 채워진 별로 이미지 변경 */
+	background-image:
+		url(https://image.flaticon.com/icons/svg/149/149763.svg);
 }
-.h2only{
-/* width:130px; */
-/* margin : auto; */
+
+.h2only {
+	/* width:130px; */
+	/* margin : auto; */
+	
 }
-.star-value{
-width:50px;
-margin : auto;
-font-size: 20px;
+
+.star-value {
+	width: 50px;
+	margin: auto;
+	font-size: 20px;
 }
-.btndiv{
-/* text-align: center; */
+
+.btndiv {
+	/* text-align: center; */
 	margin-top: 10px;
 }
-
 </style>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
 
@@ -134,7 +138,7 @@ $(document).ready(function() {
             }
          });
 
-	      evalDetail(${menuno })
+// 	      evalDetail(${menuno })
 
        
        $.ajax({
@@ -175,34 +179,30 @@ function showStarValue(val) {
 
 </head>
 <body>
-<div id="mo_right">
-<div class="star-box" style="width: 1000px;">
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-</div>
+	<div id="mo_right">
+		<div class="star-box" style="width: 1000px;">
+			<span class="star star_left"></span> <span class="star star_right"></span>
+			<span class="star star_left"></span> <span class="star star_right"></span>
+			<span class="star star_left"></span> <span class="star star_right"></span>
+			<span class="star star_left"></span> <span class="star star_right"></span>
+			<span class="star star_left"></span> <span class="star star_right"></span>
+		</div>
 
-<div class="star-value" id="star_div" style="display: none;">0</div>
-<div class = "h2only" style="margin: 10px 0px;">
-<H2>한줄평 작성</H2>
-</div>
-<input type = "text" id="review" name = "review" size = "45" style="height: 50px; width:400px;"/><br>
-<input type="hidden" id="starscore" name = "starscore"/>
-<input type="hidden" id="star_food" name = "food" value="${menuno }"/>
+		<div class="star-value" id="star_div" style="display: none;">0</div>
+		<div class="h2only" style="margin: 10px 0px;">
+			<H2>한줄평 작성</H2>
+		</div>
+		<input type="text" id="review" name="review" size="45"
+			style="height: 50px; width: 400px;" /><br> <input type="hidden"
+			id="starscore" name="starscore" /> <input type="hidden"
+			id="star_food" name="food" value="${menuno }" />
 
-<div class = "btndiv">
-<input type = "button" value = "작성완료" id="submit_btn" />
-</div>
-</div>
+		<div class="btndiv">
+			<input type="button" value="작성완료" id="submit_btn" />
+		</div>
+	</div>
 
-   <script type="text/javascript">
+	<script type="text/javascript">
    $(".ajaxbutton").click(function() {
       $("#mo_image").css({
          "backgroundImage" : "url(/upload/${image.imgServer })",
@@ -228,5 +228,3 @@ function showStarValue(val) {
    });
    
 </script>
-   
-   

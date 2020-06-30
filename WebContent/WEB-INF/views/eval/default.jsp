@@ -27,12 +27,12 @@
 <div>
 
 <div>
-		<ul class="sub_submenu">
+      <ul class="sub_submenu">
             <li class="submenu"><input type="button" class="filter_btn_detail" value="평점순" id="sub_filter_1" /></li>
             <li class="submenu"><input type="button" class="filter_btn_detail" value="리뷰순" id="sub_filter_2" /></li>
             <li class="submenu"><input type="button" class="filter_btn_detail" value="가격순" id="sub_filter_3" /></li>
             <li class="submenu"><input type="button" class="filter_btn_detail" value="출시일순" id="sub_filter_4" /></li>
-		</ul>
+      </ul>
 </div>
 
 </div>
@@ -171,7 +171,7 @@ $(".hor").click(function() {
             console.log("AJAX 실패")
          }
       });
-// 	evalDetail($(this).attr("value"))
+//    evalDetail($(this).attr("value"))
 });
 
 function evalDetail(menuno) {
@@ -195,9 +195,9 @@ function evalDetail(menuno) {
 // $("#sub_filter").hide();
 
 // $("input[id^=food_]").click(function() {
-// 	$("#sub_filter").show();
+//    $("#sub_filter").show();
 // });
-    	
+       
  $("#sub").click(function(){
      $(".sub_submenu").toggle('slow');
  });
