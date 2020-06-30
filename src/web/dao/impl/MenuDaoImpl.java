@@ -231,7 +231,7 @@ public class MenuDaoImpl implements MenuDao{
             menu.setMenuStat(rs.getString("MENU_STAT"));
             menu.setMenuBlind(rs.getString("MENU_BLIND"));
             menu.setFranNo(rs.getInt("FRAN_NO"));
-            
+
             MenuList.add(menu);
          }
       } catch (SQLException e) {
@@ -270,6 +270,8 @@ public class MenuDaoImpl implements MenuDao{
             menu.setMenuStat(rs.getString("MENU_STAT"));
             menu.setMenuBlind(rs.getString("MENU_BLIND"));
             menu.setFranNo(rs.getInt("FRAN_NO"));
+            
+            menu.setMenuInfo( menu.getMenuInfo().replace("\"", "\\\""));
          }
       } catch (SQLException e) {
          e.printStackTrace();

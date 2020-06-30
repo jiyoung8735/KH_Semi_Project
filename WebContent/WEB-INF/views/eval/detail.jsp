@@ -39,6 +39,64 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+.star-box {
+	/* 별과 별 사이 공백 제거 */
+	font-size: 0;
+}
+.star {
+	/* width,height 적용가능하도록 변경 */
+	display: inline-block;
+	/* 별이 표현되는 영역 크기 */
+	width: 37px;
+	height: 80px;
+	/* 투명한 별 표현 */
+	background-image:
+		url(https://image.flaticon.com/icons/svg/159/159772.svg);
+	background-repeat: no-repeat;
+	background-size: 200%;
+}
+.star_left {
+	/* 왼쪽 별 */
+	background-position: 0 0;
+}
+.star_right {
+	/* 오른쪽 별 */
+	background-position: 100% 0;
+}
+.on {
+	/* 채워진 별로 이미지 변경 */
+	background-image:
+		url(https://image.flaticon.com/icons/svg/149/149763.svg);
+}
+.star-value {
+	width: 50px;
+	/* 	margin-left: 550px; */
+	font-size: 20px;
+}
+#ajax_star_comment {
+	background: steelblue;
+	color: wheat;
+	width: 128px;
+	height: 30px;
+	border-radius: 30px;
+}
+#goodbtn {
+	all: unset;
+	cursor: pointer;
+}
+#badbtnn {
+	all: unset;
+	cursor: pointer;
+}
+#mo_review div.userPic {
+	display: inline-block;
+	background-size: cover;
+	background-position-x: center;
+	width: 105px; height : 105px; border-radius : 50%;
+	margin: 10%;
+	height: 105px;
+	border-radius: 50%;
+}
 </style>
 
 <script type="text/javascript">
@@ -53,7 +111,148 @@ $(document).ready(function() {
 	for (var i = 0; i <= idx; i++) {
 		$(".star").eq(i).addClass("on");
 	}
-})
+	
+	$("#map_btn").click(function() {
+	      $.ajax({
+	         type: "GET"
+	         , url: "/eval/map"
+	         , data: {
+	        	menuno: ${menuno },
+	            where: $('#map_in').val()
+	         }
+	         , dataType: "html"
+	         , success: function(result) {
+	            console.log("AJAX 성공")
+	            console.log(result)
+	            $(".mo_content").html(result);
+	            
+	         }
+	         , error: function() {
+	            console.log("AJAX 실패")
+	         }
+	      });
+	});
+	
+	 $(".ajaxbutton").click(function() {
+			if ( $(revcnt).val() == 1) {
+	        	 alert("이미 한줄평을 쓰셨습니다 한줄평 수정은 마이페이지에서 가능합니다");
+	         } else {
+	        	 $("#mo_image").css({
+	       	      "background-image" : "url(/upload/${image.imgServer })",
+	       	      "background-size" : "cover",
+	       	      "background-position-x" : "center"
+	       	   }); 
+	       	         $.ajax({
+	       	            type: "get"
+	       	            , url: "/eval/detail/insert"
+	       	            , data: {
+	       	               menuno: ${menuno },
+	       	               revcnt:${revcnt }
+	       	            }
+	       	            , dataType: "html"
+	       	            , success: function(result) {
+	       	               console.log("AJAX 성공")
+	       	               console.log(result)
+	       	               $("#mo_right").html(result);
+	       	            }
+	       	            , error: function() {
+	       	               console.log("AJAX 실패")
+	       	            }
+	       	         });
+	       	         
+	       	         
+	         }
+			
+	   });
+
+
+	$(".ajax_report").click(function(){
+	 $.ajax({
+	       type: "get"
+	       , url: "/eval/detail/report"
+	       , data: {
+	             menuno : ${menuno },
+	             reviewno : $(this).val(),
+	             targetno : $(this).attr("target"),
+	             content : $(this).attr("content")
+	       }
+	       , dataType: "html"
+	       , success: function(result) {
+	          console.log("AJAX 성공")
+	          console.log(result)
+	          $("#mo_right").html(result);
+	       }
+	       , error: function() {
+	          console.log("AJAX 실패")
+	       }
+	    });
+	});
+	
+	var goodbad = "";
+	$(".goodbtn").click(function() {
+		goodbad = "good";
+		console.log(goodbad);
+		console.log();
+		send_goodbad(this, goodbad);
+	});
+
+	$(".badbtnn").click(function() {
+		goodbad = "bad";
+		console.log(goodbad);
+		
+		send_goodbad(this, goodbad);
+	});
+	
+	$('#mo_close').on("click", function() {
+		$('#mo_wrapper').addClass("mo_hidden");
+	});
+	$('#mo_overlay').on("click", function() {
+		$('#mo_wrapper').addClass("mo_hidden");
+	});
+	
+	$("#mo_image").css({
+		"background-image" : "url(/upload/${image.imgServer })",
+		"background-size" : "cover",
+		"background-position-x" : "center"
+	});
+
+	$("#mo_expl").html("<p>가격 : ${menu.menuCost} 원</p> <p>출시일 : ${menu.menuDate}</p> <p>메뉴정보 : ${menu.menuInfo}</p>");
+	
+}) // document on ready 종료
+
+function send_goodbad(th, goodbad) {
+	
+	var state = $(th).parents("tr").attr("data-good_bad");
+	
+	if( state == 0 ) {
+		
+		$.ajax({
+	       type: "get"
+	       , url: "/eval/detail/goodbad"
+	       , data: {
+	    	   reviewno: $(th).parents("tr").attr("data-reviewno"),
+	    	   goodbad: goodbad	
+	       }
+	       , dataType: "html"
+	       , success: function(result) {
+	          console.log("AJAX 성공")
+	       }
+	       , error: function() {
+	          console.log("AJAX 실패")
+	       }
+	    });
+		
+		evalDetail(${menuno });
+
+		
+		
+	} else if( state == 1 ) {
+		alert("이미 좋아요를 누르셨습니다");
+		
+	} else if( state == 2 ) {
+		alert("이미 싫어요를 누르셨습니다");
+	}
+}
 </script>
 
 
@@ -61,18 +260,6 @@ $(document).ready(function() {
 
 
 
-
-<style type="text/css">
-#mo_review div.userPic {
-	display: inline-block;
-	background-size: cover;
-	background-position-x: center;
-	width: 105px; height : 105px; border-radius : 50%;
-	margin: 10%;
-	height: 105px;
-	border-radius: 50%;
-}
-</style>
 
 <script type="text/javascript">
 // $(".goodbtn").click(function() {
@@ -138,67 +325,6 @@ $(document).ready(function() {
 
 
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-var goodbad = "";
-$(".goodbtn").click(function() {
-	goodbad = "good";
-	console.log(goodbad);
-	console.log();
-	send_goodbad(this, goodbad);
-});
-
-$(".badbtnn").click(function() {
-	goodbad = "bad";
-	console.log(goodbad);
-	
-	send_goodbad(this, goodbad);
-});
-
-})
-
-
-function send_goodbad(th, goodbad) {
-	
-	var state = $(th).parents("tr").attr("data-good_bad");
-	
-	if( state == 0 ) {
-		
-		$.ajax({
-	       type: "get"
-	       , url: "/eval/detail/goodbad"
-	       , data: {
-	    	   reviewno: $(th).parents("tr").attr("data-reviewno"),
-	    	   goodbad: goodbad	
-	       }
-	       , dataType: "html"
-	       , success: function(result) {
-	          console.log("AJAX 성공")
-	       }
-	       , error: function() {
-	          console.log("AJAX 실패")
-	       }
-	    });
- 	      evalDetail(${menuno })
-
-		
-		
-	} else if( state == 1 ) {
-		alert("이미 좋아요를 누르셨습니다");
-		
-	} else if( state == 2 ) {
-		alert("이미 싫어요를 누르셨습니다");
-	}
-}
-</script>
-
-
-
-
-
-
-
 <div class="mo_overlay" id="mo_overlay"></div>
 <div class="mo_content">
 	<div id="mo_left">
@@ -206,7 +332,7 @@ function send_goodbad(th, goodbad) {
 		<div class="mo_detail mo_detail_blank"></div>
 			<c:if test="${login }">
 				<div class="mo_detail" id="mo_expl"
-					style="background-color: tomato; height: 18%;">설명</div>
+					style="background-color: tomato; height: 18%;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
 				<div class="mo_detail" style="background-color: red; height: 6%;">
 					<input type="text" placeholder="지역명 입력" id="map_in" />
 					<button id="map_btn">지점검색</button>
@@ -214,7 +340,7 @@ function send_goodbad(th, goodbad) {
 			</c:if>
 			<c:if test="${!login or empty login }">
 				<div class="mo_detail" id="mo_expl"
-					style="background-color: tomato; height: 24%;">설명</div>
+					style="background-color: tomato; height: 24%;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
 			</c:if>
 		<div></div>
 	</div>
@@ -231,7 +357,7 @@ function send_goodbad(th, goodbad) {
 			</div>
 			<%-- 						<div class="star-value">${staravg }</div> --%>
 			<c:if test="${login }">
-				<button class="ajaxbutton" id="ajax_star_comment">별점&한줄평 등록</button>
+				<button class="ajaxbutton" id="ajax_star_comment">별점 및 한줄평 등록</button>
 			</c:if>
 			<c:if test="${!login or empty login }">
 				<div>로그인 하시면 평가 등록 등 추가기능을 사용하실 수 있습니다.</div>
@@ -243,15 +369,6 @@ function send_goodbad(th, goodbad) {
 		</div>
 
 		<div class="mo_detail mo_detail_blank"></div>
-
-
-
-
-
-
-
-
-
 
 
 		<div class="mo_detail" id="mo_review"
@@ -283,14 +400,7 @@ function send_goodbad(th, goodbad) {
 				</c:forEach>
 			</table>
 		</div>
-
-
-
-
-
-
-
-
+		</div>
 
 
 
@@ -299,163 +409,3 @@ function send_goodbad(th, goodbad) {
 		<!-- 			style="background-color: tomato; height: 5%;">페이지네이션</div> -->
 		<!-- 	</div> -->
 	</div>
-
-	<script type="text/javascript">
-	$('#mo_close').on("click", function() {
-		$('#mo_wrapper').addClass("mo_hidden");
-	});
-	$('#mo_overlay').on("click", function() {
-		$('#mo_wrapper').addClass("mo_hidden");
-	});
-</script>
-	<script type="text/javascript">
-	$("#mo_image").css({
-		"backgroundImage" : "url(/upload/${image.imgServer })",
-		"background-size" : "cover",
-		"background-position-x" : "center"
-	});
-
-	$("#mo_expl").html("<p>가격 : ${menu.menuCost} 원</p> <p>출시일 : ${menu.menuDate}</p> <p>메뉴정보 : ${menu.menuInfo}</p>");
-</script>
-	<script type="text/javascript">
-	       
- $(".ajaxbutton").click(function() {
- 			if ( $(revcnt).val() == 1) {
-	        	 alert("이미 한줄평을 쓰셨습니다 한줄평 수정은 마이페이지에서 가능합니다");
-	         } else {
-	        	 $("#mo_image").css({
-	       	      "backgroundImage" : "url(/upload/${image.imgServer })",
-	       	      "background-size" : "cover",
-	       	      "background-position-x" : "center"
-	       	   }); 
-	       	         $.ajax({
-	       	            type: "get"
-	       	            , url: "/eval/detail/insert"
-	       	            , data: {
-	       	               menuno: ${menuno },
-	       	               revcnt:${revcnt }
-	       	            }
-	       	            , dataType: "html"
-	       	            , success: function(result) {
-	       	               console.log("AJAX 성공")
-	       	               console.log(result)
-	       	               $("#mo_right").html(result);
-	       	            }
-	       	            , error: function() {
-	       	               console.log("AJAX 실패")
-	       	            }
-	       	         });
-	       	         
-	       	         
-	         }
- 			
-	   });
-
- 
- $(".ajax_report").click(function(){
-    $.ajax({
-          type: "get"
-          , url: "/eval/detail/report"
-          , data: {
-                menuno : ${menuno },
-                reviewno : $(this).val(),
-                targetno : $(this).attr("target"),
-                content : $(this).attr("content")
-          }
-          , dataType: "html"
-          , success: function(result) {
-             console.log("AJAX 성공")
-             console.log(result)
-             $("#mo_right").html(result);
-          }
-          , error: function() {
-             console.log("AJAX 실패")
-          }
-       });
- });
- 
-	</script>
-
-
-	<style type="text/css">
-.star-box {
-	/* 별과 별 사이 공백 제거 */
-	font-size: 0;
-}
-
-.star {
-	/* width,height 적용가능하도록 변경 */
-	display: inline-block;
-	/* 별이 표현되는 영역 크기 */
-	width: 37px;
-	height: 80px;
-	/* 투명한 별 표현 */
-	background-image:
-		url(https://image.flaticon.com/icons/svg/159/159772.svg);
-	background-repeat: no-repeat;
-	background-size: 200%;
-}
-
-.star_left {
-	/* 왼쪽 별 */
-	background-position: 0 0;
-}
-
-.star_right {
-	/* 오른쪽 별 */
-	background-position: 100% 0;
-}
-
-.on {
-	/* 채워진 별로 이미지 변경 */
-	background-image:
-		url(https://image.flaticon.com/icons/svg/149/149763.svg);
-}
-
-.star-value {
-	width: 50px;
-	/* 	margin-left: 550px; */
-	font-size: 20px;
-}
-
-#ajax_star_comment {
-	background: steelblue;
-	color: wheat;
-	width: 128px;
-	height: 30px;
-	border-radius: 30px;
-}
-
-#goodbtn {
-	all: unset;
-	cursor: pointer;
-}
-
-#badbtnn {
-	all: unset;
-	cursor: pointer;
-}
-</style>
-
-<script>
-$("#map_btn").click(function() {
-      $.ajax({
-         type: "GET"
-         , url: "/eval/map"
-         , data: {
-        	menuno: ${menuno },
-            where: $('#map_in').val()
-         }
-         , dataType: "html"
-         , success: function(result) {
-            console.log("AJAX 성공")
-            console.log(result)
-            $(".mo_content").html(result);
-            
-         }
-         , error: function() {
-            console.log("AJAX 실패")
-         }
-      });
-});
-</script>

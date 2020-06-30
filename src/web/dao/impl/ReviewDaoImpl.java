@@ -97,18 +97,12 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		//SQL 작성
 		String sql = "";
-		sql+= "SELECT RV.* FROM (";
-		sql+= "		SELECT *";
-		sql+= "		FROM review R join picture P on r.users_no = p.users_no";
-		sql+= "		WHERE r.menu_no=?";
-		sql+= "		and review_report = 'N' ";
-		sql+= "		ORDER BY r.review_no DESC";
-		sql+= "		)  RV";
-		
-		
-		
-		
-		
+		sql += "SELECT *";
+		sql += " FROM review R join picture P on r.users_no = p.users_no";
+		sql += " LEFT OUTER JOIN reviewverif RV ON r.review_no = rv.review_no";
+		sql += " WHERE r.menu_no=?";
+		sql += " and review_report = 'N' ";
+		sql += " ORDER BY (r.review_good-r.review_bad) DESC";
 		
 //		sql += "SELECT RV.* FROM (";
 //		sql += "    SELECT rownum rnum, B.* FROM ("; 
@@ -374,14 +368,13 @@ public class ReviewDaoImpl implements ReviewDao {
 		PreparedStatement ps = null;
 		
 		
-		String sql = "update review set review_bad = review_bad+1 where users_no = ? and review_no = ?";
+		String sql = "update review set review_bad = review_bad+1 where review_no = ?";
 	
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, user.getUserNo());
-			ps.setInt(2, review.getReviewNo());
+			ps.setInt(1, review.getReviewNo());
 			
 			ps.executeUpdate();
 
