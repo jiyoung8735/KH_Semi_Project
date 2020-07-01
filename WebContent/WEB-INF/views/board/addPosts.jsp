@@ -16,13 +16,14 @@
 <table>
 <tr><th>아이디</th><td><c:out value="${item.userId }" /></td></tr>
 <tr><th>닉네임</th><td><c:out value="${item.userNick }" /></td></tr>
-<tr><th>제목</th><td><input type="text" name="title" style="width:100%"/></td></tr>
+<tr><th>제목</th><td><input type="text" name="title" style="width:100%; line-height: 20px;"/></td></tr>
 <tr><th colspan="2">질문</th></tr>
-<tr><td colspan="2"><textarea id="content" name="content" cols="150" rows="10"></textarea></td></tr>
+<tr><td colspan="2"><textarea id="content" name="content" cols="145" rows="10" style="padding: 20px"></textarea></td></tr>
 </table>
 
-<button style="margin-left: 820px;" class="button" onclick="location.href='/add/posts'">작성</button>
-<button class="button" onclick="javascript:history.go(-1)">취소</button>
+<button style="margin-left: 848px;" class="button" onclick="location.href='/add/posts'">작성</button>
+<button class="button" onclick="javascript:history.go(-1)" style="margin-left: 0px;
+    margin-right: 0px;">취소</button>
 
 </form>
 
