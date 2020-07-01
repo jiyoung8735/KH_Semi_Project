@@ -43,10 +43,17 @@
 }
 
 .updatereview {
-	margin-top: 290px;
+	margin-top: 262px;
 	height: 700px;
 	display: inline-block;
 	width: 72%;
+	text-align: center;
+	font-size: 24px;
+}
+
+
+.updatereview h1 {
+	margin-bottom:25px;
 }
 
 .updatereview hr {
@@ -137,7 +144,7 @@ $(document).ready(function() {
 <h1>리뷰 수정</h1>
 <hr>
 	<form action="/update/mywork" method="POST">
-			<h1>메뉴 : <span style="background-color: pink;">${myWork.menu.menuName }</span></h1>
+			<h1>메뉴 : ${myWork.menu.menuName }</span></h1>
 			<div class="star-box">
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>

@@ -9,10 +9,16 @@
 <style type="text/css">
 
 .myreport {
-	margin-top: 290px;
+	margin-top: 262px;
 	height: 700px;
 	display: inline-block;
 	width: 72%;
+	text-align: center;
+	font-size: 24px;
+}
+
+.myreport h1 {
+	margin-bottom:25px;
 }
 
 .myreport hr {
@@ -23,6 +29,7 @@
 .myreport table{
 	border: 1px solid black;
 	border-collapse: collapse;
+	font-size: 20px;
 }
 
 .myreport th, td {
@@ -42,14 +49,14 @@
 	<hr>
 
 	<table>
-		<tr style="background-color: #faf8f8;">
-			<th style="width: 10%;"><h3>신고대상</h3></th>
-			<th style="width: 15%;"><h3>신고리뷰</h3></th>
-			<th style="width: 10%;"><h3>신고이유</h3></th>
-			<th style="width: 10%;"><h3>상세내용</h3></th>
-			<th style="width: 10%;"><h3>신고일자</h3></th>
-			<th style="width: 10%;"><h3>조치내용</h3></th>
-			<th style="width: 10%;"><h3>조치여부</h3></th>
+		<tr style="background-color: #2AC1BC">
+			<th style="width: 10%;"><h4>신고대상</h4></th>
+			<th style="width: 15%;"><h4>신고리뷰</h4></th>
+			<th style="width: 10%;"><h4>신고이유</h4></th>
+			<th style="width: 10%;"><h4>상세내용</h4></th>
+			<th style="width: 10%;"><h4>신고일자</h4></th>
+			<th style="width: 10%;"><h4>조치내용</h4></th>
+			<th style="width: 10%;"><h4>조치여부</h4></th>
 		</tr>
 	 	<c:forEach var="i" begin="0" end="${fn:length(Myreport)}" items="${Myreport }" >
 			<tr>

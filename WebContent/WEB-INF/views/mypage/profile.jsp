@@ -72,6 +72,7 @@ $(document).ready(function(){
 	}
 
 })
+
 </script>
 <style type="text/css">
 
@@ -102,41 +103,21 @@ $(document).ready(function(){
 .grade_container > div {
 	width: 80%;
 	height: 30px;
-	border: 1px solid #2AC1BC;
 	text-align: center;
 }
 
-.grade_menu {
-	margin-top: 50px;
+.menu_container{
+	margin-top: 100px;
 }
 
-.grade_menu > div {
-	height: 100px;
+.menu_container h3 {
+	width: 80%;
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 10px;
 }
 
-.mywork_container {
-	margin-top: 290px;
-	height: 700px;
-	display: inline-block;
-	width: 72%;
-}
-
-.mywork_container > h1 {
-	margin-bottom:15px;
-}
-
-.mywork_container div#grade {
-	margin-top:15px;
-}
-
-.mywork_preview_container {
-	margin-top: 15px;
-}
-
-.mywork_preview_container > div{
-	display: inline-block;
-	width: 145px;
-}
 
 </style>
 
@@ -144,7 +125,6 @@ $(document).ready(function(){
 	<div class="profile_container">
 	
 		<div class="img_container">
-
 			<form id="target" action="/editProfile" method="post" enctype="multipart/form-data">
 			<div class="img_upload" id="profile_img">
 			<a href="/editProfile"><img src="/upload_picture/${picture.picServer }" alt="프로필사진" id="pfimg" ></a>
@@ -157,7 +137,6 @@ $(document).ready(function(){
 			<button id="btnSave" style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">프로필 저장</button>
 			</div>
 		</div>
-		
 		<div class="grade_container">
 				<div class="grade_email">
 				<h3>${useremail }</h3>
@@ -167,8 +146,8 @@ $(document).ready(function(){
 				</div>
 				<div class="grade_grade">
 				<c:if test="${usergrade eq 1}">
-					<h3>${grade }
-					<img src="/resources/image/grade01.JPG" alt="grade01" style="width: 30px; height: 40px; vertical-align:middle;"/></h3>
+					<h3>${grade }</h3>
+					<h3><img src="/resources/image/grade01.JPG" alt="grade01" style="width: 30px; height: 40px; vertical-align:middle;"/></h3>
 				</c:if>
 				<c:if test="${usergrade eq 2}">
 					<h3>${grade }
@@ -183,23 +162,19 @@ $(document).ready(function(){
 					<img src="/resources/image/grade04.JPG" alt="grade01" style="width: 50px; height: 60px; vertical-align:middle;"/></h3>
 				</c:if>
 				</div>
-				<div class="menu">
+		</div>
+		<div class="menu_container">
 				<div>
-				<h3>나의 활동</h3>
-					<ul style="list-style: none;">
-					<li><a href="/view/mywork">리뷰관리</a></li>				
-					<li><a href="/view/myreport">신고내역</a></li>				
-					</ul>
+				<h3>나의 활동</h3>				
+				<h3 style="font-weight: normal;"><a href="/editProfile">활동프리뷰</a></h3>				
+				<h3 style="font-weight: normal;"><a href="/view/mywork">리뷰관리</a></h3>				
+				<h3 style="font-weight: normal;"><a href="/view/myreport">신고내역</a></h3>				
 				</div>
-				<div>	
-				<h3>회원 정보</h3>
-					<ul style="list-style: none;">
-					<li><a href="/view/info">내 정보</a></li>				
-					<li><a href="/security">비밀번호변경</a></li>				
-					<li><a href="/leavesite">사이트탈퇴</a></li>				
-					</ul>
-				</div>
+				<div style="margin-top: 30px;">
+				<h3>회원 정보</h3>				
+				<h3 style="font-weight: normal;"><a href="/view/info">개인정보</a></h3>				
+				<h3 style="font-weight: normal;"><a href="/security">비밀번호변경</a></h3>				
+				<h3 style="font-weight: normal;"><a href="/leavesite">사이트탈퇴</a></h3>				
 				</div>
 		</div>
-		
-	</div>	
+	</div>

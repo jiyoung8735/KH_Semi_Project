@@ -47,8 +47,8 @@ public class UpdateMyWorkController extends HttpServlet {
 		
 		String grade = null;
 		
-		if( usergrade == 1) { grade = "준회원"; }
-		else if( usergrade == 2) { grade = "정회원"; }
+		if( usergrade == 1) { grade = "일반회원"; }
+		else if( usergrade == 2) { grade = "우수회원"; }
 		else if( usergrade == 3) { grade = "VIP"; }
 		else if( usergrade == 4) { grade = "VVIP"; }
 		else { grade = null; }

@@ -16,22 +16,29 @@ window.onload = function(){
 }
 </script>
 <style type="text/css">
+
 .leavesite {
-	height: 1000px;
-	width: 72%;
+	margin-top: 262px;
+	height: 700px;
 	display: inline-block;
-	margin-top: 290px;
+	width: 72%;
+	text-align: center;
+	font-size: 24px;
 }
 
 .leavesite h1 {
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
+	text-align: center;
 }
 
+.leavesite hr {
+	margin-bottom: 30px;
+}
 .leavesite button {	
-	width: 200px;
-	height: 30px;
+	width: 350px;
+	height: 40px;
 	margin-top: 20px;
+	margin-left: 6px;
 }
 </style>
 

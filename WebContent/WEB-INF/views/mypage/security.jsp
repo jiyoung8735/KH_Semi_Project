@@ -8,22 +8,26 @@
     
 <style type="text/css">
 .changepw_container{
-	margin-top: 290px;
+	margin-top: 262px;
 	height: 700px;
 	display: inline-block;
 	width: 72%;
+	text-align: center;
+	font-size: 24px;
 }
 
 .changepw_container > h1 {	
-	margin-bottom: 15px;
+	margin-bottom: 25px;
+	text-align: center;
 }
 .changepw_container > hr {	
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
 .changepw_container input {	
-	width: 200px;
-	height: 30px;
+	width: 350px;
+	height: 40px;
 	margin-top: 20px;
+	margin-left: 18px;
 }
 </style>
 

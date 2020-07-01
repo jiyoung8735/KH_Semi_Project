@@ -43,10 +43,16 @@
 }
 
 .mywork {
-	margin-top: 290px;
-	height: 900px;
+	margin-top: 262px;
+	height: 700px;
 	display: inline-block;
 	width: 72%;
+	text-align: center;
+	font-size: 24px;
+}
+
+.mywork h1 {
+	margin-bottom:25px;
 }
 
 .mywork hr {
@@ -57,6 +63,7 @@
 .mywork table{
 	border: 1px solid black;
 	border-collapse: collapse;
+	font-size: 20px;
 }
 
 .mywork th, td {
@@ -108,17 +115,17 @@ $(document).ready(function() {
 	<h1>리뷰 관리</h1>
 	<hr>
 	<table>
-		<tr>
+		<tr style="background-color: #2AC1BC">
 			<th style="width: 10%;"><h4>메뉴</h4></th>
 			<th style="width: 10%;"><h4>별명</h4></th>
 			<th style="width: 20%;"><h4>별점</h4></th>
 			<th style="width: 20%;"><h4>리뷰</h4></th>
-			<th style="width: 20%;"><h4>작성일</h4></th>
+			<th style="width: 15%;"><h4>별점작성일</h4></th>
 			<th style="width: 15%;"><h4>리뷰작성일</h4></th>
-			<th style="width: 20%;"><h4>수정/삭제</h4></th>
+			<th style="width: 10%;"><h4>관리</h4></th>
 	 	<c:forEach var="i" items="${myworkList }" begin="0" end="${fn:length(myworkList)}"> 
 		<tr>
-			<td><h4><span style="background-color: pink;">${i.menu.menuName }</span></h4></td>
+			<td><h4>${i.menu.menuName }</span></h4></td>
 			<td><h4>${i.user.userNick }</h4></td>
 			<td>
 			<div class="star-box" data-starScore="${i.star.starScore }">

@@ -8,32 +8,40 @@
     
 <style type="text/css">
 .personalInfo_container{
-	margin-top: 290px;
+	margin-top: 262px;
 	height: 700px;
 	display: inline-block;
 	width: 72%;
+	text-align: center;
+	font-size: 24px;
 }
 
 .personalInfo_container > h1{
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 }
 
 .personalInfo_container > hr {
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
+
+.personalInfo_container table {
+	margin-top: 15px;
+	margin-bottom: 30px;
+	margin-left: 300px;
+	font-size: 20px;
+}
+
 
 .personalInfo_container tr {
 	border-bottopm: 1px solid #bcbcbc;
 } 
 
-.personalInfo_container th {
-	text-align: left;
-} 
 
 .personalInfo_container th, td {
 	padding-top: 12px;
 	padding-bottom: 12px;
 	padding-right: 70px;
+	text-align: left; 
 } 
 
 </style>
