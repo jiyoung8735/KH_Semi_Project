@@ -27,7 +27,7 @@
 .personalInfo_container table {
 	margin-top: 15px;
 	margin-bottom: 30px;
-	margin-left: 300px;
+	margin-left: 280px;
 	font-size: 20px;
 }
 
@@ -42,6 +42,7 @@
 	padding-bottom: 12px;
 	padding-right: 70px;
 	text-align: left; 
+	width: 300px;
 } 
 
 </style>
