@@ -21,7 +21,7 @@
          <li class="submenu"><input type="button" class="filter_btn" value="패스트푸드" id="food_4" /></li>
          <li class="submenu"><input type="button" class="filter_btn" value="디저트" id="food_5" /></li>
          
-         <li class="submenu" id="sub_filter"><input type="button" class="filter_btn" value="추가필터" id="sub" /></li>
+         <li class="submenu" id="sub_filter"><input type="button" class="filter_btn" value="추가필터" id="sub"/></li>
       </ul>
 </div>
 <div>
@@ -47,34 +47,34 @@
 </div>
 
 
-<div class="eval" id="Diveval">
+<div class="eval" id="Diveval" style="margin-top: 80px;">
 <c:forEach var="image" items="${image}" varStatus="status" >
    <c:if test="${!status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
          <div class="hor" id="eval${status.index }" >
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          <div class="h_blank" ></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          </div>
          <div class="v_blank"></div>
@@ -85,28 +85,28 @@
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
          <div class="hor" id="eval${status.index }">
-         	<div class="h_cont">하이</div>
+         	<div class="h_cont">${menu[status.index].menuName}</div>
          </div>
          </div>
       </c:if>
@@ -241,46 +241,29 @@ $(".filter_btn_detail").click(function() {
 <script type="text/javascript">
 // 버튼에 마우스올릴때(메뉴)
 $("input[id^=food_]").hover(function(){
-//    $(this).css("color", "red");
-//  $(this).css("background-color", "black");
-	$(this).css("font-weight", "bolder");
-	$(this).css("font-weight", "normal");
-	$(this).css("background-color", "#2AC1BC");
+   $(this).css("color", "#ccc");
 } , function(){
-//    $(this).css("color", "white");
- $(this).css("background-color", "black");
-// 	$(this).css("font-weight", "bolder");
-// 	$(this).css("font-weight", "normal");
-// 	$(this).css("background-color", "#2AC1BC");
+   $(this).css("color", "white");
 })
 // 버튼에 클릭했을때(메뉴)
 $("input[id^=food_]").click(function(){
    $(this).css("background-color", "#2AC1BC");
-//    $(this).css("font-weight", "bolder");
    $("input[id^=food_]").not($(this)).css("background-color" , "black");
 });
 
 //버튼에 마우스올릴때(필터)
 $("input[id^=sub_filter_]").hover(function(){
-//    $(this).css("color", "red");
- $(this).css("background-color", "black");
-	$(this).css("font-weight", "bolder");
-// 	$(this).css("background-color", "#7AAFB1");
+   $(this).css("color", "#ccc");
 } , function(){
-//    $(this).css("color", "white");
-	$(this).css("font-weight", "normal");
-	$(this).css("background-color", "#2AC1BC");
-// 	$(this).css("background-color", "#7AAFB1");
+   $(this).css("color", "white");
 })
 // 버튼에 클릭했을때(필터)
 $("input[id^=sub_filter_]").click(function(){
-   $(this).css("background-color", "black");
-   $(this).css("font-weight", "bolder");
-   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "#2AC1BC");
+   $(this).css("background-color", "#2AC1BC");
+   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "black");
 });
 
 </script>
-
 
 
 <style type="text/css">
@@ -289,7 +272,7 @@ $("input[id^=sub_filter_]").click(function(){
     border-radius: 3px;
     width: 95%;
     color: white;
-     background-color: #2AC1BC;
+     background-color: black;
     
     cursor: pointer;
     line-height: 30px;
@@ -303,6 +286,12 @@ $("input[id^=sub_filter_]").click(function(){
     color: white;
     background-color: rgba(0,0,0,0.2);
     line-height: 25px;
+}
+
+#sub_filter{
+background-color: #2AC1BC;
+
+
 }
 </style>
 

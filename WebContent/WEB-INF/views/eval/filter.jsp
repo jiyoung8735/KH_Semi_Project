@@ -8,22 +8,30 @@
    <c:if test="${!status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
-         <div class="hor" id="eval${status.index }" ></div>
+         <div class="hor" id="eval${status.index }" >
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          <div class="h_blank" ></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          </div>
          <div class="v_blank"></div>
       </c:if>
@@ -32,22 +40,30 @@
    <c:if test="${status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">${menu[status.index].menuName}</div>
+         </div>
          </div>
       </c:if>
    </c:if>

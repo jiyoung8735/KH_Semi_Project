@@ -215,7 +215,8 @@ function send_goodbad(th, goodbad) {
 			</c:if>
 			<c:if test="${!login or empty login }">
 				<div class="mo_detail" id="mo_expl"
-					style="background-color: tomato; height: 24%;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
+					style="background-color: rgba(42,193,188,0.6); height: 18%; color: white; 
+					font-weight: bolder; border-radius: 7%; padding-left: 26px; padding-right: 22px;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
 			</c:if>
 		<div></div>
 	</div>

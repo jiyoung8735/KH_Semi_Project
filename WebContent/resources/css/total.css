@@ -339,10 +339,11 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 }
 .submenu_back {
     width: 1000px;
-    background-color: #faf8f8;
+/*     background-color: #faf8f8; */
     height: 35px;
     margin: 0 auto;
     padding: 10px;
+    margin-top: 50px;
 }
 .submenu_list {
     height: 35px;
