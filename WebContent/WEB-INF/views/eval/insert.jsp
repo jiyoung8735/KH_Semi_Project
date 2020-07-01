@@ -33,7 +33,7 @@
 .on {
 	/* 채워진 별로 이미지 변경 */
 	background-image:
-		url(https://image.flaticon.com/icons/svg/149/149763.svg);
+		url("/resources/image/star2.gif");
 }
 
 .h2only {

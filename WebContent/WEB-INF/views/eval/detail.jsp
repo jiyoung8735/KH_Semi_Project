@@ -257,19 +257,20 @@ function send_goodbad(th, goodbad) {
 						<td width="100%" style="padding: 20px"><span>${item.review.reviewContent }</span></td>
 						<td>
 							<button class="goodbtn">
-								<i class="xi-emoticon-smiley-o xi-4x"></i>
+								<i class="xi-emoticon-smiley-o xi-3x"></i>
 							</button> <span>${item.review.reviewGood }</span>
 						</td>
 						<td>
 							<button class="badbtnn">
-								<i class="xi-emoticon-devil xi-4x"></i>
+								<i class="xi-emoticon-devil xi-3x"></i>
 							</button> <span>${item.review.reviewBad }</span>
 						</td>
 						<c:if test="${not empty login }">
 							<td><button class="ajax_report"
 									value="${item.review.reviewNo }"
 									target="${item.review.userNo }"
-									content="${item.review.reviewContent }">신고</button></td>
+									content="${item.review.reviewContent }">
+									<img src = "https://image.flaticon.com/icons/svg/149/149196.svg"/ class="report_img"></button></td>
 						</c:if>
 					</tr>
 				</c:forEach>
@@ -384,11 +385,22 @@ function send_goodbad(th, goodbad) {
 	height: 80px;
 	/* 투명한 별 표현 */
 	background-image:
-		url(https://image.flaticon.com/icons/svg/159/159772.svg);
+		url("/resources/image/star33.gif");
 	background-repeat: no-repeat;
 	background-size: 200%;
 }
+.ajax_report{
+width:30px;
+height:30px;
+ all: unset; 
+ cursor: pointer; 
+}
+.report_img{
+    width: 25px;
+    margin-left: 15px;
+    margin-right: 5px;
 
+}
 .star_left {
 	/* 왼쪽 별 */
 	background-position: 0 0;
@@ -402,7 +414,7 @@ function send_goodbad(th, goodbad) {
 .on {
 	/* 채워진 별로 이미지 변경 */
 	background-image:
-		url(https://image.flaticon.com/icons/svg/149/149763.svg);
+		url("/resources/image/star44.gif");
 }
 
 .star-value {
@@ -417,17 +429,19 @@ function send_goodbad(th, goodbad) {
 	width: 128px;
 	height: 30px;
 	border-radius: 30px;
+	border:0px;
 }
 
-#goodbtn {
+.goodbtn {
 	all: unset;
 	cursor: pointer;
 }
 
-#badbtnn {
+.badbtnn {
 	all: unset;
 	cursor: pointer;
 }
+	
 </style>
 
 <script>
