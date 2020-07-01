@@ -77,7 +77,7 @@ $(document).ready(function() {
   </div>
   
   <div class="form-group">
-    <label for="inputDate" class="col-sm-2 control-label">처리 일자 : </label>
+    <label for="inputDate" class="col-sm-2 control-label">출시 일자 : </label>
     <div class="col-sm-10">
       <input type="date" class="form-control" id="inputDate" name="applyMenuDate"> 
     </div>

@@ -40,12 +40,12 @@ $(document).ready(function(){
 <div><h3>아이디: ${id }</h3></div>
 <form action="/changepw" method="POST">
 	<div class="form-group">
-		<input type="text" id="pw" name="pw" class="form-control" required="required" placeholder="새 비밀번호"/>
+		<input type="password" id="pw" name="pw" class="form-control" required="required" placeholder="새 비밀번호"/>
 		<div id="pw"></div>
 	</div>
 	
 	<div class="form-group">
-		<input type="text" id="pwc" name="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
+		<input type="password" id="pwc" name="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
 	</div>
 	<div id="pwcv"></div>
 	

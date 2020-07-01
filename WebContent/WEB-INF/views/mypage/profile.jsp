@@ -132,17 +132,18 @@ $(document).ready(function(){
 			<input type="text" name="userno" id="userno" value="${userno }" style="display: none;"/>
 			<input type="file" name="upload" id="upload" style="display: none;"/>
 			</form>
-			<div class="img_upload_Btn">		
+			<div class="img_upload_Btn">	
+			<br>	
 			<button type="button" id="btnUpFile" style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">프로필 등록</button>
 			<button id="btnSave" style="background-color:#faf8f8; width: 100px; height: 40px; border: 1px solid black;">프로필 저장</button>
 			</div>
 		</div>
 		<div class="grade_container">
 				<div class="grade_email">
-				<h3>${useremail }</h3>
+				<h3>${usernick }</h3>
 				</div>
 				<div class="grade_nick">
-				<h3>${usernick }</h3>
+				<h3>${useremail }</h3>
 				</div>
 				<div class="grade_grade">
 				<c:if test="${usergrade eq 1}">

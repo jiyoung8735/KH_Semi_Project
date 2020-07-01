@@ -187,7 +187,7 @@ function showStarValue(val) {
 </head>
 <body>
 	<div id="mo_right">
-		<div class="h2only" style="margin: 10px 0px; width:600px; text-align: center; margin-top: 30px; font-size: 35px;">
+		<div class="h2only" style="margin: 10px 0px; width:600px; text-align: center; margin-top: 30px; font-size: 30px;">
 			<H2>메뉴 평가하기</H2>
 		</div>
 		<div class="star-box" style="width: 600px; text-align: center; margin-top: 40px; margin-bottom: 30px;">
@@ -199,8 +199,9 @@ function showStarValue(val) {
 		</div>
 
 		<div class="star-value" id="star_div" style="display: none; ">0</div>
-		<input type="text" id="review" name="review" size="45"
-			style = "height: 150px; width: 600px; font-size: 45px;" /><br> <input type="hidden"
+		<span style="margin-left: 25px;">한줄평 입력</span>
+		<input type="text" id="review" name="review" size="45" 
+			style = "height: 150px; width: 550px; margin-left:25px; font-size: 27px;" /><br> <input type="hidden"
 			id="starscore" name="starscore" /> <input type="hidden"
 			id="star_food" name="food" value="${menuno }" />
 

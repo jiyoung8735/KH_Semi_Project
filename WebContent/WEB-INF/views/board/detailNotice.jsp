@@ -7,7 +7,7 @@
 <div class="board">
 
 <div class="board_top">
-<h1 style="padding-bottom: 20px;">공지 상세 보기</h1>
+<h1 style="padding-bottom: 20px;">공지 상세보기</h1>
 </div>
 <table>
 

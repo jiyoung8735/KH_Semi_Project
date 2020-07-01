@@ -511,12 +511,12 @@ $(document).ready(function(){
 </div>
 <div class="form-group">
     <label>비밀번호</label>
-    <input type="text" name="pw" id="pw" class="form-control" >
+    <input type="password" name="pw" id="pw" class="form-control" >
 	<div id="pwv"></div>
 </div>
 <div class="form-group">
     <label>비밀번호 재확인</label>
-    <input type="text" id="pwConfirm" class="form-control" >
+    <input type="password" id="pwConfirm" class="form-control" >
 	<div id="pwcv"></div>
 </div>
 <div class="form-group">

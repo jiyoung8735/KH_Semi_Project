@@ -51,8 +51,8 @@ border-color: inherit;
 
 
 <div style="width: 500px; margin:0 auto; height: 1200px; text-align: center;">
-<h1><a href="/userjoin"><button class="button">일반인 회원가입</button></a></h1><br>
-<h1><a href="/franjoin"><button class="button">프랜차이즈 회원가입</button></a></h1><br>
+<h1><a href="/userjoin"><button class="button" style="border-radius: 30px; border: 0px;">일반인 회원가입</button></a></h1><br>
+<h1><a href="/franjoin"><button class="button" style="border-radius: 30px; border: 0px;">프랜차이즈 회원가입</button></a></h1><br>
 </div>
 
 <c:import url="/WEB-INF/views/login/footer.jsp"></c:import>

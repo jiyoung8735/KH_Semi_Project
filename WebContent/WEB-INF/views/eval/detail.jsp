@@ -61,9 +61,8 @@ $(document).ready(function() {
 	display: inline-block;
 	background-size: cover;
 	background-position-x: center;
-	width: 105px; height : 105px; border-radius : 50%;
+	width: 80px; height : 80px; border-radius : 50%;
 	margin: 10%;
-	height: 105px;
 	border-radius: 50%;
 }
 </style>
@@ -197,7 +196,7 @@ function send_goodbad(th, goodbad) {
 <div class="mo_overlay" id="mo_overlay"></div>
 <div class="mo_content">
 	<div id="mo_left">
-		<div class="mo_detail" id="mo_image" style="height: 74%;"></div>
+		<div class="mo_detail" id="mo_image" style="height: 74%; border-radius: 5%;"></div>
 		<div class="mo_detail mo_detail_blank"></div>
 <%-- 			<c:if test="${login }"> --%>
 <!-- 				<div class="mo_detail" id="mo_expl" -->
@@ -211,7 +210,7 @@ function send_goodbad(th, goodbad) {
 <%-- 			<c:if test="${!login or empty login }"> --%>
 				<div class="mo_detail" id="mo_expl"
 					style="background-color: rgba(42,193,188,0.6); height: 22%; color: white; 
-					font-weight: bolder; border-radius: 7%;     overflow: scroll;     padding-top: 10px;
+					font-weight: bolder; border-radius: 5%;     overflow: scroll;     padding-top: 10px;
     overflow-x: auto; overflow-y: auto;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
 <%-- 			</c:if> --%>
 		<div></div>
@@ -253,29 +252,30 @@ function send_goodbad(th, goodbad) {
 
 		<div class="mo_detail" id="mo_review"
 			style=" height: 70%; overflow: auto;     margin-top: 20px;">
-			<table>
+			<table style="margin-left: 17px;">
 				<c:forEach var="item" items="${reviewList}" varStatus="status">
 					<tr data-reviewno="${item.review.reviewNo }"
 						data-good_bad="${item.reviewverif.good_bad }">
 						<td><div class="userPic"
 								style="background-image: url('/upload_picture/${item.picture.picServer }');"></div></td>
 						<td width="100%" style="padding: 20px"><span>${item.review.reviewContent }</span></td>
-						<td>
+						<td style="text-align: center;">
 							<button class="goodbtn">
-								<i class="xi-emoticon-smiley-o xi-3x"></i>
-							</button> <span>${item.review.reviewGood }</span>
+								<i class="xi-emoticon-smiley-o xi-2x"></i>
+							</button> <span style="font-size: 10px">${item.review.reviewGood }</span>
 						</td>
-						<td>
+						<td style="text-align: center;">
 							<button class="badbtnn">
-								<i class="xi-emoticon-devil xi-3x"></i>
-							</button> <span>${item.review.reviewBad }</span>
+								<i class="xi-emoticon-devil xi-2x"></i>
+							</button> <span style="font-size: 10px">${item.review.reviewBad }</span>
 						</td>
 						<c:if test="${not empty login }">
 							<td><button class="ajax_report"
 									value="${item.review.reviewNo }"
 									target="${item.review.userNo }"
 									content="${item.review.reviewContent }">
-									<img src = "https://image.flaticon.com/icons/svg/149/149196.svg"/ class="report_img"></button></td>
+									<img src = "https://image.flaticon.com/icons/svg/149/149196.svg" class="report_img" style="width: 25px;"></button>
+									<span></span></td>
 						</c:if>
 					</tr>
 				</c:forEach>

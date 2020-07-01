@@ -31,7 +31,7 @@ public class DoubleCheckId extends HttpServlet {
 
 		resp.setContentType("application/json;charset=utf-8");
 		PrintWriter out = resp.getWriter();
-		if( joinUser == null ) {
+		if( joinUser.getUserId() == null ) {
 			System.out.println("아이디 중복 없음");
 			out.println( "{\"result\":true}" );
 		} else {
