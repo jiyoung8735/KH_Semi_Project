@@ -14,11 +14,12 @@
 a{
 	text-decoration: none;
 	color: black;
+	font-weight: bolder;
 }
 
 .category-background {
     width: 100%;
-    background-color: #faf8f8;
+    background-color: #2AC1BC;
     height: 60px;
 }
 
@@ -319,6 +320,7 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
     background-color: #faf8f8;
     height: 35px;
     margin: 0 auto;
+    padding: 10px;
 }
 .submenu_list {
     height: 35px;
@@ -330,18 +332,19 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
     list-style: none;
     position: relative;
     display: inline-block;
-    width: 100px;
+    width: 16%;
     line-height: 30px;
     text-align: center;
     font-size: 16px;
+    
 }
 .filter_btn {
 	all: unset;
 	padding: 3px 3px;
 	border-radius: 3px;
-	width: 80px;
+	width: 95%;
 	color: white;
-	background-color: steelblue;
+	background-color: #2AC1BC;
 	cursor: pointer;
 }
 	/* modal start */
@@ -384,7 +387,7 @@ div.best_new > div.slider_container > ul[class^="list"] > li > p {
 	  	width: 1100px;
 	   	height: 600px;  
 	/* 	text-align: center; */
-		background-color: #DDD;
+		background-color: ghostwhite;
 		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	}
 	.mo_hidden {

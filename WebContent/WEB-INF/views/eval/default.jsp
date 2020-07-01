@@ -28,10 +28,10 @@
 
 <div>
       <ul class="sub_submenu">
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="평점순" id="sub_filter_1" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="리뷰순" id="sub_filter_2" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="가격순" id="sub_filter_3" /></li>
-            <li class="submenu"><input type="button" class="filter_btn_detail" value="출시일순" id="sub_filter_4" /></li>
+            <li class="submenu" style="width: 24%"><input type="button" class="filter_btn_detail" value="평점순" id="sub_filter_1" /></li>
+            <li class="submenu" style="width: 24%"><input type="button" class="filter_btn_detail" value="리뷰순" id="sub_filter_2" /></li>
+            <li class="submenu" style="width: 24%"><input type="button" class="filter_btn_detail" value="가격순" id="sub_filter_3" /></li>
+            <li class="submenu" style="width: 24%"><input type="button" class="filter_btn_detail" value="출시일순" id="sub_filter_4" /></li>
       </ul>
 </div>
 
@@ -225,26 +225,38 @@ $(".filter_btn_detail").click(function() {
 <script type="text/javascript">
 // 버튼에 마우스올릴때(메뉴)
 $("input[id^=food_]").hover(function(){
-   $(this).css("color", "red");
+//    $(this).css("color", "red");
+ $(this).css("background-color", "black");
+	$(this).css("font-weight", "bolder");
 } , function(){
-   $(this).css("color", "white");
+//    $(this).css("color", "white");
+	$(this).css("font-weight", "normal");
+	$(this).css("background-color", "#2AC1BC");
 })
 // 버튼에 클릭했을때(메뉴)
 $("input[id^=food_]").click(function(){
    $(this).css("background-color", "black");
-   $("input[id^=food_]").not($(this)).css("background-color" , "steelblue");
+   $(this).css("font-weight", "bolder");
+   $("input[id^=food_]").not($(this)).css("background-color" , "#2AC1BC");
 });
 
 //버튼에 마우스올릴때(필터)
 $("input[id^=sub_filter_]").hover(function(){
-   $(this).css("color", "red");
+//    $(this).css("color", "red");
+ $(this).css("background-color", "black");
+	$(this).css("font-weight", "bolder");
+// 	$(this).css("background-color", "#7AAFB1");
 } , function(){
-   $(this).css("color", "white");
+//    $(this).css("color", "white");
+	$(this).css("font-weight", "normal");
+	$(this).css("background-color", "#2AC1BC");
+// 	$(this).css("background-color", "#7AAFB1");
 })
 // 버튼에 클릭했을때(필터)
 $("input[id^=sub_filter_]").click(function(){
    $(this).css("background-color", "black");
-   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "steelblue");
+   $(this).css("font-weight", "bolder");
+   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "#2AC1BC");
 });
 
 </script>
@@ -253,12 +265,15 @@ $("input[id^=sub_filter_]").click(function(){
 
 <style type="text/css">
 .filter_btn_detail{
-   padding: 3px 3px;
+/*    padding: 3px 3px; */
     border-radius: 3px;
-    width: 80px;
+    width: 95%;
     color: white;
-    background-color: steelblue;
+     background-color: #2AC1BC;
+    
     cursor: pointer;
+    line-height: 30px;
+    margin: 10px;
     
 }
 </style>
