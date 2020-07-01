@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
-<c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import> --%>
 
    
 <section class="wrapper">
@@ -226,18 +226,22 @@ $(".filter_btn_detail").click(function() {
 // 버튼에 마우스올릴때(메뉴)
 $("input[id^=food_]").hover(function(){
 //    $(this).css("color", "red");
- $(this).css("background-color", "black");
+//  $(this).css("background-color", "black");
 	$(this).css("font-weight", "bolder");
-} , function(){
-//    $(this).css("color", "white");
 	$(this).css("font-weight", "normal");
 	$(this).css("background-color", "#2AC1BC");
+} , function(){
+//    $(this).css("color", "white");
+ $(this).css("background-color", "black");
+// 	$(this).css("font-weight", "bolder");
+// 	$(this).css("font-weight", "normal");
+// 	$(this).css("background-color", "#2AC1BC");
 })
 // 버튼에 클릭했을때(메뉴)
 $("input[id^=food_]").click(function(){
-   $(this).css("background-color", "black");
-   $(this).css("font-weight", "bolder");
-   $("input[id^=food_]").not($(this)).css("background-color" , "#2AC1BC");
+   $(this).css("background-color", "#2AC1BC");
+//    $(this).css("font-weight", "bolder");
+   $("input[id^=food_]").not($(this)).css("background-color" , "black");
 });
 
 //버튼에 마우스올릴때(필터)

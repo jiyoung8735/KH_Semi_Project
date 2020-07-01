@@ -116,9 +116,9 @@ $(document).ready(function(){
 		<div class="category-background">
 	  	<div class="category-list">
 	  	 <ul>
-               <li class="cate-list-item"><a href="/eval" class="main_menu_2">평점보기</a></li>
+               <li class="cate-list-item"><a href="/eval" class="main_menu_2" >평점보기</a></li>
                <li class="cate-list-item"><a href="/view/notice" class="main_menu_3">공지사항</a></li>
-               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4">자유게시판</a></li>
+               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4" >자유게시판</a></li>
                <li class="cate-list-item"><a href="/editProfile" class="main_menu_5">마이페이지</a></li>
                <li class="cate-list-item"><a href="/logout" class="main_menu_6">로그아웃</a></li>
 
