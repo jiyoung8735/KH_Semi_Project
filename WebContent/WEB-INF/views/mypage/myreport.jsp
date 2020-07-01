@@ -49,7 +49,7 @@
 	<hr>
 
 	<table>
-		<tr style="background-color: #2AC1BC">
+		<tr style="background-color: #2AC1BC; color: white;">
 			<th style="width: 10%;"><h4>신고대상</h4></th>
 			<th style="width: 15%;"><h4>신고리뷰</h4></th>
 			<th style="width: 10%;"><h4>신고이유</h4></th>

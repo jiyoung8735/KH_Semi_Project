@@ -115,7 +115,7 @@ $(document).ready(function() {
 	<h1>리뷰 관리</h1>
 	<hr>
 	<table>
-		<tr style="background-color: #2AC1BC">
+		<tr style="background-color: #2AC1BC; color: white;">
 			<th style="width: 10%;"><h4>메뉴</h4></th>
 			<th style="width: 10%;"><h4>별명</h4></th>
 			<th style="width: 20%;"><h4>별점</h4></th>
