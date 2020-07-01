@@ -42,7 +42,7 @@
 	padding-bottom: 12px;
 	padding-right: 70px;
 	text-align: left; 
-	width: 300px;
+	width: 400px;
 } 
 
 </style>

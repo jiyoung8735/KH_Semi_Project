@@ -166,15 +166,15 @@ $(document).ready(function(){
 		<div class="menu_container">
 				<div>
 				<h3>나의 활동</h3>				
-				<h3 style="font-weight: normal;"><a href="/editProfile">활동프리뷰</a></h3>				
-				<h3 style="font-weight: normal;"><a href="/view/mywork">리뷰관리</a></h3>				
-				<h3 style="font-weight: normal;"><a href="/view/myreport">신고내역</a></h3>				
+				<h3><a href="/editProfile" style="font-weight: lighter;">활동프리뷰</a></h3>				
+				<h3><a href="/view/mywork" style="font-weight: lighter;">리뷰관리</a></h3>				
+				<h3><a href="/view/myreport" style="font-weight: lighter;">신고내역</a></h3>				
 				</div>
 				<div style="margin-top: 30px;">
 				<h3>회원 정보</h3>				
-				<h3 style="font-weight: normal;"><a href="/view/info">개인정보</a></h3>				
-				<h3 style="font-weight: normal;"><a href="/security">비밀번호변경</a></h3>				
-				<h3 style="font-weight: normal;"><a href="/leavesite">사이트탈퇴</a></h3>				
+				<h3><a href="/view/info" style="font-weight: lighter;">개인정보</a></h3>				
+				<h3><a href="/security" style="font-weight: lighter;">비밀번호변경</a></h3>				
+				<h3><a href="/leavesite" style="font-weight: lighter;">사이트탈퇴</a></h3>				
 				</div>
 		</div>
 	</div>
