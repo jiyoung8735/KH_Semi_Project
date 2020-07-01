@@ -52,22 +52,30 @@
    <c:if test="${!status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
-         <div class="hor" id="eval${status.index }" ></div>
+         <div class="hor" id="eval${status.index }" >
+         	<div class="h_cont">하이</div>
+         </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          <div class="h_blank" ></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          <div class="h_blank"></div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          </div>
          <div class="v_blank"></div>
       </c:if>
@@ -76,22 +84,30 @@
    <c:if test="${status.last }">
       <c:if test="${status.index % 4 eq 0 }">
          <div class="ver">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 1 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 2 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          </div>
       </c:if>
       
       <c:if test="${status.index % 4 eq 3 }">
-         <div class="hor" id="eval${status.index }"></div>
+         <div class="hor" id="eval${status.index }">
+         	<div class="h_cont">하이</div>
+         </div>
          </div>
       </c:if>
    </c:if>
@@ -279,6 +295,14 @@ $("input[id^=sub_filter_]").click(function(){
     line-height: 30px;
     margin: 10px;
     
+}
+
+.h_cont{
+	text-align: center;
+    margin-top: 200px;
+    color: white;
+    background-color: rgba(0,0,0,0.2);
+    line-height: 25px;
 }
 </style>
 
