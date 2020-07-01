@@ -18,7 +18,7 @@
 <tr><th>닉네임</th><td><c:out value="${item.userNick }" /></td></tr>
 <tr><th>제목</th><td><input type="text" name="title" style="width:100%; line-height: 20px;"/></td></tr>
 <tr><th colspan="2">질문</th></tr>
-<tr><td colspan="2"><textarea id="content" name="content" cols="145" rows="10" style="padding: 20px"></textarea></td></tr>
+<tr><td colspan="2"><textarea id="content" name="content" cols="112" rows="10" style="padding: 20px"></textarea></td></tr>
 </table>
 
 <button style="margin-left: 848px;" class="button" onclick="location.href='/add/posts'">작성</button>
