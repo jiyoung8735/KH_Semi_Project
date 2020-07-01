@@ -94,7 +94,7 @@ $(document).ready(function(){
 	  	 <ul>
                <li class="cate-list-item"><a href="/eval" class="main_menu_2">평점보기</a></li>
                <li class="cate-list-item"><a href="/view/notice" class="main_menu_3">공지사항</a></li>
-               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4">자유게시판</a></li>
+               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4">Q&A</a></li>
                <li class="cate-list-item"><a href="/login" class="main_menu_5">로그인</a></li>
                <li class="cate-list-item"><a href="/join" class="main_menu_6">회원가입</a></li>
 	   	</ul>
@@ -117,7 +117,7 @@ $(document).ready(function(){
 	  	 <ul>
                <li class="cate-list-item"><a href="/eval" class="main_menu_2" >평점보기</a></li>
                <li class="cate-list-item"><a href="/view/notice" class="main_menu_3">공지사항</a></li>
-               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4" >자유게시판</a></li>
+               <li class="cate-list-item"><a href="/view/posts" class="main_menu_4" >Q&A</a></li>
                <li class="cate-list-item"><a href="/editProfile" class="main_menu_5">마이페이지</a></li>
                <li class="cate-list-item"><a href="/logout" class="main_menu_6">로그아웃</a></li>
 
