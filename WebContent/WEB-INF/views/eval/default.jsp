@@ -248,7 +248,7 @@ $("input[id^=food_]").hover(function(){
 // 버튼에 클릭했을때(메뉴)
 $("input[id^=food_]").click(function(){
    $(this).css("background-color", "#2AC1BC");
-   $("input[id^=food_]").not($(this)).css("background-color" , "black");
+   $("input[id^=food_]").not($(this)).css("background-color" , "rgba(0,0,0,0.6)");
 });
 
 //버튼에 마우스올릴때(필터)
@@ -260,7 +260,7 @@ $("input[id^=sub_filter_]").hover(function(){
 // 버튼에 클릭했을때(필터)
 $("input[id^=sub_filter_]").click(function(){
    $(this).css("background-color", "#2AC1BC");
-   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "black");
+   $("input[id^=sub_filter_]").not($(this)).css("background-color" , "rgba(0,0,0,0.4)");
 });
 
 </script>
@@ -272,12 +272,12 @@ $("input[id^=sub_filter_]").click(function(){
     border-radius: 3px;
     width: 95%;
     color: white;
-     background-color: black;
+     background-color: rgba(0,0,0,0.4);
     
     cursor: pointer;
     line-height: 30px;
     margin: 10px;
-    
+        border: 0px;
 }
 
 .h_cont{

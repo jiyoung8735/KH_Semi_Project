@@ -56,12 +56,6 @@ $(document).ready(function() {
 })
 </script>
 
-
-
-
-
-
-
 <style type="text/css">
 #mo_review div.userPic {
 	display: inline-block;
@@ -205,26 +199,29 @@ function send_goodbad(th, goodbad) {
 	<div id="mo_left">
 		<div class="mo_detail" id="mo_image" style="height: 74%;"></div>
 		<div class="mo_detail mo_detail_blank"></div>
-			<c:if test="${login }">
+<%-- 			<c:if test="${login }"> --%>
+<!-- 				<div class="mo_detail" id="mo_expl" -->
+<!-- 					style="background-color: rgba(42,193,188,0.6); height: 18%;overflow: scroll; overflow-x: auto; overflow-y: auto; -->
+<%-- 					       color: white; font-weight: bolder; border-radius: 7%; padding-top: 10px;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div> --%>
+<!-- 				<div class="mo_detail" style="background-color: red; height: 6%;"> -->
+<!-- 					<input type="text" placeholder="지역명 입력" id="map_in" /> -->
+<!-- 					<button id="map_btn">지점검색</button> -->
+<!-- 				</div> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${!login or empty login }"> --%>
 				<div class="mo_detail" id="mo_expl"
-					style="background-color: tomato; height: 18%;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
-				<div class="mo_detail" style="background-color: red; height: 6%;">
-					<input type="text" placeholder="지역명 입력" id="map_in" />
-					<button id="map_btn">지점검색</button>
-				</div>
-			</c:if>
-			<c:if test="${!login or empty login }">
-				<div class="mo_detail" id="mo_expl"
-					style="background-color: rgba(42,193,188,0.6); height: 18%; color: white; 
-					font-weight: bolder; border-radius: 7%; padding-left: 26px; padding-right: 22px;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
-			</c:if>
+					style="background-color: rgba(42,193,188,0.6); height: 22%; color: white; 
+					font-weight: bolder; border-radius: 7%;     overflow: scroll;     padding-top: 10px;
+    overflow-x: auto; overflow-y: auto;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
+<%-- 			</c:if> --%>
 		<div></div>
 	</div>
 	<div id="mo_middle"></div>
 	<div id="mo_right">
 		<button class="mo_button" id="mo_close">X</button>
-		<div class="mo_detail" id="mo_star" style="height: 21%;">
-			<div class="star-box">
+		<div class="mo_detail" id="mo_star" style="height: 21%;     text-align: center;">
+			<div class="star-box" style="    margin-bottom: 10px;
+    margin-top: 20px;">
 				<span class="star star_left"></span> <span class="star star_right"></span>
 				<span class="star star_left"></span> <span class="star star_right"></span>
 				<span class="star star_left"></span> <span class="star star_right"></span>
@@ -233,22 +230,29 @@ function send_goodbad(th, goodbad) {
 			</div>
 			<%-- 						<div class="star-value">${staravg }</div> --%>
 			<c:if test="${login }">
-				<button class="ajaxbutton" id="ajax_star_comment">별점&한줄평 등록</button>
+				<div style="    width: 80%;
+    margin: 0 auto;">
+				<button class="button ajaxbutton" id="ajax_star_comment" style="float: left;">별점&한줄평 등록</button>
+					<input type="text" placeholder="지역명 입력" id="map_in" style=" margin-left: 80px;
+    line-height: 25px; "/>
+					<button id="map_btn" class="button">지점검색</button>
+				</div>
 			</c:if>
 			<c:if test="${!login or empty login }">
 				<div>로그인 하시면 평가 등록 등 추가기능을 사용하실 수 있습니다.</div>
 			</c:if>
-
+<!-- ajaxbutton  -->
+<!-- id="ajax_star_comment" -->
 
 
 			<input type="hidden" value="${revcnt }" id="revcnt" />
 		</div>
 
-		<div class="mo_detail mo_detail_blank"></div>
+<!-- 		<div class="mo_detail mo_detail_blank"></div> -->
 
 
 		<div class="mo_detail" id="mo_review"
-			style="background-color: tomato; height: 77.5%; overflow: auto;">
+			style=" height: 70%; overflow: auto;     margin-top: 20px;">
 			<table>
 				<c:forEach var="item" items="${reviewList}" varStatus="status">
 					<tr data-reviewno="${item.review.reviewNo }"
@@ -425,12 +429,24 @@ height:30px;
 }
 
 #ajax_star_comment {
-	background: steelblue;
-	color: wheat;
-	width: 128px;
-	height: 30px;
-	border-radius: 30px;
-	border:0px;
+/* 	background: steelblue; */
+/* 	color: wheat; */
+/* 	width: 128px; */
+/* 	height: 30px; */
+/* 	border-radius: 30px; */
+/* 	border:0px; */
+	
+		display: inline-block;
+	width: 120px;
+/* 	height: 30px; */
+	text-align: center;
+	text-decoration: none;
+	line-height: 27px;
+	outline: none;
+
+/* 	margin-left: 650px; */
+border-color: inherit;
+	
 }
 
 .goodbtn {
@@ -442,6 +458,46 @@ height:30px;
 	all: unset;
 	cursor: pointer;
 }
+
+
+.button {
+	display: inline-block;
+	width: 80px;
+/* 	height: 30px; */
+	text-align: center;
+	text-decoration: none;
+	line-height: 27px;
+	outline: none;
+/* 	margin:10px 10px; */
+/* 	margin-left: 650px; */
+border-color: inherit;
+}
+.button::before,
+.button::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+.button,
+.button::before,
+.button::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.button {
+	background-color: #6d819c;
+	background-color: #2AC1BC;
+	
+	color: #fff;
+	font-weight: bolder;
+}
+
+
 	
 </style>
 
