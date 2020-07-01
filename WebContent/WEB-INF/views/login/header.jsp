@@ -33,5 +33,5 @@
 
 <!-- 로고 이미지 -->
 <div class="logo_wrapper">
-<div id="login_header"><a href="/main"><img src="/resources/image/brand.gif" alt="logo" ></a></div>
+<div id="login_header"><a href="/main"><img src="/resources/image/brand.png" alt="logo" style="margin-left: -16px;"></a></div>
 </div>

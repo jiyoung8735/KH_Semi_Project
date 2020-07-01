@@ -19,7 +19,7 @@ $(document).ready(function() {
 <div class="board">
 	<!-- 공지사항 Title -->
 	<div class="board_top">
-		<h3 style="display: inline; margin-right: 660px;" >공지사항</h3>
+		<h3 style="display: inline; margin-right: 630px;" >공지사항</h3>
 		<input type="text" id="search" style="line-height: 25px"/><button class="button" id="btnSearch">검색</button>
 	</div>
 	

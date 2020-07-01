@@ -25,7 +25,7 @@
 	</div>
 	
 	<div class="header-wrapper">
-	<a href="/fran"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
+	<a href="/fran"><img alt="메인로고" src="/resources/image/brand.png" id="logo"></a>
 	</div>
 	
 	<div class="header-franid">

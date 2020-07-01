@@ -86,7 +86,7 @@ $(document).ready(function(){
 <div class="header-container">
 
 	<div class="header-wrapper">
-	<a href="/"><img alt="메인로고" src="/resources/image/brand.gif" id="logo"></a>
+	<a href="/"><img alt="메인로고" src="/resources/image/brand.png" id="logo"></a>
 	</div>								
 
 		<div class="category-background">
