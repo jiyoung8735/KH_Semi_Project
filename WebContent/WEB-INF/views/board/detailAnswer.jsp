@@ -4,6 +4,6 @@
 <link rel="stylesheet" type="text/css"  href="/resources/css/board/board.css" >   
 
 <tr><th colspan="2">답변 내용</th></tr>
-<tr><td colspan="2"><textarea cols="150" rows="10" disabled="disabled">${board.bdAnswer }<c:out value="${board.bdAnswer}" /></textarea></td></tr>
+<tr><td colspan="2"><textarea cols="145" rows="10" disabled="disabled" style="padding: 20px;">${board.bdAnswer }<c:out value="${board.bdAnswer}" /></textarea></td></tr>
 
 

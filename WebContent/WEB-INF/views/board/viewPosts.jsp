@@ -31,8 +31,8 @@ $(document).ready(function() {
 	<!-- 자유게시판 Title -->
 	<div class="board_top">
 		<h3 style="display: inline; margin-right: 250px;" >공지사항 참고하시고 사용자 질문 올려주세요</h3>
-		<input type="text" id="search" />
-		<button class="button" id="btnSearch">검색</button><button class="button" onclick="${path}">글쓰기</button>
+		<input type="text" id="search" style="line-height: 25px"/>
+		<button class="button" id="btnSearch"">검색</button><button class="button" onclick="${path}">글쓰기</button>
 	</div>
 	
 	<!-- 자유게시판 목록 -->
