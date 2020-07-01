@@ -314,7 +314,7 @@ function send_goodbad(th, goodbad) {
 		"background-position-x" : "center"
 	});
 
-	$("#mo_expl").html("<p>가격 : ${menu.menuCost} 원</p> <p>출시일 : ${menu.menuDate}</p> <p>메뉴정보 : ${menu.menuInfo}</p>");
+	$("#mo_expl").html("<p style=\"padding-left: 11px;\">가격 : ${menu.menuCost} 원</p> <p style=\"padding-left: 11px;\">출시일 : ${menu.menuDate}</p> <p style=\"padding-left: 11px;\">메뉴정보 : ${menu.menuInfo}</p>");
 </script>
 <script type="text/javascript">
 	       

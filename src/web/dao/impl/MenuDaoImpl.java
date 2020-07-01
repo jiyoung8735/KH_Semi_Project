@@ -276,6 +276,7 @@ public class MenuDaoImpl implements MenuDao{
             menu.setMenuInfo( menu.getMenuInfo().replace("font-family: ", " "));
             menu.setMenuInfo( menu.getMenuInfo().replace("font-size: ", " "));
             menu.setMenuInfo( menu.getMenuInfo().replace("background-color: ", " "));
+            menu.setMenuInfo( menu.getMenuInfo().replace("<p>", "<p style=\\\"padding-left: 11px;\\\">"));
          }
       } catch (SQLException e) {
          e.printStackTrace();
