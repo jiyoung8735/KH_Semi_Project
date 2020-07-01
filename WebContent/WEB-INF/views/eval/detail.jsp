@@ -247,7 +247,7 @@ function send_goodbad(th, goodbad) {
 
 
 		<div class="mo_detail" id="mo_review"
-			style="background-color: tomato; height: 77.5%; overflow: scroll;">
+			style="background-color: tomato; height: 77.5%; overflow: auto;">
 			<table>
 				<c:forEach var="item" items="${reviewList}" varStatus="status">
 					<tr data-reviewno="${item.review.reviewNo }"
@@ -381,8 +381,8 @@ function send_goodbad(th, goodbad) {
 	/* width,height 적용가능하도록 변경 */
 	display: inline-block;
 	/* 별이 표현되는 영역 크기 */
-	width: 37px;
-	height: 80px;
+	width: 50px;
+	height: 90px;
 	/* 투명한 별 표현 */
 	background-image:
 		url("/resources/image/star33.gif");

@@ -52,6 +52,13 @@
 	/* text-align: center; */
 	margin-top: 10px;
 }
+#submit_btn {
+	all: unset;
+	cursor: pointer;
+}
+#submit_btn:hover {
+color:rgba(42,193,188,0.6);
+}
 </style>
 
 <script type="text/javascript"
@@ -180,7 +187,10 @@ function showStarValue(val) {
 </head>
 <body>
 	<div id="mo_right">
-		<div class="star-box" style="width: 1000px;">
+		<div class="h2only" style="margin: 10px 0px; width:600px; text-align: center; margin-top: 30px; font-size: 35px;">
+			<H2>메뉴 평가하기</H2>
+		</div>
+		<div class="star-box" style="width: 600px; text-align: center; margin-top: 40px; margin-bottom: 30px;">
 			<span class="star star_left"></span> <span class="star star_right"></span>
 			<span class="star star_left"></span> <span class="star star_right"></span>
 			<span class="star star_left"></span> <span class="star star_right"></span>
@@ -188,19 +198,18 @@ function showStarValue(val) {
 			<span class="star star_left"></span> <span class="star star_right"></span>
 		</div>
 
-		<div class="star-value" id="star_div" style="display: none;">0</div>
-		<div class="h2only" style="margin: 10px 0px;">
-			<H2>한줄평 작성</H2>
-		</div>
+		<div class="star-value" id="star_div" style="display: none; ">0</div>
 		<input type="text" id="review" name="review" size="45"
-			style="height: 50px; width: 400px;" /><br> <input type="hidden"
+			style = "height: 150px; width: 600px; font-size: 45px;" /><br> <input type="hidden"
 			id="starscore" name="starscore" /> <input type="hidden"
 			id="star_food" name="food" value="${menuno }" />
 
-		<div class="btndiv">
-			<input type="button" value="작성완료" id="submit_btn" />
+		<div class="btndiv" style= "width:600px; text-align: center; margin-top: 30px; font-size: 30px;">
+			<button id="submit_btn"><i class="xi-location-arrow xi-4x"></i></button>
 		</div>
 	</div>
+	
+	
 
 	<script type="text/javascript">
    $(".ajaxbutton").click(function() {
