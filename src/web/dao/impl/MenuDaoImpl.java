@@ -352,16 +352,16 @@ public class MenuDaoImpl implements MenuDao{
          sql += " where R.menu_stat='Y' and R.menu_blind='N'";
 
       }else if("리뷰순".equals(detailfilter)) {
-         sql += "select R.* from";
+         sql += "select C.* from";
          sql+=" (SELECT";
-         sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, count(*) as review_cnt";
+         sql+=" B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name, count(R.review_no) as review_cnt";
          sql+=" FROM (select A.*, D.food_name from";
          sql+=" (select M.*, F.fran_name, F.food_no from menu M, fran F where M.fran_no = F.fran_no) A, food D";
          sql+=" where A.food_no=D.food_no and D.food_name = ?) B, review R";
          sql+=" WHERE B.menu_no = R.menu_no(+)";
          sql+=" GROUP BY B.menu_no, B.menu_name, B.menu_info, B.menu_cost, B.menu_date, B.menu_stat, B.menu_blind, B.fran_no, B.fran_name, B.food_no, B.food_name";
-         sql+=" order by review_cnt desc nulls last, B.menu_no desc) R";
-         sql += " where R.menu_stat='Y' and R.menu_blind='N'";
+         sql+=" order by review_cnt desc nulls last, B.menu_no desc) C";
+         sql += " where C.menu_stat='Y' and C.menu_blind='N'";
 
          
       }else if("가격순".equals(detailfilter)) {
