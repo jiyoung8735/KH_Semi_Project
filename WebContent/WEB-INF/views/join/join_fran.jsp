@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
     
 <!--header-->    
 <c:import url="/WEB-INF/views/login/header.jsp"></c:import>
@@ -595,21 +596,9 @@ $(document).ready(function(){
 <label>담당 프랜차이즈</label>
 <select name="franName" id="franName" class="form-control">
     <option value="">선택</option>
-    <option value="교촌치킨">교촌치킨</option>
-    <option value="호식이두마리">호식이두마리</option>
-    <option value="삼풍치킨">삼풍치킨</option>
-    <option value="파파존스">파파존스</option>
-    <option value="미스터피자">미스터피자</option>
-    <option value="피자스쿨">피자스쿨</option>
-    <option value="가장맛있는족발">가장맛있는족발</option>
-    <option value="논현족발">논현족발</option>
-    <option value="돈나라족발">돈나라족발</option>
-    <option value="파파이스">파파이스</option>
-    <option value="버거킹">버거킹</option>
-    <option value="맘스터치">맘스터치</option>
-    <option value="투썸플레이스">투썸플레이스</option>
-    <option value="와플몬스터">와플몬스터</option>
-    <option value="빌리엔젤">빌리엔젤</option>
+	<c:forEach var="i" items="${listFran }" begin="0" end="${fn:length(listFran)}">
+    <option value="${i.franName }">${i.franName }</option>
+    </c:forEach> 
 </select>
 <div id="franNamev"></div>
 </div>

@@ -44,7 +44,7 @@
 
 .mywork {
 	margin-top: 262px;
-	height: 700px;
+/* 	height: 700px; */
 	display: inline-block;
 	width: 72%;
 	text-align: center;

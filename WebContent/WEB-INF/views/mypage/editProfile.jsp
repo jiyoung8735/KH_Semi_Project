@@ -65,3 +65,5 @@
 			</div>
 			
 </section>	
+
+<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
