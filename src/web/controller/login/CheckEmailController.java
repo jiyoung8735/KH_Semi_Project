@@ -28,13 +28,7 @@ public class CheckEmailController extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json;charset=utf-8");
 		
-		if(result) {
-			System.out.println("이메일 일치");
-			out.println("{\"result\":true}");
-		}else {
-			System.out.println("이메일 불일치");
-			out.println("{\"result\":false}");
-		}
+		out.println(result);
 	
 	}
 	

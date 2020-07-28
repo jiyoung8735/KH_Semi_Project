@@ -51,17 +51,16 @@ $(document).ready(function(){
 </script>
 
 <div style="width: 500px; margin:0 auto; height: 700px;">
-<h1>비밀번호 찾기</h1>
+<h1 style="text-align: center">비밀번호찾기 (아이디조회)</h1>
 <hr>
-<h5>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</h5>
-	<div class="form-group">
-    	<input type="text" id="id" name="id" class="form-control" placeholder="아이디를 입력하세요">
-    	<div id="idv"></div>
+	<div class="form-group" style="text-align: center">
+    	<input type="text" id="id" name="id" class="form-control" placeholder="회원 아이디 입력" style="width: 450px; display:inline-block;" >
+    	<div id="idv" style="text-align: center"></div>
 	</div>
 	<form action="/forgetpw" method="POST" > 
 	<div style="width: 120px; margin:0 auto;"> 
 		<input type="text" id="searchid" name="id" style="display: none;" />
-		<button id="btnNext" class="form-control" style="width: 100px; background-color:#ccc;">다음 ></button>
+		<button id="btnNext" class="form-control" style="width: 100px; background: #2AC1BC; color: white;">다음 </button>
 	</div>
 	</form>
 </div>

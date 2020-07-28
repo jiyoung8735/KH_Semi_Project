@@ -55,7 +55,7 @@ public class ViewPersonalInfo extends HttpServlet {
 		String p = String.valueOf(session.getAttribute("fran"));
 		if( session.getAttribute("fran") != null ) {
 			Fran f = franService.getFran( Integer.parseInt(p) );
-			req.setAttribute("fran", f.getFranName());
+			req.setAttribute("fran2", f.getFranName());
 		}
 		
 		// 전달받은 데이터 request 컨텍스트에 저장하기

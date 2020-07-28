@@ -118,48 +118,53 @@ $(document).ready(function() {
 			$(".star").eq(i).addClass("on");
 		}
 		
+		console.log("클릭된 별의 위치 : " + idx)
+		console.log("점수로 변환 : " + (idx+1)/2)
 		updatescore = (idx+1)/2;
+		console.log("수정한 점수 : " + updatescore);
 		
 		$('#uds').attr('value', updatescore);
 	})
 	
 	ss();	
 
-	function ss() {
-		
-		$(".star").removeClass("on");
-		for(var i=0; i<= ${myWork.star.starScore }*2-1; i++){
-			$(".star").eq(i).addClass("on");
-		};
-	}
 });	
 
-
+function ss() {
+	
+	$(".star").removeClass("on");
+	for(var i=0; i<= ${myWork.star.starScore }*2-1; i++){
+		$(".star").eq(i).addClass("on");
+	};
+}
 </script>
 
 <div class="updatereview">
 <h1>리뷰 수정</h1>
 <hr>
 	<form action="/update/mywork" method="POST">
-			<h1>메뉴 : ${myWork.menu.menuName }</span></h1>
-			<div class="star-box">
-			<span class="star star_left"></span>
-			<span class="star star_right"></span>
-			<span class="star star_left"></span>
-			<span class="star star_right"></span>
-			<span class="star star_left"></span>
-			<span class="star star_right"></span>
-			<span class="star star_left"></span>
-			<span class="star star_right"></span>
-			<span class="star star_left"></span>
-			<span class="star star_right"></span>
-			<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.star.starScore }"/>
-			</div>
-			<textarea name="review">${myWork.review.reviewContent }</textarea><br>
+		<h1>메뉴 : ${myWork.menu.menuName }</h1>
+		<div class="star-box">
+		<span class="star star_left"></span>
+		<span class="star star_right"></span>
+		<span class="star star_left"></span>
+		<span class="star star_right"></span>
+		<span class="star star_left"></span>
+		<span class="star star_right"></span>
+		<span class="star star_left"></span>
+		<span class="star star_right"></span>
+		<span class="star star_left"></span>
+		<span class="star star_right"></span>
+		<input type="text" name="updatescore" id="uds" style="display: none;" value="${myWork.star.starScore }"/>
+		</div>
+		<textarea name="review">${myWork.review.reviewContent }</textarea><br>
 		<input type="text" name="menuno" value="${myWork.menu.menuNo }" style="display: none;"/>
-		<div class="udp"><button>수정</button> <button type="button" id="goback" >취소</button></div>
+		<div class="udp">
+		<button>수정</button> <button type="button" onclick="location.href='/view/mywork'" >취소</button>
+		</div>
 	</form>
-</div>	
+</div>
+	
 </section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

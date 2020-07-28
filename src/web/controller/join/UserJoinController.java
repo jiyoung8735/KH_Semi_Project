@@ -39,18 +39,12 @@ public class UserJoinController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
 		//회원가입
 		int result = userService.joinUser(req);
 		
 		//회원가입성공
 		if( result > 0) {
-			System.out.println("회원가입성공");
-		}else {
-			System.out.println("회원가입실패");
+			resp.sendRedirect("/main");
 		}
-		
-		resp.sendRedirect("/main");
-	
 	}
 }

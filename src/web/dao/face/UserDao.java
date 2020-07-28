@@ -54,7 +54,7 @@ public interface UserDao {
 	 * @param email
 	 * @return User객체
 	 */
-	User selectUserByNameAndEmail(String name, String email);
+	User selectUserByNameAndEmail(User user);
 	
 	
 	/**

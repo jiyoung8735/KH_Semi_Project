@@ -41,7 +41,7 @@ $(document).ready(function(){
 		
 		if( emailsend == true ){
 			$("#emailv").text( "이메일을 발송하였습니다" );
-			$("#emailv").css( "color", 'red' );
+			$("#emailv").css( "color", 'blue' );
 		} 
 		
 		if( emailsend == false ){
@@ -70,14 +70,14 @@ $(document).ready(function(){
 		codeCheck = resultvar2.result;
 		
 		if( codeCheck == true ){
-			$("#codev").text("코드 인증에 성공하였습니다.");
-			$("#codev").css("color", 'red');
+			$("#codev").text("코드 인증 성공!");
+			$("#codev").css("color", 'blue');
 			// 아이디 조회
 			searchId();
 		}
 		
 		if( codeCheck == false ){
-			$("#codev").text("코드 인증에 실패하였습니다.");
+			$("#codev").text("코드 인증 실패!");
 			$("#codev").css("color", 'red');
 		}
 	}
@@ -122,26 +122,24 @@ $(document).ready(function(){
 	<div class="form-group">
 		<label>이메일</label><br>
 		<input type="email" id="email" name="email" class="form-control" required="required" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-		<button id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">이메일 인증받기</button>
+		<button id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">이메일 인증받기</button>
 		<div id="emailv"></div>
 	</div>
 	
 	<div class="form-group">
 		<label>인증번호 입력</label><br>
 		<input type="text" name="code" id="code" class="form-control"  required="required"  placeholder="인증번호를 입력하세요" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-		<button id="btnCodeVerify" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">확인</button>
+		<button id="btnCodeVerify" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">확인</button>
 		<div id="codev"></div>
 	</div>
 
 <!-- 아이디 조회 (AJAX)  -->
 <div id="showid"></div>
 <hr>
-<button class="btn btn-default btn-block"><a href="/login">로그인하러 가기 >></a></button>
-<hr>
-
 <div style="text-align: center;">
-<a href="/forgetpw">비밀번호찾기</a>
+<a href="/login" style="text-decoration: underline;">로그인</a> &emsp;
+<a href="/forgetpw" style="text-decoration: underline;">비밀번호 찾기</a>
 </div>
 </div>
 
-<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/login/footer.jsp"></c:import> --%>

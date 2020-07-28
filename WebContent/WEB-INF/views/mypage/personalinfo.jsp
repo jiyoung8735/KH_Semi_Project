@@ -71,10 +71,10 @@
 		<tr><th><h3>관심프랜차이즈</h3></th>
 		<td>
 			<c:choose>
-			<c:when test="${not empty fran}">
-			<h3 style="font-weight: normal;">${fran }</h3>
+			<c:when test="${not empty fran2}">
+			<h3 style="font-weight: normal;">${fran2 }</h3>
 			</c:when>
-			<c:when test="${empty fran }">
+			<c:when test="${empty fran2 }">
 			<h3 style="font-weight: normal;"><%="-" %></h3>
 			</c:when>
 		</c:choose>

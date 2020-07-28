@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- total css -->
+<link rel="stylesheet" type="text/css"  href="/resources/css/total.css" >
+
+
 <!-- header css -->
 <style type="text/css">
 .logo_wrapper{

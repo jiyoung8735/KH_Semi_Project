@@ -35,11 +35,11 @@ $(document).ready(function(){
 			checkemail = resultvar1.result;
 			
 			if( checkemail == false) {
-				$("#emailv").text( "회원번호와 일치하는 이메일이 아닙니다." );
+				$("#emailv").text( "회원가입시 등록한 이메일을 입력하세요." );
 				$("#emailv").css( "color", 'red' );
 			}
 			if( checkemail == true ){
-				$("#emailv").text( "회원번호와 일치하는 이메일입니다." );
+				$("#emailv").text( "이메일 확인 성공!" );
 				$("#emailv").css( "color", 'blue' );
 			}
 		}
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	$("#btnSendEmail").click(function(){
 		
 			if( checkemail == false ){
-				$("#emailv").text( "회원번호와 일치하는 이메일이 아닙니다." );
+				$("#emailv").text( "회원가입시 등록한 이메일을 입력하세요." );
 				$("#emailv").css( "color", 'red' );
 				return false;
 			}
@@ -98,24 +98,24 @@ $(document).ready(function(){
 		checkcode = resultvar3.result;
 		
 		if( checkcode == true ){
-			$("#codev").text("인증에 성공하였습니다.")
+			$("#codev").text("코드 인증 성공")
 			$("#codev").css("color", "blue")
 		}
 		
 		if( checkcode == false ){
-			$("#codev").text("인증에 실패하였습니다.")
+			$("#codev").text("코드 인증 실패")
 			$("#codev").css("color", "red")
 		}
 	}
 	$("#btnNext").click(function(){
 		
 		if( checkcode == true ){
-			$("#codev").text("인증에 성공하였습니다.");
+			$("#codev").text("코드 인증 성공");
 			$("#codev").css("color", "blue");
 			location.href = "/changepw";
 		}
 		if( checkcode == false){
-			$("#codev").text("인증에 실패하였습니다.")
+			$("#codev").text("코드 인증 실패")
 			$("#codev").css("color", "red")
 			return false;
 		}
@@ -125,24 +125,25 @@ $(document).ready(function(){
 </script>
 
 <div style="width: 500px; margin:0 auto; height: 700px;">
-<h1>비밀번호 찾기</h1>
+<h1 style="text-align: center">비밀번호찾기 (본인인증)</h1>
 <hr>
-<h5 style="color: red">이메일로 본인인증이 필요합니다. 회원가입시 등록한 이메일을 입력하세요.</h5>
 	<div class="form-group">
 		<label>이메일</label><br>
-		<input type="email" id="email" name="email" class="form-control" required="required" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-		<button type="button" id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">이메일 인증받기</button>
+		<input type="email" id="email" name="email" class="form-control" placeholder="회원이메일 입력"  required="required" style="width: 325px; display:inline-block; margin-right: 20px;"/>
+		<button type="button" id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">이메일 인증받기</button>
 		<div id="emailv"></div>
 	</div>
 	
 	<div class="form-group">
 		<label>인증번호 입력</label><br>
-		<input type="text" id="code" name="code" class="form-control"  placeholder="인증번호를 입력하세요" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-		<button class="form-control" id="btnCodeVerify" style="width: 150px; display:inline-block; background-color:#ccc;">확인</button>
+		<input type="text" id="code" name="code" class="form-control"  placeholder="인증번호 입력" style="width: 325px; display:inline-block; margin-right: 20px;"/>
+		<button class="form-control" id="btnCodeVerify" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">확인</button>
 		<div id="codev"></div>
 	</div>
-	<button id="btnNext">다음 ></button>
+	<div style="text-align: center">
+		<button class="form-control" id="btnNext" style="background: #2AC1BC; color: white; width:150px; display: inline-block">다음</button>
+	</div>
 </div>
 
 
-<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/login/footer.jsp"></c:import> --%>

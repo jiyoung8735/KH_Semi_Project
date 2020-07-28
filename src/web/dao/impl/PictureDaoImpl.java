@@ -15,7 +15,6 @@ public class PictureDaoImpl implements PictureDao {
 	public void insertFile(Picture picture) {
 		// TODO Auto-generated method stub
 		
-		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		int result = -1;

@@ -197,7 +197,7 @@ $(document).ready(function(){
 		
 		if(checkkey == true ){
 			$("#keyv").text( "KEY인증에 성공하였습니다." );
-			$("#keyv").css( "color", 'red' );
+			$("#keyv").css( "color", 'blue' );
 		} 
 		
 		if(checkkey == false ){
@@ -246,7 +246,7 @@ $(document).ready(function(){
 		
 		if(checkid == true ){
 			$("#idv").text( "사용가능한 아이디입니다." );
-			$("#idv").css( "color", 'red' );
+			$("#idv").css( "color", 'blue' );
 		} 
 		
 		if(checkid == false ){
@@ -452,7 +452,7 @@ $(document).ready(function(){
 		
 		if( emailsend == true ){
 			$("#emailv").text( "이메일을 발송하였습니다" );
-			$("#emailv").css( "color", 'red' );
+			$("#emailv").css( "color", 'blue' );
 		} 
 		
 		if( emailsend == false ){
@@ -480,12 +480,12 @@ $(document).ready(function(){
 		checkcode = codeCheckResult.result
 		
 		if(checkcode == true) {
-			$("#emailCodev").text( "코드가 일치합니다." );
-			$("#emailCodev").css( "color", 'red' );
+			$("#emailCodev").text( "코드 인증 성공!" );
+			$("#emailCodev").css( "color", 'blue' );
 		} 
 		
 		if(checkcode == false) {
-			$("#emailCodev").text( "코드가 일치하지 않습니다." );
+			$("#emailCodev").text( "코드 인증 실패!" );
 			$("#emailCodev").css( "color", 'red' );
 		}
 	}	
@@ -501,7 +501,7 @@ $(document).ready(function(){
 <div class="form-group">
     <label>프랜차이즈 KEY 입력</label><br>
    	<input type="text" name="key" id="key" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;" placeholder="전달받은 KEY를 입력하세요" />
-	<button type="button" id="btnKey" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">확인</button>
+	<button type="button" id="btnKey" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">확인</button>
     <div id="keyv"></div>
 </div>
 <div class="form-group">
@@ -533,9 +533,9 @@ $(document).ready(function(){
 
 <div class="form-group">
 	<label>생년월일</label><br>
-	<input type="text" name="year" id="year" class="form-control" placeholder="년(4자)" style="width: 150px; display:inline-block; margin-right: 21px;" />
+	<input type="text" name="year" id="year" class="form-control" placeholder="년(4자)" style="width: 150px; display:inline-block; margin-right: 19px;" />
                
-	<select name="month" id="month" class="form-control" style="width: 150px; display:inline-block; margin-right: 21px;">
+	<select name="month" id="month" class="form-control" style="width: 150px; display:inline-block; margin-right: 19px;">
 	<option value="">월</option>
 	<option value="1">01</option>
 	<option value="2">02</option>
@@ -568,26 +568,26 @@ $(document).ready(function(){
 <div class="form-group">
 	<label>이메일</label><br>
 	<input type="email" name="email" id="email" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;"/>
-	<button type="button" id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">이메일 인증받기</button>
+	<button type="button" id="btnSendEmail" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">이메일 인증받기</button>
 	<div id="emailv"></div>
 </div>
 
 <div class="form-group">
 	<label>인증번호 입력</label><br>
 	<input type="text" name="code" id="code" class="form-control" style="width: 325px; display:inline-block; margin-right: 20px;" placeholder="인증번호를 입력하세요" />
-	<button type="button" id="btnCodeVerify" class="form-control" style="width: 150px; display:inline-block; background-color:#ccc;">확인</button>
+	<button type="button" id="btnCodeVerify" class="form-control" style="width: 150px; display:inline-block; background: #2AC1BC; color: white;">확인</button>
 	<div id="emailCodev"></div>
 </div>
 
 <div class="form-group">
 <label>전화번호</label><br>
-<select name="tel_01" id="tel_01" class="form-control" style="width: 150px; display:inline-block; margin-right: 21px;">
+<select name="tel_01" id="tel_01" class="form-control" style="width: 150px; display:inline-block; margin-right: 19px;">
 	<option value="010">010</option>
 	<option value="011">011</option>
 	<option value="016">016</option>
 	<option value="017">017</option>
 </select>
-<input type="text" name="tel_02" id="tel_02" class="form-control"  style="width: 150px; display:inline-block; margin-right: 21px;"/> 
+<input type="text" name="tel_02" id="tel_02" class="form-control"  style="width: 150px; display:inline-block; margin-right: 19px;"/> 
 <input type="text" name="tel_03" id="tel_03" class="form-control"  style="width: 150px; display:inline-block;"/><br>
 <div id="telv_02"></div><div id="telv_03"></div>
 </div>
@@ -604,8 +604,8 @@ $(document).ready(function(){
 </div>
 
 <hr>
-<button id="btnJoin" class="btn btn-primary btn-lg btn-block">가입하기</button>
+<button id="btnJoin" class="btn btn-lg btn-block" style="background: #2AC1BC; color: white;">가입하기</button>
 </form>
 </div>
 
-<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/login/footer.jsp"></c:import> --%>

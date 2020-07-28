@@ -1,6 +1,7 @@
 package web.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,6 @@ import java.util.Map;
 import web.dao.face.MyworkDao;
 import web.dbutil.JDBCTemplate;
 import web.dto.Menu;
-import web.dto.Mywork;
 import web.dto.Review;
 import web.dto.Star;
 import web.dto.User;
@@ -20,9 +20,6 @@ import web.util.Paging;
 
 public class MyworkDaoImpl implements MyworkDao {
 
-
-	
-	
 	@Override
 	public List<Map<String,Object>> selectAll(int userno) {
 		
@@ -32,7 +29,6 @@ public class MyworkDaoImpl implements MyworkDao {
 		
 		List<Map<String,Object>> listMywork = new ArrayList<>();
 
-		
 		String sql = "SELECT * FROM ( "; 
 			 	sql += "	SELECT M.MENU_NAME, A.* FROM"; 
 				sql += "	(    SELECT U.USERS_NICK, SR.* FROM USERS U,"; 
@@ -134,8 +130,6 @@ public class MyworkDaoImpl implements MyworkDao {
 				review.setUserNo(rs.getInt("USERS_NO"));
 				review.setReviewContent(rs.getString("REVIEW_CONTENT"));
 				review.setReviewDate(rs.getDate("REVIEW_DATE"));
-				
-				//테스트
 				
 				mapMywork.put("menu", menu);
 				mapMywork.put("user", user);

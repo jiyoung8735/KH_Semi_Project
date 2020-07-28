@@ -41,10 +41,9 @@ public class PictureServiceImpl implements PictureService {
 		boolean isMultipart = false;
 		isMultipart = ServletFileUpload.isMultipartContent(req);
 		
-		//1-1. multipart/form-data 인코딩으로 전송되지 않았을 경우
-		// 처리 중단하기
+		//1-1. multipart/form-data 인코딩으로 전송되지 않았을 경우 처리 중단하기
 		if( !isMultipart ) {
-			return; // write() 메소드 중단시키기
+			return; // uploadPicture() 메소드 중단시키기
 		}
 		
 		//1-2. 여기 이후부터는 multipart/form-data로 요청된 상황
@@ -72,6 +71,7 @@ public class PictureServiceImpl implements PictureService {
 		String path = context.getRealPath("tmp");
 		
 		File repository = new File(path); // 임시 저장 폴더
+	//	System.out.println(repository);
 		
 		factory.setRepository(repository);
 		

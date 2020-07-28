@@ -101,12 +101,12 @@ pw.addEventListener("blur", function( event ) {
 </style>
 
 <div class="login_wrapper">
-   	<div><input type="text" id="id" class="form-control" placeholder="아이디를 입력하세요" ></div>
-   	<div id="a"></div>
-   	<div><input type="text" id="pw" class="form-control" placeholder="비밀번호를 입력하세요"></div>
-	<div id="b"></div>
+   	<div><input type="text" id="id" class="form-control" placeholder="아이디 입력" ></div>
+   	<div id="a"></div><br>
+   	<div><input type="password" id="pw" class="form-control" placeholder="비밀번호 입력"></div>
+	<div id="b"></div><br>
 	<div id="result"></div>
-	<button onclick="login();" class="btn btn-default btn-block">로그인</button>
+	<button onclick="login();" class="btn btn-block" style="background: #2AC1BC; color: white;">로그인</button>
 <br><hr><br>
 
 <div class="login_forget">
@@ -117,5 +117,5 @@ pw.addEventListener("blur", function( event ) {
 </div>
 
 
-<c:import url="/WEB-INF/views/login/footer.jsp"></c:import>
+<%-- <c:import url="/WEB-INF/views/login/footer.jsp"></c:import> --%>
 </html>

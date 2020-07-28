@@ -199,38 +199,39 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User selectUserByNameAndEmail(String name, String email) {
+	public User selectUserByNameAndEmail(User user) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		User user = new User();
+		User result = new User();
 		
 		String sql = "SELECT * FROM USERS WHERE USERS_NAME = ? AND USERS_EMAIL = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, name);
-			ps.setString(2, email);
+			ps.setString(1, user.getUserName());
+			ps.setString(2, user.getUserEmail());
 			
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
-				user.setUserNo( rs.getInt("USERS_NO"));	
-				user.setUserId( rs.getString("USERS_ID")); 
-				user.setUserPw( rs.getString("USERS_PW"));
-				user.setUserName( rs.getString("USERS_NAME"));
-				user.setUserNick( rs.getString("USERS_NICK"));
-				user.setUserBirth( rs.getDate("USERS_BIRTH"));
-				user.setUserGender( rs.getString("USERS_GENDER"));
-				user.setUserEmail( rs.getString("USERS_EMAIL"));
-				user.setUserTel( rs.getInt("USERS_TEL"));
-				user.setUserDate( rs.getDate("USERS_DATE"));
-				user.setUserCnt( rs.getInt("USERS_CNT"));
-				user.setUserAuth( rs.getInt("USERS_AUTH"));
-				user.setUserGrade( rs.getInt("USERS_GRADE"));
-				user.setFranNo( rs.getInt("FRAN_NO"));
+				result.setUserNo( rs.getInt("USERS_NO"));	
+				result.setUserId( rs.getString("USERS_ID")); 
+				result.setUserPw( rs.getString("USERS_PW"));
+				result.setUserName( rs.getString("USERS_NAME"));
+				result.setUserNick( rs.getString("USERS_NICK"));
+				result.setUserBirth( rs.getDate("USERS_BIRTH"));
+				result.setUserGender( rs.getString("USERS_GENDER"));
+				result.setUserEmail( rs.getString("USERS_EMAIL"));
+				result.setUserTel( rs.getInt("USERS_TEL"));
+				result.setUserDate( rs.getDate("USERS_DATE"));
+				result.setUserCnt( rs.getInt("USERS_CNT"));
+				result.setUserAuth( rs.getInt("USERS_AUTH"));
+				result.setUserGrade( rs.getInt("USERS_GRADE"));
+				result.setFranNo( rs.getInt("FRAN_NO"));
+				result.setUserLoginDate( rs.getDate("USERS_LOGIN_DATE") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,7 +240,7 @@ public class UserDaoImpl implements UserDao {
 			JDBCTemplate.close(rs);
 		}
 		
-		return user;
+		return result;
 	}
 
 

@@ -54,14 +54,13 @@ public class UserLoginController extends HttpServlet {
 		if(login) {
 			//로그인 사용자 정보 얻어오기
 			user = userService.info(user);
-			
 
 			//---------징계회원 처리---------
 			if( user.getUserReport() != null ) {
 				
 				//징계날짜
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-				String rd = sdf.format( new java.util.Date(user.getUserReport().getTime()));
+				String rd = sdf.format( new java.util.Date ( user.getUserReport().getTime() ) );
 				int reportdate = Integer.parseInt(rd);
 
 				//현재 날짜
@@ -107,10 +106,10 @@ public class UserLoginController extends HttpServlet {
 				
 				Fran fran = new Fran();
 				fran = franService.getFran(user.getFranNo());
-				session.setAttribute("franname", fran.getFranName());
-				session.setAttribute("franno",fran.getFranNo() );
+
+				session.setAttribute("franname", fran.getFranName() );
+				session.setAttribute("franno", fran.getFranNo() );
 			}
-			
 			
 			//클라이언트에 보낼 정보
 			Map map = new HashMap();

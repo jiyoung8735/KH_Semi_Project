@@ -35,22 +35,22 @@ $(document).ready(function(){
 </script>
 
 <div style="width: 500px; margin:0 auto; height: 700px;">
-<h1>비밀번호 재설정</h1>
+<h1 style="text-align: center">비밀번호 재설정</h1>
 <hr>
-<div><h3>아이디: ${id }</h3></div>
+<div><h3 style="text-align: center">아이디: ${id }</h3></div>
 <form action="/changepw" method="POST">
-	<div class="form-group">
-		<input type="password" id="pw" name="pw" class="form-control" required="required" placeholder="새 비밀번호"/>
+	<div class="form-group" style="text-align: center">
+		<input type="password" id="pw" name="pw" class="form-control" style="width: 450px; display:inline-block" required="required" placeholder="새 비밀번호" />
 		<div id="pw"></div>
 	</div>
 	
-	<div class="form-group">
-		<input type="password" id="pwc" name="pwc" class="form-control" required="required" placeholder="새 비밀번호 확인"/>
+	<div class="form-group" style="text-align: center">
+		<input type="password" id="pwc" name="pwc" class="form-control" style="width: 450px; display:inline-block" required="required" placeholder="새 비밀번호 확인"/>
+	<div id="pwcv" style="text-align: center"></div>
 	</div>
-	<div id="pwcv"></div>
 	
 	<div class="form-group" style="width: 120px; margin:0 auto;">
-		<input id="btnChange" type="submit" class="form-control" value="확인" style="width: 100px; background-color:#ccc;"/>
+		<input id="btnChange" type="submit" class="form-control" value="확인" style="width: 100px; background: #2AC1BC; color: white;"/>
 	</div>
 </form>
 </div>

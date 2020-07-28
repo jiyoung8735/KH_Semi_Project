@@ -5,15 +5,6 @@
 
 <c:import url="/WEB-INF/views/mypage/profile.jsp"></c:import>
 
-<script>
-window.onload = function(){
-	
-	goback.onclick = function(){
-		location.href = '/editProfile';
-	}
-	
-}
-</script>
 <style type="text/css">
 
 .leavesite {
@@ -42,14 +33,17 @@ window.onload = function(){
 </style>
 
 <div class="leavesite">
-<h1>사이트 탈퇴</h1>
-<hr><br>
-<h1>정말 탈퇴하시겠습니까?</h1>
-<form action="/leavesite" method="POST">
-<button>네, 탈퇴하겠습니다.</button><br>
-<button type="button" id="goback">아니요, 계속하겠습니다.</button>
-</form>
+	<h1>사이트 탈퇴</h1>
+	<hr><br>
+	
+	<h1>정말 탈퇴하시겠습니까?</h1>
+	<form action="/leavesite" method="POST">
+		<button>네, 탈퇴하겠습니다.</button><br>
+		<button type="button" onclick="location.href='/editProfile'">아니요, 계속하겠습니다.</button>
+	</form>
 
 </div>
+
 </section>
+
 <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

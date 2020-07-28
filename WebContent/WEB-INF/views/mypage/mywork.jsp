@@ -81,33 +81,32 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
-	function ss() {
-		
-		$(".star-box").each(function() {
-			
-			$(this).find(".star").removeClass("on")
-			
-			for(var i=0; i<= $(this).attr("data-starScore")*2-1; i++){
-				$(this).find(".star").eq(i).addClass("on");
-			}
-	
-		});
-	}
 
 	ss();
 	
 	$('.delete_btn').click(function() {
-	    var dBtnRes = confirm( ' 정말 삭제하시겠습니까?');
+	    var dBtnRes = confirm('정말 삭제하시겠습니까?');
+	    console.log(dBtnRes);
 	    
 	    if(dBtnRes) {
 	    	$(this).next().click();
 	    }
-	    
 	});
 	
 })
 
+function ss() {
+	
+	$(".star-box").each(function() {
+		
+		$(this).find(".star").removeClass("on")
+		
+		for(var i=0; i<= $(this).attr("data-starScore")*2-1; i++){
+			$(this).find(".star").eq(i).addClass("on");
+		}
+
+	});
+}
 </script>
 
 	<div class="mywork">
@@ -122,14 +121,14 @@ $(document).ready(function() {
 			<th style="width: 15%;"><h4>별점작성일</h4></th>
 			<th style="width: 15%;"><h4>리뷰작성일</h4></th>
 			<th style="width: 10%;"><h4>관리</h4></th>
-	 	<c:forEach var="i" items="${myworkList }" begin="0" end="${fn:length(myworkList)}"> 
+		</tr>	
+	 	<c:forEach var="i" items="${myworkList }"> 
 		<tr>
-			<td><h4>${i.menu.menuName }</span></h4></td>
+			<td><h4>${i.menu.menuName }</h4></td>
 			<td><h4>${i.user.userNick }</h4></td>
 			<td>
 			<div class="star-box" data-starScore="${i.star.starScore }">
-			<h4><span class="star star_left"></span>
-			<span class="star star_right"></span>
+			<h4>
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
@@ -137,15 +136,19 @@ $(document).ready(function() {
 			<span class="star star_left"></span>
 			<span class="star star_right"></span>
 			<span class="star star_left"></span>
-			<span class="star star_right"></span></h4>
+			<span class="star star_right"></span>
+			<span class="star star_left"></span>
+			<span class="star star_right"></span>
+			</h4>
 			</div>
 			</td>
 			<td><h4>${i.review.reviewContent }</h4></td>
 			<td><h4>${i.star.starDate }</h4></td>
 			<td><h4>${i.review.reviewDate }</h4></td>
-			<td><button><h3><a href="/update/mywork?menuNo=${i.menu.menuNo }">수정</a><h3></button> 
-				<button class="delete_btn"><h3>삭제</h3></button>
-				<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${i.menu.menuNo }'"></button>
+			<td>
+			<button><h3><a href="/update/mywork?menuNo=${i.menu.menuNo }">수정</a><h3></button> 
+			<button class="delete_btn"><h3>삭제</h3></button>
+			<button style="display: none;" onclick="location.href='/delete/mywork?menuNo=${i.menu.menuNo }'"></button>
 			</td>
 		</tr>
 	 	</c:forEach> 

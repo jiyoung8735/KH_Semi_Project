@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserId( req.getParameter("id") );
 		User result = userDao.selectUserByUserid(user);
 		
-		
 		return result;
 	}
 
@@ -176,7 +175,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserGrade( grade );
 		user.setFranNo( franno );
 		
-		
 		//회원가입 -> UserNo 생성
 		int result = userDao.insert(user);
 		User joinuser = info(user);
@@ -224,10 +222,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User searchId(HttpServletRequest req) {
 		
-		String name = req.getParameter("name");
-		String email = req.getParameter("useremail");
+		User user = new User();
+		user.setUserName(req.getParameter("name"));
+		user.setUserEmail(req.getParameter("useremail"));
 		
-		User user = userDao.selectUserByNameAndEmail(name, email);
+		user = userDao.selectUserByNameAndEmail(user);
 		
 		return user;
 	}
@@ -235,13 +234,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User checkId(HttpServletRequest req) {
 		
-		String id = req.getParameter("id");
 		User user = new User();
-		user.setUserId(id);
+		user.setUserId( req.getParameter("id") );
 		
-		User u = userDao.selectUserByUserid(user);
+		user = userDao.selectUserByUserid(user);
 		
-		return u;
+		return user;
 	}
 
 	@Override
@@ -249,7 +247,6 @@ public class UserServiceImpl implements UserService {
 
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("id"));
-		
 		String npw = req.getParameter("pw");
 		
 		userDao.updatePw(npw, id);
@@ -261,7 +258,6 @@ public class UserServiceImpl implements UserService {
 
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("userid"));
-		
 		String npw = req.getParameter("pw");
 		
 		userDao.updatePw(npw, id);
@@ -270,7 +266,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkEmail(HttpServletRequest req) {
 		
-		//세션 아이디
+		//세션에 저장한 아이디
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("id"));
 		
@@ -280,9 +276,9 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setUserId(id);
 		
-		User u = userDao.selectUserByUserid(user);
+		user = userDao.selectUserByUserid(user);
 		
-		if( u.getUserEmail().equals(email) ) {
+		if( user.getUserEmail().equals(email) ) {
 			return true;
 		}else {
 			return false;
@@ -309,7 +305,7 @@ public class UserServiceImpl implements UserService {
 			userDao.updateLoginDate(user);
 		}
 		
-		//현재 로그인 날짜와 현재 날짜가 동일할 떄
+		//현재 로그인 날짜와 현재 날짜가 동일할 때
 		//-> 아무것도 하지 않는다
 	}
 

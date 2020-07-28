@@ -1,9 +1,9 @@
 package web.dao.face;
 
 import java.util.List;
+
 import java.util.Map;
 
-import web.dto.Mywork;
 import web.util.Paging;
 
 public interface MyworkDao {
