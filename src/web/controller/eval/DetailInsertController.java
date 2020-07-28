@@ -27,10 +27,8 @@ public class DetailInsertController extends HttpServlet {
       request.setAttribute("menuno", request.getParameter("menuno"));
       HttpSession session = request.getSession();
       session.getAttribute("userno");
-      System.out.println("여기는 유저아이디 : "+session.getAttribute("userno"));
      
       
-      System.out.println("여기는 검증하는 코드쪽입니다 : "+request.getParameter("revcnt"));
       
       
       request.setAttribute("revcnt", request.getParameter("revcnt"));
@@ -40,7 +38,6 @@ public class DetailInsertController extends HttpServlet {
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  System.out.println("여기는 디테일 컨트롤러임다 : "+ request.getAttribute("revcnt"));
 	  
     	  starService.StarInsert(request);
     	  reviewService.ReviewInsert(request); 

@@ -137,15 +137,11 @@ $(document).ready(function() {
             }
             , dataType: "html"
             , success: function(result) {
-               console.log("AJAX 성공");
-               console.log(result);
             }
             , error: function() {
-               console.log("AJAX 실패");
             }
          });
 
-// 	      evalDetail(${menuno })
 
        
        $.ajax({
@@ -156,12 +152,9 @@ $(document).ready(function() {
             }
             , dataType: "html"
             , success: function(result) {
-               console.log("AJAX 성공")
-               console.log(result)
                $("#mo_wrapper").html(result);
             }
             , error: function() {
-               console.log("AJAX 실패")
             }
          });
     });
@@ -212,29 +205,3 @@ function showStarValue(val) {
 	
 	
 
-	<script type="text/javascript">
-   $(".ajaxbutton").click(function() {
-      $("#mo_image").css({
-         "backgroundImage" : "url(/upload/${image.imgServer })",
-         "background-size" : "cover",
-         "background-position-x" : "center"
-      });
-         $.ajax({
-            type: "post"
-            , url: "/eval/detail"
-            , data: {
-               food: ${food }
-            }
-            , dataType: "html"
-            , success: function(result) {
-               console.log("AJAX 성공")
-               console.log(result)
-               $("#mo_wrapper").html(result);
-            }
-            , error: function() {
-               console.log("AJAX 실패")
-            }
-         });
-   });
-   
-</script>

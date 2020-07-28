@@ -32,15 +32,11 @@ public class FilterController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-//		System.out.println("filter test : " + req.getParameter("food"));
 		
 		String foodname = req.getParameter("food");
-		System.out.println(foodname +"이건뭔데?");
 		List<Menu> menu = menuService.getMenuByfoodNo(foodname);
 		List<Image> image = imageService.getImageByFran(menu , foodname);
 
-		System.out.println("필터 " + menu);
-		System.out.println("필터 " + image);
 		
 		req.setAttribute("menu", menu);
 		req.setAttribute("image", image);

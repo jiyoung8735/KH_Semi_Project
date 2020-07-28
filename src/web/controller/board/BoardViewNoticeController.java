@@ -28,22 +28,14 @@ public class BoardViewNoticeController extends HttpServlet {
 
 		//요청파라미터를 전달하여 Paging 객체 생성하기
 		Paging paging = boardService.getPagingNotice(req);
-		System.out.println(paging);
 		
 		//게시글 페이징 처리 조회
 		List<Board> boardList = boardService.getListNotice(paging);
 		
-//		List<String> userKey = new ArrayList<>();
-//		List<Board> boardVal = new ArrayList<>();
-//		for(String key:boardList.keySet()) {
-//			userKey.add(key);
-//			boardVal.add(boardList.get(key));
-//		}
 		
 		//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);
 	
-		System.out.println("값"+boardList);
 		//게시글 조회 MODEL값 전달
 		req.setAttribute("boardList", boardList);
 

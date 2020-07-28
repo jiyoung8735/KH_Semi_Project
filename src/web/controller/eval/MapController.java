@@ -25,7 +25,6 @@ public class MapController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("*** map ajax 전달받음 ***");
 		
 		Menu menu = new Menu();
 		menu.setMenuNo(Integer.parseInt(req.getParameter("menuno")));

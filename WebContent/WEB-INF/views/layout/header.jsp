@@ -66,11 +66,9 @@ $(document).ready(function(){
     
 
     $("a[class^=main_menu_]").hover(function(){
-//         $(this).css("color", "red");
     	$(this).css("font-weight","bolder");
     	$(this).css("font-size","1.05em");
     } , function(){
-//         $(this).css("color", "black");
     	$(this).css("font-weight","normal");
     	$(this).css("font-size","1em");
     })

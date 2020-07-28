@@ -99,7 +99,6 @@ $(document).ready(function() {
 	
 	$('.delete_btn').click(function() {
 	    var dBtnRes = confirm( ' 정말 삭제하시겠습니까?');
-	    console.log(dBtnRes);
 	    
 	    if(dBtnRes) {
 	    	$(this).next().click();

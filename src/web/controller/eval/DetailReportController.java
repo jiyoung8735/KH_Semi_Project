@@ -47,13 +47,6 @@ public class DetailReportController extends HttpServlet {
 	      String targetno = req.getParameter("targetno");
 	      String content = req.getParameter("content");
 	      
-	      System.out.println("- - - - - - - - -- -- -- -- -- -- -- -- -- -- -- -");
-	      System.out.println("로그인한 유저넘버 : "+session.getAttribute("userno"));
-	      System.out.println("신고등록할 메뉴넘버 : " + req.getParameter("menuno"));
-	      System.out.println("리뷰번호 : " + req.getParameter("reviewno"));
-	      System.out.println("대상자번호 : " + req.getParameter("targetno"));
-	      System.out.println("한줄평내용 : " + req.getParameter("content"));
-	      System.out.println("- - - - - - - - -- -- -- -- -- -- -- -- -- -- -- -");
 	      
 	      
 	      req.setAttribute("loginUserNo", session.getAttribute("userno"));
@@ -73,7 +66,6 @@ public class DetailReportController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("ajax 수정 받았음");
 	
 		Report report = new Report();
 		
@@ -89,7 +81,6 @@ public class DetailReportController extends HttpServlet {
 		report.setRptTarget(targetNo);
 		report.setReviewNo(reviewNo);
 		
-		System.out.println(report );
 		
 		reportService.reviewReport(report);
 		

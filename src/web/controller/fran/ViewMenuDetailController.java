@@ -30,7 +30,6 @@ public class ViewMenuDetailController extends HttpServlet {
 	
 		Menu menuno = menuService.getMenuNo(req);
 		
-		System.out.println(menuno);
 		
 		Menu viewMenu = menuService.view(menuno);
 		

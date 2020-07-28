@@ -26,7 +26,6 @@ public class BoardViewAnswerController extends HttpServlet {
 		if( param!=null && !"".equals(param) ) {
 			boardNo = Integer.parseInt(param);
 		}
-		System.out.println(boardNo);
 		
 		req.setAttribute("board", boardService.viewPostsDetail(boardNo));
 		

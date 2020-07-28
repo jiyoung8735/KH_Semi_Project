@@ -11,15 +11,10 @@
 </div>
 <table>
 
-<%-- <tr><th width="20%">아이디</th><td width="80%"><c:out value="${user.userId}" /></td></tr> --%>
-<%-- <tr><th width="20%">닉네임</th><td width="80%"><c:out value="${user.userNick}" /></td></tr> --%>
 <tr><th width="20%">제목</th><td width="80%"><c:out value="${board.bdTitle}" /></td></tr>
 <tr><td></td></tr>
 <tr><th colspan="2">공지 내용</th></tr>
 <tr><td colspan="2"><textarea cols="112" rows="10" disabled="disabled" style="padding: 20px;"><c:out value="${board.bdQuestion}" /></textarea></td></tr>
-<%-- <c:if test="${board.bdAnswer != null }"> --%>
-<%-- <c:import url="/WEB-INF/views/board/detailAnswer.jsp"></c:import> --%>
-<%-- </c:if> --%>
 </table>
 <button style="margin-left: 955px;" class="button" onclick="location.href='/view/notice'">목록</button>
 

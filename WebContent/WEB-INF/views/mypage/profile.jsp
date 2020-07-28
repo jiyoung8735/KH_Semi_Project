@@ -33,12 +33,8 @@ $(document).ready(function(){
 		 
 		 // File 객체의 정보(내용물)을 모두 읽어서 메모리에 적재(load)한 이후 동작되도록 이벤트 리스너 작성
 		 reader.onload = function(ev) {
-		    console.log(ev)
-		    console.log(ev.target)
 		    
-		    console.log("--------------------------------")
 		    
-		    console.log(ev.target.result)
 		    
 		    // 이미지가 한장만 유지됨
 		    $("#profile_img").html( $("<img>").attr({

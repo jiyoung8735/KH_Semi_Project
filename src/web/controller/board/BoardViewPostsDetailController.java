@@ -27,17 +27,14 @@ public class BoardViewPostsDetailController extends HttpServlet {
 		if( param!=null && !"".equals(param) ) {
 			boardNo = Integer.parseInt(param);
 		}
-		System.out.println(boardNo);
 		
 		boardService.viewCnt(boardNo);
 		
 		Board board = new Board();
 		board = boardService.viewPostsDetail(boardNo);
 		
-		System.out.println("board" + board);
 		req.setAttribute("board", board);
 		
-		System.out.println("board,userno : " + board.getUserNo());
 		int userno = board.getUserNo();
 		
 		req.setAttribute("user", boardService.postsDetailUser(userno));

@@ -22,7 +22,6 @@ public class BoardAddPostsController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("/add/posts [GET]");
 		
 		req.setAttribute("user", boardService.getUserIdNick(req));
 	
@@ -34,14 +33,11 @@ public class BoardAddPostsController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		System.out.println("/add/posts [POST]");
 	
 		User user = boardService.getUserIdNick(req);
-		System.out.println("1 :"+user);
 		
 		req.setAttribute("userno", boardService.getUserNoByUserId(user) );
 		
-		System.out.println("2 :"+ boardService.getUserNoByUserId(user));
 		boardService.addPosts(req);
 		
 		resp.sendRedirect("/view/posts");

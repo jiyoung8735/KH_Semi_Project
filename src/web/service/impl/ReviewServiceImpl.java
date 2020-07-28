@@ -37,17 +37,14 @@ public class ReviewServiceImpl implements ReviewService {
 	      //메뉴번호 전달받기
 	      String param = req.getParameter("menuno");
 	      int menuNo = Integer.parseInt(param);
-	      System.out.println(menuNo);
 	      
 	      //회원번호 꺼내기(세션)
 	      HttpSession session = req.getSession();
 	      String p = String.valueOf(session.getAttribute("userno"));
 	      int userno = Integer.parseInt(p);
-	      System.out.println(userno);
 	      
 	      //수정된 리뷰컨텐츠 전달받기
 	      String updateContent = req.getParameter("review");
-	      System.out.println(updateContent);
 	      
 	      reviewDao.updateReviewByMenuNoUserNo(updateContent, userno, menuNo);
 	      
@@ -55,11 +52,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// ---------------------------------------------------------------------------
 
-//	@Override
-//	public Map<Review, Picture> evalReviewDetail(Paging paging, int menuno) {
-//
-//		return reviewDao.selectReview(paging, menuno);
-//	}
 	@Override
 	public List<Map<String, Object>> evalReviewDetail(Paging paging, int menuno) {
 		
@@ -75,7 +67,6 @@ public class ReviewServiceImpl implements ReviewService {
 		if (param != null && !"".equals(param)) {
 			curPage = Integer.parseInt(param);
 		}
-		System.out.println(curPage);
 
 		// 검색어
 		String search = (String) req.getParameter("search");
@@ -86,7 +77,6 @@ public class ReviewServiceImpl implements ReviewService {
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
 
-		System.out.println(paging);
 		// Paging 객체 반환
 		return paging;
 	}
@@ -119,7 +109,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void goodandbadbtn(HttpServletRequest req) {
-		System.out.println("씨빨 ㅉ또ㅉ띨다라고 되라고 개샊끼야");
 		
 		Review review = new Review();
 		Reviewverif reviewverif = new Reviewverif();
@@ -140,14 +129,12 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		
 		String goodbad = req.getParameter("goodbad");
-		System.out.println("goodbad ::::: " + goodbad);
 		
 		//좋아요 싫어요 했나 안했나 검증
 		if (goodbad.equals("good")) {
 			reviewDao.goodbtn(review, user);
 			reviewDao.goodbtn_insert(reviewverif);
 		} else if (goodbad.equals("bad")) {
-			System.out.println("여기는 배드 컨트롤러" + review.getReviewNo());
 			reviewDao.badbtn(review, user);
 			reviewDao.badbtn_insert(reviewverif);
 		}

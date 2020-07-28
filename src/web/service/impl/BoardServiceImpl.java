@@ -55,19 +55,15 @@ public class BoardServiceImpl implements BoardService{
 			curPage = Integer.parseInt(param);
 		}
 		
-		System.out.println("현재페이지"+curPage);
 		//검색어
 		String search = (String)req.getParameter("search");
-		System.out.println("검색"+search);
 		//Board 테이블의 총 게시글 수를 조회한다
 		int totalCount = boardDao.selectCntPosts(search);
-		System.out.println("총페이지"+totalCount);
 
 		//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
 		
-		System.out.println("페이징"+paging);
 		
 		//Paging 객체 반환
 		return paging;
@@ -90,7 +86,6 @@ public class BoardServiceImpl implements BoardService{
 		//Paging 객체 생성 - 현재 페이지(curPage), 총 게시글 수(totalCount) 활용
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
-		System.out.println("페이징2"+paging);
 		
 		//Paging 객체 반환
 		return paging;

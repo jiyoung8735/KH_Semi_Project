@@ -252,12 +252,9 @@ $("#rollback_btn").click(function(){
          }
          , dataType: "html"
          , success: function(result) {
-            console.log("AJAX 성공")
-            console.log(result)
             $("#mo_wrapper").html(result);
          }
          , error: function() {
-            console.log("AJAX 실패")
          }
       });
  });

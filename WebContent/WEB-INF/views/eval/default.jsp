@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:import url="/WEB-INF/views/layout/header.jsp"></c:import>
-<%-- <c:import url="/WEB-INF/views/layout/header_slide.jsp"></c:import> --%>
 
    
 <section class="wrapper">
@@ -160,12 +159,9 @@ $("input[id^=food_]").click(function() {
          }
          , dataType: "html"
          , success: function(result) {
-            console.log("AJAX 성공")
-            console.log(result)
             $("#Diveval").html(result);
          }
          , error: function() {
-            console.log("AJAX 실패")
          }
       });
 });
@@ -179,15 +175,11 @@ $(".hor").click(function() {
          }
          , dataType: "html"
          , success: function(result) {
-            console.log("AJAX 성공")
-            console.log(result)
             $("#mo_wrapper").html(result);
          }
          , error: function() {
-            console.log("AJAX 실패")
          }
       });
-//    evalDetail($(this).attr("value"))
 });
 
 function evalDetail(menuno) {
@@ -199,20 +191,12 @@ function evalDetail(menuno) {
         }
         , dataType: "html"
         , success: function(result) {
-           console.log("AJAX 성공")
-           console.log(result)
            $("#mo_wrapper").html(result);
         }
         , error: function() {
-           console.log("AJAX 실패")
         }
      });
 }
-// $("#sub_filter").hide();
-
-// $("input[id^=food_]").click(function() {
-//    $("#sub_filter").show();
-// });
        
  $("#sub").click(function(){
      $(".sub_submenu").toggle('slow');
@@ -227,12 +211,9 @@ $(".filter_btn_detail").click(function() {
        }
        , dataType: "html"
        , success: function(result) {
-          console.log("AJAX 성공공")
-          console.log(result)
           $("#Diveval").html(result);
        }
        , error: function() {
-          console.log("AJAX 실패")
        }
     });
 });

@@ -15,8 +15,6 @@ public class PictureDaoImpl implements PictureDao {
 	public void insertFile(Picture picture) {
 		// TODO Auto-generated method stub
 		
-		//테스트
-		System.out.println("PictureDao : " + picture);
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
@@ -112,10 +110,8 @@ public class PictureDaoImpl implements PictureDao {
 			
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("삭제성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("삭제실패");
 			}
 			
 		} catch (SQLException e) {

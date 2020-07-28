@@ -68,62 +68,8 @@ $(document).ready(function() {
 </style>
 
 <script type="text/javascript">
-// $(".goodbtn").click(function() {
-//     if($("#good_badcnt${status.index }").val() == 0) {
-// 		$.ajax({
-// 	       type: "get"
-// 	       , url: "/eval/detail/goodbad"
-// 	       , data: {
-// 	    	   reviewno: $("#reviewno${status.index }").val(),
-// 	    	   good: $("#good").val(),
-// 	    	   bad: "no"
-// 	       }
-// 	       , dataType: "html"
-// 	       , success: function(result) {
-// 	          console.log("AJAX 성공")
-// 	       }
-// 	       , error: function() {
-// 	          console.log("AJAX 실패")
-// 	       }
-// 	    });
-		
-//     } else if($("#good_badcnt${status.index }").val() == 1) {
-//     	alert("이미 좋아요를 누르셨습니다");
-    	
-// 	} else if($("#good_badcnt${status.index }").val() == 2) {
-//     	alert("이미 싫어요를 누르셨습니다");
-    	
-// 	}
-// });
 </script>
 <script type="text/javascript">
-
-// $(".badbtnn").click(function() {
-// 	if( $("#good_badcnt${status.index }").val() == 0) {
-// 	$.ajax({
-// 	       type: "get"
-// 	       , url: "/eval/detail/goodbad"
-// 	       , data: {
-// 		       reviewno: $("#reviewno${status.index }").val(),
-// 	    	   good : "no",
-// 	    	   bad : $("#bad").val()
-// 	       }
-// 	       , dataType: "html"
-// 	       , success: function(result) {
-// 	          console.log("AJAX 성공")
-// 	          console.log(result)
-// 	       }
-// 	       , error: function() {
-// 	          console.log("AJAX 실패")
-// 	       }
-// 	    });
-// 	} else if ($("#good_badcnt${status.index }").val() == 2){
-// 		alert("이미 싫어요 버튼을 누르셨습니다");	
-// 	}
-// 	 else if ($("#good_badcnt${status.index }").val() == 1){
-// 		alert("이미 좋아요 버튼을 누르셨습니다");	
-// 	}
-// 	});
 
 </script>
 
@@ -137,14 +83,11 @@ $(document).ready(function() {
 var goodbad = "";
 $(".goodbtn").click(function() {
 	goodbad = "good";
-	console.log(goodbad);
-	console.log();
 	send_goodbad(this, goodbad);
 });
 
 $(".badbtnn").click(function() {
 	goodbad = "bad";
-	console.log(goodbad);
 	
 	send_goodbad(this, goodbad);
 });
@@ -167,10 +110,8 @@ function send_goodbad(th, goodbad) {
 	       }
 	       , dataType: "html"
 	       , success: function(result) {
-	          console.log("AJAX 성공")
 	       }
 	       , error: function() {
-	          console.log("AJAX 실패")
 	       }
 	    });
 		
@@ -198,21 +139,10 @@ function send_goodbad(th, goodbad) {
 	<div id="mo_left">
 		<div class="mo_detail" id="mo_image" style="height: 74%; border-radius: 5%;"></div>
 		<div class="mo_detail mo_detail_blank"></div>
-<%-- 			<c:if test="${login }"> --%>
-<!-- 				<div class="mo_detail" id="mo_expl" -->
-<!-- 					style="background-color: rgba(42,193,188,0.6); height: 18%;overflow: scroll; overflow-x: auto; overflow-y: auto; -->
-<%-- 					       color: white; font-weight: bolder; border-radius: 7%; padding-top: 10px;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div> --%>
-<!-- 				<div class="mo_detail" style="background-color: red; height: 6%;"> -->
-<!-- 					<input type="text" placeholder="지역명 입력" id="map_in" /> -->
-<!-- 					<button id="map_btn">지점검색</button> -->
-<!-- 				</div> -->
-<%-- 			</c:if> --%>
-<%-- 			<c:if test="${!login or empty login }"> --%>
 				<div class="mo_detail" id="mo_expl"
 					style="background-color: rgba(42,193,188,0.6); height: 22%; color: white; 
 					font-weight: bolder; border-radius: 5%;     overflow: scroll;     padding-top: 10px;
     overflow-x: auto; overflow-y: auto;"> 사진 : ${image.imgServer } 가격: ${menu.menuCost} </div>
-<%-- 			</c:if> --%>
 		<div></div>
 	</div>
 	<div id="mo_middle"></div>
@@ -227,7 +157,6 @@ function send_goodbad(th, goodbad) {
 				<span class="star star_left"></span><span class="star star_right"></span>
 				<span class="star star_left"></span> <span class="star star_right"></span>
 			</div>
-			<%-- 						<div class="star-value">${staravg }</div> --%>
 			<c:if test="${login }">
 				<div style="    width: 80%;
     margin: 0 auto;">
@@ -240,14 +169,11 @@ function send_goodbad(th, goodbad) {
 			<c:if test="${!login or empty login }">
 				<div>로그인 하시면 평가 등록 등 추가기능을 사용하실 수 있습니다.</div>
 			</c:if>
-<!-- ajaxbutton  -->
-<!-- id="ajax_star_comment" -->
 
 
 			<input type="hidden" value="${revcnt }" id="revcnt" />
 		</div>
 
-<!-- 		<div class="mo_detail mo_detail_blank"></div> -->
 
 
 		<div class="mo_detail" id="mo_review"
@@ -293,10 +219,6 @@ function send_goodbad(th, goodbad) {
 
 
 
-		<!-- 		<div class="mo_detail mo_detail_blank"></div> -->
-		<!-- 		<div class="mo_detail" id="mo_pn" -->
-		<!-- 			style="background-color: tomato; height: 5%;">페이지네이션</div> -->
-		<!-- 	</div> -->
 	</div>
 
 	<script type="text/javascript">
@@ -336,12 +258,9 @@ function send_goodbad(th, goodbad) {
 	       	            }
 	       	            , dataType: "html"
 	       	            , success: function(result) {
-	       	               console.log("AJAX 성공")
-	       	               console.log(result)
 	       	               $("#mo_right").html(result);
 	       	            }
 	       	            , error: function() {
-	       	               console.log("AJAX 실패")
 	       	            }
 	       	         });
 	       	         
@@ -363,12 +282,9 @@ function send_goodbad(th, goodbad) {
           }
           , dataType: "html"
           , success: function(result) {
-             console.log("AJAX 성공")
-             console.log(result)
              $("#mo_right").html(result);
           }
           , error: function() {
-             console.log("AJAX 실패")
           }
        });
  });
@@ -429,22 +345,14 @@ height:30px;
 }
 
 #ajax_star_comment {
-/* 	background: steelblue; */
-/* 	color: wheat; */
-/* 	width: 128px; */
-/* 	height: 30px; */
-/* 	border-radius: 30px; */
-/* 	border:0px; */
 	
 		display: inline-block;
 	width: 120px;
-/* 	height: 30px; */
 	text-align: center;
 	text-decoration: none;
 	line-height: 27px;
 	outline: none;
 
-/* 	margin-left: 650px; */
 border-color: inherit;
 	
 }
@@ -463,13 +371,10 @@ border-color: inherit;
 .button {
 	display: inline-block;
 	width: 80px;
-/* 	height: 30px; */
 	text-align: center;
 	text-decoration: none;
 	line-height: 27px;
 	outline: none;
-/* 	margin:10px 10px; */
-/* 	margin-left: 650px; */
 border-color: inherit;
 }
 .button::before,
@@ -512,13 +417,10 @@ $("#map_btn").click(function() {
          }
          , dataType: "html"
          , success: function(result) {
-            console.log("AJAX 성공")
-            console.log(result)
             $(".mo_content").html(result);
             
          }
          , error: function() {
-            console.log("AJAX 실패")
          }
       });
 });

@@ -159,7 +159,6 @@ public class ImageDaoImpl implements ImageDao{
          while(rs.next()) {
             image = new Image();
             image.setImgNo(rs.getInt("IMG_NO"));
-//            image.setImgName(rs.getString("IMG_NAME"));
             image.setImgOrigin(rs.getString("IMG_ORIGIN"));
             image.setImgServer(rs.getString("IMG_SERVER"));
             image.setImgHor(rs.getInt("IMG_HOR"));
@@ -211,15 +210,7 @@ public class ImageDaoImpl implements ImageDao{
             Image image = new Image();
             
             image.setImgNo(rs.getInt("IMG_NO"));
-//            image.setImgName(rs.getString("IMG_NAME"));
-//            image.setImgOrigin(rs.getString("IMG_ORIGIN"));
             image.setImgServer(rs.getString("IMG_SERVER"));
-//            image.setImgHor(rs.getInt("IMG_HOR"));
-//            image.setImgVer(rs.getInt("IMG_VER"));
-//            image.setImgExt(rs.getString("IMG_EXT"));
-//            image.setImgExt(rs.getString("IMG_EXT"));
-//            image.setImgSize(rs.getInt("IMG_SIZE"));
-//            image.setImgDate(rs.getDate("IMG_DATE"));
             image.setMenuNo(rs.getInt("MENU_NO"));
             
             imageList.add(image);

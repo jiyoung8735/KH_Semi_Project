@@ -9,7 +9,6 @@
 window.onload = function(){
 	
 	goback.onclick = function(){
-		console.log("test")
 		location.href = '/editProfile';
 	}
 	

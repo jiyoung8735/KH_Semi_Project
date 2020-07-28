@@ -72,7 +72,6 @@ public class PictureServiceImpl implements PictureService {
 		String path = context.getRealPath("tmp");
 		
 		File repository = new File(path); // 임시 저장 폴더
-	//	System.out.println(repository);
 		
 		factory.setRepository(repository);
 		
@@ -132,14 +131,12 @@ public class PictureServiceImpl implements PictureService {
 			if( item.isFormField() ) {
 				
 				// ---------- 키 값에 따라 처리하는 방식 -----------
-				System.out.println("ddd");
 				// 키값 꺼내기
 				String key = item.getFieldName();
 				
 				if( "userno".equals(key) ) { //전달파라미터 name이 "userno"
 					try {
 						userno = Integer.parseInt( item.getString("UTF-8"));
-						System.out.println(userno);
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}
@@ -149,7 +146,6 @@ public class PictureServiceImpl implements PictureService {
 			// 3) 파일에 대한 처리
 			if( !item.isFormField() ) {
 				
-				System.out.println("파일파일");
 				// 업로드된 파일을 처리하는 방식
 				
 				// 1) 파일을 웹 서버의 로컬 디스크에 저장
@@ -208,7 +204,6 @@ public class PictureServiceImpl implements PictureService {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					System.out.println("이미지버퍼");
 				}
 				
 				// 파일가로값 저장
@@ -219,7 +214,6 @@ public class PictureServiceImpl implements PictureService {
 				
 				//사용자번호 저장
 				picture.setUserNo(userno);
-				System.out.println("PictureServiceImpl : " + picture);
 				
 			} // if( !item.isFormFiel d() ) end
 			
@@ -233,7 +227,6 @@ public class PictureServiceImpl implements PictureService {
 			pictureDao.deleteFile(picture);
 			
 			//사진 업로드
-			System.out.println(picture.getUserNo());
 			pictureDao.insertFile(picture);
 		}
 	

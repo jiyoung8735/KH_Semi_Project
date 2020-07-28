@@ -20,39 +20,6 @@ import web.util.Paging;
 
 public class MyworkDaoImpl implements MyworkDao {
 
-//	@Override
-//	public int selectCntAll() {
-//		
-//		Connection conn = JDBCTemplate.getConnection();
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		
-//		int cnt = 0;
-//		
-//		String sql = "SELECT COUNT(*) FROM ( select A.*, U.users_nick from";
-//		sql += "	(select R.*, M.menu_name from";
-//		sql += "	(select S.menu_no, S.star_score, S.users_no, S.star_date, R.review_content";
-//		sql += "	from star S, review R where S.menu_no=R.menu_no) R,";
-//		sql += "	menu M";
-//		sql += "	where R.menu_no=M.menu_no) A, users U";
-//		sql += "	where A.users_no=U.users_no )";
-//		
-//		try {
-//			ps = conn.prepareStatement(sql);
-//			
-//			rs = ps.executeQuery();
-//			
-//			while( rs.next() ) {
-//				cnt = rs.getInt(1);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(ps);
-//			JDBCTemplate.close(rs);
-//		}
-//		return cnt;
-//	}
 
 	
 	
@@ -65,7 +32,6 @@ public class MyworkDaoImpl implements MyworkDao {
 		
 		List<Map<String,Object>> listMywork = new ArrayList<>();
 
-		System.out.println(userno);
 		
 		String sql = "SELECT * FROM ( "; 
 			 	sql += "	SELECT M.MENU_NAME, A.* FROM"; 
@@ -170,7 +136,6 @@ public class MyworkDaoImpl implements MyworkDao {
 				review.setReviewDate(rs.getDate("REVIEW_DATE"));
 				
 				//테스트
-				System.out.println("MDI select ONE : " + menu + user + star + review);
 				
 				mapMywork.put("menu", menu);
 				mapMywork.put("user", user);

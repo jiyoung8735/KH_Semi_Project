@@ -51,10 +51,8 @@ public class ApplyBlindMenuController extends HttpServlet {
 		int franno =  (int) session.getAttribute("franno");
 		
 		String[] Arrmenuno  = req.getParameterValues("applyblindNameByMenuNo");
-//		System.out.println("메뉴번호" + Arrmenuno[0]); //option태그 선택한 항목 blind 처리
 		
 		int menuno = Integer.parseInt(Arrmenuno[0]);
-//		System.out.println("메뉴번호(파싱)"+menuno);
 		
 		Blind blind = blindService.getParam(req);
 		

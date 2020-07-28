@@ -39,7 +39,6 @@ public class FranJoinController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("프랜차이즈 회원가입 POST 요청");
 
 		//회원가입
 		int result = userService.joinFran(req);

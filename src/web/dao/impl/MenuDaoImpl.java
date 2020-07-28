@@ -25,7 +25,6 @@ public class MenuDaoImpl implements MenuDao{
    @Override
    public int selectCntAll(int franno) {
       
-      System.out.println("여기도?" + franno);
       
       conn = JDBCTemplate.getConnection();
 
@@ -101,7 +100,6 @@ public class MenuDaoImpl implements MenuDao{
             menu.setMenuDate(rs.getDate("MENU_DATE"));
             menu.setMenuStat(rs.getString("MENU_STAT"));
             menu.setMenuBlind(rs.getString("MENU_BLIND"));
-//            menu.setFranNo(rs.getInt("FRAN_NO"));
             
             MenuList.add(menu);
          }

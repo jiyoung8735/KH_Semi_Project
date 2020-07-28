@@ -118,10 +118,7 @@ $(document).ready(function() {
 			$(".star").eq(i).addClass("on");
 		}
 		
-		console.log("클릭된 별의 위치 : " + idx)
-		console.log("점수로 변환 : " + (idx+1)/2)
 		updatescore = (idx+1)/2;
-		console.log("수정한 점수 : " + updatescore);
 		
 		$('#uds').attr('value', updatescore);
 	})

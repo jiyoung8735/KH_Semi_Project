@@ -66,10 +66,8 @@ public class StarDaoImpl implements StarDao {
 			
 			if(result>0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("별점 수정 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("별점 수정 실패");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -112,7 +110,6 @@ public class StarDaoImpl implements StarDao {
 			JDBCTemplate.close(ps);
 			JDBCTemplate.close(rs);
 		}
-		System.out.println("여기는 avgstar 디!에이!오! : " + avg);
 		return avg;
 	}
 
@@ -160,10 +157,8 @@ public class StarDaoImpl implements StarDao {
 			
 			if(result>0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("별점 삭제 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("별점 삭제 실패");
 			}
 			
 		} catch (SQLException e) {

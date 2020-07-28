@@ -37,8 +37,6 @@ public class FilterDetailController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String foodName = (String)session.getAttribute("food");
 		
-		System.out.println("추가필터음식이름 : " + foodName);
-		System.out.println("추가필터이름 : "+detailfilter);
 
 		List<Menu> menu = menuService.getMenuByfilter(detailfilter,foodName);
 		List<Image> image = imageService.getMenuByfilter(detailfilter,foodName);

@@ -20,12 +20,9 @@ $(".slidermodal").click(function(){
         }
         , dataType: "html"
         , success: function(result) {
-           console.log("AJAX 성공")
-           console.log(result)
            $("#mo_wrapper").html(result);
         }
         , error: function() {
-           console.log("AJAX 실패")
         }
      });
 })
@@ -51,12 +48,9 @@ function evalDetail(menuno) {
         }
         , dataType: "html"
         , success: function(result) {
-           console.log("AJAX 성공")
-           console.log(result)
            $("#mo_wrapper").html(result);
         }
         , error: function() {
-           console.log("AJAX 실패")
         }
      });
 }

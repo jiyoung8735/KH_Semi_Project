@@ -24,7 +24,6 @@ public class CheckEmailController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		boolean result = userService.checkEmail(req);
-		System.out.println("test" + result);
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json;charset=utf-8");

@@ -30,10 +30,8 @@ public class MailauthDaoImpl implements MailauthDao {
 			
 			if( result > 0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("인증코드와 이메일 삽입 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("인증코드와 이메일 삽입 실패");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +60,6 @@ public class MailauthDaoImpl implements MailauthDao {
 			
 			while( rs.next() ) {
 				random = rs.getString("RANDOM");
-				System.out.println("저장된 랜덤값 : " + random);
 			}
 			
 		} catch (SQLException e) {

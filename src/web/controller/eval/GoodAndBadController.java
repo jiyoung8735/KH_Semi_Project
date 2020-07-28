@@ -20,8 +20,6 @@ public class GoodAndBadController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("G&B controller reviewno " + req.getParameter("reviewno"));
-		System.out.println("G&B controller data " + req.getParameter("goodbad")); //"good","bad"
 		HttpSession session = req.getSession();
 
 		//로그인 안하면 동작안함 , 로그인하면 동작하면서 좋아요 싫어요  눌렀던거 검증
@@ -31,7 +29,6 @@ public class GoodAndBadController extends HttpServlet {
 		}
 		
 		String goodbad = req.getParameter("goodbad");
-		System.out.println("goodbad ::::::::::::::::::::::::: " + goodbad);
 		
 		//좋아요 싫어요 버튼
 		reviewService.goodandbadbtn(req);

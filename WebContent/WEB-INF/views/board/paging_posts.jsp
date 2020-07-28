@@ -17,10 +17,6 @@
 	<a href="/view/posts?curPage=${paging.startPage - paging.pageCount }&search=${param.search }">&laquo;</a>
 	</c:if>
 
-<%-- 	<c:if test="${paging.startPage le paging.pageCount }"> --%>
-<!-- 	<a>&laquo;</a> -->
-<%-- 	</c:if> --%>
-	
 	
 	
 	<!-- 이전 페이지로 가기 -->

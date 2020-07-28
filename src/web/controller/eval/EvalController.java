@@ -29,8 +29,6 @@ public class EvalController extends HttpServlet {
 		
 		List<Menu> menu = menuService.getAllMenu();
 		List<Image> image = imageService.getAllImage();
-		System.out.println("이벨 " + menu);
-		System.out.println("이벨 " + image);
 		
 		req.setAttribute("menu", menu);
 		req.setAttribute("image", image);

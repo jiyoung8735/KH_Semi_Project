@@ -3,18 +3,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-<%-- 	var url = '<%=request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1, request.getRequestURI().lastIndexOf(".")) %>'; --%>
-// 	console.log(url)
-// 	if( "list" == url) {
-// 		$("#r").addClass("active");
-// 	} else if( "apply" == url) {
-// 		$("#rr").addClass("active");
-// 	}else if(){
-		
-// 	}
 
 	var url = location.href.substr(location.href.lastIndexOf("/")+1);
-// 	console.log(url)
 	
 	if("fran"== url){
 		$("#nav_bar_sub1").addClass("active");
@@ -27,7 +17,6 @@ $(document).ready(function(){
 	}
 	
 	var url2 = location.href.substr((location.href.lastIndexOf("/")+1 ),+4);
-// 	console.log(location.href.substr((location.href.lastIndexOf("/")+1 ),+4)  )
 	if("view" == url2){
 		$("#nav_bar_sub1").addClass("active");
 	}else if("list" == url2){

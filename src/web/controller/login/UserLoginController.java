@@ -54,7 +54,6 @@ public class UserLoginController extends HttpServlet {
 		if(login) {
 			//로그인 사용자 정보 얻어오기
 			user = userService.info(user);
-			System.out.println(user);
 			
 
 			//---------징계회원 처리---------
@@ -108,7 +107,6 @@ public class UserLoginController extends HttpServlet {
 				
 				Fran fran = new Fran();
 				fran = franService.getFran(user.getFranNo());
-				System.out.println("여기봐봐" + fran);
 				session.setAttribute("franname", fran.getFranName());
 				session.setAttribute("franno",fran.getFranNo() );
 			}

@@ -39,7 +39,6 @@ public class UserJoinController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("일반인 회원가입 POST 요청");
 		
 		//회원가입
 		int result = userService.joinUser(req);

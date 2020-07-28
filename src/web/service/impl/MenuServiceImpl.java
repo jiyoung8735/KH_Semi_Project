@@ -37,7 +37,6 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public Paging getPaging(HttpServletRequest req , int franno) {
 		
-		System.out.println("내가?" + franno);
 		
 		//전달파라미터 curPage를 파싱한다
 		String param = req.getParameter("curPage");
@@ -205,7 +204,6 @@ public class MenuServiceImpl implements MenuService {
 				//실제 업로드 파일
 				File up = new File(
 						context.getRealPath("upload") //업로드될 폴더
-//						, item.getName()//원본 파일의 이름
 						, stored //저장파일의 이름(변환됨)
 						);
 				
@@ -219,28 +217,14 @@ public class MenuServiceImpl implements MenuService {
 				}
 				
 	             
-//	             int hor=0;
-//	             int ver=0;
-//	             try {
-//	                BufferedImage bi = ImageIO.read(up);
-//	                hor=bi.getWidth();
-//	                ver=bi.getHeight();
-//	                imageFile.setImgVer(ver);
-//	                imageFile.setImgHor(hor);
-//	                
-//	             } catch (IOException e1) {
-//	                e1.printStackTrace();
-//	             }
 				
 			}
 		}
 	
 
-//		if(imageFile !=null) {
 			int menuno = menuDao.insertMenu(menu , franno);
 			imageFile.setMenuNo(menuno);//메뉴번호
 			imageDao.insertImage(imageFile);
-//		}
 		
 	}
 

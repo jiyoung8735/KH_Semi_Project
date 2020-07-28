@@ -41,15 +41,12 @@ public class BoardViewPostsController extends HttpServlet {
 				userKey.add(key);
 				boardVal.add(boardList.get(key));
 			}
-			System.out.println("넘겨지는값"+paging);
 		
 		//페이징계산결과 MODEL값 전달
 		req.setAttribute("paging", paging);
 	
 		//게시글 조회 MODEL값 전달
 		req.setAttribute("boardList", boardList);
-//		req.setAttribute("boardVal",boardVal);
-//		req.setAttribute("userKey", userKey);
 		
 		//View 전달
 		req.getRequestDispatcher("/WEB-INF/views/board/viewPosts.jsp")

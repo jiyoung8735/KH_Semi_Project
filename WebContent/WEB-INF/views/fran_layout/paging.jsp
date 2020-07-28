@@ -6,21 +6,6 @@
 <div class="text-center">
 <ul class="pagination">
 	
-	<!-- 첫 페이지로 가기 -->
-<%-- 	<c:if test="${paging.curPage ne 1 }"> --%>
-<%-- 	<c:if test="${paging.curPage gt paging.pageCount  }"> --%>
-<!-- 	<li><a href="/fran/list">&larr;</a></li> -->
-<%-- 	</c:if> --%>
-	
-	
-	<!-- 이전 페이징 리스트로 가기 -->
-<%-- 	<c:if test="${paging.startPage gt paging.pageCount }"> --%>
-<%-- 	<li><a href="/fran/list?curPage=${paging.startPage - paging.pageCount }">&laquo;</a></li> --%>
-<%-- 	</c:if> --%>
-	
-<%-- 	<c:if test="${paging.startPage le paging.pageCount }"> --%>
-<!-- 	<li class="disabled"><a>&laquo;</a></li> -->
-<%-- 	</c:if> --%>
 	
 	
 	<!-- 이전 페이지로 가기 -->
@@ -50,20 +35,6 @@
 	</c:if>
 	
 
-	<!-- 다음 페이징 리스트로 가기 -->
-<%-- 	<c:if test="${paging.endPage ne paging.totalPage }"> --%>
-<%-- 	<li><a href="/fran/list?curPage=${paging.startPage + paging.pageCount }">&raquo;</a></li> --%>
-<%-- 	</c:if> --%>
-
-<%-- 	<c:if test="${paging.endPage eq paging.totalPage }"> --%>
-<!-- 	<li class="disabled"><a>&raquo;</a></li> -->
-<%-- 	</c:if> --%>
-
-
-	<!-- 마지막 페이지로 가기 -->
-<%-- 	<c:if test="${paging.curPage ne paging.totalPage }"> --%>
-<%-- 	<li><a href="/fran/list?curPage=${paging.totalPage }">&rarr;</a></li> --%>
-<%-- 	</c:if> --%>
 	
 </ul>
 </div>

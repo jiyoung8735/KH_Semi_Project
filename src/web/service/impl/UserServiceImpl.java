@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserId( req.getParameter("id") );
 		User result = userDao.selectUserByUserid(user);
 		
-		System.out.println("UserService : " + result);
 		
 		return result;
 	}
@@ -177,7 +176,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserGrade( grade );
 		user.setFranNo( franno );
 		
-		System.out.println(user);
 		
 		//회원가입 -> UserNo 생성
 		int result = userDao.insert(user);
@@ -228,7 +226,6 @@ public class UserServiceImpl implements UserService {
 		
 		String name = req.getParameter("name");
 		String email = req.getParameter("useremail");
-		System.out.println("Search Id... : " + name + " , " + email);
 		
 		User user = userDao.selectUserByNameAndEmail(name, email);
 		
@@ -252,10 +249,8 @@ public class UserServiceImpl implements UserService {
 
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("id"));
-		System.out.println("가져온 아이디 : " + id);
 		
 		String npw = req.getParameter("pw");
-		System.out.println("새 비밀번호 : " + npw);
 		
 		userDao.updatePw(npw, id);
 		
@@ -266,10 +261,8 @@ public class UserServiceImpl implements UserService {
 
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("userid"));
-		System.out.println("가져온 아이디 : " + id);
 		
 		String npw = req.getParameter("pw");
-		System.out.println("새 비밀번호 : " + npw);
 		
 		userDao.updatePw(npw, id);
 	}
@@ -280,7 +273,6 @@ public class UserServiceImpl implements UserService {
 		//세션 아이디
 		HttpSession session = req.getSession();
 		String id = String.valueOf(session.getAttribute("id"));
-		System.out.println("ttt" + id);
 		
 		//입력한 이메일
 		String email = req.getParameter("useremail");

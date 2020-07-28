@@ -187,10 +187,8 @@ public class UserDaoImpl implements UserDao {
 			
 			if(result>0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("회원 탈퇴 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("회원 탈퇴 실패");
 			}
 			
 		} catch (SQLException e) {
@@ -241,7 +239,6 @@ public class UserDaoImpl implements UserDao {
 			JDBCTemplate.close(rs);
 		}
 		
-		System.out.println("setting user" + user);
 		return user;
 	}
 
@@ -265,10 +262,8 @@ public class UserDaoImpl implements UserDao {
 			
 			if( result > 0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("비밀번호 변경 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("비밀번호 변경 실패");
 			}
 			
 		} catch (SQLException e) {
@@ -296,10 +291,8 @@ public class UserDaoImpl implements UserDao {
 			
 			if(result>0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("방문횟수 업데이트 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("방문횟수 업데이트 실패");
 			}
 			
 		} catch (SQLException e) {
@@ -327,10 +320,8 @@ public class UserDaoImpl implements UserDao {
 			
 			if(result>0) {
 				JDBCTemplate.commit(conn);
-				System.out.println("로그인날짜 업데이트 성공");
 			}else {
 				JDBCTemplate.rollback(conn);
-				System.out.println("로그인날짜 업데이트 실패");
 			}
 			
 		} catch (SQLException e) {

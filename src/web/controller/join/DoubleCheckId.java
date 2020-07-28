@@ -27,15 +27,12 @@ public class DoubleCheckId extends HttpServlet {
 
 		User joinUser = new User();
 		joinUser = userService.doublecheckId(req);
-		System.out.println("controller : " + joinUser);
 
 		resp.setContentType("application/json;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		if( joinUser.getUserId() == null ) {
-			System.out.println("아이디 중복 없음");
 			out.println( "{\"result\":true}" );
 		} else {
-			System.out.println("아이디 중복");
 			out.println( "{\"result\":false}" );
 		}
 	
