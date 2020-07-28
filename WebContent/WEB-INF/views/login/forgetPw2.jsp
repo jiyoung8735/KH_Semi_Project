@@ -98,7 +98,7 @@ $(document).ready(function(){
 		checkcode = resultvar3.result;
 		
 		if( checkcode == true ){
-			$("#codev").text("코드 인증 성공")
+			$("#codev").text("코드 인증 성공!")
 			$("#codev").css("color", "blue")
 		}
 		

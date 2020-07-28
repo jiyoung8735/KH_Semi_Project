@@ -40,7 +40,7 @@ $(document).ready(function(){
 		emailsend = resultvar1.result
 		
 		if( emailsend == true ){
-			$("#emailv").text( "이메일을 발송하였습니다" );
+			$("#emailv").text( "이메일을 발송하였습니다." );
 			$("#emailv").css( "color", 'blue' );
 		} 
 		
@@ -102,10 +102,10 @@ $(document).ready(function(){
 		
 		if( resultvar3 != null ){
 			$("#showid").text("아이디 : " + resultvar3 )
-			$("#showid").css("color", "blue")
+			$("#showid").css("color", "red")
 		}else{
 			$("#showid").text("조회하신 아이디가 없습니다.")
-			$("#showid").css("color", "blue")
+			$("#showid").css("color", "red")
 		}
 	}
 });
@@ -134,7 +134,7 @@ $(document).ready(function(){
 	</div>
 
 <!-- 아이디 조회 (AJAX)  -->
-<div id="showid"></div>
+<div id="showid" style="font-size: 20px;"></div>
 <hr>
 <div style="text-align: center;">
 <a href="/login" style="text-decoration: underline;">로그인</a> &emsp;
