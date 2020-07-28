@@ -22,6 +22,12 @@ $(document).ready(function(){
 	//메일발송
 	$("#btnSendEmail").click(function(){
 		
+		if( $("#email").val() == "" ){
+			$("#emailv").text( "회원가입시 등록한 이메일을 입력하세요." );
+			$("#emailv").css( "color", 'red' );
+			return false;
+		}
+		
 		var p = "useremail=" + $("#email").val();
 		sendRequest("GET", "/send", p, callback1);
 

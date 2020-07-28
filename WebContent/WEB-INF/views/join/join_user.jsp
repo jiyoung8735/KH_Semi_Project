@@ -374,6 +374,13 @@ $(document).ready(function(){
 	});
 //--------- 이메일 보내기 ----------
 $("#btnSendEmail").click( function(){
+	
+	if($("#email").val() == "" ){
+		$("#emailv").text( "이메일을 입력하세요." );
+		$("#emailv").css( "color", 'red' );
+		return false;
+	}
+	
 	var params = "username=" + $("#name").val() + "&" + "useremail=" + $("#email").val();
 	console.log(params);
 	sendRequest("GET", "/send", params, callbackEmail);
