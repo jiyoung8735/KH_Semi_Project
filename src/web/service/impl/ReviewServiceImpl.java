@@ -53,9 +53,9 @@ public class ReviewServiceImpl implements ReviewService {
 	// ---------------------------------------------------------------------------
 
 	@Override
-	public List<Map<String, Object>> evalReviewDetail(Paging paging, int menuno) {
+	public List<Map<String, Object>> evalReviewDetail(Paging paging, int userno, int menuno) {
 		
-		return reviewDao.selectReview(paging, menuno);
+		return reviewDao.selectReview(paging, userno, menuno);
 	}
 
 	@Override

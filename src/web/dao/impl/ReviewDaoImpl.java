@@ -85,7 +85,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectReview(Paging paging, int menuno) {
+	public List<Map<String, Object>> selectReview(Paging paging, int userno, int menuno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		PreparedStatement ps = null;
@@ -97,7 +97,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		String sql = "";
 		sql += "SELECT *";
 		sql += " FROM review R join picture P on r.users_no = p.users_no";
-		sql += " LEFT OUTER JOIN reviewverif RV ON r.review_no = rv.review_no";
+		sql += " LEFT OUTER JOIN (select * from reviewverif where users_no=?) RV ON r.review_no = rv.review_no";
 		sql += " WHERE r.menu_no=?";
 		sql += " and review_report = 'N' ";
 		sql += " ORDER BY (r.review_good-r.review_bad) DESC";
@@ -109,7 +109,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
-			ps.setInt(1, menuno);
+			ps.setInt(1, userno);
+			ps.setInt(2, menuno);
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
 			

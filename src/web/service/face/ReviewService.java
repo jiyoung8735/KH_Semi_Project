@@ -29,8 +29,8 @@ public interface ReviewService {
 	
 	//---------------------------------------------------------------------------
 	
-//	public Map<Review, Picture> evalReviewDetail(Paging paging, int menuno);
-	public List<Map<String, Object>> evalReviewDetail(Paging paging, int menuno);
+//	public Map<Review, Picture> evalReviewDetail(Paging paging, int userno, int menuno);
+	public List<Map<String, Object>> evalReviewDetail(Paging paging, int userno, int menuno);
 	
 	public Paging getPagingReview(HttpServletRequest req);
 	

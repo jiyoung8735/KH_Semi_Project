@@ -31,8 +31,8 @@ public interface ReviewDao {
 	
 	//---------------------------------------------------------------------------
 	
-//	public Map<Review, Picture> selectReview(Paging paging, int menuno);
-	public List<Map<String, Object>> selectReview(Paging paging, int menuno);
+//	public Map<Review, Picture> selectReview(Paging paging, int userno, int menuno);
+	public List<Map<String, Object>> selectReview(Paging paging, int userno, int menuno);
 	
 	public int selectCntReport();
 	//---------------------------------------------------------------------------

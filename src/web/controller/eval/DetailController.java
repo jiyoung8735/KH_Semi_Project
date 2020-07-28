@@ -69,8 +69,11 @@ public class DetailController extends HttpServlet {
 		}
 		req.setAttribute("menuno", req.getParameter("menuno"));
 		
+		HttpSession session = req.getSession();
+		int userno = (int) session.getAttribute("userno");
+		
 		//게시글 페이징 처리 조회
-		List<Map<String, Object>> reviewList = reviewService.evalReviewDetail(paging, menuno);
+		List<Map<String, Object>> reviewList = reviewService.evalReviewDetail(paging, userno, menuno);
 		
 		
 		req.setAttribute("reviewList", reviewList);
@@ -81,7 +84,6 @@ public class DetailController extends HttpServlet {
 	
 		
 		//로그인 안하면 동작안함 , 로그인하면 동작하면서 한줄평 작성했던거 검증
-		HttpSession session = req.getSession();
 		if(session.getAttribute("userno") != null) {
 		int reviewcnt = reviewService.ReviewCount(req);
 		req.setAttribute("revcnt", reviewcnt);
