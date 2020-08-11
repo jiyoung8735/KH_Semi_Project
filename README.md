@@ -1,4 +1,6 @@
-"# KH_semi_project"
+관리자 페이지 레포지토리
+https://github.com/jiyoung8735/KH_Semi_Project_Admin
+
 
  < SEMI_PROJECT : 브랜드평점 >
 
